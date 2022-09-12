@@ -1,0 +1,130 @@
+﻿@using System.IO
+@using System.Net.Http
+@using System.Threading
+
+
+<div id="carreph" class="carre" onclick="scaler('photos','carreph','carre2ph','25','0','-25','25')">    
+    <div id="carre2ph" class="carre2"/>
+</div>
+
+<span>
+    Nos Photos
+</span>
+
+
+@{
+    string p1 = $"{phm}%";
+
+    
+}
+<div id="contPhAloneJs" style="--phmove:@p1">
+    @for (int i = 0; i < 4; i++)
+    {
+        string s = $"photo/maison{i}.jpg";
+        string l = $"photo/legend/legend{i}.html";
+        <div class="contPhMultJs">
+            <img src="@s" />
+            <div class="contIfraJs">
+                <iframe src="@l" />
+            </div>            
+        </div>
+    }
+</div>
+@{ string t1 = $"{trb}%";
+    string t2 = $"{trn}%";
+ }
+<div style="--triremplnext:@t1;--triremplback:@t2">
+
+    <svg @onclick="OnBack"
+         data-src="/svg/tri.svg"
+         id="mytriback"
+         data-js="enabled"
+         data-unique-ids="disabled"></svg>
+
+    <svg @onclick="OnNext"
+         data-src="/svg/tri.svg"
+         id="mytrinext"
+         data-js="enabled"
+         data-unique-ids="disabled"></svg>
+</div>
+
+@code {    
+
+    int srcJpg = 0;
+   // List<string> enumed;
+    protected override async Task OnInitializedAsync()
+    {
+
+        //Console.WriteLine("deb");
+        //string path = "/";
+        //var client = new HttpClient();
+        //var jpgs = await client.GetStreamAsync(path);
+
+        //var jpgFiles = Directory.GetFiles(path, "*.*");
+        //if (jpgFiles.Count() > 0)
+        //{
+        //    Console.WriteLine("supzero");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("else");
+        //}
+        //foreach (var fil in jpgFiles)
+        //{
+        //    Console.WriteLine(fil);
+        //}
+        //Console.WriteLine("fin");
+        // var enume = jpgFiles.GetEnumerator()
+        // enumed = jpgFiles.ToList();
+        // srcJpg = enumed[0];
+        // var srcJpgr = jpgFiles.GetEnumerator();
+    }
+
+    int trb = 0;
+    int trn = 0;
+    int phm = 0;
+
+    void OnNext()
+    {                                                                           //
+
+
+        //foreach (string currentFile in jpgFiles)
+        //{
+        // currentFile.
+
+        if (srcJpg < 3)
+        {
+            srcJpg++;
+            trn = trn + 33;
+            phm = phm - 100;
+        }
+
+        //srcJpg = enumed[curser];
+        // StateHasChanged();
+
+
+        //   TriRempl();
+    }
+
+    void OnBack()
+    {                                                                           //
+        if (srcJpg > 0)
+        {
+            srcJpg--;
+            trn = trn - 33;
+            phm = phm + 100;
+        }
+        //srcJpg = enumed[curser];
+
+        //  TriRempl();
+
+    }
+
+    void TriRempl()                                                              // Remplissage Back Next.
+    {
+        //trn = 100 / 17 * maxNext + offset;
+        //trnu = trn + "%";
+        //trb = 100 - (100 / 17 * maxNext + offset);
+        //trbu = trn + "%";
+    }
+}
