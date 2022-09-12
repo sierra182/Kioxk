@@ -149,64 +149,47 @@ namespace Kioxk.Server.Controllers
                 _context.SaveChangesAsync();
             }
         }
-        //void t2()
-        //{
-        //    if (_context.Livret.Count() < 1)
-        //    {
-        //        var ndt = new Datetime() { dt = new DateTime(2021, 11, 12) };
-        //        var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 13) };
-        //        var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 14) };
-        //        var nhs = new HashSet<Datetime>();
-        //        nhs.Add(ndt);
-        //        nhs.Add(ndt1);
-        //        nhs.Add(ndt2);
-
-        //        var ndts = new Datetime() { dt = new DateTime(2000, 11, 16) };
-        //        var ndts1 = new Datetime() { dt = new DateTime(2000, 11, 17) };
-        //        var ndts2 = new Datetime() { dt = new DateTime(2000, 11, 18) };
-        //        var nhst = new HashSet<Datetime>();
-        //        nhst.Add(ndts);
-        //        nhst.Add(ndts1);
-        //        nhst.Add(ndts2);
-
-
-        //        var ndtsh = new Datetime() { dt = new DateTime(2000, 11, 20) };
-        //        var ndts1h = new Datetime() { dt = new DateTime(2000, 11, 21) };
-        //        var ndts2h = new Datetime() { dt = new DateTime(2000, 11, 22) };
-        //        var nhsth = new HashSet<Datetime>();
-        //        nhsth.Add(ndtsh);
-        //        nhsth.Add(ndts1h);
-        //        nhsth.Add(ndts2h);
-
-        //        var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
-
-        //        var nint = new Int() { it = 300 };
-        //        var nint1 = new Int() { it = 320 };
-        //        var nint2 = new Int() { it = 340 };
-        //        var nintf = new List<Int> { nint, nint1, nint2 };
-
-        //        _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
-        //        _ = _context.SaveChangesAsync();
-        //    }
-        //}
-        void t3()
+        void t2()
         {
-            try
+            if (_context.Livret.Count() < 1)
             {
-                //Console.WriteLine(" All:");
-                //foreach (var cd in _context.Datetimes)
-                //{
-                //    Console.WriteLine(" All: " + cd);
-                //}
+                var ndt = new Datetime() { dt = new DateTime(2021, 11, 12) };
+                var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 13) };
+                var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 14) };
+                var nhs = new HashSet<Datetime>();
+                nhs.Add(ndt);
+                nhs.Add(ndt1);
+                nhs.Add(ndt2);
+
+                var ndts = new Datetime() { dt = new DateTime(2000, 11, 16) };
+                var ndts1 = new Datetime() { dt = new DateTime(2000, 11, 17) };
+                var ndts2 = new Datetime() { dt = new DateTime(2000, 11, 18) };
+                var nhst = new HashSet<Datetime>();
+                nhst.Add(ndts);
+                nhst.Add(ndts1);
+                nhst.Add(ndts2);
+
+
+                var ndtsh = new Datetime() { dt = new DateTime(2000, 11, 20) };
+                var ndts1h = new Datetime() { dt = new DateTime(2000, 11, 21) };
+                var ndts2h = new Datetime() { dt = new DateTime(2000, 11, 22) };
+                var nhsth = new HashSet<Datetime>();
+                nhsth.Add(ndtsh);
+                nhsth.Add(ndts1h);
+                nhsth.Add(ndts2h);
+
+                var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
+
+                var nint = new Int() { it = 300 };
+                var nint1 = new Int() { it = 320 };
+                var nint2 = new Int() { it = 340 };
+                var nintf = new List<Int> { nint, nint1, nint2 };
+
+                _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
+                _ = _context.SaveChangesAsync();
             }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex);
-            }
-
-
         }
+     
         public void AfficheLivret()
         {
             // t3();
@@ -523,17 +506,8 @@ namespace Kioxk.Server.Controllers
         [HttpGet]
         public async Task<Livret> Get()
         {
-            try
-            {
-                //Mail();
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
+          
+            t2();
             t1();
             return livContext.Single();
         }

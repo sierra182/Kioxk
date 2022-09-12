@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kioxk.Server.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20220912091903_mydb")]
+    [Migration("20220912134601_mydb")]
     partial class mydb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
