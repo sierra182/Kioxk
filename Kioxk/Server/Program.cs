@@ -1,8 +1,12 @@
+using Kioxk.Server.Data;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<AppDBContext>(options =>
+           options.UseSqlite(builder.Configuration.GetConnectionString("DefaultSQLiteConnection")));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
