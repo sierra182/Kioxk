@@ -7,12 +7,13 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<AppDBContext>(options =>
-           options.UseSqlite(builder.Configuration.GetConnectionString("DefaultSQLiteConnection")));
+//builder.Services.AddDbContext<AppDBContext>(options =>
+//           options.UseSqlite(builder.Configuration.GetConnectionString("DefaultSQLiteConnection")));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-
+var connectionString = builder.Configuration.GetConnectionString("DefaultSQLiteConnection");
+builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlite(connectionString));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
