@@ -1,0 +1,59 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime js
+@using System.Threading
+@using Kioxk.Shared.Models
+
+<EditForm EditContext="@ec">
+
+    <DataAnnotationsValidator />
+
+    <label>
+        <span>Prénom :</span>
+        <InputText @bind-Value="Com.FirstName" maxlength="50" minlength="1" placeholder=" requis" required />
+    </label>
+
+    <label>
+        <span>Nom :</span>
+        <InputText @bind-Value="@Com.LastName" maxlength="50" minlength="1" placeholder=" requis" required />
+    </label>
+
+    <label>
+        <span>Téléphone :</span>
+        <InputNumber @bind-Value="@Com.Phone" min="0" max="10000000000" placeholder=" requis" required />
+    </label>
+
+    <label>
+        <span>Adresse :</span>
+        <InputTextArea @bind-Value="@Com.Address" maxlength="250" placeholder=" requis" minlength="1" required />
+    </label>
+    <label>
+        <span>e-m@il :</span>
+        <InputText @bind-Value="@Com.Email" maxlength="50" minlength="3" placeholder=" requis pour le reçu" required />
+    </label>
+    <label>
+        <span>Renseignements Complémentaires :</span>
+        <InputTextArea class="clInpform" @bind-Value="@Com.RgtsCompl" maxlength="400" placeholder=" facultatif" />
+    </label>
+
+    <button class="btn btn-success" type="submit" @onclick='()=> { if (ec.Validate()){ComRapp.InvokeAsync(Com);}}'>
+        Envoyez
+    </button>
+
+    <ValidationSummary />
+
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public Commande Com { get; set; }
+    [Parameter]
+    public EventCallback ComRapp { get; set; }
+
+    private EditContext ec { get; set; }
+    protected override void OnInitialized()
+    {
+        ec = new EditContext(Com);
+    }
+}
+

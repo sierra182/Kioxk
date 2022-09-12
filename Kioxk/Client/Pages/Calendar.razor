@@ -1,0 +1,161 @@
+﻿@using System.Globalization
+
+<div><div><span>@monthName</span><span>@year</span></div></div>
+
+<div id="panneau">
+        <div><span>lu</span></div>
+        <div><span>ma</span></div>
+        <div><span>me</span></div>
+        <div><span>je</span></div>
+        <div><span>ve</span></div>
+        <div><span>sa</span></div>
+        <div><span>di</span></div>
+
+        @for (int i = 0; i < nbrElement; i++)
+        {
+            var t = datetime[i];
+            var e = i;
+            <div @onclick="() => { OnClickWeekOnly(e, t); }">
+                <Element @bind-DateTime="@datetime[i]" @bind-UnSelectable="@unselectable[i]" @bind-Selected="@selected[i]" Seasons="@mySeason(e)"></Element>
+            </div>
+        }
+    </div>
+
+    @code {
+        [Parameter]
+        public DateTime DateTime { get; set; }
+        [Parameter]
+        public EventCallback<DateTime> DateTimeChanged { get; set; }
+
+        [Parameter]
+        public HashSet<DateTime> UnSelectable { get; set; }
+        [Parameter]
+        public EventCallback<HashSet<DateTime>> UnSelectableChanged { get; set; }
+
+        [Parameter]
+        public HashSet<DateTime> Selected { get; set; }
+        [Parameter]
+        public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
+
+        [Parameter]
+        public HashSet<DateTime>[] Seasons { get; set; }
+        [Parameter]
+        public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
+
+        private const int nbrElement = 42;
+        private DateTime[] datetime = new DateTime[nbrElement];
+        private bool?[] unselectable;
+        private bool?[] selected;
+        private string monthName;
+        private int year;
+        private bool[,] seasons;
+
+        bool?[] mySeason(int it)
+        {                                                                       // Passage d'une ligne d'un tableau multidimentionnel à tableau unidimentionnel.
+            return new bool?[2] { seasons[it, 0], seasons[it, 1] };
+        }
+
+        private DateTime firstDay;
+        private int firstDayWeek;
+        private int monthDays;
+        protected override void OnParametersSet()
+        {
+            unselectable = new bool?[nbrElement];
+            selected = new bool?[nbrElement];
+            seasons = new bool[nbrElement, 2];
+            datetime = new DateTime[nbrElement];
+
+            monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Month);
+            year = DateTime.Year;
+            var month = DateTime.Month;
+            monthDays = DateTime.DaysInMonth(year, month);
+            firstDay = new DateTime(year, month, 1);
+            firstDayWeek = (Int32)firstDay.DayOfWeek;
+
+            associerTableau();
+        }
+
+        void associerTableau()
+        {
+            int offSet;                                                        // Réglage du offset selon le jour de la semaine du premier jour du mois.
+            if (firstDayWeek == 0)
+            {
+                offSet = 6;
+            }
+            else
+            {
+                offSet = firstDayWeek - 1;
+            }
+
+            for (int i = offSet, a = 0; i < monthDays + offSet; i++, a++)
+            {                                                                  // Remplit les jours du mois apres le offset.
+                datetime[i] = firstDay.AddDays(a);                             // Les rends selectionnables.
+                unselectable[i] = false;
+
+                if (UnSelectable.Contains(datetime[i]))
+                {
+                    unselectable[i] = true;                                    // Rend non-selectionnables les jours donnés.
+                }
+
+                if (Selected.Contains(datetime[i]))
+                {
+                    selected[i] = true;                                        // Rend selectionnés les jours donnés.
+                }
+
+                if (Seasons[0].Contains(datetime[i]))                                  // Rend moyens les jours donnés.
+                {
+                    seasons[i, 0] = true;
+                }
+
+                if (Seasons[1].Contains(datetime[i]))                                  // Rend hauts les jours donnés.
+                {
+                    seasons[i, 1] = true;
+                }
+            }
+        }
+
+        void OnClickWeekOnly(int i, DateTime t)
+        {                                                               // Selection minimale hebdomadaire avec
+            r = true;                                                   // Rend les elements vides clickable par le programme.
+            if (unselectable[i] == null)                                // Rend les elements vides non clickable par l'utilisateur.
+                return;
+
+            DateTime nt = t;
+            int j = (Int32)t.DayOfWeek;
+            int ni = i;
+            while (j != 1)
+            {                                                           // Rembobine au premier jour de la semaine.
+                nt = nt.AddDays(-1);
+                j = (Int32)nt.DayOfWeek;
+                ni--;
+            }
+
+            for (int f = 0; f < 7; f++)
+            {                                                           // Appelle OnClick pour les septs jours suivants.
+                OnClick(ni, nt);
+                ni++;
+                nt = nt.AddDays(1);
+            }
+        }
+
+        bool r = false;
+        private void OnClick(int i, DateTime t)
+        {
+            if (!r)
+            {
+                if (unselectable[i] == null)                            // Rend les éléments vides non clickable sans OnClickWeekOnly
+                    return;
+            }
+
+            if (Selected.Contains(t))
+            {
+                Selected.Remove(t);                                     // Supprime la selection si elle existe.
+            }
+            else if (!UnSelectable.Contains(t))
+            {
+                Selected.Add(t);                                        // Sinon ajoute le selection si elle n'est pas dans Unselectable
+            }
+
+            SelectedChanged.InvokeAsync(Selected);
+        }
+    }

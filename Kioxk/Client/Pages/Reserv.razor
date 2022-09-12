@@ -1,0 +1,140 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime js
+@using Kioxk.Shared.Models
+@using System
+@using System.Web
+@using System.IO
+
+
+@{   
+    string pter;
+    double op;
+    int trans;
+    if (Selected.Count > 0 )  // ouvre
+    {       
+        op = 0.9;
+        pter = "none";
+        trans = 111;
+    }
+    else
+    {       
+        op = .9;
+        pter = "initial";
+        trans = 0;
+    }   
+
+}
+
+<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans">
+    <Form Com="@com" ComRapp="()=>CreateCommande()" />
+
+</div>
+
+
+    <div>
+        <div id="mailcont">
+            <div>
+                @(
+                (MarkupString)mails.mybodymail
+                )
+            </div>
+            <div>
+                <button style="position:relative;left:50%;transform:translate(-50%)" @onclick="()=>{pay = true;}" class="btn btn-success"> Paiement </button>
+
+            </div>
+
+        </div>
+
+      
+        
+
+    </div>
+
+
+
+@code {
+
+    [Parameter]
+    public HashSet<DateTime> Selected { get; set; }
+    [Parameter]
+    public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
+
+    [Parameter]
+    public HashSet<DateTime>[] Seasons { get; set; }
+    [Parameter]
+    public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
+
+    [Parameter]
+    public int[] Prices { get; set; }
+    [Parameter]
+    public EventCallback<int[]> PricesChanged { get; set; }
+
+    private bool pay;
+
+    
+
+    private Commande com;
+    private Kioxk.Shared.Mails.Mails mails;
+    private Kioxk.Shared.Mails.Paiement paie;
+    private int i;
+   
+    protected override void OnInitialized()
+    {       
+        com = new Commande();
+    } 
+
+    private async Task CreateCommande()
+    {
+        var sel = new HashSet<Datetime>();                                      // Convertis en entitée.
+        foreach (var j in Selected)
+        {
+            sel.Add(new Datetime() { dt = j });
+        }
+
+        var sea = new List<Hashset>();
+        var f = 0;
+        foreach (var s in Seasons)
+        {
+            sea.Add(new Hashset() { hs = new HashSet<Datetime>() });
+            foreach (var x in s)
+            {
+                sea[f].hs.Add(new Datetime() { dt = x });
+            }
+            f++;
+        }
+
+        var pri = new List<Int>();
+        var indp = 0;
+        foreach (var p in Prices)                                           // Evite le désordonnement de la liste dans la base.
+        {
+            pri.Add(new Int() { it = p, index = indp });                    // enregistre l'ordre dans index.
+            indp++;
+        }
+
+        com.Selected = sel;
+        com.Seasons = sea;
+        com.Prices = pri;
+        com.Total = pri[0].it;
+
+        try
+        {
+            var id = await Http.PostAsJsonAsync("api/commande/", com);
+            i = await id.Content.ReadFromJsonAsync<int>();
+            Console.WriteLine("Numero de commande: " + i);
+            await js.InvokeVoidAsync("alert", "Réservation validé");
+        }
+        catch (Exception)
+        {
+            await js.InvokeVoidAsync("alert", "Echec de Connexion.!.");
+        }
+        finally
+        {
+            Selected.Clear();
+            await SelectedChanged.InvokeAsync(Selected);
+            mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
+            paie = new();
+            Console.WriteLine("finaly clear!");
+        }
+    }
+}
+

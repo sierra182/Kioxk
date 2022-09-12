@@ -1,0 +1,94 @@
+﻿
+<div style="background-color:@colorday;border-color:@borderColor">
+    @if (Selected ?? false || UnSelectable is not null)
+    {
+        <span style="color: white">@DateTime.Day</span>
+    }
+    
+
+
+    @*@if (Selected is true) 
+        {                                                                    // Jour selectionné en violet.
+            <p style="color: mediumvioletred">@DateTime.Day</p>
+        }
+        else
+        {                                                                    // Prend en charge la valeur nullable pour ne rien afficher sur les éléments vides.
+            if (UnSelectable is false)
+            {                                                                // Jour selectionnable en vert.
+                <p style="color: green ">@DateTime.Day</p>
+            }
+            else if (UnSelectable is true)
+            {                                                                // Jour non-selectionnable en rouge.
+                <p style="color: red ">@DateTime.Day</p>
+            }
+        }*@
+</div>
+
+@code {
+
+    [Parameter]
+    public DateTime DateTime { get; set; }
+    [Parameter]
+    public EventCallback<DateTime> DateTimeChanged { get; set; }
+
+    [Parameter]
+    public bool? UnSelectable { get; set; }
+    [Parameter]
+    public EventCallback<bool?> UnSelectableChanged { get; set; }
+
+    [Parameter]
+    public bool? Selected { get; set; } 
+    [Parameter]
+    public EventCallback<bool?> SelectedChanged { get; set; }
+
+    [Parameter]
+    public bool?[] Seasons { get; set; }
+    [Parameter]
+    public EventCallback<bool?[]> SeasonsChanged { get; set; }
+
+    string colorday;
+    string borderColor;
+
+    protected override void OnParametersSet()
+    {
+        colorday = "mediumspringgreen";
+        borderColor = "mediumspringgreen";
+
+        if (Selected ?? false)
+        {
+            colorday = "#17BE29";                               // Selectionné
+            borderColor = "#17BE29";
+        }
+        else
+        {
+            if (Seasons is not null)
+            {
+                if (Seasons[0] is true)
+                    colorday = "violet";
+
+                if (Seasons[1] is true)
+                    colorday = "darkmagenta";
+            }
+            //if (UnSelectable is false)
+            //{
+            //    colorday = "green";
+            //}
+            /* else */
+            if (UnSelectable is true)
+            {
+                colorday = "red";
+                borderColor = "red";
+            }
+        }
+        if (DateTime.Now.Date == DateTime)
+        {                                                                // Met en évidence le jour actuel.
+            colorday = "orange";
+            borderColor = "orange";
+        }
+        if (UnSelectable is null) {
+            colorday = "transparent";
+            borderColor = "white";
+        }
+    }
+
+}

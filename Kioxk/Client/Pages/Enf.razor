@@ -1,0 +1,32 @@
+﻿<div @onclick="Action" style="width:50px;height:50px;background-color:@Cole"></div>
+
+@code {
+
+    [Parameter]
+    public string Cole { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ColeChanged { get; set; }
+
+    private void Change()
+    {
+        Cole = "orange";
+    }
+
+    private async Task Action()
+    {
+
+        Cole = "orange";
+        await ColeChanged.InvokeAsync(Cole);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine("AFTER RENDER ENF");
+    }
+
+
+
+
+
+}
