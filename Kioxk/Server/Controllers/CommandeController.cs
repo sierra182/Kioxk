@@ -87,19 +87,19 @@ namespace Kioxk.Server.Controllers
 
         void t1()
         {
-            Console.WriteLine("testt008)");
+            Console.WriteLine("t1)");
             if (_context.Livret is null)
-            { Console.WriteLine("testtnuuuule)"); t2(); }
+            { Console.WriteLine("context livret is null)");} // t2?
             if (_context.Livret is not null)
             {
-                Console.WriteLine("testtNOnuuuule) ");
-                // Console.WriteLine(_context.Livret.Count());
-                
+                Console.WriteLine("context livret is not null, any?: " + _context.Livret.Any() + " count: " + _context.Livret.Count());
+
+            }
 
                 if (!_context.Livret.Any())
 
                 {
-                    Console.WriteLine("testt1)");
+                    Console.WriteLine("il n'y a pas de livret");
                     var ndt = new Datetime() { dt = new DateTime(2021, 11, 15) };   // Unselectable
                     var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 16) };
                     var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 17) };
@@ -151,8 +151,8 @@ namespace Kioxk.Server.Controllers
                     _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
                     _context.SaveChangesAsync();
                 }
-                Console.WriteLine("testtfin");
-            }   }
+                Console.WriteLine("livret done! from ui");
+            }   
         void t2()
         {
             Console.WriteLine(" t2 !!!");
@@ -164,14 +164,14 @@ namespace Kioxk.Server.Controllers
                 }
             if (livContext is not null)
                 {
-                    Console.WriteLine("t2: livcontext is not null, livcontext any ?:" + livContext.Any());
+                    Console.WriteLine("t2: livcontext is not null, livcontext any ?: " + livContext.Any() + " count: " + livContext.Count() );
                    
                 }
                 
                 if (_context.Livret is null)
                 { Console.WriteLine("t2: context livret is nulll????"); }
 
-                if (!_context.Livret.Any()!)
+                if (!_context.Livret.Any())
                 {
                     Console.WriteLine("t2 contextlivret n'en a pas....");
                     var ndt = new Datetime() { dt = new DateTime(2021, 11, 12) };
@@ -250,7 +250,7 @@ namespace Kioxk.Server.Controllers
                 {
                     if (_context.Livret.Any())
                     {
-                        Console.WriteLine(" a au moins un livret dedans");
+                        Console.WriteLine(" a au moins un livret dedans: any?: " + _context.Livret.Any() + " count: " + _context.Livret.Count());
                     }
                     else { Console.WriteLine(" a pa livret dedans donc t2"); t2(); }
                 }
