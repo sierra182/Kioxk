@@ -21,32 +21,32 @@ namespace Kioxk.Shared.Models
         public int index { get; set; }
         public DateTime dt { get; set; }
 
-       // public Hashset? Hashset { get; set; }
-        //  public Livret? Livret { get; set; }
+       //
+        //  
 
         [ForeignKey("LivretId")]
-        public int LivretId { get; set; }
+        public Livret? Livret { get; set; }
 
-        // public Commande? Commande { get; set; }
+        // 
         [ForeignKey("CommandeId")]
-        public int CommandeId { get; set; }
+        public Commande? Commande { get; set; }
 
         [ForeignKey("HashsetId")]
-        public int HashsetId { get; set; }
+        public Hashset? Hashset { get; set; }
     }
    
     public class Hashset
     {
         public int HashsetId { get; set; }       
-        public HashSet<Datetime>? hs { get; set; }
+        public HashSet<Datetime>? Hs { get; set; }
 
-        //  public Livret? Livret { get; set; }
+        //  
         [ForeignKey("LivretId")]
-        public int LivretId { get; set; }
+        public Livret? Livret { get; set; }
 
-        //   public Commande? Commande { get; set; }
+
         [ForeignKey("CommandeId")]
-        public int CommandeId { get; set; }
+        public Commande? Commande { get; set; }
     }
    
     public class Int
@@ -55,15 +55,15 @@ namespace Kioxk.Shared.Models
         public int index { get; set; }
         public int it { get; set; }
 
-        //    public Livret? Livret { get; set; }
+        //   
         [ForeignKey("LivretId")]
-        public int LivretId { get; set; }
+        public Livret? Livret { get; set; }
 
-        //public Commande? Commande { get; set; }
+        //
         [ForeignKey("CommandeId")]
-        public int CommandeId { get; set; }
+        public Commande? Commande { get; set; }
 
-        
+
 
     }
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Kioxk.Server.Migrations
 {
-    public partial class mydb78 : Migration
+    public partial class youbi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,8 +49,8 @@ namespace Kioxk.Server.Migrations
                 {
                     HashsetId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    LivretId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CommandeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    LivretId = table.Column<int>(type: "INTEGER", nullable: true),
+                    CommandeId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -59,14 +59,12 @@ namespace Kioxk.Server.Migrations
                         name: "FK_Hashsets_Commandes_CommandeId",
                         column: x => x.CommandeId,
                         principalTable: "Commandes",
-                        principalColumn: "CommandeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CommandeId");
                     table.ForeignKey(
                         name: "FK_Hashsets_Livret_LivretId",
                         column: x => x.LivretId,
                         principalTable: "Livret",
-                        principalColumn: "LivretId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LivretId");
                 });
 
             migrationBuilder.CreateTable(
@@ -77,8 +75,8 @@ namespace Kioxk.Server.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     index = table.Column<int>(type: "INTEGER", nullable: false),
                     it = table.Column<int>(type: "INTEGER", nullable: false),
-                    LivretId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CommandeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    LivretId = table.Column<int>(type: "INTEGER", nullable: true),
+                    CommandeId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -87,14 +85,12 @@ namespace Kioxk.Server.Migrations
                         name: "FK_Ints_Commandes_CommandeId",
                         column: x => x.CommandeId,
                         principalTable: "Commandes",
-                        principalColumn: "CommandeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CommandeId");
                     table.ForeignKey(
                         name: "FK_Ints_Livret_LivretId",
                         column: x => x.LivretId,
                         principalTable: "Livret",
-                        principalColumn: "LivretId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LivretId");
                 });
 
             migrationBuilder.CreateTable(
@@ -105,9 +101,9 @@ namespace Kioxk.Server.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     index = table.Column<int>(type: "INTEGER", nullable: false),
                     dt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LivretId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CommandeId = table.Column<int>(type: "INTEGER", nullable: false),
-                    HashsetId = table.Column<int>(type: "INTEGER", nullable: false)
+                    LivretId = table.Column<int>(type: "INTEGER", nullable: true),
+                    CommandeId = table.Column<int>(type: "INTEGER", nullable: true),
+                    HashsetId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -116,20 +112,17 @@ namespace Kioxk.Server.Migrations
                         name: "FK_Datetimes_Commandes_CommandeId",
                         column: x => x.CommandeId,
                         principalTable: "Commandes",
-                        principalColumn: "CommandeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CommandeId");
                     table.ForeignKey(
                         name: "FK_Datetimes_Hashsets_HashsetId",
                         column: x => x.HashsetId,
                         principalTable: "Hashsets",
-                        principalColumn: "HashsetId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "HashsetId");
                     table.ForeignKey(
                         name: "FK_Datetimes_Livret_LivretId",
                         column: x => x.LivretId,
                         principalTable: "Livret",
-                        principalColumn: "LivretId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LivretId");
                 });
 
             migrationBuilder.CreateIndex(

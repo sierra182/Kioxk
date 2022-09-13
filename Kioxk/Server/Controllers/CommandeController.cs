@@ -48,8 +48,8 @@ namespace Kioxk.Server.Controllers
         public CommandeController(AppDBContext context)
         {
             this._context = context;
-            comContext = _context.Commandes.Include(e => e.Seasons).ThenInclude(e => e.hs).Include(e => e.Prices).Include(e => e.Selected);
-            livContext = _context.Livret.Include(e => e.Seasons).ThenInclude(e => e.hs).Include(e => e.Prices).Include(e => e.UnSelectable);
+            comContext = _context.Commandes.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.Selected);
+            livContext = _context.Livret.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.UnSelectable);
             //comContext = _context.Commandes;
             //livContext = _context.Livret;
             string projectPath = AppDomain.CurrentDomain.BaseDirectory.Split(new String[] { @"bin\" }, StringSplitOptions.None)[0];
@@ -141,7 +141,7 @@ namespace Kioxk.Server.Controllers
                     nhsth.Add(ndts1h);
                     nhsth.Add(ndts2h);
 
-                    var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
+                    var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
 
                     var nint = new Int() { it = 100 };
                     var nint1 = new Int() { it = 120 };
@@ -199,7 +199,7 @@ namespace Kioxk.Server.Controllers
                     nhsth.Add(ndts1h);
                     nhsth.Add(ndts2h);
 
-                    var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
+                    var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
 
                     var nint = new Int() { it = 300 };
                     var nint1 = new Int() { it = 320 };
@@ -248,9 +248,9 @@ namespace Kioxk.Server.Controllers
                 Console.WriteLine(" context livret is not null");
                 try
                 {
-                    if (_context.Livret.Count() > 1)
+                    if (_context.Livret.Any())
                     {
-                        Console.WriteLine(" a au moins un livret dedans donc t2");
+                        Console.WriteLine(" a au moins un livret dedans");
                     }
                     else { Console.WriteLine(" a pa livret dedans donc t2"); t2(); }
                 }
@@ -334,7 +334,7 @@ namespace Kioxk.Server.Controllers
                         var j = 0;
                         foreach (var Hs in c.Seasons)                                                   // Affiche les Saisons.
                         {
-                            foreach (var dt in Hs.hs)
+                            foreach (var dt in Hs.Hs)
                             {
                                 Console.WriteLine($" Seasons {j}: {dt.dt.ToShortDateString()}");
                             }
@@ -428,7 +428,7 @@ namespace Kioxk.Server.Controllers
 
                         foreach (var Hs in c.Seasons)             //  Pour chaque élément du tableau convertion en objet, l'ordonne et l'affiche.
                         {
-                            foreach (var dt in Hs.hs)
+                            foreach (var dt in Hs.Hs)
                             {
                                 seasConf[j].Add(dt.dt);
                             }
@@ -590,17 +590,11 @@ namespace Kioxk.Server.Controllers
         {
 
 
-            // t1();
-            try
-            {
+             t1();
+          
                 return livContext.Single();
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("ex: " + ex);
-            }
-           return new Livret();
+           
+           
         }
 
         void Mail(Commande com)
@@ -677,7 +671,7 @@ namespace Kioxk.Server.Controllers
             foreach (var Hs in livContext.Single().Seasons)
             {
                 seasons.Add(new());
-                foreach (var dt in Hs.hs)
+                foreach (var dt in Hs.Hs)
                 {
                     seasons[i].Add(dt.dt);
 

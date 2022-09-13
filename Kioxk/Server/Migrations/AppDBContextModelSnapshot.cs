@@ -68,13 +68,13 @@ namespace Kioxk.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CommandeId")
+                    b.Property<int?>("CommandeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("HashsetId")
+                    b.Property<int?>("HashsetId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LivretId")
+                    b.Property<int?>("LivretId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("dt")
@@ -100,10 +100,10 @@ namespace Kioxk.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CommandeId")
+                    b.Property<int?>("CommandeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LivretId")
+                    b.Property<int?>("LivretId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("HashsetId");
@@ -121,10 +121,10 @@ namespace Kioxk.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CommandeId")
+                    b.Property<int?>("CommandeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LivretId")
+                    b.Property<int?>("LivretId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("index")
@@ -155,53 +155,53 @@ namespace Kioxk.Server.Migrations
 
             modelBuilder.Entity("Kioxk.Shared.Models.Datetime", b =>
                 {
-                    b.HasOne("Kioxk.Shared.Models.Commande", null)
+                    b.HasOne("Kioxk.Shared.Models.Commande", "Commande")
                         .WithMany("Selected")
-                        .HasForeignKey("CommandeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CommandeId");
 
-                    b.HasOne("Kioxk.Shared.Models.Hashset", null)
-                        .WithMany("hs")
-                        .HasForeignKey("HashsetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Kioxk.Shared.Models.Hashset", "Hashset")
+                        .WithMany("Hs")
+                        .HasForeignKey("HashsetId");
 
-                    b.HasOne("Kioxk.Shared.Models.Livret", null)
+                    b.HasOne("Kioxk.Shared.Models.Livret", "Livret")
                         .WithMany("UnSelectable")
-                        .HasForeignKey("LivretId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LivretId");
+
+                    b.Navigation("Commande");
+
+                    b.Navigation("Hashset");
+
+                    b.Navigation("Livret");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Hashset", b =>
                 {
-                    b.HasOne("Kioxk.Shared.Models.Commande", null)
+                    b.HasOne("Kioxk.Shared.Models.Commande", "Commande")
                         .WithMany("Seasons")
-                        .HasForeignKey("CommandeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CommandeId");
 
-                    b.HasOne("Kioxk.Shared.Models.Livret", null)
+                    b.HasOne("Kioxk.Shared.Models.Livret", "Livret")
                         .WithMany("Seasons")
-                        .HasForeignKey("LivretId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LivretId");
+
+                    b.Navigation("Commande");
+
+                    b.Navigation("Livret");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Int", b =>
                 {
-                    b.HasOne("Kioxk.Shared.Models.Commande", null)
+                    b.HasOne("Kioxk.Shared.Models.Commande", "Commande")
                         .WithMany("Prices")
-                        .HasForeignKey("CommandeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CommandeId");
 
-                    b.HasOne("Kioxk.Shared.Models.Livret", null)
+                    b.HasOne("Kioxk.Shared.Models.Livret", "Livret")
                         .WithMany("Prices")
-                        .HasForeignKey("LivretId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LivretId");
+
+                    b.Navigation("Commande");
+
+                    b.Navigation("Livret");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Commande", b =>
@@ -215,7 +215,7 @@ namespace Kioxk.Server.Migrations
 
             modelBuilder.Entity("Kioxk.Shared.Models.Hashset", b =>
                 {
-                    b.Navigation("hs");
+                    b.Navigation("Hs");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Livret", b =>
