@@ -34,9 +34,11 @@ namespace Kioxk.Server.Controllers
     public class CommandeController : ControllerBase
     {
 
-        public IIncludableQueryable<Commande, HashSet<Datetime>> comContext;
-        public IIncludableQueryable<Livret, HashSet<Datetime>> livContext;
+        public IIncludableQueryable<Commande, HashSet<Datetime>>? comContext;
+        public IIncludableQueryable<Livret, HashSet<Datetime>>? livContext;
 
+       // DbSet<Commande> comContext;
+      //  DbSet<Livret> livContext;
         public readonly AppDBContext _context;
 
         string milog;
@@ -48,7 +50,8 @@ namespace Kioxk.Server.Controllers
             this._context = context;
             comContext = _context.Commandes.Include(e => e.Seasons).ThenInclude(e => e.hs).Include(e => e.Prices).Include(e => e.Selected);
             livContext = _context.Livret.Include(e => e.Seasons).ThenInclude(e => e.hs).Include(e => e.Prices).Include(e => e.UnSelectable);
-
+            //comContext = _context.Commandes;
+            //livContext = _context.Livret;
             string projectPath = AppDomain.CurrentDomain.BaseDirectory.Split(new String[] { @"bin\" }, StringSplitOptions.None)[0];
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(projectPath)
@@ -86,192 +89,271 @@ namespace Kioxk.Server.Controllers
         {
             Console.WriteLine("testt008)");
             if (_context.Livret is null)
-            { Console.WriteLine("testtnuuuule)"); }
+            { Console.WriteLine("testtnuuuule)"); t2(); }
             if (_context.Livret is not null)
             {
                 Console.WriteLine("testtNOnuuuule) ");
                 // Console.WriteLine(_context.Livret.Count());
-                Console.WriteLine("testtNOnuuuulefin");
-            }
-            if (_context.Livret.Count() < 1)
+                
 
-            {
-                Console.WriteLine("testt1)");
-                var ndt = new Datetime() { dt = new DateTime(2021, 11, 15) };   // Unselectable
-                var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 16) };
-                var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 17) };
+                if (!_context.Livret.Any())
 
-                var ndt3 = new Datetime() { dt = new DateTime(2021, 12, 15) };
-                var ndt4 = new Datetime() { dt = new DateTime(2021, 12, 16) };
-                var ndt5 = new Datetime() { dt = new DateTime(2021, 12, 17) };
-
-                var nhs = new HashSet<Datetime>();
-                nhs.Add(ndt);
-                nhs.Add(ndt1);
-                nhs.Add(ndt2);
-                nhs.Add(ndt3);
-                nhs.Add(ndt4);
-                nhs.Add(ndt5);
-
-                foreach (var cc in comContext.ToList())
                 {
-                    foreach (var cu in cc.Selected.ToList())
+                    Console.WriteLine("testt1)");
+                    var ndt = new Datetime() { dt = new DateTime(2021, 11, 15) };   // Unselectable
+                    var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 16) };
+                    var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 17) };
+
+                    var ndt3 = new Datetime() { dt = new DateTime(2021, 12, 15) };
+                    var ndt4 = new Datetime() { dt = new DateTime(2021, 12, 16) };
+                    var ndt5 = new Datetime() { dt = new DateTime(2021, 12, 17) };
+
+                    var nhs = new HashSet<Datetime>();
+                    nhs.Add(ndt);
+                    nhs.Add(ndt1);
+                    nhs.Add(ndt2);
+                    nhs.Add(ndt3);
+                    nhs.Add(ndt4);
+                    nhs.Add(ndt5);
+
+                    foreach (var cc in comContext.ToList())
                     {
-                        nhs.Add(cu);
+                        foreach (var cu in cc.Selected.ToList())
+                        {
+                            nhs.Add(cu);
+                        }
+
                     }
 
+                    var ndts = new Datetime() { dt = new DateTime(2000, 12, 19) };   // Saison 0
+                    var ndts1 = new Datetime() { dt = new DateTime(2000, 12, 20) };
+                    var ndts2 = new Datetime() { dt = new DateTime(2000, 12, 21) };
+                    var nhst = new HashSet<Datetime>();
+                    nhst.Add(ndts);
+                    nhst.Add(ndts1);
+                    nhst.Add(ndts2);
+
+                    var ndtsh = new Datetime() { dt = new DateTime(2000, 10, 23) };  // saison 1
+                    var ndts1h = new Datetime() { dt = new DateTime(2000, 10, 24) };
+                    var ndts2h = new Datetime() { dt = new DateTime(2000, 10, 25) };
+                    var nhsth = new HashSet<Datetime>();
+                    nhsth.Add(ndtsh);
+                    nhsth.Add(ndts1h);
+                    nhsth.Add(ndts2h);
+
+                    var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
+
+                    var nint = new Int() { it = 100 };
+                    var nint1 = new Int() { it = 120 };
+                    var nint2 = new Int() { it = 150 };
+                    var nintf = new List<Int> { nint, nint1, nint2 };
+
+                    _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
+                    _context.SaveChangesAsync();
                 }
-
-                var ndts = new Datetime() { dt = new DateTime(2000, 12, 19) };   // Saison 0
-                var ndts1 = new Datetime() { dt = new DateTime(2000, 12, 20) };
-                var ndts2 = new Datetime() { dt = new DateTime(2000, 12, 21) };
-                var nhst = new HashSet<Datetime>();
-                nhst.Add(ndts);
-                nhst.Add(ndts1);
-                nhst.Add(ndts2);
-
-                var ndtsh = new Datetime() { dt = new DateTime(2000, 10, 23) };  // saison 1
-                var ndts1h = new Datetime() { dt = new DateTime(2000, 10, 24) };
-                var ndts2h = new Datetime() { dt = new DateTime(2000, 10, 25) };
-                var nhsth = new HashSet<Datetime>();
-                nhsth.Add(ndtsh);
-                nhsth.Add(ndts1h);
-                nhsth.Add(ndts2h);
-
-                var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
-
-                var nint = new Int() { it = 100 };
-                var nint1 = new Int() { it = 120 };
-                var nint2 = new Int() { it = 150 };
-                var nintf = new List<Int> { nint, nint1, nint2 };
-
-                _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
-                _context.SaveChangesAsync();
-            }
-        }
+                Console.WriteLine("testtfin");
+            }   }
         void t2()
         {
-            if (_context.Livret.Count() < 1)
-            {
-                var ndt = new Datetime() { dt = new DateTime(2021, 11, 12) };
-                var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 13) };
-                var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 14) };
-                var nhs = new HashSet<Datetime>();
-                nhs.Add(ndt);
-                nhs.Add(ndt1);
-                nhs.Add(ndt2);
+            Console.WriteLine(" t2 !!!");
+            try
 
-                var ndts = new Datetime() { dt = new DateTime(2000, 11, 16) };
-                var ndts1 = new Datetime() { dt = new DateTime(2000, 11, 17) };
-                var ndts2 = new Datetime() { dt = new DateTime(2000, 11, 18) };
-                var nhst = new HashSet<Datetime>();
-                nhst.Add(ndts);
-                nhst.Add(ndts1);
-                nhst.Add(ndts2);
+            { if (livContext is null)
+                {
+                    Console.WriteLine("t2: livcontext is null");
+                }
+            if (livContext is not null)
+                {
+                    Console.WriteLine("t2: livcontext is not null, livcontext any ?:" + livContext.Any());
+                   
+                }
+                
+                if (_context.Livret is null)
+                { Console.WriteLine("t2: context livret is nulll????"); }
+
+                if (!_context.Livret.Any()!)
+                {
+                    Console.WriteLine("t2 contextlivret n'en a pas....");
+                    var ndt = new Datetime() { dt = new DateTime(2021, 11, 12) };
+                    var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 13) };
+                    var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 14) };
+                    var nhs = new HashSet<Datetime>();
+                    nhs.Add(ndt);
+                    nhs.Add(ndt1);
+                    nhs.Add(ndt2);
+
+                    var ndts = new Datetime() { dt = new DateTime(2000, 11, 16) };
+                    var ndts1 = new Datetime() { dt = new DateTime(2000, 11, 17) };
+                    var ndts2 = new Datetime() { dt = new DateTime(2000, 11, 18) };
+                    var nhst = new HashSet<Datetime>();
+                    nhst.Add(ndts);
+                    nhst.Add(ndts1);
+                    nhst.Add(ndts2);
 
 
-                var ndtsh = new Datetime() { dt = new DateTime(2000, 11, 20) };
-                var ndts1h = new Datetime() { dt = new DateTime(2000, 11, 21) };
-                var ndts2h = new Datetime() { dt = new DateTime(2000, 11, 22) };
-                var nhsth = new HashSet<Datetime>();
-                nhsth.Add(ndtsh);
-                nhsth.Add(ndts1h);
-                nhsth.Add(ndts2h);
+                    var ndtsh = new Datetime() { dt = new DateTime(2000, 11, 20) };
+                    var ndts1h = new Datetime() { dt = new DateTime(2000, 11, 21) };
+                    var ndts2h = new Datetime() { dt = new DateTime(2000, 11, 22) };
+                    var nhsth = new HashSet<Datetime>();
+                    nhsth.Add(ndtsh);
+                    nhsth.Add(ndts1h);
+                    nhsth.Add(ndts2h);
 
-                var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
+                    var nhstf = new List<Hashset> { new Hashset() { hs = nhst }, new Hashset() { hs = nhsth } };
 
-                var nint = new Int() { it = 300 };
-                var nint1 = new Int() { it = 320 };
-                var nint2 = new Int() { it = 340 };
-                var nintf = new List<Int> { nint, nint1, nint2 };
+                    var nint = new Int() { it = 300 };
+                    var nint1 = new Int() { it = 320 };
+                    var nint2 = new Int() { it = 340 };
+                    var nintf = new List<Int> { nint, nint1, nint2 };
+                    Console.WriteLine("t2 contextlivret n'en a pas... contextlivretadd...");
+                    try
+                    {
+                        _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
+                        _context.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
 
-                _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
-                _ = _context.SaveChangesAsync();
+                        Console.WriteLine("t2trycom livret add: " + ex);
+                    }
+                  
+                    Console.WriteLine("t2fin");
+                }
+            else { Console.WriteLine("t2: en contient????"); }
             }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("ex: " +  ex);
+            }
+           
         }
      
         public void AfficheLivret()
         {
-            // t3();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(" Livret:");
-            Console.ResetColor();
-
-            //comContext.ToList();                                  // Avant de retrouver la commande parente.
-            if (livContext.Count() > 0)
+            if (livContext is null)
             {
-                foreach (var c in livContext)
-                {                                                     // Affiche Unselectable et la Commande associée.
-                    var unsel = new HashSet<DateTime>();              // Convertis Unselectable en objets.
-                    foreach (var dt in c.UnSelectable.ToList())
-                    {
-                        unsel.Add(dt.dt);
-                    }
-
-                    var exAssosCom = new Commande();
-                    var bl = true;
-                    var exdt = new DateTime();
-                    var exdtass = new DateTime();
-                    //foreach (var dt in unsel.OrderBy(key => key))                               // Ordonne par date.
-                    //{
-                    //    Commande associatedCom = (from Datetimeitem in c.UnSelectable.ToList()  // Cherche la commande assosiée pour chaque datetime.
-                    //                              where Datetimeitem.dt == dt
-                    //                              select Datetimeitem.Commande).Single();
-                    //    if (associatedCom is not null)                                          // Le Dt correspond a une commande.
-                    //    {
-                    //        if (associatedCom != exAssosCom)                                    // Séparation entre les commandes différentes.
-                    //        {
-                    //            Console.WriteLine("");
-                    //        }
-                    //        else if (!bl)                                                       // Séparation aprés un dt sans commande liée.
-                    //        {
-                    //            Console.WriteLine("");
-                    //        }
-                    //        else if (dt.AddDays(-1) != exdtass)                                 // Séparation entre les périodes d'une même commande.
-                    //        {
-                    //            Console.WriteLine("");
-                    //        }
-                    //        exdtass = dt;
-                    //        bl = true;
-                    //        exAssosCom = associatedCom;
-                    //       // Console.WriteLine(" UnSelectable: " + dt.ToShortDateString() + " " + associatedCom.FirstName);      // Affiche la commande associée.
-                    //    }
-                    //    else                                                                     // Le Dt n'est pas lié à une commande.
-                    //    {
-                    //        if (bl)                                                              // Séparation pour Le premier sans commande liée.
-                    //        {
-                    //         //   Console.WriteLine("");
-                    //            bl = false;
-                    //        }
-                    //        else if (dt.AddDays(-1) != exdt)                                     // Séparation entre les périodes sans commandes liées.
-                    //        {
-                    //          //  Console.WriteLine("");
-                    //        }
-                    //        exdt = dt;
-                    //       // Console.WriteLine(" UnSelectable sans com: " + dt.ToShortDateString());
-                    //    }
-                    //}
-
-                    Console.WriteLine("");
-                    foreach (var it in c.Prices)                                                    // Affiche le tableau de prix.
-                    {
-                        Console.WriteLine(" Price: " + it.it);
-                    }
-
-                    Console.WriteLine("");
-                    var j = 0;
-                    foreach (var Hs in c.Seasons)                                                   // Affiche les Saisons.
-                    {
-                        foreach (var dt in Hs.hs)
-                        {
-                            Console.WriteLine($" Seasons {j}: {dt.dt.ToShortDateString()}");
-                        }
-                        j++;
-                    }
-                }
-
+                Console.WriteLine(" livcontext is null");
             }
-            else { Console.WriteLine(" aucun livret"); }
+            else
+            {
+                Console.WriteLine("liv context is not null");
+            }
+            if (_context.Livret is null)
+            {
+                Console.WriteLine(" contextlivret is null");
+            }
+            else
+            {
+                Console.WriteLine(" context livret is not null");
+                try
+                {
+                    if (_context.Livret.Count() > 1)
+                    {
+                        Console.WriteLine(" a au moins un livret dedans donc t2");
+                    }
+                    else { Console.WriteLine(" a pa livret dedans donc t2"); t2(); }
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine(" catch: " + ex);
+                }
+            
+               
+            }
+            try
+            {
+                #region MyRegion
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(" Livret:");
+                Console.ResetColor();
+
+                //comContext.ToList();                                  // Avant de retrouver la commande parente.
+                if (livContext.Any())
+                {
+                    foreach (var c in livContext)
+                    {                                                     // Affiche Unselectable et la Commande associée.
+                        var unsel = new HashSet<DateTime>();              // Convertis Unselectable en objets.
+                        foreach (var dt in c.UnSelectable.ToList())
+                        {
+                            unsel.Add(dt.dt);
+                        }
+
+                        var exAssosCom = new Commande();
+                        var bl = true;
+                        var exdt = new DateTime();
+                        var exdtass = new DateTime();
+                        //foreach (var dt in unsel.OrderBy(key => key))                               // Ordonne par date.
+                        //{
+                        //    Commande associatedCom = (from Datetimeitem in c.UnSelectable.ToList()  // Cherche la commande assosiée pour chaque datetime.
+                        //                              where Datetimeitem.dt == dt
+                        //                              select Datetimeitem.Commande).Single();
+                        //    if (associatedCom is not null)                                          // Le Dt correspond a une commande.
+                        //    {
+                        //        if (associatedCom != exAssosCom)                                    // Séparation entre les commandes différentes.
+                        //        {
+                        //            Console.WriteLine("");
+                        //        }
+                        //        else if (!bl)                                                       // Séparation aprés un dt sans commande liée.
+                        //        {
+                        //            Console.WriteLine("");
+                        //        }
+                        //        else if (dt.AddDays(-1) != exdtass)                                 // Séparation entre les périodes d'une même commande.
+                        //        {
+                        //            Console.WriteLine("");
+                        //        }
+                        //        exdtass = dt;
+                        //        bl = true;
+                        //        exAssosCom = associatedCom;
+                        //       // Console.WriteLine(" UnSelectable: " + dt.ToShortDateString() + " " + associatedCom.FirstName);      // Affiche la commande associée.
+                        //    }
+                        //    else                                                                     // Le Dt n'est pas lié à une commande.
+                        //    {
+                        //        if (bl)                                                              // Séparation pour Le premier sans commande liée.
+                        //        {
+                        //         //   Console.WriteLine("");
+                        //            bl = false;
+                        //        }
+                        //        else if (dt.AddDays(-1) != exdt)                                     // Séparation entre les périodes sans commandes liées.
+                        //        {
+                        //          //  Console.WriteLine("");
+                        //        }
+                        //        exdt = dt;
+                        //       // Console.WriteLine(" UnSelectable sans com: " + dt.ToShortDateString());
+                        //    }
+                        //}
+
+                        Console.WriteLine("");
+                        foreach (var it in c.Prices)                                                    // Affiche le tableau de prix.
+                        {
+                            Console.WriteLine(" Price: " + it.it);
+                        }
+
+                        Console.WriteLine("");
+                        var j = 0;
+                        foreach (var Hs in c.Seasons)                                                   // Affiche les Saisons.
+                        {
+                            foreach (var dt in Hs.hs)
+                            {
+                                Console.WriteLine($" Seasons {j}: {dt.dt.ToShortDateString()}");
+                            }
+                            j++;
+                        }
+                    }
+
+                }
+                else { Console.WriteLine(" aucun livret");
+                    t2();
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("ex:" + ex);
+            }
+          
         }
 
         public void AfficheCommandes()
@@ -506,10 +588,19 @@ namespace Kioxk.Server.Controllers
         [HttpGet]
         public async Task<Livret> Get()
         {
-          
-            t2();
-            t1();
-            return livContext.Single();
+
+
+            // t1();
+            try
+            {
+                return livContext.Single();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("ex: " + ex);
+            }
+           return new Livret();
         }
 
         void Mail(Commande com)

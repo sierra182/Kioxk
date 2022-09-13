@@ -9,24 +9,44 @@ namespace Kioxk.Shared.Models
 {    public class Livret
     {
         public int LivretId { get; set; }
-        public  HashSet<Datetime> UnSelectable { get; set; }
-        public  List<Hashset> Seasons { get; set; }   
-        public  IList<Int> Prices { get; set; }
+        public  HashSet<Datetime>? UnSelectable { get; set; }
+        public  List<Hashset>? Seasons { get; set; }   
+        public  IList<Int>? Prices { get; set; }
+             
     }
  
     public class Datetime
     {
         public int DatetimeId { get; set; }
         public int index { get; set; }
-        public DateTime dt { get; set; }      
-        public Commande Commande { get; set; }
+        public DateTime dt { get; set; }
+
+       // public Hashset? Hashset { get; set; }
+        //  public Livret? Livret { get; set; }
+
+        [ForeignKey("LivretId")]
+        public int LivretId { get; set; }
+
+        // public Commande? Commande { get; set; }
+        [ForeignKey("CommandeId")]
+        public int CommandeId { get; set; }
+
+        [ForeignKey("HashsetId")]
+        public int HashsetId { get; set; }
     }
    
     public class Hashset
     {
         public int HashsetId { get; set; }       
-        public HashSet<Datetime> hs { get; set; }
-        public Commande Commande { get; set; }
+        public HashSet<Datetime>? hs { get; set; }
+
+        //  public Livret? Livret { get; set; }
+        [ForeignKey("LivretId")]
+        public int LivretId { get; set; }
+
+        //   public Commande? Commande { get; set; }
+        [ForeignKey("CommandeId")]
+        public int CommandeId { get; set; }
     }
    
     public class Int
@@ -34,7 +54,17 @@ namespace Kioxk.Shared.Models
         public int IntId { get; set; }
         public int index { get; set; }
         public int it { get; set; }
-        public Commande Commande { get; set; }
+
+        //    public Livret? Livret { get; set; }
+        [ForeignKey("LivretId")]
+        public int LivretId { get; set; }
+
+        //public Commande? Commande { get; set; }
+        [ForeignKey("CommandeId")]
+        public int CommandeId { get; set; }
+
+        
+
     }
 
     public class Commande
@@ -45,18 +75,19 @@ namespace Kioxk.Shared.Models
         public long Ref { get; set; }
         public bool Valide { get; set; }
         [Required]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
         [Required]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         [Required]
         public Nullable<long> Phone { get; set; }
         [Required]
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string RgtsCompl { get; set; }
-        public HashSet<Datetime> Selected { get; set; }
-        public List<Hashset> Seasons { get; set; }
-        public List<Int> Prices { get; set; }
+        public string? Address { get; set; }
+        public string? Email { get; set; }
+        public string? RgtsCompl { get; set; }
+        public HashSet<Datetime>? Selected { get; set; }
+        public List<Hashset>? Seasons { get; set; }
+        public List<Int>? Prices { get; set; }
         public float Total { get; set; }
+               
     } 
 }

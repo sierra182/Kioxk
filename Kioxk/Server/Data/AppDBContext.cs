@@ -10,6 +10,8 @@ namespace Kioxk.Server.Data
     {
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
+               //  Database.EnsureCreated();
+            
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,20 +21,21 @@ namespace Kioxk.Server.Data
                 .AddJsonFile("appsettings.json")
                 .Build();
             string connectionString = configuration.GetConnectionString("DefaultSQLiteConnection");
-           optionsBuilder.UseSqlite(connectionString);
-           
+            optionsBuilder.UseSqlite(connectionString);
+
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder
-        //        .Entity<Commande>()
-        //        .HasMany(e => e.Prices)                
-        //        .WithOne<Int>(e => e.it)    
-        //        .OnDelete(DeleteBehavior.Cascade);
-               
-            
-                
-        //}
+        //protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder
+        //    //    .Entity<Commande>()
+        //    //    .HasMany(e => e.Selected)
+        //    //.WithOne(e => e.Commande)
+        //    //   .OnDelete(DeleteBehavior.Cascade)
+        //    //.HasForeignKey(e => e.)
+        //    .Entity<Datetime>()
+        //    .HasOne()
+        //    .WithMany()
+        //    .HasForeignKey(e=> e.Commande)
+        //    ;
+
 
         public DbSet<Livret> Livret { get; set; }
         public DbSet<Datetime> Datetimes { get; set; }
