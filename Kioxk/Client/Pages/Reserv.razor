@@ -6,22 +6,22 @@
 @using System.IO
 
 
-@{   
+@{
     string pter;
     double op;
     int trans;
-    if (Selected.Count > 0 )  // ouvre
-    {       
+    if (Selected.Count > 0)  // ouvre
+    {
         op = 0.9;
         pter = "none";
         trans = 111;
     }
     else
-    {       
+    {
         op = .9;
         pter = "initial";
         trans = 0;
-    }   
+    }
 
 }
 
@@ -30,13 +30,15 @@
 
 </div>
 
-
+@if (mails.mybodymail is not null)
+{
+    
     <div>
         <div id="mailcont">
             <div>
                 @(
-                (MarkupString)mails.mybodymail
-                )
+                    (MarkupString)mails.mybodymail
+                    )
             </div>
             <div>
                 <button style="position:relative;left:50%;transform:translate(-50%)" @onclick="()=>{pay = true;}" class="btn btn-success"> Paiement </button>
@@ -45,12 +47,25 @@
 
         </div>
 
-      
-        
+        @if (paie.ajoutmail is not null && pay)
+        {
+            <div style="" id="contpaie">
+                <div>
+                    @(
+                        (MarkupString)paie.ajoutmail
+                        )
+                </div>
+              
+               
+            
+
+            </div>
+        }
 
     </div>
 
-
+  
+}
 
 @code {
 
@@ -71,17 +86,17 @@
 
     private bool pay;
 
-    
+
 
     private Commande com;
     private Kioxk.Shared.Mails.Mails mails;
     private Kioxk.Shared.Mails.Paiement paie;
     private int i;
-   
+
     protected override void OnInitialized()
-    {       
+    {
         com = new Commande();
-    } 
+    }
 
     private async Task CreateCommande()
     {
