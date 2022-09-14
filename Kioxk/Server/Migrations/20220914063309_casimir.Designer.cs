@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kioxk.Server.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20220913191733_youbi")]
-    partial class youbi
+    [Migration("20220914063309_casimir")]
+    partial class casimir
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,7 +93,7 @@ namespace Kioxk.Server.Migrations
 
                     b.HasIndex("LivretId");
 
-                    b.ToTable("Datetimes");
+                    b.ToTable("Datetime");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Hashset", b =>
@@ -114,7 +114,7 @@ namespace Kioxk.Server.Migrations
 
                     b.HasIndex("LivretId");
 
-                    b.ToTable("Hashsets");
+                    b.ToTable("Hashset");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Int", b =>
@@ -141,7 +141,7 @@ namespace Kioxk.Server.Migrations
 
                     b.HasIndex("LivretId");
 
-                    b.ToTable("Ints");
+                    b.ToTable("Int");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Livret", b =>

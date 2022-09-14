@@ -37,9 +37,9 @@ namespace Kioxk.Server.Controllers
         public IIncludableQueryable<Commande, HashSet<Datetime>>? comContext;
         public IIncludableQueryable<Livret, HashSet<Datetime>>? livContext;
 
-       // DbSet<Commande> comContext;
-      //  DbSet<Livret> livContext;
-        public readonly AppDBContext _context;
+        //DbSet<Commande> comContext;
+        //DbSet<Livret> livContext;
+        public readonly AppDBContext? _context;
 
         string milog;
         string mipass;
@@ -48,10 +48,12 @@ namespace Kioxk.Server.Controllers
         public CommandeController(AppDBContext context)
         {
             this._context = context;
-            comContext = _context.Commandes.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.Selected);
-            livContext = _context.Livret.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.UnSelectable);
             //comContext = _context.Commandes;
             //livContext = _context.Livret;
+            //comContext = _context.Commandes;
+            //livContext = _context.Livret;
+            comContext = _context.Commandes.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.Selected);
+            livContext = _context.Livret.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.UnSelectable);
             string projectPath = AppDomain.CurrentDomain.BaseDirectory.Split(new String[] { @"bin\" }, StringSplitOptions.None)[0];
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(projectPath)
@@ -116,15 +118,18 @@ namespace Kioxk.Server.Controllers
                     nhs.Add(ndt4);
                     nhs.Add(ndt5);
 
-                    foreach (var cc in comContext.ToList())
-                    {
-                        foreach (var cu in cc.Selected.ToList())
-                        {
-                            nhs.Add(cu);
-                        }
+                //if (comContext is not null && comContext.Any())
+                //{
+                //    Console.WriteLine("com context is not null and void!!");
+                //    //foreach (var cc in comContext.ToList())
+                //    //{
+                //    //    foreach (var cu in cc.Selected.ToList())
+                //    //    {
+                //    //        nhs.Add(cu);
+                //    //    }
 
-                    }
-
+                //    //}
+                //}
                     var ndts = new Datetime() { dt = new DateTime(2000, 12, 19) };   // Saison 0
                     var ndts1 = new Datetime() { dt = new DateTime(2000, 12, 20) };
                     var ndts2 = new Datetime() { dt = new DateTime(2000, 12, 21) };
@@ -149,7 +154,7 @@ namespace Kioxk.Server.Controllers
                     var nintf = new List<Int> { nint, nint1, nint2 };
 
                     _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
-                    _context.SaveChangesAsync();
+                    _context.SaveChanges();
                 }
                 Console.WriteLine("livret done! from ui");
             }   
@@ -251,17 +256,6 @@ namespace Kioxk.Server.Controllers
                     if (_context.Livret.Any())
                     {
                         Console.WriteLine(" a au moins un livret dedans: any?: " + _context.Livret.Any() + " count: " + _context.Livret.Count());
-                    }
-                    else { Console.WriteLine(" a pa livret dedans donc t2"); t2(); }
-                }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(" catch: " + ex);
-                }
-            
-               
-            }
             try
             {
                 #region MyRegion
@@ -274,16 +268,16 @@ namespace Kioxk.Server.Controllers
                 {
                     foreach (var c in livContext)
                     {                                                     // Affiche Unselectable et la Commande associée.
-                        var unsel = new HashSet<DateTime>();              // Convertis Unselectable en objets.
-                        foreach (var dt in c.UnSelectable.ToList())
-                        {
-                            unsel.Add(dt.dt);
-                        }
+                        //var unsel = new HashSet<DateTime>();              // Convertis Unselectable en objets.
+                        //foreach (var dt in c.UnSelectable.ToList())
+                        //{
+                        //    unsel.Add(dt.dt);
+                        //}
 
-                        var exAssosCom = new Commande();
-                        var bl = true;
-                        var exdt = new DateTime();
-                        var exdtass = new DateTime();
+                        //var exAssosCom = new Commande();
+                        //var bl = true;
+                        //var exdt = new DateTime();
+                        //var exdtass = new DateTime();
                         //foreach (var dt in unsel.OrderBy(key => key))                               // Ordonne par date.
                         //{
                         //    Commande associatedCom = (from Datetimeitem in c.UnSelectable.ToList()  // Cherche la commande assosiée pour chaque datetime.
@@ -352,6 +346,18 @@ namespace Kioxk.Server.Controllers
             {
 
                 Console.WriteLine("ex:" + ex);
+            }
+
+                    }
+                    else { Console.WriteLine(" a pa livret dedans donc t2"); t2(); }
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine(" catch: " + ex);
+                }
+            
+               
             }
           
         }
@@ -588,10 +594,18 @@ namespace Kioxk.Server.Controllers
         [HttpGet]
         public async Task<Livret> Get()
         {
-
+            Console.WriteLine("Get");
 
              t1();
-          
+            //try
+            //{
+            //    return livContext.Single()!;
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    Console.WriteLine("execption return livcontext :  " + ex);
+            //}
                 return livContext.Single();
            
            

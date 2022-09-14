@@ -91,7 +91,7 @@ namespace Kioxk.Server.Migrations
 
                     b.HasIndex("LivretId");
 
-                    b.ToTable("Datetimes");
+                    b.ToTable("Datetime");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Hashset", b =>
@@ -112,7 +112,7 @@ namespace Kioxk.Server.Migrations
 
                     b.HasIndex("LivretId");
 
-                    b.ToTable("Hashsets");
+                    b.ToTable("Hashset");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Int", b =>
@@ -139,7 +139,7 @@ namespace Kioxk.Server.Migrations
 
                     b.HasIndex("LivretId");
 
-                    b.ToTable("Ints");
+                    b.ToTable("Int");
                 });
 
             modelBuilder.Entity("Kioxk.Shared.Models.Livret", b =>

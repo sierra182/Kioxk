@@ -1376,22 +1376,22 @@
 
             #form {
                 width: 47%; //47
-                height:75%; //fit-content;
-               // max-height:80%;
+                height: 75%; //fit-content;
+                // max-height:80%;
                 --displres: block;
                 --pointres: initial;
                 --opres: .9;
                 --trans: 0;
                 background-color: orange;
                 //  display: none;
-               // opacity: 0.6;
+                // opacity: 0.6;
                 position: relative;
                 // display:block;
                 &::after {
                     //   display: var(--displres);
                     content: "";
                     position: absolute;
-                    top:0;
+                    top: 0;
                     display: block;
                     width: 100%;
                     height: 100%;
@@ -1421,7 +1421,7 @@
                 //  background-color: black;
 
                 > :first-child { // > EditForm { // EditForm
-                                 height:100%;
+                    height: 100%;
                     /*height: 140%;
                 width: 120%;*/
                     /*  font-size: 1.2vw;*/
@@ -1520,7 +1520,8 @@
                 top: 0;
                 //   transform: translateY(-100%);
                 background-color: mediumaquamarine;
-              //  opacity: .5;
+                //  opacity: .5;
+                z-index: -1;
 
                 #mailcont {
                     // width: 47%;

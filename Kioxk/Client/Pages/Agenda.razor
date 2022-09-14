@@ -87,7 +87,7 @@
         {            
             var exSeasons = new HashSet<DateTime>[] { new(Seasons[0]), new(Seasons[1]) };        // Comparateur Saisons Updated
             var exPrices = Prices.ToList();
-            Livret livret = await Http.GetFromJsonAsync<Livret>("api/commande");
+            var livret = await Http.GetFromJsonAsync<Livret>("api/commande");
             if (livret is not null)
             { installLivret(livret); }
 

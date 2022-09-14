@@ -38,9 +38,9 @@ namespace Kioxk.Server.Data
 
 
         public DbSet<Livret> Livret { get; set; }
-        public DbSet<Datetime> Datetimes { get; set; }
-        public DbSet<Int> Ints { get; set; }
-        public DbSet<Hashset> Hashsets { get; set; }
+        //public DbSet<Datetime> Datetimes { get; set; }
+        //public DbSet<Int> Ints { get; set; }
+        //public DbSet<Hashset> Hashsets { get; set; }
         public DbSet<Commande> Commandes { get; set; }
 
     }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Kioxk.Server.Migrations
 {
-    public partial class youbi : Migration
+    public partial class casimir : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,7 +44,7 @@ namespace Kioxk.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hashsets",
+                name: "Hashset",
                 columns: table => new
                 {
                     HashsetId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -54,21 +54,21 @@ namespace Kioxk.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hashsets", x => x.HashsetId);
+                    table.PrimaryKey("PK_Hashset", x => x.HashsetId);
                     table.ForeignKey(
-                        name: "FK_Hashsets_Commandes_CommandeId",
+                        name: "FK_Hashset_Commandes_CommandeId",
                         column: x => x.CommandeId,
                         principalTable: "Commandes",
                         principalColumn: "CommandeId");
                     table.ForeignKey(
-                        name: "FK_Hashsets_Livret_LivretId",
+                        name: "FK_Hashset_Livret_LivretId",
                         column: x => x.LivretId,
                         principalTable: "Livret",
                         principalColumn: "LivretId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ints",
+                name: "Int",
                 columns: table => new
                 {
                     IntId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -80,21 +80,21 @@ namespace Kioxk.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ints", x => x.IntId);
+                    table.PrimaryKey("PK_Int", x => x.IntId);
                     table.ForeignKey(
-                        name: "FK_Ints_Commandes_CommandeId",
+                        name: "FK_Int_Commandes_CommandeId",
                         column: x => x.CommandeId,
                         principalTable: "Commandes",
                         principalColumn: "CommandeId");
                     table.ForeignKey(
-                        name: "FK_Ints_Livret_LivretId",
+                        name: "FK_Int_Livret_LivretId",
                         column: x => x.LivretId,
                         principalTable: "Livret",
                         principalColumn: "LivretId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Datetimes",
+                name: "Datetime",
                 columns: table => new
                 {
                     DatetimeId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -107,70 +107,70 @@ namespace Kioxk.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Datetimes", x => x.DatetimeId);
+                    table.PrimaryKey("PK_Datetime", x => x.DatetimeId);
                     table.ForeignKey(
-                        name: "FK_Datetimes_Commandes_CommandeId",
+                        name: "FK_Datetime_Commandes_CommandeId",
                         column: x => x.CommandeId,
                         principalTable: "Commandes",
                         principalColumn: "CommandeId");
                     table.ForeignKey(
-                        name: "FK_Datetimes_Hashsets_HashsetId",
+                        name: "FK_Datetime_Hashset_HashsetId",
                         column: x => x.HashsetId,
-                        principalTable: "Hashsets",
+                        principalTable: "Hashset",
                         principalColumn: "HashsetId");
                     table.ForeignKey(
-                        name: "FK_Datetimes_Livret_LivretId",
+                        name: "FK_Datetime_Livret_LivretId",
                         column: x => x.LivretId,
                         principalTable: "Livret",
                         principalColumn: "LivretId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Datetimes_CommandeId",
-                table: "Datetimes",
+                name: "IX_Datetime_CommandeId",
+                table: "Datetime",
                 column: "CommandeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Datetimes_HashsetId",
-                table: "Datetimes",
+                name: "IX_Datetime_HashsetId",
+                table: "Datetime",
                 column: "HashsetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Datetimes_LivretId",
-                table: "Datetimes",
+                name: "IX_Datetime_LivretId",
+                table: "Datetime",
                 column: "LivretId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hashsets_CommandeId",
-                table: "Hashsets",
+                name: "IX_Hashset_CommandeId",
+                table: "Hashset",
                 column: "CommandeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hashsets_LivretId",
-                table: "Hashsets",
+                name: "IX_Hashset_LivretId",
+                table: "Hashset",
                 column: "LivretId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ints_CommandeId",
-                table: "Ints",
+                name: "IX_Int_CommandeId",
+                table: "Int",
                 column: "CommandeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ints_LivretId",
-                table: "Ints",
+                name: "IX_Int_LivretId",
+                table: "Int",
                 column: "LivretId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Datetimes");
+                name: "Datetime");
 
             migrationBuilder.DropTable(
-                name: "Ints");
+                name: "Int");
 
             migrationBuilder.DropTable(
-                name: "Hashsets");
+                name: "Hashset");
 
             migrationBuilder.DropTable(
                 name: "Commandes");
