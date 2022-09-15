@@ -1348,7 +1348,7 @@
         border-radius: 5%;
         transition: transform .7s;
         @include ombre();
-        background-color: blue; //#00c6b0;
+      //  background-color: blue; //#00c6b0;
         //  opacity:.9;
 
         > div:first-child { //cont p
@@ -1358,7 +1358,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
-            background-color: cadetblue;
+           // background-color: cadetblue;
             //  overflow:hidden,scroll;
             /*    > div:first-child { //cont form + rec + paie
                 //    background-color: aqua;
@@ -1511,13 +1511,14 @@
             > div:nth-child(2) { //cont recap + paie
                 //
                 // overflow-x: visible;
-                    overflow-y: auto;
+                overflow-y: auto;
                 height: 75%;
                 width: 47%;
                 position: absolute;
                 top: 0;
+                //   display:flex;
                 //   transform: translateY(-100%);
-               // background-color: red;
+                 background-color: orange;
                 //  opacity: .5;
                 //  z-index: -1;
 
@@ -1534,43 +1535,45 @@
                         background-color: palevioletred;*/
                     // opacity: .5;
                     background-color: palevioletred;
-
+                    //   order:1;
                     button {
-                        display:block;
-                    //    position:relative;
-                      //  top
-                      margin:auto;
+                        display: block;
+                        //    position:relative;
+                        //  top
+                        margin: auto;
                     }
                 }
 
                 #contpaie {
-                    position: absolute;
-                    top:0;// -100%;
+                    position: relative;
+                    top: 0; // -100%;
+                    //  order:2;
                     //left: 0px;
                     //   width: 10vw;
                     //   width: 100%;
                     /* width: 100%;
                     height: 100%;*/
-                  //  background-color: blue;
+                    background-color: blue;
                     // overflow-x:visible;
                     // transform: translate(-100%,0%);
-                  //  height: fit-content;
+                    //  height: fit-content;
                     //   width: 100px !important;
-                //    width:100%;
+                    //    width:100%;
 
-                    > div:first-of-type {   // cont htmlpaie
+                    > div:first-of-type { // cont htmlpaie
                         position: relative;
                         color: white;
                         // width: 100px !important;
                         top: 0;
-                 //       height: fit-content;
+                        //       height: fit-content;
                         // left:0;
                         //   width: 10vw;
-                        background-color: red;
-                       // width: 100%;
+                        // width: 100%;
+                        background-color: yellow;
 
                         > div:first-of-type {
-                            width: 100%!important;
+                            width: 100% !important;
+                            background-color: yellow;
                         }
                     }
                 }

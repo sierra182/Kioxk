@@ -7,22 +7,20 @@
 
 
 @{
-    string pter;
-    double op;
-    int trans;
-    if (Selected.Count > 0)  // ouvre
+   
+    if (Selected.Any())  // ouvre
     {
         op = 0.9;
         pter = "none";
         trans = 111;
     }
-    else
+    else if (mails.mybodymail is null)
     {
         op = .9;
         pter = "initial";
-        trans = 0;
+        trans = 0;   // ferme
     }
-
+   
 }
 
 <div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans">
@@ -32,6 +30,16 @@
 @if (mails.mybodymail is not null)
 {
     <div>
+        @if (paie.ajoutmail is not null && pay)
+        {
+            <div id="contpaie">
+                <div>
+                    @((MarkupString)paie.ajoutmail)
+                </div>
+
+            </div>
+        }
+
         <div id="mailcont">
             <div>
                 @((MarkupString)mails.mybodymail)
@@ -41,17 +49,7 @@
 
             </div>
 
-        </div>
-
-        @if (paie.ajoutmail is not null && pay)
-        {
-        <div id="contpaie">
-                <div>
-                    @((MarkupString)paie.ajoutmail)
-                </div>
-
-            </div>
-        }
+        </div>     
 
     </div>
 
@@ -77,7 +75,9 @@
 
     private bool pay;
 
-
+    string pter = "initial";
+    double op = 0;
+    int trans = 0;
 
     private Commande com;
     private Kioxk.Shared.Mails.Mails mails;
@@ -136,7 +136,7 @@
         finally
         {
             Selected.Clear();
-            await SelectedChanged.InvokeAsync(Selected);
+           // await SelectedChanged.InvokeAsync(Selected);
             mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
             paie = new();
             Console.WriteLine("finaly clear!");
