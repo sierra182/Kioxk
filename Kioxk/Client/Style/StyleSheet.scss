@@ -229,8 +229,6 @@
     filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5)) $add-shadow;
 }
 
-
-
 #maincont {
     --maincont-width: 95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
@@ -1512,18 +1510,19 @@
 
             > div:nth-child(2) { //cont recap + paie
                 //
-                overflow-x: visible;
-                overflow-y: auto;
+                // overflow-x: visible;
+                    overflow-y: auto;
                 height: 75%;
                 width: 47%;
                 position: absolute;
                 top: 0;
                 //   transform: translateY(-100%);
-                background-color: mediumaquamarine;
+               // background-color: red;
                 //  opacity: .5;
                 //  z-index: -1;
 
                 #mailcont {
+                    position: relative;
                     // width: 47%;
                     /*height: auto;
                           position:relative;
@@ -1531,93 +1530,114 @@
                     /*    top: 0;
                         left: 0;*/
                     /*
+                         position: relative;
                         background-color: palevioletred;*/
-                   // opacity: .5;
+                    // opacity: .5;
                     background-color: palevioletred;
+
+                    button {
+                        display:block;
+                    //    position:relative;
+                      //  top
+                      margin:auto;
+                    }
                 }
 
                 #contpaie {
                     position: absolute;
-                    top: 0;
-                    left: 0px;
-                    width: 100%;
-                    height: 100%;
-                    background-color: orange;
-                   // overflow-x:visible;
+                    top:0;// -100%;
+                    //left: 0px;
+                    //   width: 10vw;
+                    //   width: 100%;
+                    /* width: 100%;
+                    height: 100%;*/
+                  //  background-color: blue;
+                    // overflow-x:visible;
                     // transform: translate(-100%,0%);
+                  //  height: fit-content;
+                    //   width: 100px !important;
+                //    width:100%;
 
-                    > div:first-of-type {
-                        //  position:relative;
-                          color:white;
-                         // top:0;
-                         // left:0;
-                        background-color:red;
+                    > div:first-of-type {   // cont htmlpaie
+                        position: relative;
+                        color: white;
+                        // width: 100px !important;
+                        top: 0;
+                 //       height: fit-content;
+                        // left:0;
+                        //   width: 10vw;
+                        background-color: red;
+                       // width: 100%;
+
+                        > div:first-of-type {
+                            width: 100%!important;
+                        }
                     }
                 }
             }
         }
     }
-}
 
-#hlp1 { // Item
-    margin: 7px;
-    //  width: auto; /*calc(3.5714vw - 2px);*/
-    //  height: auto; /*calc(3.5714vw - 2px);*/
-    width: 30vw !important;
-    height: 3vw !important;
-    // background-color: red;
-    display: flex;
-    //filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
-    //  justify-items: center;
-    //  vertical-align: central;
-    // text-align: center;
-    /*filter: none !important;
-    backdrop-filter: none !important;*/
-    // filter: drop-shadow(2px 2px 1.3px black) ;
-
-    > div { // Element container
-        display: inherit;
-        //  @include centrage_hor;
-        // @include centrage_ver;
-        // transform:translate(-50%);
-        // text-align:center;
+    #hlp1 { // Item
+        margin: 7px;
+        //  width: auto; /*calc(3.5714vw - 2px);*/
+        //  height: auto; /*calc(3.5714vw - 2px);*/
+        width: 30vw !important;
+        height: 3vw !important;
+        // background-color: red;
+        display: flex;
+        //filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
         //  justify-items: center;
-        //   vertical-align: central;
-        //  text-align: center;
-        //  padding:0;
-        // width: 100%;
-        // height: 100%;
-        width: 3vw;
-        height: 3vw;
-        border: solid;
-        border-width: calc(max(.4vw,4px));
-        border-radius: 10%;
-        border-color: green;
-        filter: drop-shadow(2px 2px 1.3px black)
-    }
+        //  vertical-align: central;
+        // text-align: center;
+        /*filter: none !important;
+    backdrop-filter: none !important;*/
+        // filter: drop-shadow(2px 2px 1.3px black) ;
 
-    span { // tous
-        //  display: inherit;
-        font-weight: bold;
-        font-size: 1.2rem;
-        // font-size: 1.2vw;
-        //  line-height: 1;
-        margin: auto;
-        /* background-color: green;*/
-        // color:green !important;
-        // backdrop-filter: none;
-    }
+        > div { // Element container
+            display: inherit;
+            //  @include centrage_hor;
+            // @include centrage_ver;
+            // transform:translate(-50%);
+            // text-align:center;
+            //  justify-items: center;
+            //   vertical-align: central;
+            //  text-align: center;
+            //  padding:0;
+            // width: 100%;
+            // height: 100%;
+            width: 3vw;
+            height: 3vw;
+            border: solid;
+            border-width: calc(max(.4vw,4px));
+            border-radius: 10%;
+            border-color: green;
+            filter: drop-shadow(2px 2px 1.3px black)
+        }
 
-    > span { // text
-        //  display: inherit;
-        font-size: 1rem;
-        color: black;
-        margin: auto 0;
-        margin-left: 1vw;
-        // font-size: 1.2vw;
-        //  line-height: 1;
-        // margin: auto;
-        /* background-color: green;*/
-        // backdrop-filter: none;
+        span { // tous
+            //  display: inherit;
+            font-weight: bold;
+            font-size: 1.2rem;
+            // font-size: 1.2vw;
+            //  line-height: 1;
+            margin: auto;
+            /* background-color: green;*/
+            // color:green !important;
+            // backdrop-filter: none;
+        }
+
+        > span { // text
+            //  display: inherit;
+            font-size: 1rem;
+            color: black;
+            margin: auto 0;
+            margin-left: 1vw;
+            // font-size: 1.2vw;
+            //  line-height: 1;
+            // margin: auto;
+            /* background-color: green;*/
+            // backdrop-filter: none;
+        }
     }
 }

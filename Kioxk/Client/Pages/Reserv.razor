@@ -27,21 +27,17 @@
 
 <div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans">
     <Form Com="@com" ComRapp="()=>CreateCommande()" />
-
 </div>
 
 @if (mails.mybodymail is not null)
 {
-    
     <div>
         <div id="mailcont">
             <div>
-                @(
-                    (MarkupString)mails.mybodymail
-                    )
+                @((MarkupString)mails.mybodymail)
             </div>
             <div>
-                <button style="position:relative;left:50%;transform:translate(-50%)" @onclick="()=>{pay = true;}" class="btn btn-success"> Paiement </button>
+                <button @onclick="()=>{pay = true;}" class="btn btn-success"> Paiement </button>
 
             </div>
 
@@ -49,22 +45,17 @@
 
         @if (paie.ajoutmail is not null && pay)
         {
-            <div style="" id="contpaie">
+        <div id="contpaie">
                 <div>
-                    @(
-                        (MarkupString)paie.ajoutmail
-                        )
+                    @((MarkupString)paie.ajoutmail)
                 </div>
-              
-               
-            
 
             </div>
         }
 
     </div>
 
-  
+
 }
 
 @code {

@@ -644,7 +644,7 @@ namespace Kioxk.Server.Controllers
                 com.Date = DateTime.Now;
                 _context.Commandes.Add(com);                                // Ajoute la commande à la bd.
                 await _context.SaveChangesAsync();
-                Mail(com);
+              //  Mail(com);
                 return Ok(com.CommandeId);
 
             }

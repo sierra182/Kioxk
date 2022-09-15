@@ -48,7 +48,7 @@ namespace Kioxk.Shared.Mails
             <div style='color:black;background-color:white; font-weight:bold;'> Récapitulatif de votre Réservation </div>
             </br>
 
-     <div style='font-size:.8rem;text-overflow:ellipsis;'>
+     <div style='font-size:.8rem;'>
 <div>" + DateTime.Now.ToShortDateString() +@"
             <div style='font-size:1rem;text-decoration-style:wavy;text-underline-offset:7px;text-decoration-line:underline;  text-decoration-thickness:4px'> Numéro de commande: " + comid + "/" + DateTime.Now.Year + @"</div> 
             </br>
@@ -96,7 +96,7 @@ namespace Kioxk.Shared.Mails
     {
         public readonly string ajoutmail = @"
 
-<div style=""width:300px; height:auto; background-color:orange;color:white;""> 
+<div style='width:300px; height:auto; background-color:orange;color:white;'> 
   <p style=""border:solid;padding:4px;background-color:white;color:green; font-weight:normal;text-indent: 30px;"">  
     Votre réservation est enregistrée et en attente de paiement. Pour procéder, utilisez votre application bancaire: allez à l'onglet paylib 
 ou lyf, et faites un virement du montant total au 0692104886.
