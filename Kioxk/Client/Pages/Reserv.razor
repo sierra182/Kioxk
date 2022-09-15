@@ -7,7 +7,7 @@
 
 
 @{
-   
+
     if (Selected.Any())  // ouvre
     {
         op = 0.9;
@@ -20,7 +20,7 @@
         pter = "initial";
         trans = 0;   // ferme
     }
-   
+
 }
 
 <div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans">
@@ -34,7 +34,9 @@
         {
             <div id="contpaie">
                 <div>
-                    @((MarkupString)paie.ajoutmail)
+                    @(
+                        (MarkupString)paie.ajoutmail
+                        )
                 </div>
 
             </div>
@@ -45,11 +47,11 @@
                 @((MarkupString)mails.mybodymail)
             </div>
             <div>
-                <button @onclick='()=>{pay = true; scrollHaut = true;}' class="btn btn-success"> Paiement </button>
+                <button @onclick='()=> {pay = true; scrollHaut = true;}' class="btn btn-success"> Paiement </button>
 
             </div>
 
-        </div>     
+        </div>
 
     </div>
 
@@ -88,24 +90,22 @@
     protected override void OnInitialized()
     {
         com = new Commande();
+        js.InvokeVoidAsync("loadevent", "contscrollJs", "bas");
     }
     bool scrollHaut = false;
-    bool scrollBas= false;
+    bool scrollBas = true;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         Console.WriteLine("onafterrenderasync");
-        if (scrollHaut){
-             await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
+        if (scrollHaut)
+        {
+            await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
             scrollHaut = false;
         }
-        if (scrollBas)
-        {
-             await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
-             scrollBas = false;
-        }
-       
+
+
     }
-  
+
 
     private async Task CreateCommande()
     {
@@ -154,9 +154,11 @@
         finally
         {
             Selected.Clear();
-           // await SelectedChanged.InvokeAsync(Selected);
-            mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
+            // await SelectedChanged.InvokeAsync(Selected);
+            mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);                        
             paie = new();
+            StateHasChanged();
+            _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");
             Console.WriteLine("finaly clear!");
         }
     }

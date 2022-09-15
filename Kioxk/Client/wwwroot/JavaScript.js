@@ -186,6 +186,3 @@ function scroll(el, sens) {
    // void elem.offsetWidth;
 }
 
-function test() {
-
-}
