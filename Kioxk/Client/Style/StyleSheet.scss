@@ -1521,7 +1521,10 @@
                  background-color: orange;
                 //  opacity: .5;
                 //  z-index: -1;
-
+                scrollbar-3dlight-color:aqua;
+                scrollbar-arrow-color:red;
+                scrollbar-color:orange;
+                scroll-behavior:smooth;
                 #mailcont {
                     position: relative;
                     // width: 47%;

@@ -19,7 +19,7 @@
 
 
 function resizeIframe(obj) {
-    console.log("YE  JS 2");
+  
     let f = document.getElementById("myframe");
     // let g = f.parentElement;
     setTimeout(aftertime, 1000);
@@ -36,7 +36,7 @@ function resizeIframe(obj) {
   
     console.log(f.id + "idee");
     f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
-    console.log("YE  JS hui");
+   
 }
 }
 
@@ -166,5 +166,26 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
    
 }
 
+function scroll(el, sens) {
+    console.log("scroll DEb2");
+    var elem = document.getElementById(el);
+    
+        if (sens === "bas") {
+            console.log("bas");
+            var coo = elem.scrollHeight;
+            elem.scrollTo(0, coo);
+            console.log("bas fin");
+        } else if (sens === "haut") {
+            console.log("haut");
+            var coo = elem.scrollHeight;
+            elem.scrollTo(0, -coo);
+            console.log("haut fin");
+        };
+   
+    console.log("scroll FIN");
+   // void elem.offsetWidth;
+}
 
+function test() {
 
+}

@@ -12,7 +12,7 @@
     {
         op = 0.9;
         pter = "none";
-        trans = 111;
+        trans = 101;
     }
     else if (mails.mybodymail is null)
     {
@@ -29,7 +29,7 @@
 
 @if (mails.mybodymail is not null)
 {
-    <div>
+    <div id="contscrollJs">
         @if (paie.ajoutmail is not null && pay)
         {
             <div id="contpaie">
@@ -45,7 +45,7 @@
                 @((MarkupString)mails.mybodymail)
             </div>
             <div>
-                <button @onclick="()=>{pay = true;}" class="btn btn-success"> Paiement </button>
+                <button @onclick='()=>{pay = true; scrollHaut = true;}' class="btn btn-success"> Paiement </button>
 
             </div>
 
@@ -55,6 +55,7 @@
 
 
 }
+
 
 @code {
 
@@ -88,6 +89,23 @@
     {
         com = new Commande();
     }
+    bool scrollHaut = false;
+    bool scrollBas= false;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        Console.WriteLine("onafterrenderasync");
+        if (scrollHaut){
+             await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
+            scrollHaut = false;
+        }
+        if (scrollBas)
+        {
+             await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
+             scrollBas = false;
+        }
+       
+    }
+  
 
     private async Task CreateCommande()
     {
