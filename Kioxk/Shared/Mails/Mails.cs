@@ -92,7 +92,7 @@ namespace Kioxk.Shared.Mails
 
     }
 
-    public readonly struct Paiement 
+    public struct Paiement 
     {
         public readonly string ajoutmail = @"
 

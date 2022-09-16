@@ -14,7 +14,7 @@
         pter = "none";
         trans = 101;
     }
-    else if (mails.mybodymail is null)
+    else if (mails! is null)
     {
         op = .9;
         pter = "initial";
@@ -27,15 +27,15 @@
     <Form Com="@com" ComRapp="()=>CreateCommande()" />
 </div>
 
-@if (mails.mybodymail is not null)
+@if (mails! is not null)
 {
     <div id="contscrollJs">
-        @if (paie.ajoutmail is not null && pay)
+        @if (paie!.Value.ajoutmail is not null && pay)
         {
             <div id="contpaie">
                 <div>
                     @(
-                        (MarkupString)paie.ajoutmail
+                        (MarkupString)paie.Value.ajoutmail
                         )
                 </div>
 
@@ -44,10 +44,10 @@
 
         <div id="mailcont">
             <div>
-                @((MarkupString)mails.mybodymail)
+                @((MarkupString)mails.Value.mybodymail!)
             </div>
             <div>
-                <button @onclick='()=> {pay = true; scrollHaut = true;}' class="btn btn-success"> Paiement </button>
+                <button style="background-color:@butcol; color:@butcoltxt" @onclick='ChangeOnClick' class="btn btn-success"> @but </button>
 
             </div>
 
@@ -76,15 +76,16 @@
     [Parameter]
     public EventCallback<int[]> PricesChanged { get; set; }
 
-    private bool pay;
+
 
     string pter = "initial";
     double op = 0;
     int trans = 0;
 
+
     private Commande com;
-    private Kioxk.Shared.Mails.Mails mails;
-    private Kioxk.Shared.Mails.Paiement paie;
+    private Kioxk.Shared.Mails.Mails? mails;
+    private Kioxk.Shared.Mails.Paiement? paie;
     private int i;
 
     protected override void OnInitialized()
@@ -92,6 +93,7 @@
         com = new Commande();
         js.InvokeVoidAsync("loadevent", "contscrollJs", "bas");
     }
+
     bool scrollHaut = false;
     bool scrollBas = true;
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -105,7 +107,43 @@
 
 
     }
+    private bool pay;
+    string butcoltxt = "";
+    string butcol = "";
+    string but = "Paiement";
+    bool tog = false;
+    private void ChangeOnClick()
+    {
+        if (!tog)
+        {
 
+            pay = true; scrollHaut = true;
+            butcoltxt = "orange";
+            butcol = "white";
+            but = "Fermer";            
+            tog = true;
+
+        }
+        else
+        {
+            butcoltxt = "";
+            butcol = "";
+            but = "Paiement";
+            scrollHaut = false;
+            mails = null;
+            paie = null;
+            pay = false;
+            tog = false;
+        }
+    }
+    private void PayandScrollHaut()
+    {
+        pay = true; scrollHaut = true;
+    }
+    private void Quit()
+    {
+        pay = true; scrollHaut = true;
+    }
 
     private async Task CreateCommande()
     {
@@ -155,7 +193,7 @@
         {
             Selected.Clear();
             // await SelectedChanged.InvokeAsync(Selected);
-            mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);                        
+            mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
             paie = new();
             StateHasChanged();
             _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");

@@ -1525,6 +1525,7 @@
                 scrollbar-arrow-color:red;
                 scrollbar-color:orange;
                 scroll-behavior:smooth;
+
                 #mailcont {
                     position: relative;
                     // width: 47%;
@@ -1543,7 +1544,8 @@
                         display: block;
                         //    position:relative;
                         //  top
-                        margin: auto;
+                        margin:auto;
+                        margin-bottom:4px;
                     }
                 }
 
