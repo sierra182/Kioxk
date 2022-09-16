@@ -225,7 +225,7 @@
     }
 }
 
-@mixin ombre ($add-shadow:null) {
+@mixin ombre ($add-shadow: null) {
     filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5)) $add-shadow;
 }
 
@@ -1348,7 +1348,7 @@
         border-radius: 5%;
         transition: transform .7s;
         @include ombre();
-      //  background-color: blue; //#00c6b0;
+        //  background-color: blue; //#00c6b0;
         //  opacity:.9;
 
         > div:first-child { //cont p
@@ -1358,7 +1358,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
-           // background-color: cadetblue;
+            // background-color: cadetblue;
             //  overflow:hidden,scroll;
             /*    > div:first-child { //cont form + rec + paie
                 //    background-color: aqua;
@@ -1508,7 +1508,7 @@
                 }
             }
 
-            > div:nth-child(2) { //cont recap + paie
+            > div:nth-child(2) { //cont recap + paie contscrooljs
                 //
                 // overflow-x: visible;
                 overflow-y: auto;
@@ -1518,13 +1518,15 @@
                 top: 0;
                 //   display:flex;
                 //   transform: translateY(-100%);
-                 background-color: orange;
+                background-color: orange;
                 //  opacity: .5;
                 //  z-index: -1;
-                scrollbar-3dlight-color:aqua;
-                scrollbar-arrow-color:red;
-                scrollbar-color:orange;
-                scroll-behavior:smooth;
+                scrollbar-3dlight-color: aqua;
+                scrollbar-arrow-color: red;
+                scrollbar-color: orange;
+                scroll-behavior: smooth;
+
+
 
                 #mailcont {
                     position: relative;
@@ -1544,8 +1546,8 @@
                         display: block;
                         //    position:relative;
                         //  top
-                        margin:auto;
-                        margin-bottom:4px;
+                        margin: auto;
+                        margin-bottom: 4px;
                     }
                 }
 
@@ -1582,6 +1584,15 @@
                         }
                     }
                 }
+            }
+
+            #avert { //dispavert
+                background-color: yellow;
+                position: absolute;
+                top:45%;
+                left: 48.5%;
+                width:45%;
+                font-size:80%;
             }
         }
     }
