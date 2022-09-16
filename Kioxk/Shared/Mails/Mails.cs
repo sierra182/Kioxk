@@ -48,7 +48,7 @@ namespace Kioxk.Shared.Mails
             <div style='color:black;background-color:white; font-weight:bold;'> Récapitulatif de votre Réservation </div>
             </br>
 
-     <div style='font-size:.8rem;'>
+     <div style='font-size:1rem;'>
 <div>" + DateTime.Now.ToShortDateString() +@"
             <div style='font-size:1rem;text-decoration-style:wavy;text-underline-offset:7px;text-decoration-line:underline;  text-decoration-thickness:4px'> Numéro de commande: " + comid + "/" + DateTime.Now.Year + @"</div> 
             </br>
