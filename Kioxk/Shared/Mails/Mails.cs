@@ -96,8 +96,8 @@ namespace Kioxk.Shared.Mails
     {
         public readonly string ajoutmail = @"
 
-<div style='width:300px; height:auto; background-color:orange;color:white;'> 
-  <p style=""border:solid;padding:4px;background-color:white;color:green; font-weight:normal;text-indent: 30px;"">  
+<div style='width:300px; height:auto; border:solid; border-top-left-radius:2vw; background-color:orange;color:white;'> 
+  <p style=""border:solid;border-top-left-radius:2vw;padding:4px;background-color:white;color:green; font-weight:normal;text-indent: 30px;"">  
     Votre réservation est enregistrée et en attente de paiement. Pour procéder, utilisez votre application bancaire: allez à l'onglet paylib 
 ou lyf, et faites un virement du montant total au 0692104886.
 Vous recevrez alors un nouveau mail de confirmation. 

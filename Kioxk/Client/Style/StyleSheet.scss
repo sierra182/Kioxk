@@ -1352,22 +1352,22 @@
         //border-radius: 5%;
         //  transition: transform .7s;
         @include ombre();
-       // background-color: blue; //#00c6b0;
+        // background-color: blue; //#00c6b0;
         //  opacity:.9;
         display: flex;
         justify-content: center;
-        align-items:center;
+        align-items: center;
 
         > div:first-child { //cont p
             width: 50%;
             height: 90%;
             position: relative;
-          //  top:0;
-         //   display:inline;
+            //  top:0;
+            //   display:inline;
             //left: 20px;
             //  left: 50%;
             //  transform: translate(-50%,-50%);!!
-         //   background-color: cadetblue;
+            //   background-color: cadetblue;
             //  overflow:hidden,scroll;
             /*    > div:first-child { //cont form + rec + paie
                 //    background-color: aqua;
@@ -1383,7 +1383,7 @@
             opacity: .8;
 
             #form {
-                  display:block;
+                display: block;
                 width: 50%; //47
                 height: 26rem; //75%
                 // max-height:80%;
@@ -1394,13 +1394,13 @@
                 //   background-color: orange;
                 //  display: none;
                 // opacity: 0.6;
-                position:relative;
-               /* position: absolute;
+                position: relative;
+                /* position: absolute;
                 top:0;*/
                 // display:block;
                 &::after {
                     //   display: var(--displres);
-                  //  display:none;
+                    //  display:none;
                     content: "";
                     position: absolute;
                     top: 0;
@@ -1451,7 +1451,7 @@
                     //  width: 120%; !!!!!
                     // height: 140%;
                     font-size: 1.2vw;
-//margin-top: 1rem;
+                    //margin-top: 1rem;
                     // filter: drop-shadow(2px 2px 2px black);
                     background: rgb(11,11,11);
                     background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
@@ -1550,11 +1550,12 @@
             > div:nth-child(2) { //cont recap + paie contscrooljs
                 //
                 // overflow-x: visible;
+                //  padding:.3vw;
                 overflow-y: auto;
                 height: 26rem; //25rem 75%
-                width: 52%; //45 ou7%
+                width: 51%; //45 ou7%
                 position: absolute;
-                 top: 0;
+                top: 0;
                 //   display:flex;
                 //   transform: translateY(-100%);
                 background-color: orange;
@@ -1619,12 +1620,13 @@
                     //   width: 100%;
                     /* width: 100%;
                     height: 100%;*/
-                    background-color: blue;
+                    //  background-color: blue;
                     // overflow-x:visible;
                     // transform: translate(-100%,0%);
                     //  height: fit-content;
                     //   width: 100px !important;
                     //    width:100%;
+
 
                     > div:first-of-type { // cont htmlpaie
                         position: relative;
@@ -1635,7 +1637,11 @@
                         // left:0;
                         //   width: 10vw;
                         // width: 100%;
-                        background-color: yellow;
+                        padding-top: .6rem;
+                        padding-left: .5rem;
+                        padding-right: .5rem;
+                        //  background-color: yellow;
+                      
 
                         > div:first-of-type {
                             width: 100% !important;
@@ -1649,7 +1655,7 @@
                 background-color: yellow;
                 position: absolute;
                 top: 45%;
-                left: 52.5%;
+                left: 53%;
                 width: 45%;
                 font-size: 80%;
             }
