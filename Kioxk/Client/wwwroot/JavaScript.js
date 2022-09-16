@@ -172,9 +172,12 @@ function scroll(el, sens) {
     
         if (sens === "bas") {
             console.log("bas");
-            var coo = elem.scrollHeight;
-            elem.scrollTo(0, coo);
-            console.log("bas fin");
+            setTimeout(() => {
+                var coo = elem.scrollHeight;
+                elem.scrollTo(0, coo);
+                console.log("bas fin");
+            }, 2000)
+            
         } else if (sens === "haut") {
             console.log("haut");
             var coo = elem.scrollHeight;
