@@ -233,18 +233,18 @@
     --maincont-width: 95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
     display: flex;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     flex-wrap: wrap;
     position: absolute;
-   // top: 5vh;
+    // top: 5vh;
     //left: 50%;
     width: var(--maincont-width);
     height: 90vh;
     // align-items: center;
-    margin:auto;
+    margin: auto;
     //transform: translate(-50%);
     border-radius: 2.5%/5%;
     background-color: rgba(0,0,0,.05);
@@ -259,7 +259,7 @@
         position: absolute;
         top: -5vh;
         left: -2.5vw;
-       // opacity:.5;
+        // opacity:.5;
         @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
         //  filter: drop-shadow(2px 2px 2px rgba(0,0,0,.5));
         // height:1px;
@@ -1365,7 +1365,7 @@
         align-items: center;
 
         > div:first-child { //cont p
-            width: 50%;
+            width: 62%;
             height: 90%;
             position: relative;
             //  top:0;
@@ -1386,7 +1386,7 @@
                 //  position:relative;
                 //   width:inherit;
                 height: 100%;*/
-            opacity: .8;
+            // opacity: .8;
 
             #form {
                 display: block;
@@ -1401,6 +1401,7 @@
                 //  display: none;
                 // opacity: 0.6;
                 position: relative;
+                opacity: .8;
                 /* position: absolute;
                 top:0;*/
                 // display:block;
@@ -1418,7 +1419,7 @@
                     /*top: 0;
                         left: 0;*/
                     background-color: transparent;
-                    backdrop-filter: blur(3px);
+                    backdrop-filter: blur(1.5px);
                     //  border-color:rgba(black, 0);
                     border: solid;
                     border-width: 2px;
@@ -1572,7 +1573,7 @@
                 scrollbar-color: orange;*/
                 scroll-behavior: smooth;
                 border-radius: 10% / 5%;
-
+                //opacity: .9;
 
                 #mailcont {
                     position: relative;
@@ -1647,7 +1648,7 @@
                         padding-left: .5rem;
                         padding-right: .5rem;
                         //  background-color: yellow;
-                      
+
 
                         > div:first-of-type {
                             width: 100% !important;
