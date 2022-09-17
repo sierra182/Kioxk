@@ -1006,7 +1006,7 @@ body, html {
   /*top: 0;
       left: 0;*/
   background-color: transparent;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1.5px);
   border: solid;
   border-width: 2px;
   pointer-events: var(--pointres);
