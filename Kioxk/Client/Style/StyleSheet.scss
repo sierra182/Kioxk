@@ -1,16 +1,22 @@
-﻿body, html {
+﻿:root {
+    --maincontchild-width-percent: 50;
+    --main-height: 100;
+}
+
+body, html {
     @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+    
     font-family: 'Twinkle Star', cursive;
+
     background-image: url("/photo/papierinp.jpg");
+
 }
 
-:root {
-    --maincontchild-width-percent: 50;
-    --main-height: 100;  
-}
 
-@media screen and (max-width:1000px) {
+
+/*@media screen and (max-width:1000px) {
     :root {
         --maincontchild-width-percent: 50;
 
@@ -140,7 +146,7 @@
             }
         }
     }
-}
+}*/
 
 @mixin centrage_hor {
     position: relative;
@@ -200,15 +206,15 @@
     --maincont-width: 95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
     display: flex;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    margin: auto;
     flex-wrap: wrap;
-    position: absolute;
     width: var(--maincont-width);
     height: 90vh;
-    margin: auto;
     border-radius: 2.5%/5%;
     background-color: rgba(0,0,0,.05);
     background-repeat: no-repeat;
@@ -220,6 +226,7 @@
         position: absolute;
         top: -5vh;
         left: -2.5vw;
+
         @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
 
         h1 {
@@ -288,8 +295,9 @@
         position: relative;
         width: var(--child-width);
         height: calc(var(--main-height) * 1% );
-        transition: transform .7s;
         z-index: 3;
+        transition: transform .7s;
+
         @include ombre();
 
         > div:first-child { //cont p
@@ -471,15 +479,16 @@
         --trans-height: 0%;
         --photo-width: var(--child-width);
         --photo-height: calc(var(--main-height) * 1%);
-        --cp_ph-y: calc(var(--photo-height) /2 * var(--mult_ph-scale));
+        --cp_ph-y: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
         position: relative;
         width: var(--photo-width);
-        height: var(--photo-height);
+        height: var(--photo-width);
+
         @include ombre();
         //  background-color: grey;
 
         > div:first-child { //cont p
-            width: calc(var(--photo-width) /2 * var(--mult_ph-scale));
+            width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
             height: var(--cp_ph-y); // to auto
             position: absolute;
             top: 50%;
@@ -497,11 +506,16 @@
             z-index: 1;
 
             span:nth-of-type(1) { // nos photos txt
-                @include centrage_hor;
+                //@include centrage_hor;
                 position: absolute;
+                margin: auto;
+                left: 0;
+                right: 0;
+                width:10rem;                
                 font-weight: 900;
                 font-size: 1rem;
                 z-index: 1;
+                text-align:center;
                 top: 5%;
                 font-family: 'Montserrat', sans-serif;
                 color: whitesmoke;
@@ -514,7 +528,7 @@
                 --ph_scale-height: -50%;
                 top: 50%;
                 position: absolute;
-                width: calc(var(--photo-width)/2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
+                width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
                 height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                 display: flex;
                 transition: transform linear .5s;
@@ -523,13 +537,15 @@
                 // background-color: greenyellow;
 
                 > div { //cont img et cont ifrme - multy
-                    //   background-color: darkmagenta;
-                    width: calc(var(--photo-width)/2 * var(--mult_ph-scale));
+
+                    width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
                     height: fit-content;
+                    //   background-color: darkmagenta;
 
                     img {
-                        width: calc(var(--photo-width)/2 * var(--mult_ph-scale));
+                        width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
                         max-height: calc(var(--photo-width)/2 * .5 * var(--mult_ph-scale));
+                        min-height: 10rem;
                         position: relative;
                     }
 
@@ -544,13 +560,15 @@
                         position: relative;
 
                         iframe { // legend
-                            width: calc(var(--photo-width)/2 * .9);
+                            width: calc(max(var(--photo-width),40rem) /2 * .9);
                             height: 2.5rem;
                             background-color: rgba(white, .4);
                             border: solid .2rem white;
                             border-radius: 10%;
-                            @include centrage_hor;
                             position: absolute;
+                            margin: auto;
+                            left: 0;
+                            right: 0;
                         }
                     }
                 }
@@ -1174,7 +1192,7 @@
                     }
 
                     button {
-                        display: inline-block;                        
+                        display: inline-block;
                         margin: auto;
                         margin-top: 4px;
                         margin-bottom: 4px;
@@ -1183,12 +1201,12 @@
 
                 #contpaie {
                     position: relative;
-                    top: 0;                     
+                    top: 0;
 
                     > div:first-of-type { // cont htmlpaie
                         position: relative;
-                        color: white;                        
-                        top: 0;                        
+                        color: white;
+                        top: 0;
                         padding-top: .6rem;
                         padding-left: .5rem;
                         padding-right: .5rem;
@@ -1214,14 +1232,14 @@
     }
 
     #hlp1 { // Item
-        margin: 7px;        
+        margin: 7px;
         width: 30vw !important;
         height: 3vw !important;
         // background-color: red;
-        display: flex;        
+        display: flex;
 
         > div { // Element container
-            display: inherit;            
+            display: inherit;
             width: 3vw;
             height: 3vw;
             border: solid;
@@ -1231,17 +1249,17 @@
             filter: drop-shadow(2px 2px 1.3px black)
         }
 
-        span { // tous            
+        span { // tous
             font-weight: bold;
-            font-size: 1.2rem;            
-            margin: auto;            
+            font-size: 1.2rem;
+            margin: auto;
         }
 
-        > span { // text         
+        > span { // text
             font-size: 1rem;
             color: black;
             margin: auto 0;
-            margin-left: 1vw;           
+            margin-left: 1vw;
         }
     }
 }
