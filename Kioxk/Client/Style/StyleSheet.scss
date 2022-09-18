@@ -630,7 +630,7 @@ body, html {
 
             > div:first-child { //pannleg
 
-                width: 30vw;
+                width: max(30vw,21rem);
                 height: auto;
                 /* padding-bottom: 3vw;
             padding-top: 2vw;*/
@@ -642,12 +642,13 @@ body, html {
 
                 > div { // Item
                     display: flex;
-                   // background-color: green;
+                    // background-color: green;
 
                     > div { // elements comp cont
-                        width: 3vw;
-                        height: 3vw;
+                        width: max(3vw,2rem);
+                        height: max(3vw,2rem);
                         background-color: blue;
+
 
                         div { // in element
                             /* width: fit-content;
@@ -656,36 +657,39 @@ body, html {
                         justify-content: center;*/
                             position: relative;
                             background-color: red;
-                           /* width: 100%;
+                            /* width: 100%;
                             height: 100%;*/
-                           height:100%;
+                            height: 100%;
                             //display:flex;
-                            justify-content:center;
+                            justify-content: center;
                             display: flex;
-                            align-items:center;
+                            align-items: center;
+
 
                             span {
                                 // display:block;
                                 /* font-weight: bold;
                         font-size: 1.2rem;
                         margin: auto;*/
-
-                              //  justify-self: center;
-                               // align-self: center;
+                                //  justify-self: center;
+                                // align-self: center;
                             }
                         }
                     }
 
                     > span {
                         //  display: inline;
+                        position: relative;
+                        //    left:1rem;
                         margin: auto 0;
+                        // margin-left: 1rem;
                     }
 
 
 
                     svg {
-                        width: 3vw;
-                        height: 3vw;
+                        width: max(3vw,2rem);
+                        height: max(3vw,2rem);
                         filter: drop-shadow(2px 2px 1.3px black);
                     }
                     // background-color: red;
