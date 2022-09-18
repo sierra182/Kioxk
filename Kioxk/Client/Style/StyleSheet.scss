@@ -1114,57 +1114,56 @@ body, html {
     }
 
     #reserv {
+        display: flex;
         position: relative;
         width: calc(var(--child-width)*2);
         height: max(calc(var(--child-width) / 2 * 1.30), 24.75rem);
-        @include ombre();
-        // background-color: blue; //#00c6b0;
-        display: flex;
         justify-content: center;
         align-items: center;
+        @include ombre();
+        // background-color: blue; //#00c6b0;
 
         > div:first-child { //cont p
+            position: relative;
             width: 62%;
             height: 100%;
-            position: relative;
             background-color: mediumvioletred;
 
             #form {
-                display: block;
-                width: 50%;
-                height: 100%;
                 --displres: block;
                 --pointres: initial;
                 --opres: .9;
                 --trans: 0;
-                background-color: blue;
+                display: block;
                 position: relative;
+                width: 50%;
+                height: 100%;
                 opacity: .8;
+                background-color: blue;
 
                 &::after {
                     content: "";
+                    display: block;
                     position: absolute;
                     top: 0;
-                    display: block;
                     width: 100%;
                     height: 100%;
-                    filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
-                    background-color: transparent;
-                    backdrop-filter: blur(1.2px);
-                    border: solid;
-                    border-width: 2px;
-                    pointer-events: var(--pointres);
+                    font-size: 3rem;
                     opacity: var(--opres);
                     transition: 1s opacity, 1s transform;
-                    font-size: 3rem;
                     transform: translate(calc(var(--trans)*1%));
+                    pointer-events: var(--pointres);
+                    border: solid;
+                    border-width: 2px;
+                    border-radius: 10% / 5%;
                     background-image: url("/item/res.webp");
                     background-repeat: no-repeat;
                     background-size: contain;
                     background-position-y: 25%;
                     background-size: 85%;
                     background-position-x: center;
-                    border-radius: 10% / 5%;
+                    backdrop-filter: blur(1.2px);
+                    filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
                 }
 
                 > :first-child { // > EditForm { // EditForm
