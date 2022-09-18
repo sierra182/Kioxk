@@ -1169,13 +1169,11 @@ body, html {
 
                 > :first-child { // > EditForm { // EditForm
                     height: 100%;
+                    font-size: 1rem; //1.2vw;
+                    border-radius: 10% / 5%;
                     background: #FF416C; /* fallback for old browsers */
                     background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
                     background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                    border-radius: 10% / 5%;
-                    @include centrage_hor;
-                    transform: translate(-50%,0%);
-                    font-size: 1rem; //1.2vw;
                     // background: rgb(11,11,11);
                     // background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
 
@@ -1230,7 +1228,6 @@ body, html {
                         margin: auto;
                         padding: 0;
                         line-height: .9rem;
-
                         border: solid 4px;
                         border-radius: 5% / 45%;
                         background-color: #32de84; // #0BDA51; // #018749;
