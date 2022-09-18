@@ -1,0 +1,95 @@
+﻿<div>
+    <div>
+        HELP
+
+    </div>
+
+    <div>
+        Cliquez sur un jour du calendrier pour sélectionner ou déselectionner une date.
+
+    </div>
+
+    <div>
+        <div>
+            <Element DateTime="@ldt1" UnSelectable="true" Selected="null" Seasons="@ls1" />
+        </div>
+        <span> désigne le jour actuel</span>
+
+    </div>
+
+    <div>
+        <div>
+            <Element DateTime="@ldt2" UnSelectable="true" Selected="null" Seasons="@ls2" />
+        </div>
+        <span> désigne un jour non disponible</span>
+
+    </div>
+
+    <div>
+        <div>
+        <Element DateTime="@ldt3" UnSelectable="false" Selected="null" Seasons="@ls3" />
+        </div>
+        <span> désigne un jour disponible</span>
+
+    </div>
+
+    <div>
+        <div>
+        <Element DateTime="@ldt4" UnSelectable="false" Selected="true" Seasons="@ls4" />
+        </div>
+        <span> désigne un jour selectionné</span>
+
+    </div>
+
+    <div>
+        <div>
+        <Element DateTime="@ldt5" UnSelectable="false" Selected="null" Seasons="@ls5" />
+        </div>
+        <span> désigne un jour au tarif moyenne saison</span>
+
+    </div>
+
+    <div>
+        <div>
+        <Element DateTime="@ldt6" UnSelectable="false" Selected="null" Seasons="@ls6" />
+        </div>
+        <span> désigne un jour au tarif haute saison</span>
+
+    </div>
+
+    <div>
+        <svg data-src="/svg/tri.svg"
+             id="mytrinext"
+             data-js="enabled"
+             data-unique-ids="disabled" />
+        <span>passage au mois suivant</span>
+
+    </div>
+
+    <div>
+        <svg data-src="/svg/call.svg" />
+        <span> suppression de toute les périodes selectionnées</span>
+
+    </div>
+
+</div>
+
+@code {
+    DateTime ldt1 = DateTime.Now.Date;
+    bool?[] ls1 = new bool?[2] { false, false };
+
+    DateTime ldt2 = new DateTime(2022, 11, 02);
+    bool?[] ls2 = new bool?[2] { false, false };
+
+    DateTime ldt3 = new DateTime(2022, 11, 07);
+    bool?[] ls3 = new bool?[2] { false, false };
+
+    DateTime ldt4 = new DateTime(2022, 11, 19);
+    bool?[] ls4 = new bool?[2] { false, false };
+
+    DateTime ldt5 = new DateTime(2022, 11, 22);
+    bool?[] ls5 = new bool?[2] { true, false };
+
+    DateTime ldt6 = new DateTime(2022, 11, 22);
+    bool?[] ls6 = new bool?[2] { false, true };
+}

@@ -6,12 +6,8 @@
 body, html {
     @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-
-    
     font-family: 'Twinkle Star', cursive;
-
     background-image: url("/photo/papierinp.jpg");
-
 }
 
 
@@ -181,7 +177,7 @@ body, html {
 
         &:active {
             transform: scale(.8);
-            background-color: mediumspringgreen;            
+            background-color: mediumspringgreen;
         }
 
         .carre2 {
@@ -479,7 +475,8 @@ body, html {
         --trans-height: 0%;
         --photo-width: var(--child-width);
         --photo-height: calc(var(--main-height) * 1%);
-        --cp_ph-y: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
+        --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
+        --max_size: 32rem;
         position: relative;
         width: var(--photo-width);
         height: var(--photo-width);
@@ -488,7 +485,7 @@ body, html {
         //  background-color: grey;
 
         > div:first-child { //cont p
-            width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
+            width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
             height: var(--cp_ph-y); // to auto
             position: absolute;
             top: 50%;
@@ -511,11 +508,11 @@ body, html {
                 margin: auto;
                 left: 0;
                 right: 0;
-                width:10rem;                
+                width: 10rem;
                 font-weight: 900;
                 font-size: 1rem;
                 z-index: 1;
-                text-align:center;
+                text-align: center;
                 top: 5%;
                 font-family: 'Montserrat', sans-serif;
                 color: whitesmoke;
@@ -528,7 +525,7 @@ body, html {
                 --ph_scale-height: -50%;
                 top: 50%;
                 position: absolute;
-                width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
+                width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
                 height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                 display: flex;
                 transition: transform linear .5s;
@@ -538,13 +535,13 @@ body, html {
 
                 > div { //cont img et cont ifrme - multy
 
-                    width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
+                    width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                     height: fit-content;
                     //   background-color: darkmagenta;
 
                     img {
-                        width: calc(max(var(--photo-width),40rem) /2 * var(--mult_ph-scale));
-                        max-height: calc(var(--photo-width)/2 * .5 * var(--mult_ph-scale));
+                        width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
+                        max-height: calc(max(var(--photo-width),var(--max_size))/2 * .5 * var(--mult_ph-scale));
                         min-height: 10rem;
                         position: relative;
                     }
@@ -560,7 +557,7 @@ body, html {
                         position: relative;
 
                         iframe { // legend
-                            width: calc(max(var(--photo-width),40rem) /2 * .9);
+                            width: calc(max(var(--photo-width),var(--max_size)) /2 * .9);
                             height: 2.5rem;
                             background-color: rgba(white, .4);
                             border: solid .2rem white;
@@ -626,6 +623,97 @@ body, html {
     #hlp {
         width: 32vw;
         height: auto;
+
+        > div:first-child { // cont p
+
+
+
+            > div:first-child { //pannleg
+
+                width: 30vw;
+                height: auto;
+                /* padding-bottom: 3vw;
+            padding-top: 2vw;*/
+                border: solid 1px;
+                border-radius: 5px;
+                backdrop-filter: blur(3px);
+                box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+                // background-color: red;
+
+                > div { // Item
+                    display: flex;
+                   // background-color: green;
+
+                    > div { // elements comp cont
+                        width: 3vw;
+                        height: 3vw;
+                        background-color: blue;
+
+                        div { // in element
+                            /* width: fit-content;
+                        height: fit-content;*/
+                            /*   display: flex;
+                        justify-content: center;*/
+                            position: relative;
+                            background-color: red;
+                           /* width: 100%;
+                            height: 100%;*/
+                           height:100%;
+                            //display:flex;
+                            justify-content:center;
+                            display: flex;
+                            align-items:center;
+
+                            span {
+                                // display:block;
+                                /* font-weight: bold;
+                        font-size: 1.2rem;
+                        margin: auto;*/
+
+                              //  justify-self: center;
+                               // align-self: center;
+                            }
+                        }
+                    }
+
+                    > span {
+                        //  display: inline;
+                        margin: auto 0;
+                    }
+
+
+
+                    svg {
+                        width: 3vw;
+                        height: 3vw;
+                        filter: drop-shadow(2px 2px 1.3px black);
+                    }
+                    // background-color: red;
+                    /* > div { // Element container
+                    display: inherit;
+                    width: 3vw;
+                    height: 3vw;
+                    border: solid;
+                    border-width: calc(max(.4vw,4px));
+                    border-radius: 10%;
+                    border-color: green;
+                    filter: drop-shadow(2px 2px 1.3px black)
+                }*/
+                    /*  span { // tous
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    margin: auto;
+                }
+
+                > span { // text
+                    font-size: 1rem;
+                    color: black;
+                    margin: auto 0;
+                    margin-left: 1vw;
+                }*/
+                }
+            }
+        }
     }
 
     #payment {
@@ -1228,38 +1316,6 @@ body, html {
                 width: 45%;
                 font-size: 80%;
             }
-        }
-    }
-
-    #hlp1 { // Item
-        margin: 7px;
-        width: 30vw !important;
-        height: 3vw !important;
-        // background-color: red;
-        display: flex;
-
-        > div { // Element container
-            display: inherit;
-            width: 3vw;
-            height: 3vw;
-            border: solid;
-            border-width: calc(max(.4vw,4px));
-            border-radius: 10%;
-            border-color: green;
-            filter: drop-shadow(2px 2px 1.3px black)
-        }
-
-        span { // tous
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin: auto;
-        }
-
-        > span { // text
-            font-size: 1rem;
-            color: black;
-            margin: auto 0;
-            margin-left: 1vw;
         }
     }
 }
