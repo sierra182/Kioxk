@@ -1176,63 +1176,56 @@ body, html {
                     @include centrage_hor;
                     transform: translate(-50%,0%);
                     font-size: 1rem; //1.2vw;
-                    background: rgb(11,11,11);
-                    background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
+                    // background: rgb(11,11,11);
+                    // background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
 
                     label {
-                        display: block;                        
-                        // background-color: transparent; //mediumspringgreen;
+                        display: block;
+                        background-color: mediumspringgreen;
 
                         span {
-                            background: #ED213A; /* fallback for old browsers */
-                            background: -webkit-linear-gradient(to right, #93291E, #ED213A); /* Chrome 10-25, Safari 5.1-6 */
-                            background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                            border-radius: 5px;
                             display: block;
-                            padding: .20rem 0;
-                            color: white;
-                            background: rgb(11,11,11);
-                            background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
                             margin-left: 2vw;
+                            padding: .20rem 0;
+
+                            color: white;
+                            border-radius: 5px;
+                            // background: rgb(11,11,11);
+                            //  background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
                         }
 
                         input, textarea {
-                            @include centrage_hor;
                             display: block;
                             width: 85%;
+                            margin: auto;
+
                             border: none;
                             border-radius: 5px;
                             // background-color: yellow;
                         }
 
                         textarea {
-                            height: 10vh;
-                            line-height: 2.2vh;
+                            height: 5rem;
+                            line-height: 1.2em;
+
                             background-image: url("/photo/papierinp.jpg");
                             background-size: cover;
                             background-repeat: no-repeat;
                             background-position: center;
-                            font-weight: bold;
-                        }
-                    }                
-
-                    label:last-of-type {
-
-                        textarea {
-                            //  background-color: lightgreen;
                         }
                     }
 
                     label:first-of-type {
-                        width: 90%;
                         position: relative;
-                        display: inline-block;
-                        margin-top: 1rem;
-                        left: 50%;
-                        transform: translate(-50%);
-                    }
+                        width: 90%;
+                        margin: auto;
+                        padding-top: 1rem;
 
-                  
+                        input {
+                            display: block;
+                           
+                        }                     
+                    }
 
                     button { // Envoyez
                         width: 7rem;

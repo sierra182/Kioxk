@@ -30,9 +30,11 @@
         <span>e-m@il :</span>
         <InputText @bind-Value="@Com.Email" maxlength="50" minlength="3" placeholder=" requis pour le reçu" required />
     </label>
+
     <label>
         <span>Renseignements Complémentaires :</span>
         <InputTextArea class="clInpform" @bind-Value="@Com.RgtsCompl" maxlength="400" placeholder=" facultatif" />
+
     </label>
 
     <button class="btn btn-success" type="submit" @onclick='()=> { if (ec.Validate()){ComRapp.InvokeAsync(Com);}}'>
