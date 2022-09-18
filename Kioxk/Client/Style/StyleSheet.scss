@@ -745,8 +745,8 @@ body, html {
             img {
                 position: relative;
                 top: -4rem;
-                width: 5vw;
-                height: 5vw;
+                width: 4rem;
+                height: 4rem;
                 @include ombre(drop-shadow(1px 1px 1px black));
                 // background-color: green;
             }
@@ -761,8 +761,8 @@ body, html {
             img {
                 position: relative;
                 top: -1rem;
-                width: 5vw;
-                height: 5vw;
+                width: 4rem;
+                height: 4rem;
                 @include ombre();
                 //  background-color:red;
             }
@@ -1116,7 +1116,7 @@ body, html {
     #reserv {
         position: relative;
         width: calc(var(--child-width)*2);
-        height: calc(var(--main-height) * 1%);
+        height: max(calc(var(--child-width) / 2 * 1.30), 24.75rem);
         @include ombre();
         // background-color: blue; //#00c6b0;
         display: flex;
@@ -1125,18 +1125,19 @@ body, html {
 
         > div:first-child { //cont p
             width: 62%;
-            height: 90%;
+            height: 100%;
             position: relative;
+            background-color: mediumvioletred;
 
             #form {
                 display: block;
                 width: 50%;
-                height: 26rem;
+                height: 100%;
                 --displres: block;
                 --pointres: initial;
                 --opres: .9;
                 --trans: 0;
-                //   background-color: orange;
+                background-color: blue;
                 position: relative;
                 opacity: .8;
 
@@ -1174,13 +1175,12 @@ body, html {
                     border-radius: 10% / 5%;
                     @include centrage_hor;
                     transform: translate(-50%,0%);
-                    font-size: 1.2vw;
+                    font-size: 1rem; //1.2vw;
                     background: rgb(11,11,11);
                     background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
 
                     label {
-                        display: block;
-                        margin: 0;
+                        display: block;                        
                         // background-color: transparent; //mediumspringgreen;
 
                         span {
@@ -1204,15 +1204,9 @@ body, html {
                             border-radius: 5px;
                             // background-color: yellow;
                         }
-                    }
 
-                    label {
-                        // background-color: transparent;
-                        font-size: calc(.8vh + .8vw);
-                        line-height: calc(.8vh + .8vw);
-
-                        input, textarea {
-                            font-size: 2.2vh;
+                        textarea {
+                            height: 10vh;
                             line-height: 2.2vh;
                             background-image: url("/photo/papierinp.jpg");
                             background-size: cover;
@@ -1220,11 +1214,7 @@ body, html {
                             background-position: center;
                             font-weight: bold;
                         }
-
-                        textarea {
-                            height: 10vh;
-                        }
-                    }
+                    }                
 
                     label:last-of-type {
 
@@ -1242,8 +1232,7 @@ body, html {
                         transform: translate(-50%);
                     }
 
-                    label:nth-of-type(3) {
-                    }
+                  
 
                     button { // Envoyez
                         width: 7rem;
