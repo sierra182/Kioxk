@@ -1236,27 +1236,21 @@ body, html {
             }
 
             > div:nth-child(2) { //cont recap + paie contscrooljs
-                overflow-y: auto;
-                height: 26rem;
-                width: 51%;
                 position: absolute;
                 top: 0;
-                background-color: orange;
+                width: 51%;
+                height: 26rem;
+                overflow-y: auto;
                 scroll-behavior: smooth;
                 border-radius: 10% / 5%;
+                background-color: orange;
 
                 #mailcont {
                     position: relative;
                     top: 0;
                     text-align: center;
-                    background-color: palevioletred;
                     font-size: 2rem;
-
-                    div {
-                        font-size: initial;
-                        font-weight: initial;
-                        line-height: initial;
-                    }
+                    background-color: palevioletred;
 
                     button {
                         display: inline-block;
@@ -1272,15 +1266,15 @@ body, html {
 
                     > div:first-of-type { // cont htmlpaie
                         position: relative;
-                        color: white;
                         top: 0;
                         padding-top: .6rem;
                         padding-left: .5rem;
                         padding-right: .5rem;
+                        color: white;
                         //  background-color: yellow;
 
                         > div:first-of-type {
-                            width: 100% !important;
+                            width: 100%;
                             background-color: yellow;
                         }
                     }
@@ -1288,12 +1282,12 @@ body, html {
             }
 
             #avert { //dispavert
-                background-color: yellow;
                 position: absolute;
                 top: 47%;
                 left: 53%;
                 width: 45%;
                 font-size: 80%;
+                background-color: yellow;
             }
         }
     }
