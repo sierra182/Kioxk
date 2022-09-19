@@ -1116,18 +1116,24 @@ body, html {
     #reserv {
         display: flex;
         position: relative;
-        width: calc(var(--child-width)*2);
-        height: max(calc(var(--child-width) / 2 * 1.30), 24.75rem);
-        justify-content: center;
+        width: calc(var(--child-width) *2);
+        height: calc(var(--child-width) / 2 * 1.30);
+        justify-content: center; // !! RESP !!
         align-items: center;
         @include ombre();
         // background-color: blue; //#00c6b0;
 
         > div:first-child { //cont p
             position: relative;
-            width: 62%;
-            height: 100%;
-            background-color: mediumvioletred;
+            width: max(62%,15rem);
+            height: max(100%,16rem);
+            /*min-height: auto;
+            min-width: auto;*/
+            // background-color: yellow;
+            flex-shrink: 0;
+            // opacity: .4;
+            overflow-y: auto;
+            overflow-x: hidden;
 
             #form {
                 --displres: block;
@@ -1139,7 +1145,8 @@ body, html {
                 width: 50%;
                 height: 100%;
                 opacity: .8;
-                background-color: blue;
+                //  background-color: blue;
+                // overflow-y: scroll;
 
                 &::after {
                     content: "";
@@ -1164,6 +1171,7 @@ body, html {
                     background-position-x: center;
                     backdrop-filter: blur(1.2px);
                     filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
+                   
                 }
 
                 > :first-child { // > EditForm { // EditForm
@@ -1175,6 +1183,8 @@ body, html {
                     background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                     // background: rgb(11,11,11);
                     // background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
+                    overflow-y: scroll;
+                    overflow-x: visible;
 
                     label {
                         display: block;
