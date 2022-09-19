@@ -820,72 +820,66 @@ body, html {
     }
 
     #agenda {
-        --calendar-width: calc(var(--child-width) /2 /100 * 90);
+        --calendar-width: calc(var(--child-width) /2 *.9);
         position: relative;
         width: calc(var(--child-width) / 4 * 3);
         height: calc(var(--main-height) * 1% );
         left: 3vw;
         z-index: 2;
         transition: transform .7s;
+        background-color: darkgoldenrod;
         @include ombre();
-        //  background-color: red;
 
-        > div:first-child { //cont
-            width: calc(var(--child-width) / 2);
+        > div:first-child { //cont p
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            width: max(calc(var(--child-width)), 16rem);
+            //  transform: translate(-50%,-50%);
+            background-color: rebeccapurple;
 
             #calendar {
-                width: var(--calendar-width);
-                height: var(--calendar-width);
-                @include centrage_hor;
-                @include centrage_ver;
-                transform: translate(-50%,0%);
-                // background-color: red;
+                width: max(calc(var(--child-width)), 16rem);
+                height: max(calc(var(--child-width)), 16rem);
+                // transform: translate(-50%,0%);
+                background-color: red;
 
                 > :first-child { // Mois Année
-                    @include centrage_hor;
+                    display: inline-block;
+                    color: white;
                     border: outset;
                     border-width: 3px 5px;
                     border-color: cornflowerblue;
                     border-radius: 60% / 30%;
                     background-color: rgba(0, 0, 0, .3);
-                    transform: translate(-50%,-115%);
-                    display: inline-block;
-                    color: white;
                     filter: drop-shadow(2px 2px 2px black);
+                    // transform: translate(-50%,-115%);
 
                     div {
-                        @include centrage_hor;
-                        @include centrage_ver;
-                        transform: translate(-50%,0%);
-                        text-align: center;
                         display: inline-block;
-                        //   background-color: red;
+                        text-align: center;
+                        background-color: red;
+                        // transform: translate(-50%,0%);
 
                         span {
-                            padding: 0 1rem;
                             display: block;
+                            padding: 0 1rem;
                             font-size: 1rem; // .8rem; //calc(.8vh + .8vw);
                             line-height: 1; // .8rem; //calc(.8vh + .8vw);
-                            //   background-color: orange;
+                            background-color: orange;
                         }
                     }
                 }
 
                 > #panneau {
-                    @include centrage_hor;
-                    @include centrage_ver;
-                    width: 120%;
-                    height: var(--calendar-width);
                     display: grid;
+                    position: absolute;
+                    width: 60%;
+                    height: 50%; //var(--calendar-width);
                     grid-template-columns: repeat(7, 1fr);
                     grid-template-rows: repeat(7, 1fr);
-                    position: absolute;
                     transform: translate(-50%,-50%);
-                    //   background-color: darkcyan;
+                    background-color: darkcyan;
 
                     &:hover {
                         width: 120%;
@@ -896,11 +890,11 @@ body, html {
                     }
 
                     > div { // Item
-                        margin: 1px;
+                        display: flex;
                         width: auto; /*calc(3.5714vw - 2px);*/
                         height: auto; /*calc(3.5714vw - 2px);*/
+                        margin: 1px;
                         background-color: transparent;
-                        display: flex;
                         filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
 
                         &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(7) { // 7 jours
@@ -923,18 +917,18 @@ body, html {
 
                         span { // jours Int
                             display: inherit;
+                            margin: auto;
                             font-weight: bold;
                             font-size: 1.2vw;
                             line-height: 1;
-                            margin: auto;
                             /* background-color: green;*/
                         }
 
                         > span { // jours Sem
+                            color: ghostwhite;
                             font-weight: 800;
                             font-size: 1.2vw;
                             line-height: 1;
-                            color: ghostwhite;
                             /*  background-color: lightgreen;*/
                         }
                     }
@@ -942,21 +936,21 @@ body, html {
             }
 
             #periodes {
-                width: 100%;
-                height: auto;
-                color: black;
                 position: absolute;
                 top: 100%;
                 left: 0;
+                width: 100%;
+                height: auto;
+                color: black;
                 // background-color: darkcyan;
 
                 div { // div période
+                    margin-bottom: 2px;
                     color: white;
                     border: solid;
                     border-width: calc(max(.4vw,4px));
-                    border-radius: 2%;
                     border-color: white;
-                    margin-bottom: 2px;
+                    border-radius: 2%;
                     background: #3C3B3F; /* fallback for old browsers */
                     background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
                     background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -967,8 +961,8 @@ body, html {
                 }
 
                 > span:last-child { // Prix Total
-                    font-family: 'Montserrat', sans-serif;
                     color: white;
+                    font-family: 'Montserrat', sans-serif;
                     border: solid;
                     border-width: calc(max(.4vw,4px));
                     border-radius: 2.5%;
@@ -1012,12 +1006,10 @@ body, html {
                 --triremplback: 0%;
                 --mycall-height: 0%;
                 --button-width: calc(var(--calendar-width) / 5);
-                z-index: 1;
-                @include centrage_hor;
-                @include centrage_ver;
-                transform: translate(-50%,0); //calc(var(--calendar-width) / 2
                 display: flex;
                 width: fit-content;
+                z-index: 1;
+                //transform: translate(-50%,0); //calc(var(--calendar-width) / 2
 
                 #mytriback { // Triangle Back
                     width: var(--button-width);
@@ -1038,8 +1030,8 @@ body, html {
                     width: var(--button-width);
                     height: var(--button-width);
                     @include onactive_tri(translate(0));
-                    // background-color: cadetblue;
                     transform: translate(10%);
+                    // background-color: cadetblue;
                     filter: drop-shadow(-3px 3px 2px rgba(0,0,0,.7));
 
                     #path2416 { // Remplissage
@@ -1049,18 +1041,18 @@ body, html {
                 }
 
                 div {
-                    // background-color: red;
                     width: var(--button-width);
                     height: var(--button-width);
                     @include onactive_tri(translate(0));
+                    // background-color: red
 
                     #mycall { // ClearAll
                         width: var(--button-width);
                         height: var(--button-width);
-                        transform-origin: center;
-                        filter: drop-shadow(-3px 3px 2px rgba(0,0,0,.7));
-                        transition: transform 5s;
                         margin-left: 30%;
+                        transform-origin: center;
+                        transition: transform 5s;
+                        filter: drop-shadow(-3px 3px 2px rgba(0,0,0,.7));
 
                         #rect1410 {
                             height: 0%;
