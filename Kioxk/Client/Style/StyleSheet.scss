@@ -290,7 +290,7 @@ body, html {
 
     #pretext {
         position: relative;
-        width: var(--child-width);
+        width: max(var(--child-width),16rem);
         height: calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
@@ -299,13 +299,15 @@ body, html {
 
         > div:first-child { //cont p
             background-color: blue;
-            margin:auto;
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0; right:0;
-            display:block;
-            height:fit-content;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            height: fit-content;
+
             > #contact { //contener contact
                 //  background-color: lightgreen;
                 transform: translate(95%,40%);
@@ -447,13 +449,12 @@ body, html {
                 /* top: 50%;
                 left: 50%;*/
                 width: 90%;
-                position:absolute;
-               /* top:0;
+                position: absolute;
+                /* top:0;
                 bottom:0;*/
-               top:0;
-               
-                right:0;
-                left:0;
+                top: 0;
+                right: 0;
+                left: 0;
                 margin: auto;
                 // transform: translate(-30%,-60%);
                 background-color: red;
@@ -642,8 +643,9 @@ body, html {
     }
 
     #hlp {
-        width: 32vw;
+        width: max(32vw,21rem);
         height: auto;
+        background-color: darkslategrey;
 
         > div:first-child { // cont p
 
@@ -651,7 +653,7 @@ body, html {
 
             > div:first-child { //pannleg
 
-                width: max(30vw,21rem);
+                width: 100%;
                 height: auto;
                 /* padding-bottom: 3vw;
             padding-top: 2vw;*/
@@ -743,11 +745,11 @@ body, html {
 
     #payment {
         position: relative;
-        top: 25%;
-        left: 2%;
+        /* top: 25%;
+        left: 2%;*/
         width: 20rem;
         height: fit-content;
-        //background-color: cadetblue;
+        background-color: cadetblue;
 
         > span { // nous travaillons...
             // background-color: red;
@@ -1142,7 +1144,7 @@ body, html {
         justify-content: center; // !! RESP !!
         align-items: center;
         @include ombre();
-        // background-color: blue; //#00c6b0;
+        background-color: blue; //#00c6b0;
 
         > div:first-child { //cont p
             position: relative;
