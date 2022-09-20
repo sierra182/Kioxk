@@ -8,7 +8,7 @@ body, html {
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     font-family: 'Twinkle Star', cursive;
     background-image: url("/photo/papierinp.jpg");
-   // font-size:max(1rem,1.2vw);
+    // font-size:max(1rem,1.2vw);
 }
 
 
@@ -199,6 +199,198 @@ body, html {
     filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5)) $add-shadow;
 }
 
+#header {
+    //  position: absolute;
+    // top: -5vh;
+    //  left: -2.5vw;
+    //    @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
+
+
+    h1 {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-weight: 800;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        background: #3C3B3F; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        width: calc(100vw - 9px);
+        height: 15vh;
+        display: flex;
+        filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
+        text-shadow: 6px 6px 2px rgba(0,0,0,.5);
+        justify-content: center;
+    }
+
+    > div:not(#contact) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100vw - 9px);
+        height: 15vh;
+    }
+
+    #contact { //contener contact
+        //  background-color: lightgreen;
+        transform: translate(95%,40%);
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+
+        > div:first-of-type { //tel
+            width: 4rem;
+            height: 4rem;
+            position: relative;
+            transition: all .5s;
+
+            &:focus div:first-of-type { // num
+                width: 8rem;
+                height: 3.4rem;
+                background-color: white;
+                transform: translate(50%,10%);
+            }
+
+            &:focus {
+                width: 12rem;
+            }
+
+            div { // num et img
+                position: absolute;
+                background-color: #212120;
+                width: 4rem;
+                height: 4rem;
+                transition: all .5s;
+                border: solid 2px white;
+
+                img { // tel.png
+                    width: 3.82rem;
+                    height: 3.82rem;
+                }
+            }
+
+            div:first-of-type { //num
+                border: solid 1px;
+                width: 3.8rem;
+                height: 3.8rem;
+                text-align: center;
+                overflow: hidden;
+                filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
+                line-height: 300%;
+                font-family: 'Malgun Gothic';
+                border-bottom-right-radius: 5% 10%;
+                border-top-right-radius: 5% 10%;
+            }
+
+            div:last-of-type { // img num
+
+                &:active {
+                    transition: none;
+                    background-color: transparent;
+                    border: none;
+
+                    &:before {
+                        content: "";
+                        z-index: -1;
+                        position: absolute;
+                        background-color: lightseagreen; // #3be365;
+                        width: 3.9rem;
+                        height: 3.9rem;
+                        border-radius: 10%;
+                        border: solid 4px,
+                    }
+                }
+            }
+        }
+
+        > div:last-of-type { //mail
+            width: 4rem;
+            height: 4rem;
+            position: relative;
+            //   background-color: green;
+            margin-left: 1rem;
+
+            &:focus div:first-of-type { // div:first-of-type { // num
+
+                width: 12rem;
+                height: 3.4rem;
+                background-color: white;
+                transform: translate(30%,10%);
+            }
+
+            div { // support mail et img
+                position: absolute;
+                background-color: cornflowerblue;
+                width: 4rem;
+                height: 4rem;
+                transition: all .5s;
+
+                img { // mail.png
+                    width: 3.9rem;
+                    height: 3.9rem;
+                }
+            }
+
+            div:first-of-type { // ad mail
+                border: solid 1px;
+                width: 3.8rem;
+                height: 3.8rem;
+                text-align: center;
+                overflow: hidden;
+                filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
+                line-height: 300%;
+                font-family: 'Malgun Gothic';
+                border-bottom-right-radius: 5% 10%;
+                border-top-right-radius: 5% 10%;
+            }
+
+            div:last-of-type { //image mail
+                &:active {
+                    transition: none;
+                    background-color: transparent;
+
+                    &:before {
+                        content: "";
+                        z-index: -1;
+                        position: absolute;
+                        background-color: lightseagreen; // #3be365;
+                        width: 3.9rem;
+                        height: 3.9rem;
+                        border-radius: 10%;
+                        border: solid 4px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#footer {
+    // display:none;
+    position: fixed;
+    top: 0;
+    // bottom: 0;
+    /*background: #3C3B3F;*/ /* fallback for old browsers */
+    /*background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);*/ /* Chrome 10-25, Safari 5.1-6 */
+    /*background: linear-gradient(to right, #605C3C, #3C3B3F);*/
+    background-color: violet;
+
+    &:before {
+        content: "Siret: \A 299792458ms Webmaster Freelance sierra-echo@msn.com";
+        white-space: pre;
+        // display: flex;
+        //  position: relative;
+        /* left: 50%;
+                transform: translate(-50%,20%);*/
+        //   justify-content: space-around;
+        background-color: yellow;
+        height: 15rem;
+        width: 20rem;
+    }
+}
+
+
 #maincont {
     --maincont-width: 95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
@@ -220,217 +412,14 @@ body, html {
     background-size: 100% 100%;
     background-position: center;
 
-    #bandeaux {
-        position: absolute;
-        top: -5vh;
-        left: -2.5vw;
-
-        @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
-
-
-        h1 {
-            position: relative;
-            top: 0;
-            left: 0;
-            font-weight: 800;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            background: #3C3B3F; /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            width: calc(100vw - 9px);
-            height: 15vh;
-            display: flex;
-            filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
-            text-shadow: 6px 6px 2px rgba(0,0,0,.5);
-            justify-content: center;
-        }
-
-          #contact { //contener contact
-                //  background-color: lightgreen;
-                transform: translate(95%,40%);
-                width: fit-content;
-                height: fit-content;
-                display: flex;
-
-                > div:first-of-type { //tel
-                    width: 4rem;
-                    height: 4rem;
-                    position: relative;
-                    transition: all .5s;
-
-                    &:focus div:first-of-type { // num
-                        width: 8rem;
-                        height: 3.4rem;
-                        background-color: white;
-                        transform: translate(50%,10%);
-                    }
-
-                    &:focus {
-                        width: 12rem;
-                    }
-
-                    div { // num et img
-                        position: absolute;
-                        background-color: #212120;
-                        width: 4rem;
-                        height: 4rem;
-                        transition: all .5s;
-                        border: solid 2px white;
-
-                        img { // tel.png
-                            width: 3.82rem;
-                            height: 3.82rem;
-                        }
-                    }
-
-                    div:first-of-type { //num
-                        border: solid 1px;
-                        width: 3.8rem;
-                        height: 3.8rem;
-                        text-align: center;
-                        overflow: hidden;
-                        filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
-                        line-height: 300%;
-                        font-family: 'Malgun Gothic';
-                        border-bottom-right-radius: 5% 10%;
-                        border-top-right-radius: 5% 10%;
-                    }
-
-                    div:last-of-type { // img num
-
-                        &:active {
-                            transition: none;
-                            background-color: transparent;
-                            border: none;
-
-                            &:before {
-                                content: "";
-                                z-index: -1;
-                                position: absolute;
-                                background-color: lightseagreen; // #3be365;
-                                width: 3.9rem;
-                                height: 3.9rem;
-                                border-radius: 10%;
-                                border: solid 4px,
-                            }
-                        }
-                    }
-                }
-
-                > div:last-of-type { //mail
-                    width: 4rem;
-                    height: 4rem;
-                    position: relative;
-                    //   background-color: green;
-                    margin-left: 1rem;
-
-                    &:focus div:first-of-type { // div:first-of-type { // num
-
-                        width: 12rem;
-                        height: 3.4rem;
-                        background-color: white;
-                        transform: translate(30%,10%);
-                    }
-
-                    div { // support mail et img
-                        position: absolute;
-                        background-color: cornflowerblue;
-                        width: 4rem;
-                        height: 4rem;
-                        transition: all .5s;
-
-                        img { // mail.png
-                            width: 3.9rem;
-                            height: 3.9rem;
-                        }
-                    }
-
-                    div:first-of-type { // ad mail
-                        border: solid 1px;
-                        width: 3.8rem;
-                        height: 3.8rem;
-                        text-align: center;
-                        overflow: hidden;
-                        filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
-                        line-height: 300%;
-                        font-family: 'Malgun Gothic';
-                        border-bottom-right-radius: 5% 10%;
-                        border-top-right-radius: 5% 10%;
-                    }
-
-                    div:last-of-type { //image mail
-                        &:active {
-                            transition: none;
-                            background-color: transparent;
-
-                            &:before {
-                                content: "";
-                                z-index: -1;
-                                position: absolute;
-                                background-color: lightseagreen; // #3be365;
-                                width: 3.9rem;
-                                height: 3.9rem;
-                                border-radius: 10%;
-                                border: solid 4px;
-                            }
-                        }
-                    }
-                }
-            }
-
-        div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: calc(100vw - 9px);
-            height: 15vh;
-        }
-
-        div:first-of-type {
-            display: none;
-            top: 50%;
-            left: -2.5vw;
-            background-color: orange;
-            height: 80vh;
-        }
-
-        div:nth-of-type(2) { // bloc soeur
-            position: initial;
-            background-color: lightcoral;
-            height: 250vh;
-            width: 90vw;
-            visibility: hidden;
-        }
-
-        div:last-of-type { // footer
-            position: sticky;
-            bottom: 0;
-            background: #3C3B3F; /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #605C3C, #3C3B3F);
-
-            &:before {
-                content: "Siret: 299792458ms Webmaster Freelance sierra-echo@msn.com";
-                display: flex;
-                position: relative;
-                left: 50%;
-                transform: translate(-50%,20%);
-                justify-content: space-around;
-                height: 80px;
-                width: 20rem;
-            }
-        }
-    }
-
     #pretext {
         position: relative;
         width: max(var(--child-width),16rem);
         height: calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
-/*        background-color: mediumvioletred;
-*/        @include ombre();
+        /*        background-color: mediumvioletred;
+*/ @include ombre();
         flex-shrink: 0;
 
         > div:first-child { //cont p
@@ -501,8 +490,8 @@ body, html {
         position: relative;
         width: var(--photo-width);
         height: 100%;
-/*        background-color: green;
-*/        @include ombre();
+        /*        background-color: green;
+*/ @include ombre();
         //  background-color: grey;
 
         > div:first-child { //cont p
