@@ -202,7 +202,7 @@ body, html {
 #maincont {
     --maincont-width: 95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
-    display: flex;
+    display: flex;  
     position: absolute;
     top: 0;
     left: 0;
@@ -297,7 +297,7 @@ body, html {
         transition: transform .7s;
         background-color: mediumvioletred;
         @include ombre();
-
+        flex-shrink:0;
         > div:first-child { //cont p
             background-color: blue;
             margin: auto;
