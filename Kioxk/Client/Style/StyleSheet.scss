@@ -202,7 +202,7 @@ body, html {
 #maincont {
     --maincont-width: 95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
-    display: flex;  
+    display: flex;
     position: absolute;
     top: 0;
     left: 0;
@@ -227,6 +227,7 @@ body, html {
 
         @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
 
+
         h1 {
             position: relative;
             top: 0;
@@ -245,71 +246,7 @@ body, html {
             justify-content: center;
         }
 
-        div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: calc(100vw - 9px);
-            height: 15vh;
-        }
-
-        div:first-of-type {
-            display: none;
-            top: 50%;
-            left: -2.5vw;
-            background-color: orange;
-            height: 80vh;
-        }
-
-        div:nth-of-type(2) { // bloc soeur
-            position: initial;
-            background-color: lightcoral;
-            height: 250vh;
-            width: 90vw;
-            visibility: hidden;
-        }
-
-        div:last-of-type { // footer
-            position: sticky;
-            bottom: 0;
-            background: #3C3B3F; /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #605C3C, #3C3B3F);
-
-            &:before {
-                content: "Siret: 299792458ms Webmaster Freelance sierra-echo@msn.com";
-                display: flex;
-                position: relative;
-                left: 50%;
-                transform: translate(-50%,20%);
-                justify-content: space-around;
-                height: 80px;
-                width: 20rem;
-            }
-        }
-    }
-
-    #pretext {
-        position: relative;
-        width: max(var(--child-width),16rem);
-        height: calc(var(--main-height) * 1% );
-        z-index: 3;
-        transition: transform .7s;
-        background-color: mediumvioletred;
-        @include ombre();
-        flex-shrink:0;
-        > div:first-child { //cont p
-            background-color: blue;
-            margin: auto;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: block;
-            height: fit-content;
-
-            > #contact { //contener contact
+          #contact { //contener contact
                 //  background-color: lightgreen;
                 transform: translate(95%,40%);
                 width: fit-content;
@@ -442,7 +379,74 @@ body, html {
                 }
             }
 
-            > div:nth-of-type(2) { // ardoise
+        div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(100vw - 9px);
+            height: 15vh;
+        }
+
+        div:first-of-type {
+            display: none;
+            top: 50%;
+            left: -2.5vw;
+            background-color: orange;
+            height: 80vh;
+        }
+
+        div:nth-of-type(2) { // bloc soeur
+            position: initial;
+            background-color: lightcoral;
+            height: 250vh;
+            width: 90vw;
+            visibility: hidden;
+        }
+
+        div:last-of-type { // footer
+            position: sticky;
+            bottom: 0;
+            background: #3C3B3F; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #605C3C, #3C3B3F);
+
+            &:before {
+                content: "Siret: 299792458ms Webmaster Freelance sierra-echo@msn.com";
+                display: flex;
+                position: relative;
+                left: 50%;
+                transform: translate(-50%,20%);
+                justify-content: space-around;
+                height: 80px;
+                width: 20rem;
+            }
+        }
+    }
+
+    #pretext {
+        position: relative;
+        width: max(var(--child-width),16rem);
+        height: calc(var(--main-height) * 1% );
+        z-index: 3;
+        transition: transform .7s;
+/*        background-color: mediumvioletred;
+*/        @include ombre();
+        flex-shrink: 0;
+
+        > div:first-child { //cont p
+            background-color: blue;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            height: fit-content;
+
+
+
+            > div:first-of-type { // ardoise
                 background-color: rgba(0, 0, 0, .4);
                 filter: drop-shadow(2px 2px 1.3px black);
                 //   padding: 1rem;
@@ -497,8 +501,8 @@ body, html {
         position: relative;
         width: var(--photo-width);
         height: 100%;
-        background-color: green;
-        @include ombre();
+/*        background-color: green;
+*/        @include ombre();
         //  background-color: grey;
 
         > div:first-child { //cont p
@@ -830,17 +834,18 @@ body, html {
         transition: transform .7s;
         background-color: darkgoldenrod;
         @include ombre();
-        flex-shrink:0;
+        flex-shrink: 0;
+
         > div:first-child { //cont p
             position: relative; // abs
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-         //   z-index: auto;
-       /*  width:100%;
+            //   z-index: auto;
+            /*  width:100%;
          height:var(--calendar-width);*/
-          /*  width: max(calc(var(--child-width)), 16rem);
+            /*  width: max(calc(var(--child-width)), 16rem);
             height: max(calc(var(--child-width)), 16rem);*/
             margin: auto;
             background-color: rebeccapurple;
@@ -954,7 +959,7 @@ body, html {
                             display: inherit;
                             margin: auto;
                             font-weight: bold;
-                           // font-size:.8rem;
+                            // font-size:.8rem;
                             font-size: max(1.5vw,1rem);
                             line-height: 1;
                             /* background-color: green;*/

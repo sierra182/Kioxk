@@ -188,6 +188,115 @@ body, html {
   text-shadow: 6px 6px 2px rgba(0, 0, 0, 0.5);
   justify-content: center;
 }
+#maincont #bandeaux #contact {
+  transform: translate(95%, 40%);
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+}
+#maincont #bandeaux #contact > div:first-of-type {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  transition: all 0.5s;
+}
+#maincont #bandeaux #contact > div:first-of-type:focus div:first-of-type {
+  width: 8rem;
+  height: 3.4rem;
+  background-color: white;
+  transform: translate(50%, 10%);
+}
+#maincont #bandeaux #contact > div:first-of-type:focus {
+  width: 12rem;
+}
+#maincont #bandeaux #contact > div:first-of-type div {
+  position: absolute;
+  background-color: #212120;
+  width: 4rem;
+  height: 4rem;
+  transition: all 0.5s;
+  border: solid 2px white;
+}
+#maincont #bandeaux #contact > div:first-of-type div img {
+  width: 3.82rem;
+  height: 3.82rem;
+}
+#maincont #bandeaux #contact > div:first-of-type div:first-of-type {
+  border: solid 1px;
+  width: 3.8rem;
+  height: 3.8rem;
+  text-align: center;
+  overflow: hidden;
+  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
+  line-height: 300%;
+  font-family: "Malgun Gothic";
+  border-bottom-right-radius: 5% 10%;
+  border-top-right-radius: 5% 10%;
+}
+#maincont #bandeaux #contact > div:first-of-type div:last-of-type:active {
+  transition: none;
+  background-color: transparent;
+  border: none;
+}
+#maincont #bandeaux #contact > div:first-of-type div:last-of-type:active:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  background-color: lightseagreen;
+  width: 3.9rem;
+  height: 3.9rem;
+  border-radius: 10%;
+  border: solid 4px;
+}
+#maincont #bandeaux #contact > div:last-of-type {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  margin-left: 1rem;
+}
+#maincont #bandeaux #contact > div:last-of-type:focus div:first-of-type {
+  width: 12rem;
+  height: 3.4rem;
+  background-color: white;
+  transform: translate(30%, 10%);
+}
+#maincont #bandeaux #contact > div:last-of-type div {
+  position: absolute;
+  background-color: cornflowerblue;
+  width: 4rem;
+  height: 4rem;
+  transition: all 0.5s;
+}
+#maincont #bandeaux #contact > div:last-of-type div img {
+  width: 3.9rem;
+  height: 3.9rem;
+}
+#maincont #bandeaux #contact > div:last-of-type div:first-of-type {
+  border: solid 1px;
+  width: 3.8rem;
+  height: 3.8rem;
+  text-align: center;
+  overflow: hidden;
+  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
+  line-height: 300%;
+  font-family: "Malgun Gothic";
+  border-bottom-right-radius: 5% 10%;
+  border-top-right-radius: 5% 10%;
+}
+#maincont #bandeaux #contact > div:last-of-type div:last-of-type:active {
+  transition: none;
+  background-color: transparent;
+}
+#maincont #bandeaux #contact > div:last-of-type div:last-of-type:active:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  background-color: lightseagreen;
+  width: 3.9rem;
+  height: 3.9rem;
+  border-radius: 10%;
+  border: solid 4px;
+}
 #maincont #bandeaux div {
   position: absolute;
   top: 0;
@@ -234,7 +343,8 @@ body, html {
   height: calc(var(--main-height) * 1%);
   z-index: 3;
   transition: transform 0.7s;
-  background-color: mediumvioletred;
+  /*        background-color: mediumvioletred;
+  */
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
   flex-shrink: 0;
 }
@@ -249,116 +359,7 @@ body, html {
   display: block;
   height: fit-content;
 }
-#maincont #pretext > div:first-child > #contact {
-  transform: translate(95%, 40%);
-  width: fit-content;
-  height: fit-content;
-  display: flex;
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type {
-  width: 4rem;
-  height: 4rem;
-  position: relative;
-  transition: all 0.5s;
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type:focus div:first-of-type {
-  width: 8rem;
-  height: 3.4rem;
-  background-color: white;
-  transform: translate(50%, 10%);
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type:focus {
-  width: 12rem;
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type div {
-  position: absolute;
-  background-color: #212120;
-  width: 4rem;
-  height: 4rem;
-  transition: all 0.5s;
-  border: solid 2px white;
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type div img {
-  width: 3.82rem;
-  height: 3.82rem;
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type div:first-of-type {
-  border: solid 1px;
-  width: 3.8rem;
-  height: 3.8rem;
-  text-align: center;
-  overflow: hidden;
-  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
-  line-height: 300%;
-  font-family: "Malgun Gothic";
-  border-bottom-right-radius: 5% 10%;
-  border-top-right-radius: 5% 10%;
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type div:last-of-type:active {
-  transition: none;
-  background-color: transparent;
-  border: none;
-}
-#maincont #pretext > div:first-child > #contact > div:first-of-type div:last-of-type:active:before {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  background-color: lightseagreen;
-  width: 3.9rem;
-  height: 3.9rem;
-  border-radius: 10%;
-  border: solid 4px;
-}
-#maincont #pretext > div:first-child > #contact > div:last-of-type {
-  width: 4rem;
-  height: 4rem;
-  position: relative;
-  margin-left: 1rem;
-}
-#maincont #pretext > div:first-child > #contact > div:last-of-type:focus div:first-of-type {
-  width: 12rem;
-  height: 3.4rem;
-  background-color: white;
-  transform: translate(30%, 10%);
-}
-#maincont #pretext > div:first-child > #contact > div:last-of-type div {
-  position: absolute;
-  background-color: cornflowerblue;
-  width: 4rem;
-  height: 4rem;
-  transition: all 0.5s;
-}
-#maincont #pretext > div:first-child > #contact > div:last-of-type div img {
-  width: 3.9rem;
-  height: 3.9rem;
-}
-#maincont #pretext > div:first-child > #contact > div:last-of-type div:first-of-type {
-  border: solid 1px;
-  width: 3.8rem;
-  height: 3.8rem;
-  text-align: center;
-  overflow: hidden;
-  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
-  line-height: 300%;
-  font-family: "Malgun Gothic";
-  border-bottom-right-radius: 5% 10%;
-  border-top-right-radius: 5% 10%;
-}
-#maincont #pretext > div:first-child > #contact > div:last-of-type div:last-of-type:active {
-  transition: none;
-  background-color: transparent;
-}
-#maincont #pretext > div:first-child > #contact > div:last-of-type div:last-of-type:active:before {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  background-color: lightseagreen;
-  width: 3.9rem;
-  height: 3.9rem;
-  border-radius: 10%;
-  border: solid 4px;
-}
-#maincont #pretext > div:first-child > div:nth-of-type(2) {
+#maincont #pretext > div:first-child > div:first-of-type {
   background-color: rgba(0, 0, 0, 0.4);
   filter: drop-shadow(2px 2px 1.3px black);
   /* top: 50%;
@@ -373,7 +374,7 @@ body, html {
   margin: auto;
   background-color: red;
 }
-#maincont #pretext > div:first-child > div:nth-of-type(2) iframe {
+#maincont #pretext > div:first-child > div:first-of-type iframe {
   width: 100%;
   border: none;
 }
@@ -404,7 +405,8 @@ body, html {
   position: relative;
   width: var(--photo-width);
   height: 100%;
-  background-color: green;
+  /*        background-color: green;
+  */
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
 }
 #maincont #photos > div:first-child {
@@ -714,9 +716,9 @@ body, html {
   left: 0;
   right: 0;
   /*  width:100%;
-    height:var(--calendar-width);*/
+  height:var(--calendar-width);*/
   /*  width: max(calc(var(--child-width)), 16rem);
-    height: max(calc(var(--child-width)), 16rem);*/
+  height: max(calc(var(--child-width)), 16rem);*/
   margin: auto;
   background-color: rebeccapurple;
   width: 80%;
@@ -1156,4 +1158,4 @@ body, html {
   background-color: yellow;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Users/sierr/source/repos/Kioxk/Kioxk/Client/Style/StyleSheet.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22;AAAC;EACG;EACA;;;AAGJ;EACY;EACA;EACR;EACA;;;AAMJ;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AA0LA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EA3BJ;;AA+BI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;EACzD;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EAnGJ;EAqGI;;AACA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EAEI;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAGJ;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKA;EACI;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAMhB;EACI;EACA;EACA;EAEA;;AAEA;EAEI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAOpB;EACI;EACA;AAGA;AAAA;EAEA;EACA;AACA;AAAA;EAEA;EACA;EACA;EACA;EAEA;;AAEA;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EA7SJ;;AAiTI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AACA;AAAA;AAAA;AAAA;EAIA;EACA;EACA;EACA;EACA;AAAqC;EACrC;EACA;EAEA;EACA;;AAtWR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AA+UA;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAtVZ;;AA2VQ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EAEI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAMhB;EACI;EACA;EACA;EACA;EApcZ;EACA;EACA;EAIA;EACA;EACA;EA+bY;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAvchB;EACI;EACA;;AAycY;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EAEA;EACA;;AAzdhB;EACI;EACA;;AA0dY;EACI;EACA;;AAOpB;EACI;EACA;EACA;;AAMI;EAEI;EACA;AACA;AAAA;EAEA;EACA;EACA;EACA;;AAGA;EACI;AAoDA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAUA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AA3DA;EACI;EACA;EACA;;AAGA;AACI;AAAA;AAEA;AAAA;EAEA;EACA;AACA;AAAA;EAEA;EAEA;EACA;EACA;;AAGA;AAEI;AAAA;AAAA;;AASZ;EAEI;EAEA;;AAMJ;EACI;EACA;EACA;;AA8BpB;EACI;AACA;AAAA;EAEA;EACA;EACA;;AAEA;EAEI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EA9jBZ;;AAokBI;EACI;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EA9kBZ;;AAolBI;EACI;EACA;;AAEA;EACI;;AAEA;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EAEA;EACA;EACA;EAxnBJ;EA0nBI;;AACA;EACI;EACA;EACA;EACA;EACA;AAEL;AAAA;AAEG;AAAA;EAEE;EACA;EACA;EACA;;AAOA;EAMI;EACA;EACA;EACA;EACA;EAGA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;EACA;AAAa;EACb;AAAc;EACd;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EAEA;EACA;AACA;;AAGJ;EACI;EACA;EACA;EACA;AACA;;AAMhB;EAEI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;;AAGJ;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAKZ;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;;AAEA;EACI;EACA;EACA;EACA;EAGA;;AAv4BhB;EACI;EACA;;AAu4BY;EACI;EACA;;AAIR;EACI;EACA;EAEA;EAEA;;AAr5BhB;EACI;EACA;;AAq5BY;EACI;EACA;;AAIR;EACI;EACA;;AA/5BhB;EACI;EACA;;AAi6BY;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAS5B;EACI;EACA;EACA;EACA;EACA;EACA;EAr9BJ;EAu9BI;;AAEA;EACI;EACA;EACA;AACA;AAAA;EAGA;EAEA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;EAGzD;EACA;;AAEA;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAKJ;EACI;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAEA;EACI;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Users/sierr/source/repos/Kioxk/Kioxk/Client/Style/StyleSheet.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22;AAAC;EACG;EACA;;;AAGJ;EACY;EACA;EACR;EACA;;;AAMJ;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AA0LA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EA3BJ;;AAgCI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;EACzD;EACA;EACA;EACA;EACA;EACA;;AAGF;EAEM;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAGJ;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKA;EACI;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAMhB;EACI;EACA;EACA;EAEA;;AAEA;EAEI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAOxB;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;AACR;AAAA;EAzOI;EA2OI;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;AAGA;AAAA;EAEA;EACA;AACA;AAAA;EAEA;EACA;EACA;EACA;EAEA;;AAEA;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AACR;AAAA;EAjTI;;AAqTI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AACA;AAAA;AAAA;AAAA;EAIA;EACA;EACA;EACA;EACA;AAAqC;EACrC;EACA;EAEA;EACA;;AA1WR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAmVA;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EA1VZ;;AA+VQ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EAEI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAMhB;EACI;EACA;EACA;EACA;EAxcZ;EACA;EACA;EAIA;EACA;EACA;EAmcY;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AA3chB;EACI;EACA;;AA6cY;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EAEA;EACA;;AA7dhB;EACI;EACA;;AA8dY;EACI;EACA;;AAOpB;EACI;EACA;EACA;;AAMI;EAEI;EACA;AACA;AAAA;EAEA;EACA;EACA;EACA;;AAGA;EACI;AAoDA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAUA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AA3DA;EACI;EACA;EACA;;AAGA;AACI;AAAA;AAEA;AAAA;EAEA;EACA;AACA;AAAA;EAEA;EAEA;EACA;EACA;;AAGA;AAEI;AAAA;AAAA;;AASZ;EAEI;EAEA;;AAMJ;EACI;EACA;EACA;;AA8BpB;EACI;AACA;AAAA;EAEA;EACA;EACA;;AAEA;EAEI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EAlkBZ;;AAwkBI;EACI;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EAllBZ;;AAwlBI;EACI;EACA;;AAEA;EACI;;AAEA;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EAEA;EACA;EACA;EA5nBJ;EA8nBI;;AAEA;EACI;EACA;EACA;EACA;EACA;AAEA;AAAA;AAEA;AAAA;EAEA;EACA;EACA;EACA;;AAOA;EAMI;EACA;EACA;EACA;EACA;EAGA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;EACA;AAAa;EACb;AAAc;EACd;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EAEA;EACA;AACA;;AAGJ;EACI;EACA;EACA;EACA;AACA;;AAMhB;EAEI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;;AAGJ;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAKZ;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;;AAEA;EACI;EACA;EACA;EACA;EAGA;;AA54BhB;EACI;EACA;;AA44BY;EACI;EACA;;AAIR;EACI;EACA;EAEA;EAEA;;AA15BhB;EACI;EACA;;AA05BY;EACI;EACA;;AAIR;EACI;EACA;;AAp6BhB;EACI;EACA;;AAs6BY;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAS5B;EACI;EACA;EACA;EACA;EACA;EACA;EA19BJ;EA49BI;;AAEA;EACI;EACA;EACA;AACA;AAAA;EAGA;EAEA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;EAGzD;EACA;;AAEA;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAKJ;EACI;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAEA;EACI;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA%22%7D */
