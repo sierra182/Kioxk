@@ -8,6 +8,7 @@ body, html {
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     font-family: 'Twinkle Star', cursive;
     background-image: url("/photo/papierinp.jpg");
+   // font-size:max(1rem,1.2vw);
 }
 
 
@@ -820,25 +821,27 @@ body, html {
     }
 
     #agenda {
-        --calendar-width: calc(var(--child-width) / 4 * 3);
+        --calendar-width: max(calc(var(--child-width) / 4 * 3),16rem);
         position: relative;
         width: var(--calendar-width);
-        height: fit-content;//calc(var(--child-width) / 4 * 3);
+        height: fit-content; //calc(var(--child-width) / 4 * 3);
         // left: 3vw;
         z-index: 2;
         transition: transform .7s;
         background-color: darkgoldenrod;
         @include ombre();
-
+        flex-shrink:0;
         > div:first-child { //cont p
             position: relative; // abs
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-            z-index: auto;
-            width: max(calc(var(--child-width)), 16rem);
-            height: max(calc(var(--child-width)), 16rem);
+         //   z-index: auto;
+       /*  width:100%;
+         height:var(--calendar-width);*/
+          /*  width: max(calc(var(--child-width)), 16rem);
+            height: max(calc(var(--child-width)), 16rem);*/
             margin: auto;
             background-color: rebeccapurple;
             width: 80%;
@@ -951,7 +954,8 @@ body, html {
                             display: inherit;
                             margin: auto;
                             font-weight: bold;
-                            font-size: 1.2vw;
+                           // font-size:.8rem;
+                            font-size: max(1.5vw,1rem);
                             line-height: 1;
                             /* background-color: green;*/
                         }
@@ -959,7 +963,7 @@ body, html {
                         > span { // jours Sem
                             color: ghostwhite;
                             font-weight: 800;
-                            font-size: 1.2vw;
+                            font-size: 1rem;
                             line-height: 1;
                             /*  background-color: lightgreen;*/
                         }
@@ -991,6 +995,7 @@ body, html {
 
                 span {
                     display: block;
+                    font-size: 1rem;
                 }
 
                 > span:last-child { // Prix Total
