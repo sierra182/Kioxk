@@ -226,7 +226,7 @@ body, html {
             font-weight: 800;
             color: white;
             font-family: 'Montserrat', sans-serif;
-            //    background-color: aqua;
+            background-color: aqua;
             display: block;
             margin: auto; //8rem auto auto ;
             //   padding: 1rem 0;
@@ -250,22 +250,37 @@ body, html {
             }
         }
     }
-    /*  > div:not(#contact) {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: calc(100vw - 9px);
-        height: 15vh;
-    }*/
+   
+     iframe { // map
+        width: 10rem;
+        height: 10rem;
+        position: relative;
+        margin-left:1rem;
+      //  transform: translate(-7%,-2%);
+        //border-width: 1vw;
+        //border-color: black;
+        border-radius: 100%;
+        z-index: 2;
+        background-color: black;
+        transition: width 1s, height 1s;
+        filter: drop-shadow(3px 3px 3px black);
+
+        &:hover {
+            width: 20rem;
+            height: 20rem;
+        }
+    }
 
     #contact {
-        display: none; //contener contact
+        // display: none; //contener contact
         //  background-color: lightgreen;
-        transform: translate(95%,40%);
+        // transform: translate(95%,40%);
         width: fit-content;
         height: fit-content;
         display: flex;
-
+        position: relative;
+        margin: auto;
+        //  bottom:3.82rem;
         > div:first-of-type { //tel
             width: 4rem;
             height: 4rem;
@@ -507,25 +522,7 @@ body, html {
                    
                 }
             }
-
-            > iframe { // map
-                width: 10rem;
-                height: 10rem;
-                position: relative;
-                transform: translate(-7%,-2%);
-                border-width: 1vw;
-                border-color: black;
-                border-radius: 100%;
-                z-index: 2;
-                background-color: black;
-                transition: width 1s, height 1s;
-                filter: drop-shadow(3px 3px 3px black);
-
-                &:hover {
-                    width: 20rem;
-                    height: 20rem;
-                }
-            }
+                      
         }
     }
 
