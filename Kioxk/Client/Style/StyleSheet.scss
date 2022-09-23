@@ -204,7 +204,7 @@ body, html {
     //  left: -2.5vw;
     //    @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
     // width:100%;
-
+background-color:goldenrod;
     > div:first-of-type {
         position: relative;
         top: 0;
@@ -249,26 +249,6 @@ body, html {
             }
         }
     }
-   
-     iframe { // map
-        width: 10rem;
-        height: 10rem;
-        position: relative;
-        margin-left:1rem;
-      //  transform: translate(-7%,-2%);
-        //border-width: 1vw;
-        //border-color: black;
-        border-radius: 100%;
-        z-index: 2;
-        background-color: black;
-        transition: width 1s, height 1s;
-        filter: drop-shadow(3px 3px 3px black);
-
-        &:hover {
-            width: 20rem;
-            height: 20rem;
-        }
-    }
 
     #contact {
         // display: none; //contener contact
@@ -279,6 +259,7 @@ body, html {
         display: flex;
         position: relative;
         margin: auto;
+        left:0;right:0;
         //  bottom:3.82rem;
         > div:first-of-type { //tel
             width: 4rem;
@@ -405,6 +386,28 @@ body, html {
             }
         }
     }
+
+    iframe { // map
+        width: 10rem;
+        height: 10rem;
+        position: absolute;
+       // top:0;
+        bottom:70vw;
+        margin-left: 1rem;
+        //  transform: translate(-7%,-2%);
+        //border-width: 1vw;
+        //border-color: black;
+        border-radius: 100%;
+        z-index: 2;
+        background-color: black;
+        transition: width 1s, height 1s;
+        filter: drop-shadow(3px 3px 3px black);
+
+        &:hover {
+            width: 20rem;
+            height: 20rem;
+        }
+    }
 }
 
 #footer {
@@ -452,12 +455,11 @@ body, html {
     }
 }
 
-
 #maincont {
     --maincont-width: 95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
     display: flex;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -468,7 +470,7 @@ body, html {
     width: var(--maincont-width);
     height: 90vh;
     border-radius: 2.5%/5%;
-    background-color: rgba(0,0,0,.05);
+    background-color: rgba(0,0,0,.5);//.05
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-size: 100% 100%;
@@ -480,21 +482,24 @@ body, html {
         height: calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
-        /*        background-color: mediumvioletred;
-*/ @include ombre();
+        opacity:.8;
+        background-color: mediumvioletred;
+        @include ombre();
         flex-shrink: 0;
+       display:flex;
+
 
         > div:first-child { //cont p
             background-color: blue;
             margin: auto;
-            position: absolute;
+            position: relative;
             top: 0;
             bottom: 0;
-            left: 0;
+           left: 0;
             right: 0;
             display: block;
             height: fit-content;
-
+            vertical-align:middle;
 
 
             > div:first-of-type { // ardoise
@@ -505,22 +510,21 @@ body, html {
                 /* top: 50%;
                 left: 50%;*/
                 width: 90%;
-                position: absolute;
+               // position: absolute;
                 /* top:0;
                 bottom:0;*/
-                top: 0;
-                right: 0;
-                left: 0;
+                //top: 0;
+              //  right: 0;
+              //  left: 0;
                 margin: auto;
                 // transform: translate(-30%,-60%);
                 background-color: red;
 
-              
+
 
                 iframe { // bienvenue
                     width: 100%;
                     border: none;
-                   
                 }
             }
         }
@@ -1216,7 +1220,8 @@ body, html {
         display: flex;
         position: relative;
         width: calc(var(--child-width) *2);
-        height: calc(var(--child-width) / 2 * 1.30);
+        //  height: calc(var(--child-width) / 2 * 1.30);
+        height: max(100%,16rem);
         justify-content: center; // !! RESP !!
         align-items: center;
         @include ombre();
@@ -1228,7 +1233,7 @@ body, html {
             height: max(100%,16rem);
             /*min-height: auto;
             min-width: auto;*/
-            // background-color: yellow;
+            background-color: yellow;
             flex-shrink: 0;
             // opacity: .4;
             overflow-y: auto;
