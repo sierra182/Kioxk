@@ -4,14 +4,13 @@
 }
 
 body, html {
+    @import url('/photo/legend/iFrameSs.css');
     @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     font-family: 'Twinkle Star', cursive;
     background-image: url("/photo/papierinp.jpg");
-     font-size:max(.8rem,1.2vw);
+    font-size: max(.8rem,1.2vw);
 }
-
-
 
 /*@media screen and (max-width:1000px) {
     :root {
@@ -423,7 +422,7 @@ body, html {
     text-align: center;
     /* padding-top: 0;
     padding-bottom: 0;*/
-    z-index: 5;
+    //z-index: 5;
 
     &:before {
         content: "Siret: 299792458ms \A Webmaster Freelance - sierra-echo@msn.com";
@@ -516,13 +515,14 @@ body, html {
                 // transform: translate(-30%,-60%);
                 background-color: red;
 
+              
+
                 iframe { // bienvenue
                     width: 100%;
                     border: none;
                    
                 }
             }
-                      
         }
     }
 
@@ -741,7 +741,7 @@ body, html {
                     }
 
                     > span {
-                        font-size:1rem;
+                        font-size: 1rem;
                         //  display: inline;
                         position: relative;
                         //    left:1rem;
