@@ -199,13 +199,15 @@ body, html {
 }
 
 #header {
-    //  position: absolute;
+    position: relative;
     // top: -5vh;
     //  left: -2.5vw;
     //    @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
     // width:100%;
-background-color:goldenrod;
-    > div:first-of-type {
+    background-color: goldenrod;
+
+
+    > div:first-of-type { //h1
         position: relative;
         top: 0;
         left: 0;
@@ -257,9 +259,12 @@ background-color:goldenrod;
         width: fit-content;
         height: fit-content;
         display: flex;
-        position: relative;
+        position:relative;// relative;
         margin: auto;
-        left:0;right:0;
+       // top:max(3rem,6vw);
+        left: 0;
+        right: 0;
+        z-index:2;
         //  bottom:3.82rem;
         > div:first-of-type { //tel
             width: 4rem;
@@ -387,27 +392,19 @@ background-color:goldenrod;
         }
     }
 
-    iframe { // map
-        width: 10rem;
-        height: 10rem;
-        position: absolute;
-       // top:0;
-        bottom:70vw;
-        margin-left: 1rem;
-        //  transform: translate(-7%,-2%);
-        //border-width: 1vw;
-        //border-color: black;
-        border-radius: 100%;
-        z-index: 2;
-        background-color: black;
-        transition: width 1s, height 1s;
-        filter: drop-shadow(3px 3px 3px black);
+  /*  #car {
+        // content: "";
+        position: relative;
+         display:block;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height:calc(9.5rem - 10vw);// calc(2 / calc(2vw));
+        //height: calc(
+       // background-color: yellowgreen;
+    }*/
 
-        &:hover {
-            width: 20rem;
-            height: 20rem;
-        }
-    }
+   
 }
 
 #footer {
@@ -470,7 +467,7 @@ background-color:goldenrod;
     width: var(--maincont-width);
     height: 90vh;
     border-radius: 2.5%/5%;
-    background-color: rgba(0,0,0,.5);//.05
+    background-color: rgba(0,0,0,.5); //.05
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-size: 100% 100%;
@@ -482,25 +479,51 @@ background-color:goldenrod;
         height: calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
-        opacity:.8;
+        opacity: .8;
         background-color: mediumvioletred;
         @include ombre();
         flex-shrink: 0;
-       display:flex;
+        // display:flex;
 
 
         > div:first-child { //cont p
             background-color: blue;
             margin: auto;
             position: relative;
-            top: 0;
-            bottom: 0;
-           left: 0;
+           // top: 25%;
+            //  top: 0;
+            //  bottom: 0;
+            left: 0;
             right: 0;
             display: block;
             height: fit-content;
-            vertical-align:middle;
+            //    vertical-align:middle;
+            width: 100%;
 
+            > iframe { // map
+                width: 9rem;
+                height: 9rem;
+                position: relative;
+                //  opacity:.6;
+                // top:0;
+                //bottom:2vw;
+                margin-left: 1rem;
+                margin-top:-1vw;
+                //padding:1rem;
+                //  transform: translate(-7%,-2%);
+                //border-width: 1vw;
+                //border-color: black;
+                border-radius: 100%;
+                z-index: 2;
+               // background-color: black;
+                transition: width 1s, height 1s;
+                filter: drop-shadow(3px 3px 3px black);
+
+                &:hover {
+                    width: 20rem;
+                    height: 20rem;
+                }
+            }
 
             > div:first-of-type { // ardoise
                 background-color: rgba(0, 0, 0, .4);
@@ -510,12 +533,12 @@ background-color:goldenrod;
                 /* top: 50%;
                 left: 50%;*/
                 width: 90%;
-               // position: absolute;
+                // position: absolute;
                 /* top:0;
                 bottom:0;*/
                 //top: 0;
-              //  right: 0;
-              //  left: 0;
+                //  right: 0;
+                //  left: 0;
                 margin: auto;
                 // transform: translate(-30%,-60%);
                 background-color: red;
