@@ -467,20 +467,22 @@ body, html {
     width: var(--maincont-width);
     height: 90vh;
     border-radius: 2.5%/5%;
-    background-color: rgba(0,0,0,.5); //.05
+    background-color: rgba(0,0,0,.05); //.05
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-size: 100% 100%;
     background-position: center;
-
+    //align-content:space-between;
+    justify-content:center;
+    row-gap:1rem;
     #pretext {
         position: relative;
         width: max(var(--child-width),16rem);
-        height: calc(var(--main-height) * 1% );
+        height: fit-content;//auto;//calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
         opacity: .8;
-        // background-color: mediumvioletred;
+        background-color: mediumvioletred;
         @include ombre();
         flex-shrink: 0;
         // display:flex;
@@ -562,7 +564,7 @@ body, html {
         --max_size: 32rem;
         position: relative;
         width: var(--photo-width);
-        height: 100%;
+        height:fit-content;// 100%;
         display: flex;
         background-color: green;
         @include ombre();
@@ -590,7 +592,7 @@ body, html {
             backdrop-filter: blur(15px);
             transition: transform .7s;
             @include carres;
-            background-color: red;
+          //  background-color: red;
             z-index: 1;
             vertical-align: middle;
             flex-shrink: 0;
@@ -716,7 +718,7 @@ body, html {
     #hlp {
         width: max(32vw,21rem);
         height: auto;
-        background-color: darkslategrey;
+      //  background-color: darkslategrey;
         flex-shrink: 0;
 
         > div:first-child { // cont p
@@ -822,7 +824,7 @@ body, html {
         left: 2%;*/
         width: 20rem;
         height: fit-content;
-        background-color: cadetblue;
+     //   background-color: cadetblue;
         //  outline: solid red 2px;
         //  border:solid 2px;
         // display: flow-root;
@@ -874,15 +876,15 @@ body, html {
         > div:last-of-type {
             margin: 1rem;
             text-indent: 1rem;
-            background-color: blue;
+          //  background-color: blue;
 
             span { // texte bas  paylib...
                 font-size: 90%;
-                background-color: gold;
+              //  background-color: gold;
 
                 em {
                     font-weight: bold; // la majorité
-                    background-color: orange;
+               //     background-color: orange;
                 }
 
                 span { //il suffit...
@@ -892,7 +894,7 @@ body, html {
                     width: 80%;
                     text-align: center;
                     font-style: italic;
-                    background-color: red;
+                 //   background-color: red;
                 }
             }
 
@@ -911,7 +913,7 @@ body, html {
         // left: 3vw;
         z-index: 2;
         transition: transform .7s;
-        background-color: darkgoldenrod;
+       // background-color: darkgoldenrod;
         @include ombre();
         flex-shrink: 0;
 
@@ -927,7 +929,7 @@ body, html {
             /*  width: max(calc(var(--child-width)), 16rem);
             height: max(calc(var(--child-width)), 16rem);*/
             margin: auto;
-            background-color: rebeccapurple;
+          //  background-color: rebeccapurple;
             width: 80%;
             height: 80%;
             //  vertical-align: central;
@@ -1264,7 +1266,7 @@ body, html {
         justify-content: center; // !! RESP !!
         align-items: center;
         @include ombre();
-        background-color: blue; //#00c6b0;
+      //  background-color: blue; //#00c6b0;
         flex-shrink: 0;
 
         > div:first-child { //cont p
@@ -1273,7 +1275,7 @@ body, html {
             height: max(100%,16rem);
             /*min-height: auto;
             min-width: auto;*/
-            background-color: yellow;
+          //  background-color: yellow;
             flex-shrink: 0;
             // opacity: .4;
             overflow-y: auto;
