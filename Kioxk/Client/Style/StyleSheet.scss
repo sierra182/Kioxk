@@ -563,9 +563,9 @@ body, html {
         position: relative;
         width: var(--photo-width);
         height: 100%;
-        display:flex;
-              background-color: green;
- @include ombre();
+        display: flex;
+        background-color: green;
+        @include ombre();
         //  background-color: grey;
 
         > div:first-child { //cont p
@@ -591,7 +591,8 @@ body, html {
             @include carres;
             background-color: red;
             z-index: 1;
-            vertical-align:middle;
+            vertical-align: middle;
+
             span:nth-of-type(1) { // nos photos txt
                 //@include centrage_hor;
                 position: absolute;
@@ -813,19 +814,26 @@ body, html {
     }
 
     #payment {
-        position: relative;
+       // position: relative;
         /* top: 25%;
         left: 2%;*/
         width: 20rem;
         height: fit-content;
         background-color: cadetblue;
+      //  outline: solid red 2px;
+      //  border:solid 2px;
+       // display: flow-root;
+        
 
         > span { // nous travaillons...
-            // background-color: red;
+           // background-color: grey;
+          //  opacity: .6;
+         //  top: -5rem;
             position: relative;
-            left: 12%;
-            display: inline-block;
-            transform: translateY(-95%);
+            display:block;
+           // display:inline;
+            // left: 12%;
+            // transform: translateY(-95%);
         }
 
         div:first-of-type { // cont paylib
@@ -863,21 +871,25 @@ body, html {
         > div:last-of-type {
             margin: 1rem;
             text-indent: 1rem;
+            background-color: blue;
 
-            span { // texte bas
+            span { // texte bas  paylib...
                 font-size: 90%;
+                background-color: gold;
 
                 em {
-                    font-weight: bold;
+                    font-weight: bold; // la majorité
+                    background-color: orange;
                 }
 
-                span {
+                span { //il suffit...
                     display: inline-block;
-                    margin-top: 2rem;
-                    margin-left: 6rem;
+                    //   margin-top: 2rem;
+                    //    margin-left: 6rem;
                     width: 80%;
                     text-align: center;
                     font-style: italic;
+                    background-color: red;
                 }
             }
 
