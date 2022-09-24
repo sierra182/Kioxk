@@ -462,6 +462,7 @@ body, html {
     right: 0;
     bottom: 0;
     margin: auto;
+    margin-top:1rem;
     flex-wrap: wrap;
     // justify-content:flex-start;
     width: var(--maincont-width);
@@ -472,9 +473,9 @@ body, html {
     background-size: 100% 100%;
     background-size: 100% 100%;
     background-position: center;
-    //align-content:space-between;
+    align-items:center;
     justify-content:center;
-    row-gap:1rem;
+    row-gap:2rem;
     #pretext {
         position: relative;
         width: max(var(--child-width),16rem);
