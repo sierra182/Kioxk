@@ -204,7 +204,7 @@ body, html {
     //  left: -2.5vw;
     //    @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
     // width:100%;
-    background-color: goldenrod;
+   // background-color: goldenrod;
 
 
     > div:first-of-type { //h1
@@ -227,7 +227,7 @@ body, html {
             font-weight: 800;
             color: white;
             font-family: 'Montserrat', sans-serif;
-            background-color: aqua;
+         //   background-color: aqua;
             display: block;
             margin: auto; //8rem auto auto ;
             //   padding: 1rem 0;
@@ -480,17 +480,17 @@ body, html {
         z-index: 3;
         transition: transform .7s;
         opacity: .8;
-        background-color: mediumvioletred;
+        // background-color: mediumvioletred;
         @include ombre();
         flex-shrink: 0;
         // display:flex;
 
 
         > div:first-child { //cont p
-            background-color: blue;
+            //  background-color: blue;
             margin: auto;
             position: relative;
-           // top: 25%;
+            // top: 25%;
             //  top: 0;
             //  bottom: 0;
             left: 0;
@@ -508,14 +508,14 @@ body, html {
                 // top:0;
                 //bottom:2vw;
                 margin-left: 1rem;
-                margin-top:-1vw;
+                margin-top: -1vw;
                 //padding:1rem;
                 //  transform: translate(-7%,-2%);
                 //border-width: 1vw;
                 //border-color: black;
                 border-radius: 100%;
                 z-index: 2;
-               // background-color: black;
+                // background-color: black;
                 transition: width 1s, height 1s;
                 filter: drop-shadow(3px 3px 3px black);
 
@@ -541,8 +541,8 @@ body, html {
                 //  left: 0;
                 margin: auto;
                 // transform: translate(-30%,-60%);
-                background-color: red;
-
+                //  background-color: red;
+                margin-top: .5rem;
 
 
                 iframe { // bienvenue
@@ -563,14 +563,15 @@ body, html {
         position: relative;
         width: var(--photo-width);
         height: 100%;
-        /*        background-color: green;
-*/ @include ombre();
+        display:flex;
+              background-color: green;
+ @include ombre();
         //  background-color: grey;
 
         > div:first-child { //cont p
             width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
             height: var(--cp_ph-y); // to auto
-            position: absolute;
+            position: relative;
             top: 0;
             left: 0;
             right: 0;
@@ -590,7 +591,7 @@ body, html {
             @include carres;
             background-color: red;
             z-index: 1;
-
+            vertical-align:middle;
             span:nth-of-type(1) { // nos photos txt
                 //@include centrage_hor;
                 position: absolute;
