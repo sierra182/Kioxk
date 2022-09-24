@@ -567,6 +567,7 @@ body, html {
         background-color: green;
         @include ombre();
         //  background-color: grey;
+        flex-shrink: 0;
 
         > div:first-child { //cont p
             width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
@@ -592,6 +593,7 @@ body, html {
             background-color: red;
             z-index: 1;
             vertical-align: middle;
+            flex-shrink: 0;
 
             span:nth-of-type(1) { // nos photos txt
                 //@include centrage_hor;
@@ -715,6 +717,7 @@ body, html {
         width: max(32vw,21rem);
         height: auto;
         background-color: darkslategrey;
+        flex-shrink: 0;
 
         > div:first-child { // cont p
 
@@ -814,24 +817,24 @@ body, html {
     }
 
     #payment {
-       // position: relative;
+        // position: relative;
         /* top: 25%;
         left: 2%;*/
         width: 20rem;
         height: fit-content;
         background-color: cadetblue;
-      //  outline: solid red 2px;
-      //  border:solid 2px;
-       // display: flow-root;
-        
+        //  outline: solid red 2px;
+        //  border:solid 2px;
+        // display: flow-root;
+        flex-shrink: 0;
 
         > span { // nous travaillons...
-           // background-color: grey;
-          //  opacity: .6;
-         //  top: -5rem;
+            // background-color: grey;
+            //  opacity: .6;
+            //  top: -5rem;
             position: relative;
-            display:block;
-           // display:inline;
+            display: block;
+            // display:inline;
             // left: 12%;
             // transform: translateY(-95%);
         }
@@ -1262,6 +1265,7 @@ body, html {
         align-items: center;
         @include ombre();
         background-color: blue; //#00c6b0;
+        flex-shrink: 0;
 
         > div:first-child { //cont p
             position: relative;
