@@ -826,7 +826,7 @@ body, html {
         left: 2%;*/
         width: 20rem;
         height: fit-content;
-        background-color: cadetblue;
+        background-color: blue;
         //  outline: solid red 2px;
         //  border:solid 2px;
         // display: flow-root;
@@ -842,7 +842,7 @@ body, html {
             //   margin-top:.2rem;
             //   margin: .5rem;
             //   margin-bottom:0;
-            background-color: violet;
+          //  background-color: violet;
             width: fit-content;
 
             img {
@@ -862,7 +862,7 @@ body, html {
             // display:none;
             /*  width: 5vw;
             height: 5vw;*/
-            background-color: blue;
+           // background-color: blue;
             float: left;
             text-indent: initial;
             // position: relative;
@@ -872,8 +872,8 @@ body, html {
             // outline:solid 2px red;
             //  width: fit-content;
             //  clear: both;
-            margin: .5rem;
-
+            //margin: 0 .5rem;
+            margin-right:.5rem;
             img {
                 //  position: relative;
                 // top: -1rem;
@@ -901,10 +901,12 @@ body, html {
 
 
         > div:last-of-type {
-            margin: 1rem;
+            //  margin: 1rem;
             // text-indent: 1rem;
             //  background-color: blue;
             text-indent: 1rem;
+            margin: .5rem;
+            margin-top:1rem;
             //position:relative;
             span { // texte bas  paylib...
                 font-size: 90%;
@@ -920,17 +922,17 @@ body, html {
                 span { //il suffit...
 
                     display: block;
-                    position:relative;
-                 //   margin:auto;
-                 margin-top:1rem;
-                 margin-left:auto;
-                    margin-right:0;
+                    position: relative;
+                    //   margin:auto;
+                    margin-top: 2rem;
+                    margin-left: auto;
+                    margin-right: 0;
                     //   margin-top: 2rem;
                     //    margin-left: 6rem;
                     width: 80%;
                     text-align: center;
                     font-style: italic;
-                       background-color: red;
+                   // background-color: red;
                 }
             }
 
@@ -949,7 +951,7 @@ body, html {
         // left: 3vw;
         z-index: 2;
         transition: transform .7s;
-        // background-color: darkgoldenrod;
+         background-color: darkgoldenrod;
         @include ombre();
         flex-shrink: 0;
 
