@@ -484,7 +484,7 @@ body, html {
         z-index: 3;
         transition: transform .7s;
         opacity: .8;
-        background-color: mediumvioletred;
+       // background-color: mediumvioletred;
         @include ombre();
         flex-shrink: 0;
         // display:flex;
@@ -565,10 +565,10 @@ body, html {
         --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
         --max_size: 32rem;
         position: relative;
-        width: var(--photo-width);
+        width: max(var(--photo-width),16rem);
         height: fit-content; // 100%;
         display: flex;
-        background-color: green;
+      //  background-color: green;
         @include ombre();
         //  background-color: grey;
         flex-shrink: 0;
@@ -826,7 +826,7 @@ body, html {
         left: 2%;*/
         width: 20rem;
         height: fit-content;
-        background-color: blue;
+      //  background-color: blue;
         //  outline: solid red 2px;
         //  border:solid 2px;
         // display: flow-root;
@@ -842,7 +842,7 @@ body, html {
             //   margin-top:.2rem;
             //   margin: .5rem;
             //   margin-bottom:0;
-          //  background-color: violet;
+            //  background-color: violet;
             width: fit-content;
 
             img {
@@ -862,7 +862,7 @@ body, html {
             // display:none;
             /*  width: 5vw;
             height: 5vw;*/
-           // background-color: blue;
+            // background-color: blue;
             float: left;
             text-indent: initial;
             // position: relative;
@@ -873,7 +873,8 @@ body, html {
             //  width: fit-content;
             //  clear: both;
             //margin: 0 .5rem;
-            margin-right:.5rem;
+            margin-right: .5rem;
+
             img {
                 //  position: relative;
                 // top: -1rem;
@@ -906,7 +907,7 @@ body, html {
             //  background-color: blue;
             text-indent: 1rem;
             margin: .5rem;
-            margin-top:1rem;
+            margin-top: 1rem;
             //position:relative;
             span { // texte bas  paylib...
                 font-size: 90%;
@@ -932,7 +933,7 @@ body, html {
                     width: 80%;
                     text-align: center;
                     font-style: italic;
-                   // background-color: red;
+                    // background-color: red;
                 }
             }
 
@@ -944,14 +945,14 @@ body, html {
     }
 
     #agenda {
-        --calendar-width: max(calc(var(--child-width) / 4 * 3),16rem);
+        --calendar-width: max(calc(var(--child-width) / 4 * 3),18rem);
         position: relative;
-        width: var(--calendar-width);
+        width: max(var(--calendar-width),16rem);
         height: fit-content; //calc(var(--child-width) / 4 * 3);
         // left: 3vw;
         z-index: 2;
         transition: transform .7s;
-         background-color: darkgoldenrod;
+       // background-color: darkgoldenrod;
         @include ombre();
         flex-shrink: 0;
 
@@ -967,15 +968,15 @@ body, html {
             /*  width: max(calc(var(--child-width)), 16rem);
             height: max(calc(var(--child-width)), 16rem);*/
             margin: auto;
-            //  background-color: rebeccapurple;
-            width: 80%;
+        //    background-color: rebeccapurple;
+            width: 100%;
             height: 80%;
             //  vertical-align: central;
             //  text-align: center;
             //  line-height: max(calc(var(--child-width)), 16rem);
             //  vertical-align: middle;
             //   display: table;
-
+            // text-align:center;
             #calendar {
                 //  margin:auto;
                 //   display: inline-block;
@@ -989,17 +990,19 @@ body, html {
                 right: 0;
                 //  vertical-align: middle;
                 // display: table-cell;
-                width: 99%;
-                height: calc(var(--calendar-width) *.8);
+                width: 100%;//calc(var(--calendar-width));
+                height: calc(var(--calendar-width) + 5rem);
                 margin: auto;
+               // margin-top:2rem;
                 text-align: center;
-                background-color: red;
-                //display: block;
+             //   background-color: red;
+                // display: flow-root;
 
                 > :first-child { // Mois Année
                     display: inline-block;
                     position: relative;
-                    top: -3rem;
+                    // top: -3rem;
+                    // margin-top:5rem;
                     // left:0;
                     color: white;
                     border: outset;
@@ -1028,9 +1031,9 @@ body, html {
 
                 > #panneau {
                     display: grid;
-                    position: absolute;
+                    position: relative;
                     width: 100%;
-                    height: 100%; //var(--calendar-width);
+                    height: var(--calendar-width);
                     grid-template-columns: repeat(7, 1fr);
                     grid-template-rows: repeat(7, 1fr);
                     top: 0;
@@ -1038,7 +1041,9 @@ body, html {
                     left: 0;
                     bottom: 0;
                     margin: auto;
-                    background-color: darkcyan;
+                    margin-top:1.5rem;
+                    //   border:solid 2px;
+                    //  background-color: darkcyan;
 
                     &:hover {
                         width: 120%;
@@ -1079,7 +1084,7 @@ body, html {
                             margin: auto;
                             font-weight: bold;
                             // font-size:.8rem;
-                            font-size: max(1.5vw,1rem);
+                            font-size: 1rem; //max(1.5vw,1rem);
                             line-height: 1;
                             /* background-color: green;*/
                         }
@@ -1100,9 +1105,10 @@ body, html {
                 position: relative;
                 top: 100%;
                 left: 0;
-                width: 100%;
+                width: 80%;
                 height: auto;
                 color: black;
+                margin:auto;
                 // background-color: darkcyan;
 
                 div { // div période
@@ -1175,7 +1181,7 @@ body, html {
                 width: 50%;
                 z-index: 1;
                 //transform: translate(-50%,0); //calc(var(--calendar-width) / 2
-                background-color: darkgray;
+              //  background-color: darkgray;
                 margin: auto;
 
                 #mytriback { // Triangle Back
