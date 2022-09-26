@@ -484,7 +484,7 @@ body, html {
         z-index: 3;
         transition: transform .7s;
         opacity: .8;
-       // background-color: mediumvioletred;
+        // background-color: mediumvioletred;
         @include ombre();
         flex-shrink: 0;
         // display:flex;
@@ -568,7 +568,7 @@ body, html {
         width: max(var(--photo-width),16rem);
         height: fit-content; // 100%;
         display: flex;
-      //  background-color: green;
+        //  background-color: green;
         @include ombre();
         //  background-color: grey;
         flex-shrink: 0;
@@ -826,7 +826,7 @@ body, html {
         left: 2%;*/
         width: 20rem;
         height: fit-content;
-      //  background-color: blue;
+        //  background-color: blue;
         //  outline: solid red 2px;
         //  border:solid 2px;
         // display: flow-root;
@@ -952,7 +952,7 @@ body, html {
         // left: 3vw;
         z-index: 2;
         transition: transform .7s;
-       // background-color: darkgoldenrod;
+        // background-color: darkgoldenrod;
         @include ombre();
         flex-shrink: 0;
 
@@ -968,7 +968,7 @@ body, html {
             /*  width: max(calc(var(--child-width)), 16rem);
             height: max(calc(var(--child-width)), 16rem);*/
             margin: auto;
-        //    background-color: rebeccapurple;
+            //    background-color: rebeccapurple;
             width: 100%;
             height: 80%;
             //  vertical-align: central;
@@ -990,12 +990,12 @@ body, html {
                 right: 0;
                 //  vertical-align: middle;
                 // display: table-cell;
-                width: 100%;//calc(var(--calendar-width));
+                width: 100%; //calc(var(--calendar-width));
                 height: calc(var(--calendar-width) + 5rem);
                 margin: auto;
-               // margin-top:2rem;
+                // margin-top:2rem;
                 text-align: center;
-             //   background-color: red;
+                //   background-color: red;
                 // display: flow-root;
 
                 > :first-child { // Mois Année
@@ -1041,7 +1041,7 @@ body, html {
                     left: 0;
                     bottom: 0;
                     margin: auto;
-                    margin-top:1.5rem;
+                    margin-top: 1.5rem;
                     //   border:solid 2px;
                     //  background-color: darkcyan;
 
@@ -1108,7 +1108,7 @@ body, html {
                 width: 80%;
                 height: auto;
                 color: black;
-                margin:auto;
+                margin: auto;
                 // background-color: darkcyan;
 
                 div { // div période
@@ -1181,7 +1181,7 @@ body, html {
                 width: 50%;
                 z-index: 1;
                 //transform: translate(-50%,0); //calc(var(--calendar-width) / 2
-              //  background-color: darkgray;
+                //  background-color: darkgray;
                 margin: auto;
 
                 #mytriback { // Triangle Back
@@ -1304,22 +1304,22 @@ body, html {
     #reserv {
         display: flex;
         position: relative;
-        width: calc(var(--child-width) *2);
-        //  height: calc(var(--child-width) / 2 * 1.30);
-        height: max(100%,16rem);
+        width: max(calc(var(--child-width) *2),16rem);
+        // height: calc(var(--child-width) / 2 * 1.30);
+        height: max(calc(var(--child-width)),8rem);//  max(100%,16rem);
         justify-content: center; // !! RESP !!
         align-items: center;
         @include ombre();
-        //  background-color: blue; //#00c6b0;
+        background-color: blue; //#00c6b0;
         flex-shrink: 0;
-
+        //   flex-direction:column;
         > div:first-child { //cont p
             position: relative;
-            width: max(62%,15rem);
-            height: max(100%,16rem);
+            width: 62%;//max(62%,15rem);
+            height: 80%; //    ,16rem);
             /*min-height: auto;
             min-width: auto;*/
-            //  background-color: yellow;
+            background-color: yellow;
             flex-shrink: 0;
             // opacity: .4;
             overflow-y: auto;
@@ -1335,10 +1335,10 @@ body, html {
                 width: 50%;
                 height: 100%;
                 opacity: .8;
-                //  background-color: blue;
+                background-color: gray;
                 // overflow-y: scroll;
 
-                &::after {
+                &::after { // couv
                     content: "";
                     display: block;
                     position: absolute;
@@ -1367,9 +1367,9 @@ body, html {
                     height: 100%;
                     font-size: 1rem; //1.2vw;
                     border-radius: 10% / 5%;
-                    background: #FF416C; /* fallback for old browsers */
-                    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
-                    background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                    //      background: #FF416C; /* fallback for old browsers */
+                    //     background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
+                    //   background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                     // background: rgb(11,11,11);
                     // background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
                     overflow-y: scroll;
