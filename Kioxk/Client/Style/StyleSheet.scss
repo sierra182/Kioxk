@@ -204,7 +204,7 @@ body, html {
     //  left: -2.5vw;
     //    @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
     // width:100%;
-   // background-color: goldenrod;
+    // background-color: goldenrod;
 
 
     > div:first-of-type { //h1
@@ -227,7 +227,7 @@ body, html {
             font-weight: 800;
             color: white;
             font-family: 'Montserrat', sans-serif;
-         //   background-color: aqua;
+            //   background-color: aqua;
             display: block;
             margin: auto; //8rem auto auto ;
             //   padding: 1rem 0;
@@ -259,12 +259,12 @@ body, html {
         width: fit-content;
         height: fit-content;
         display: flex;
-        position:relative;// relative;
+        position: relative; // relative;
         margin: auto;
-       // top:max(3rem,6vw);
+        // top:max(3rem,6vw);
         left: 0;
         right: 0;
-        z-index:2;
+        z-index: 2;
         //  bottom:3.82rem;
         > div:first-of-type { //tel
             width: 4rem;
@@ -391,8 +391,7 @@ body, html {
             }
         }
     }
-
-  /*  #car {
+    /*  #car {
         // content: "";
         position: relative;
          display:block;
@@ -403,15 +402,13 @@ body, html {
         //height: calc(
        // background-color: yellowgreen;
     }*/
-
-   
 }
 
 #footer {
     // display:none;
     position: fixed;
     bottom: 0;
-    font-size:max(.7rem,1vw);//max(.6rem,1.2vw);
+    font-size: max(.7rem,1vw); //max(.6rem,1.2vw);
     // bottom: 0;
     background: #3C3B3F; //fallback for old browsers
     background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); // Chrome 10-25, Safari 5.1-6
@@ -1301,12 +1298,14 @@ body, html {
         }
     }
 
+
+
     #reserv {
         display: flex;
         position: relative;
         width: max(calc(var(--child-width) *2),16rem);
         // height: calc(var(--child-width) / 2 * 1.30);
-        height: max(calc(var(--child-width)),8rem);//  max(100%,16rem);
+        height: max(calc(var(--child-width)),32rem); //  max(100%,16rem);
         justify-content: center; // !! RESP !!
         align-items: center;
         @include ombre();
@@ -1315,27 +1314,29 @@ body, html {
         //   flex-direction:column;
         > div:first-child { //cont p
             position: relative;
-            width: 62%;//max(62%,15rem);
-            height: 80%; //    ,16rem);
+            width: 62%; //   100%; //62%; //max(62%,15rem);
+            height: 80%; //100%    ,16rem);
             /*min-height: auto;
             min-width: auto;*/
             background-color: yellow;
             flex-shrink: 0;
             // opacity: .4;
-            overflow-y: auto;
-            overflow-x: hidden;
+            //    overflow-y: auto;
+            //  overflow-x: hidden;
 
             #form {
                 --displres: block;
                 --pointres: initial;
                 --opres: .9;
                 --trans: 0;
+                //--trans-y: 0;
                 display: block;
                 position: relative;
-                width: 50%;
+                left: 50%; //0; //50%;
+                width: 50%; //100%; //50
                 height: 100%;
                 opacity: .8;
-                background-color: gray;
+                //  background-color: gray;
                 // overflow-y: scroll;
 
                 &::after { // couv
@@ -1348,7 +1349,7 @@ body, html {
                     font-size: 3rem;
                     opacity: var(--opres);
                     transition: 1s opacity, 1s transform;
-                    transform: translate(calc(var(--trans)*1%));
+                    transform: translate(calc(-1 * var(--trans)*1%));
                     pointer-events: var(--pointres);
                     border: solid;
                     border-width: 2px;
@@ -1436,13 +1437,31 @@ body, html {
 
             > div:nth-child(2) { //cont recap + paie contscrooljs
                 position: absolute;
-                top: 0;
-                width: 51%;
-                height: 26rem;
+                top: 0; //100%; //0
+                // width: 100%;
+                height: 100%;
                 overflow-y: auto;
                 scroll-behavior: smooth;
                 border-radius: 10% / 5%;
                 background-color: orange;
+                // left: 0;
+                // transition: left 4s;
+                animation: transpaye 2s forwards;
+
+                @keyframes transpaye {
+                    from {
+                        height: 0;
+                        width: 0;
+                        left: 0%;
+                    }
+
+                    to {
+                        width: 50%; //100%; //51%;
+                         left:50%;
+                        // top: 0;
+                        height: 26rem; //100%; //26rem;
+                    }
+                }
 
                 #mailcont {
                     position: relative;
@@ -1481,12 +1500,54 @@ body, html {
             }
 
             #avert { //dispavert
-                position: absolute;
-                top: 47%;
-                left: 53%;
-                width: 45%;
+                position: relative; //absolute;
+                // top: 47%;
+                // left: 53%;
+                // display:inline-block;
+                margin: auto;
+                margin-top: 8%;
+                width: 50%;
+                height: fit-content; //%;
                 font-size: 80%;
                 background-color: yellow;
+            }
+        }
+    }
+
+    @media screen and (max-width:500px) {
+        #reserv {
+            > div:first-child { // cont p
+                width: 100%;
+                height: 100%;
+
+                #form {
+                    left: 0%;
+                    width: 100%;
+
+                    &::after { // couv
+                        transform: translateY(calc(var(--trans)*1%));
+                    }
+                }
+
+                > div:nth-child(2) { //cont recap + paie contscrooljs
+                    animation: transpaye-y 2s forwards;
+                    // top:100%;
+                    @keyframes transpaye-y {
+                        from {
+                            height: 0;
+                            width: 0;
+                            left: 0%;
+                            top: 100%;
+                        }
+
+                        to {
+                            width: 100%; //51%;
+                            // left:50%;
+                            top: 0;
+                            height: 100%; //26rem;
+                        }
+                    }
+                }
             }
         }
     }

@@ -202,7 +202,7 @@
             // await SelectedChanged.InvokeAsync(Selected);
             mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
             paie = new();
-            dispavert = "initial";
+            dispavert = "block";
             StateHasChanged();
             _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");
             Console.WriteLine("finaly clear!");

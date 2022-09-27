@@ -45,7 +45,7 @@ namespace Kioxk.Shared.Mails
             mybodymail = @"
 <div style='background-color: #17202A; color:white; text-align:center'>
 
-            <div style='color:black;background-color:white; font-weight:bold;'> Récapitulatif de votre Réservation </div>
+            <div style='color:black;background-color:white;font-size:1.2rem; font-weight:bold;'> Récapitulatif de votre Réservation </div>
             </br>
 
      <div style='font-size:1rem;'>
