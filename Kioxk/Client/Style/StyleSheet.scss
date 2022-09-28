@@ -654,7 +654,7 @@ body, html {
 
                         iframe { // legend
                             width: calc(max(var(--photo-width),var(--max_size)) /2 * .9);
-                            height: 2.5rem;
+                            height:2.5rem;// 2.5rem;
                             background-color: rgba(white, .4);
                             border: solid .2rem white;
                             border-radius: 10%;
@@ -662,6 +662,8 @@ body, html {
                             margin: auto;
                             left: 0;
                             right: 0;
+                            overflow-y:hidden;
+                           // font-size:15rem;
                         }
                     }
                 }
