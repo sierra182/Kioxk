@@ -50,7 +50,7 @@ namespace Kioxk.Shared.Mails
 
      <div style='font-size:1rem;'>
 <div>" + DateTime.Now.ToShortDateString() +@"
-            <div style='font-size:1rem;text-decoration-style:wavy;text-underline-offset:7px;text-decoration-line:underline;  text-decoration-thickness:4px'> Numéro de commande: " + comid + "/" + DateTime.Now.Year + @"</div> 
+            <div style='font-size:1rem;text-decoration-style:wavy;text-underline-offset:.1rem;text-decoration-line:underline;  text-decoration-thickness:.15rem'> Numéro de commande: " + comid + "/" + DateTime.Now.Year + @"</div> 
             </br>
             <div style='font-size:inherit'> Prénom: " + fn + @"</div>
             <div style=''> Nom: " + ln + @"</div>
@@ -96,8 +96,8 @@ namespace Kioxk.Shared.Mails
     {
         public readonly string ajoutmail = @"
 
-<div style='width:300px; height:auto; border:solid; border-top-left-radius:2vw; background-color:orange;color:white;'> 
-  <p style=""border:solid;border-top-left-radius:2vw;padding:4px;background-color:white;color:green; font-weight:normal;text-indent: 30px;"">  
+<div style='height:auto; border:solid; border-top-left-radius:2vw;color:white;'> 
+  <p style=""border:solid;border-top-left-radius:2vw;border-top-right-radius:2vw;padding:4px;background-color:white;color:green; font-weight:normal;text-indent: 30px;"">  
     Votre réservation est enregistrée et en attente de paiement. Pour procéder, utilisez votre application bancaire: allez à l'onglet paylib 
 ou lyf, et faites un virement du montant total au 0692104886.
 Vous recevrez alors un nouveau mail de confirmation. 
