@@ -11,14 +11,12 @@
     Nos Photos
 </span>
 
-
 @{
     string p1 = $"{phm}%";
-
-    
 }
+
 <div id="contPhAloneJs" style="--phmove:@p1">
-    @for (int i = 0; i < 4; i++)
+    @for (int i = 0; i < qtph; i++)
     {
         string s = $"photo/maison{i}.jpg";
         string l = $"photo/legend/legend{i}.html";
@@ -48,10 +46,11 @@
          data-unique-ids="disabled"></svg>
 </div>
 
-@code {    
+@code {
 
     int srcJpg = 0;
-   // List<string> enumed;
+    int qtph = 4;
+    // List<string> enumed;
     protected override async Task OnInitializedAsync()
     {
 
@@ -92,11 +91,11 @@
         //{
         // currentFile.
 
-        if (srcJpg < 3)
+        if (srcJpg < qtph - 1)
         {
             srcJpg++;
             trn = trn + 33;
-            phm = phm - 100;
+            phm = phm - (100 / qtph);
         }
 
         //srcJpg = enumed[curser];
@@ -112,7 +111,7 @@
         {
             srcJpg--;
             trn = trn - 33;
-            phm = phm + 100;
+            phm = phm + (100 / qtph);
         }
         //srcJpg = enumed[curser];
 

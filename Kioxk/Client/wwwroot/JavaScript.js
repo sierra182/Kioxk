@@ -81,10 +81,23 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
                     myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
                     maxs = getComputedStyle(phs).getPropertyValue("--max_size");
 
-                    phs.style.setProperty("--cp_ph-y", "58vw");
+                   
                     phs.style.setProperty("--mult_ph-scale", myvarscale * 3.5);
-                    phs.style.setProperty("--max_size", ".8rem");
-                    phs.style.transform = `translate(${-87}%,${0}%)`;/// ass !!!
+                    //phs.style.setProperty("--cp_ph-y", "58vw");
+                  
+                    //phs.style.setProperty("--max_size", ".8rem");
+                    /*   void phs.offsetWidth;*/
+                    //setTimeout(() => {
+                        
+                    //}, 4000);
+                    phs.style.position = "absolute";
+                  //  phs.style.setProperty("align-self", "flex-start");
+                 //   phs.style.left = "0";
+                 //   phs.style.right = "0";
+                  //  phs.style.margin = "0 auto";
+                 ////   phs.style.display = "block";
+
+                   // phs.style.transform = `translate(${-87}%,${0}%)`;/// ass !!!
                     //  for (var cif of contifra) {
                     //    cif.classList.add("scalePh");
                     //}
