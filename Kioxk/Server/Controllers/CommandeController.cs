@@ -27,6 +27,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics.Metrics;
 
 using System.Data.SqlTypes;
+using c = System.Console;
+
 namespace Kioxk.Server.Controllers
 {
     [Route("api/[controller]")]
@@ -86,6 +88,19 @@ namespace Kioxk.Server.Controllers
 
         //    }
         //}
+        [Route("[action]")]
+        [HttpGet]
+        public int GetQtePh()
+        {
+            Console.WriteLine("serv qte ph: ");
+            string[] files = Directory.GetFiles(@"C:\Users\sierr\source\repos\Kioxk\Kioxk\Client\wwwroot\photo", "maison*.*");
+            foreach (var file in files)
+            {
+                Console.WriteLine(file);
+                
+            }
+            return files.Length;
+        }
 
         void t1()
         {
@@ -595,7 +610,7 @@ namespace Kioxk.Server.Controllers
         public async Task<Livret> Get()
         {
             Console.WriteLine("Get");
-
+          //  QtePh();
              t1();
             //try
             //{

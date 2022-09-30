@@ -1,7 +1,7 @@
 ﻿@using System.IO
 @using System.Net.Http
 @using System.Threading
-
+@inject HttpClient Http
 
 <div id="carreph" class="carre" onclick="scaler('photos','carreph','carre2ph','25','0','-25','25')">    
     <div id="carre2ph" class="carre2"/>
@@ -15,7 +15,7 @@
     string p1 = $"{phm}%";
 }
 
-<div id="contPhAloneJs" style="--phmove:@p1">
+<div id="contPhAloneJs" style="--phmove:@p1; --qte_ph:@qtph">
     @for (int i = 0; i < qtph; i++)
     {
         string s = $"photo/maison{i}.jpg";
@@ -49,11 +49,20 @@
 @code {
 
     int srcJpg = 0;
-    int qtph = 4;
+    int qtph = 0;
     // List<string> enumed;
+
+    async Task QtePh() 
+    {
+        qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");      
+        c.WriteLine("PHOTO QTEPH: ");
+        c.WriteLine(qtph);
+    }
+
     protected override async Task OnInitializedAsync()
     {
-
+       //  qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); 
+         await QtePh();
         //Console.WriteLine("deb");
         //string path = "/";
         //var client = new HttpClient();
@@ -94,7 +103,7 @@
         if (srcJpg < qtph - 1)
         {
             srcJpg++;
-            trn = trn + 33;
+            trn = trn + (100 / qtph);
             phm = phm - (100 / qtph);
         }
 
@@ -110,7 +119,7 @@
         if (srcJpg > 0)
         {
             srcJpg--;
-            trn = trn - 33;
+            trn = trn - (100 / qtph);
             phm = phm + (100 / qtph);
         }
         //srcJpg = enumed[curser];

@@ -625,10 +625,13 @@ body, html {
 
             > div:nth-of-type(2) { //container images + leg - alone proute
                 --phmove: 0%;
+                --qte_ph:0;
                // --ph_scale-height: -50%;
                // top: 50%;
+               top:0;bottom:0;
+               margin:auto;
                 position: absolute;
-                width: 400%;//100%; //calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
+                width: calc(100% * var(--qte_ph));//100%; //calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
                 height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                 display: flex;
                 transition: transform linear .5s;
