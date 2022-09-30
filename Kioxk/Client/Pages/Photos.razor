@@ -2,7 +2,7 @@
 @using System.Net.Http
 @using System.Threading
 @inject HttpClient Http
-
+@inject IJSRuntime js;
 <div id="carreph" class="carre" onclick="scaler('photos','carreph','carre2ph','25','0','-25','25')">    
     <div id="carre2ph" class="carre2"/>
 </div>
@@ -61,8 +61,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-       //  qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); 
-         await QtePh();
+        //  qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); 
+        await QtePh();
         //Console.WriteLine("deb");
         //string path = "/";
         //var client = new HttpClient();
@@ -106,7 +106,7 @@
             trn = trn + (100 / qtph);
             phm = phm - (100 / qtph);
         }
-
+        AppJs();
         //srcJpg = enumed[curser];
         // StateHasChanged();
 
@@ -125,7 +125,12 @@
         //srcJpg = enumed[curser];
 
         //  TriRempl();
+        AppJs();
+    }
 
+    void AppJs()
+    {
+        js.InvokeVoidAsync("res");
     }
 
     void TriRempl()                                                              // Remplissage Back Next.

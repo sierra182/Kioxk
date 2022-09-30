@@ -473,9 +473,9 @@ body, html {
     background-size: 100% 100%;
     background-position: center;
     align-items: center;
-    // justify-content: center;
+    justify-content: center;
     row-gap: 2rem;
-
+    //border:solid 2px red;
     #pretext {
         position: relative;
         width: max(var(--child-width),16rem);
@@ -483,7 +483,7 @@ body, html {
         z-index: 3;
         transition: transform .7s;
         opacity: .8;
-        // background-color: mediumvioletred;
+        background-color: mediumvioletred;
         @include ombre();
         flex-shrink: 0;
         // display:flex;
@@ -557,32 +557,34 @@ body, html {
     }
 
     #photos {
+        --cp_mult-h: 1;
         --mult_ph-scale: 1; // 3.5;
         --trans-height: 0%;
         --photo-width: var(--child-width);
         --photo-height: calc(var(--main-height) * 1%);
-        --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
+        --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 );
         --max_size: 32rem; // 32rem;//12rem;//32rem;
         position: relative;
         /*   top:0;left:0;right:0;
          margin:auto;*/
-        width: calc(max(var(--photo-width),16rem) * var(--mult_ph-scale));
+        width: calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale));
         height: fit-content; // 100%;
         display: flex; //block;
         left: 0;
         right: 0;
         margin: auto;
-        // background-color: green;
+        background-color: green;
         @include ombre();
-    //    background-color: grey;
+        //    background-color: grey;
         flex-shrink: 0;
         //left:0;right:0;
         // justify-self:self-end;
 
+
         > div:first-child { //cont p
-            width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
-            height: max(var(--cp_ph-y),calc(var(--max_size) / 2 )); // to auto
-          //  padding-bottom: 2.5rem;
+            width: calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale));
+            height: var(--cp_ph-y); // to auto
+            //  padding-bottom: 2.5rem;
             position: relative;
             top: 0;
             left: 0;
@@ -593,7 +595,8 @@ body, html {
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);*/
-            overflow-x: hidden;
+            // overflow-x: hidden;
+              overflow-x: hidden;
             overflow-y: visible;
             border-radius: 1%;
             border: groove 2px;
@@ -601,7 +604,7 @@ body, html {
             backdrop-filter: blur(15px);
             transition: transform .7s;
             @include carres;
-         //   background-color: red;
+            background-color: red;
             z-index: 1;
             vertical-align: middle;
             flex-shrink: 0;
@@ -632,14 +635,14 @@ body, html {
                 top: 0;
                 bottom: 0;
                 margin: auto;
-                position: absolute;
+                position: relative;
                 width: calc(100% * var(--qte_ph)); //100%; //calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
                 height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                 display: flex;
                 transition: transform linear .5s;
                 transform: translate(var(--phmove)); //(-50% to 0%
                 align-items: center;
-               // background-color: yellow;
+                background-color: yellow;
                 // opacity:0.6;
                 > div { //cont img et cont ifrme - multy
 
@@ -673,7 +676,7 @@ body, html {
                         iframe { // legend
                             width: calc(max(var(--photo-width),var(--max_size))/2 * .9);
                             height: 2.5rem; // 2.5rem;
-                            background-color: rgba(red, .8);
+                            background-color: cornflowerblue;
                             //color:white !important;
                             // border: solid .2rem red;
                             border-radius: 10%;

@@ -44,6 +44,7 @@ function resizeIframe(obj) {
 
 
 var togScal = false;
+var phcont
 var maxs;
 var phs;
 var myvarscale;
@@ -59,6 +60,7 @@ var car2;
 function scaler(docu, carre, carre2, xx, yy, x, y) {
 
     phs = document.getElementById("photos");
+    phcont = phs.firstChild;
     contifra = document.getElementsByClassName("contIfraJs");
     contmlt = document.getElementsByClassName("contPhMultJs");
     contal = document.getElementById("contPhAloneJs");
@@ -70,21 +72,24 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         togScal = true;
 
         function res() {
-
+            console.log("RES");
             if (togScal) { // a tej
 
-                if (window.innerWidth > 1000) {
+                if (window.innerWidth > 100) {
 
                     myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height");
-                    myvarcp = getComputedStyle(phs).getPropertyValue("--cp_ph-y");
+                    myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
                     myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
                     myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
                     maxs = getComputedStyle(phs).getPropertyValue("--max_size");
-
-                   
+                    contal.style.position = "relative";
                     phs.style.setProperty("--mult_ph-scale", myvarscale * 3.5);
-                    //phs.style.setProperty("--cp_ph-y", "58vw");
-                  
+                    phs.style.setProperty("--max_size", "0px");
+                 
+                    phcont.style.setProperty("height", "fit-content");
+                   
+                    //phs.style.setProperty("--cp_mult-h", myvarcp * 2.6);
+                 //   phcont.style.setProperty("height", phcont.clientHeight + 60 + "px");
                     //phs.style.setProperty("--max_size", ".8rem");
                     /*   void phs.offsetWidth;*/
                     //setTimeout(() => {
@@ -148,10 +153,12 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         //for (var cif of contifra) {
         //    cif.classList.remove("scalePh");
         //}
-      
-        phs.style.setProperty("--cp_ph-y", myvarcp);
+
+      //  phs.style.setProperty("--cp_ph-y", myvarcp);
+        contal.style.position = "absolute";
         phs.style.setProperty("--mult_ph-scale", myvarscale);
-        phs.style.setProperty("--max_size", maxs);
+         phs.style.setProperty("--max_size", maxs);
+        phcont.style.height = "var(--cp_ph-y)";
         phs.style.transform = "";
         window.setTimeout(zin, 1000, true);
 
