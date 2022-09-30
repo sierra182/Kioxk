@@ -572,16 +572,17 @@ body, html {
         left: 0;
         right: 0;
         margin: auto;
-        background-color: green;
+        // background-color: green;
         @include ombre();
-        //  background-color: grey;
+    //    background-color: grey;
         flex-shrink: 0;
         //left:0;right:0;
         // justify-self:self-end;
 
         > div:first-child { //cont p
             width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
-            height: max(var(--cp_ph-y),calc(var(--max_size) / 2)); // to auto
+            height: max(var(--cp_ph-y),calc(var(--max_size) / 2 )); // to auto
+          //  padding-bottom: 2.5rem;
             position: relative;
             top: 0;
             left: 0;
@@ -592,7 +593,7 @@ body, html {
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);*/
-            // overflow-x: hidden;
+            overflow-x: hidden;
             overflow-y: visible;
             border-radius: 1%;
             border: groove 2px;
@@ -600,7 +601,7 @@ body, html {
             backdrop-filter: blur(15px);
             transition: transform .7s;
             @include carres;
-            //  background-color: red;
+         //   background-color: red;
             z-index: 1;
             vertical-align: middle;
             flex-shrink: 0;
@@ -625,35 +626,36 @@ body, html {
 
             > div:nth-of-type(2) { //container images + leg - alone proute
                 --phmove: 0%;
-                --qte_ph:0;
-               // --ph_scale-height: -50%;
-               // top: 50%;
-               top:0;bottom:0;
-               margin:auto;
+                --qte_ph: 0;
+                // --ph_scale-height: -50%;
+                // top: 50%;
+                top: 0;
+                bottom: 0;
+                margin: auto;
                 position: absolute;
-                width: calc(100% * var(--qte_ph));//100%; //calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
+                width: calc(100% * var(--qte_ph)); //100%; //calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
                 height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                 display: flex;
                 transition: transform linear .5s;
                 transform: translate(var(--phmove)); //(-50% to 0%
                 align-items: center;
-                background-color: yellow;
-                opacity:0.6;
+               // background-color: yellow;
+                // opacity:0.6;
                 > div { //cont img et cont ifrme - multy
 
-                    width: 50%;//100%; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
-                    height:fit-content;// calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
+                    width: 50%; //100%; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
+                    height: fit-content; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                     // fit-content;
-                      background-color: darkmagenta;
+                    background-color: darkmagenta;
                     //transform: translate(-5px);
 
                     img {
-                         //max-width:200%!important;
-                          width:100%;//700px;
+                        //max-width:200%!important;
+                        width: 100%; //700px;
                         //min-width: 200% !important;
-                        height:auto;// 100%;
-                     //   display: block;
-                      /*  max-width: 100% !important; //auto;
+                        height: auto; // 100%;
+                        //   display: block;
+                        /*  max-width: 100% !important; //auto;
                         height: auto;*/
                         //   height:500px;
                         //   width: calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
@@ -671,7 +673,8 @@ body, html {
                         iframe { // legend
                             width: calc(max(var(--photo-width),var(--max_size))/2 * .9);
                             height: 2.5rem; // 2.5rem;
-                            background-color: white; // rgba(white, .4);
+                            background-color: rgba(red, .8);
+                            //color:white !important;
                             // border: solid .2rem red;
                             border-radius: 10%;
                             position: absolute;
