@@ -84,12 +84,16 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
                     myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
                     myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
                     maxs = getComputedStyle(phs).getPropertyValue("--max_size");
-                    contal.style.position = "relative";
+                  //  contal.style.position = "relative";
+                    phs.style.position = "absolute";
                     phs.style.setProperty("--mult_ph-scale", myvarscale * 3.5);
-                    phs.style.setProperty("--max_size", "0px");
-                 
+                    phs.style.setProperty("--max_size", "0px");           
+                    
                     phcont.style.setProperty("height", "fit-content");
 
+                    for (var cif of contifra) {
+                        cif.firstChild.style.position = "relative";
+                    }
                  //   ifra.style.position = "relative";
                     //phs.style.setProperty("--cp_mult-h", myvarcp * 2.6);
                  //   phcont.style.setProperty("height", phcont.clientHeight + 60 + "px");
@@ -98,7 +102,7 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
                     //setTimeout(() => {
                         
                     //}, 4000);
-                    phs.style.position = "absolute";
+                 
                   //  phs.style.setProperty("align-self", "flex-start");
                  //   phs.style.left = "0";
                  //   phs.style.right = "0";
@@ -106,9 +110,7 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
                  ////   phs.style.display = "block";
 
                    // phs.style.transform = `translate(${-87}%,${0}%)`;/// ass !!!
-                    for (var cif of contifra) {
-                        cif.firstChild.style.position = "relative";                        
-                    }
+                  
                 }
                 else {
                     // doc.style.transform = `translate(${-}%,${-yy}%)`; // x y
@@ -158,13 +160,13 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         //}
 
       //  phs.style.setProperty("--cp_ph-y", myvarcp);
-        contal.style.position = "absolute";
+       // contal.style.position = "absolute";
         for (var cif of contifra) {
             cif.firstChild.style.position = "absolute";
         }
-        phs.style.setProperty("--mult_ph-scale", myvarscale);
-         phs.style.setProperty("--max_size", maxs);
         phcont.style.height = "var(--cp_ph-y)";
+        phs.style.setProperty("--mult_ph-scale", myvarscale);
+        phs.style.setProperty("--max_size", maxs);       
         phs.style.transform = "";
         window.setTimeout(zin, 1000, true);
 
