@@ -700,7 +700,7 @@ body, html {
                             position: relative;
 
                             iframe { // legend
-                                width: calc(max(var(--photo-width),var(--max_size))/2 * .9);
+                                width: calc(max(var(--photo-width),0)/2 * .9);
                                 height: 2.5rem; // 2.5rem;
                                 background-color: red;
                                 opacity: .6;
@@ -788,6 +788,7 @@ body, html {
     @media screen and (max-width:619px) {
         #photos {
             width: 100%;
+           // --max_size: 0;
 
             > div:first-child {
                 height: fit-content;
@@ -799,6 +800,7 @@ body, html {
                             > div {
                                 iframe {
                                     position: relative;
+                                    width: 65%;
                                 }
                             }
                         }
