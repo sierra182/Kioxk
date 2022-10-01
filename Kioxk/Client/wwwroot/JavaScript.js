@@ -49,6 +49,7 @@ var maxs;
 var phs;
 var myvarscale;
 var contifra;
+var ifra;
 var myvarcp;
 var contmlt;
 var contal;
@@ -62,6 +63,7 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
     phs = document.getElementById("photos");
     phcont = phs.firstChild;
     contifra = document.getElementsByClassName("contIfraJs");
+    
     contmlt = document.getElementsByClassName("contPhMultJs");
     contal = document.getElementById("contPhAloneJs");
     car = document.getElementById(carre);
@@ -87,7 +89,8 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
                     phs.style.setProperty("--max_size", "0px");
                  
                     phcont.style.setProperty("height", "fit-content");
-                   
+
+                 //   ifra.style.position = "relative";
                     //phs.style.setProperty("--cp_mult-h", myvarcp * 2.6);
                  //   phcont.style.setProperty("height", phcont.clientHeight + 60 + "px");
                     //phs.style.setProperty("--max_size", ".8rem");
@@ -103,9 +106,9 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
                  ////   phs.style.display = "block";
 
                    // phs.style.transform = `translate(${-87}%,${0}%)`;/// ass !!!
-                    //  for (var cif of contifra) {
-                    //    cif.classList.add("scalePh");
-                    //}
+                    for (var cif of contifra) {
+                        cif.firstChild.style.position = "relative";                        
+                    }
                 }
                 else {
                     // doc.style.transform = `translate(${-}%,${-yy}%)`; // x y
@@ -156,6 +159,9 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
 
       //  phs.style.setProperty("--cp_ph-y", myvarcp);
         contal.style.position = "absolute";
+        for (var cif of contifra) {
+            cif.firstChild.style.position = "absolute";
+        }
         phs.style.setProperty("--mult_ph-scale", myvarscale);
          phs.style.setProperty("--max_size", maxs);
         phcont.style.height = "var(--cp_ph-y)";

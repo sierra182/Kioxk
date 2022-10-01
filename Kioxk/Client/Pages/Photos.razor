@@ -3,8 +3,8 @@
 @using System.Threading
 @inject HttpClient Http
 @inject IJSRuntime js;
-<div id="carreph" class="carre" onclick="scaler('photos','carreph','carre2ph','25','0','-25','25')">    
-    <div id="carre2ph" class="carre2"/>
+<div id="carreph" class="carre" onclick="scaler('photos','carreph','carre2ph','25','0','-25','25')">
+    <div id="carre2ph" class="carre2" />
 </div>
 
 <span>
@@ -14,23 +14,26 @@
 @{
     string p1 = $"{phm}%";
 }
-
-<div id="contPhAloneJs" style="--phmove:@p1; --qte_ph:@qtph">
-    @for (int i = 0; i < qtph; i++)
-    {
-        string s = $"photo/maison{i}.jpg";
-        string l = $"photo/legend/legend{i}.html";
-        <div class="contPhMultJs">
-            <img src="@s" />
-            <div class="contIfraJs">
-                <iframe src="@l" />
-            </div>            
-        </div>
-    }
+<div>
+    <div id="contPhAloneJs" style="--phmove:@p1; --qte_ph:@qtph">
+        @for (int i = 0; i < qtph; i++)
+        {
+            string s = $"photo/maison{i}.jpg";
+            string l = $"photo/legend/legend{i}.html";
+            <div class="contPhMultJs">
+                <img src="@s" />
+                <div class="contIfraJs">
+                    <iframe src="@l" />
+                </div>
+            </div>
+        }
+    </div>
 </div>
-@{ string t1 = $"{trb}%";
+
+@{
+    string t1 = $"{trb}%";
     string t2 = $"{trn}%";
- }
+}
 <div style="--triremplnext:@t1;--triremplback:@t2">
 
     <svg @onclick="OnBack"
@@ -52,16 +55,16 @@
     int qtph = 0;
     // List<string> enumed;
 
-    async Task QtePh() 
+    async Task QtePh()
     {
-        qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");      
+        qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");
         c.WriteLine("PHOTO QTEPH: ");
         c.WriteLine(qtph);
     }
 
     protected override async Task OnInitializedAsync()
     {
-        //  qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); 
+        //  qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");
         await QtePh();
         //Console.WriteLine("deb");
         //string path = "/";
@@ -125,12 +128,12 @@
         //srcJpg = enumed[curser];
 
         //  TriRempl();
-        AppJs();
+        // AppJs();
     }
 
     void AppJs()
     {
-        js.InvokeVoidAsync("res");
+        //   js.InvokeVoidAsync("res");
     }
 
     void TriRempl()                                                              // Remplissage Back Next.
