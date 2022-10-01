@@ -10,8 +10,6 @@ body, html {
     font-family: 'Twinkle Star', cursive;
     background-image: url("/photo/papierinp.jpg");
     font-size: max(.8rem,1.2vw);
-
- 
 }
 
 /*@media screen and (max-width:1000px) {
@@ -483,7 +481,7 @@ body, html {
         z-index: 3;
         transition: transform .7s;
         opacity: .8;
-        background-color: mediumvioletred;
+        //   background-color: mediumvioletred;
         @include ombre();
         flex-shrink: 0;
         // display:flex;
@@ -563,7 +561,7 @@ body, html {
         --photo-width: var(--child-width);
         --photo-height: calc(var(--main-height) * 1%);
         --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 );
-        --max_size: 32rem; // 32rem;//12rem;//32rem;
+        --max_size: 50rem; // 32rem;//12rem;//32rem;
         position: relative;
         /*   top:0;left:0;right:0;
          margin:auto;*/
@@ -572,18 +570,19 @@ body, html {
         display: flex; //block;
         left: 0;
         right: 0;
-        top:0;
+        top: 0;
         margin: auto;
-        background-color: green;
+        // min-width:0;
+        //  background-color: green;
         @include ombre();
         //    background-color: grey;
-        flex-shrink: 0;
+        //  flex-shrink: 0;
         //left:0;right:0;
         // justify-self:self-end;
-
+        //  flex-shrink:0;
 
         > div:first-child { //cont p
-            width: calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale));
+            width: 100%; //calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale));
             height: var(--cp_ph-y); // to auto
             //  padding-bottom: 2.5rem;
             position: relative;
@@ -605,10 +604,10 @@ body, html {
             backdrop-filter: blur(15px);
             transition: transform .7s;
             @include carres;
-            background-color: red;
+            //   background-color: red;
             z-index: 1;
             //  vertical-align: middle;
-            flex-shrink: 0;
+            //   flex-shrink: 0;
             //align-content:center;
             // display:inline-flex;
             //  line-height: var(--cp_ph-y); //100%;
@@ -632,7 +631,7 @@ body, html {
             }
 
             > div:nth-of-type(2) {
-                background-color: blueviolet;
+                //  background-color: blueviolet;
                 width: 100%;
                 height: 100%;
                 // margin:auto;
@@ -650,8 +649,8 @@ body, html {
                     --qte_ph: 0;
                     // --ph_scale-height: -50%;
                     // top: 50%;
-                   // top: 0;
-                   // bottom: 0;
+                    // top: 0;
+                    // bottom: 0;
                     margin: auto;
                     position: relative;
                     width: calc(100% * var(--qte_ph)); //100%; //calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
@@ -663,7 +662,7 @@ body, html {
                     display: flex;
                     // vertical-align:baseline;
                     // line-height:100%;
-                    background-color: yellow;
+                    //  background-color: yellow;
                     flex-shrink: 0;
                     // opacity:0.6;
                     > div { //cont img et cont ifrme - multy
@@ -671,7 +670,7 @@ body, html {
                         width: 50%; //100%; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                         height: fit-content; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                         // fit-content;
-                        background-color: darkmagenta;
+                        //   background-color: darkmagenta;
                         //transform: translate(-5px);
                         //   flex-shrink: 0;
 
@@ -695,20 +694,22 @@ body, html {
                         }
 
                         > div { //cont iframe contIfraJs
-                           // position: absolute;
+                            // position: absolute;
                             //  flex-shrink: 0;
-                            background-color:greenyellow;
-                            position:relative;
+                            //   background-color:greenyellow;
+                            position: relative;
+
                             iframe { // legend
                                 width: calc(max(var(--photo-width),var(--max_size))/2 * .9);
                                 height: 2.5rem; // 2.5rem;
-                                background-color: cornflowerblue;
+                                background-color: red;
+                                opacity: .6;
                                 //color:white !important;
                                 // border: solid .2rem red;
                                 border-radius: 10%;
                                 position: absolute;
                                 margin: auto;
-                                display:block;
+                                display: block;
                                 left: 0;
                                 right: 0;
                                 //   margin-right:1px;
@@ -718,7 +719,7 @@ body, html {
                                 //  right: 0;
                                 overflow-y: hidden;
                                 // font-size:15rem;
-                              //  flex-shrink: 0;
+                                //  flex-shrink: 0;
                             }
                         }
 
@@ -778,6 +779,29 @@ body, html {
                     #path2416 { // Remplissage
                         clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
                         transition: clip-path 1s;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:619px) {
+        #photos {
+            width: 100%;
+
+            > div:first-child {
+                height: fit-content;
+
+                > div:nth-of-type(2) {
+
+                    #contPhAloneJs {
+                        > div {
+                            > div {
+                                iframe {
+                                    position: relative;
+                                }
+                            }
+                        }
                     }
                 }
             }
