@@ -29,8 +29,8 @@ margin-right:1rem;
 
 }
  iframe:hover {
-                        width: 20rem;
-                        height: 20rem;
+                        width: max(8rem, 50vw);
+                        height: max(8rem, 50vw);
 //float:none;
 
                     }

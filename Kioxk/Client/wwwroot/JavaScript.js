@@ -17,7 +17,7 @@
 ////    //}
 ////}
 
-
+var togaf;
 function resizeIframe(obj) {
 
     let f = document.getElementById("myframe");
@@ -33,18 +33,35 @@ function resizeIframe(obj) {
   
     function aftertime() {
 
-
-        f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
-        void f.offsetWidth;
+        f.style.setProperty("transition", "none");
+      //  void f.offsetWidth;
+      //  f.style.height = 0;  f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
+      //  f.style.setProperty("transition", "height .5s");
+        //void f.offsetWidth;
         window.addEventListener('resize', () => {
             console.log("RESIZE");
-            f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px';
+            setTimeout(() => {
+                f.style.setProperty("transition", "none");
+                f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px';
+
+            }, 1000);
             //  g.style.height = 0; g.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
         });
-
-        console.log(f.id + "idee");
+      //  f.style.setProperty("transition", "height .5s");
+      //  void f.offsetWidth;
+       // console.log(f.id + "idee");
+      //  f.style.setProperty("transition", "none");
+      //  f.style.height = 0;
+        
+        if (togaf) {
+            f.style.setProperty("transition", "height .5s");
+            togaf = false;
+        } else {
+            togaf = true;
+        }   
+       
         f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
-
+    //   
     }
 }
 
