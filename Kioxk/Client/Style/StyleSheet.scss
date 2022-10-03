@@ -585,16 +585,16 @@ body, html {
     //border:solid 2px red;
     #pretext {
         position: relative;
-        width: max(var(--child-width),16rem);
+        width: max(var(--child-width),26rem);
         height: fit-content; //auto;//calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
         opacity: .8;
         //   background-color: mediumvioletred;
         @include ombre();
-        flex-shrink: 0;
+        //flex-shrink: 0;
         // display:flex;
-
+        min-width: 0;
 
         > div:first-child { //cont p
             //  background-color: blue;
@@ -630,8 +630,7 @@ body, html {
                 // transform: translate(-30%,-60%);
                 //  background-color: red;
                 margin-top: .5rem;
-
-         /*       > iframe:first-of-type { // map
+                /*       > iframe:first-of-type { // map
                     width: 9rem;
                     height: 9rem;
                     position: relative;
@@ -659,10 +658,12 @@ body, html {
                 }*/
 
                 iframe:last-of-type { // bienvenue
-                     width: 100%;
-                  //  display: none;
-                    border: none;
-               //     background-color: azure;
+                    width: 100%;
+                    //  display: none;
+                    
+                    border: none ;
+                    //overflow:visible;
+                    //     background-color: azure;
                     //   height:100vh;
                 }
             }
