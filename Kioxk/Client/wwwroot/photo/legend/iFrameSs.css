@@ -2,3 +2,32 @@
     color: white ;
     font-size: max(.8rem,2.6vw);
 }
+
+iframe {
+   width: 9rem;
+                    height: 9rem;
+                    position: relative;
+                    //  opacity:.6;
+                    // top:0;
+                    //bottom:2vw;
+                    margin-left: 1rem;
+                    margin-top: -1vw;
+                    //padding:1rem;
+                    //  transform: translate(-7%,-2%);
+                    //border-width: 1vw;
+                    //border-color: black;
+                    border-radius: 100%;
+                  //  z-index: 2;
+                    float:left;
+ shape-outside: margin-box;
+margin-right:1rem;
+                    // background-color: black;
+                    transition: width 1s, height 1s;
+                    filter: drop-shadow(3px 3px 3px black);
+
+
+}
+ iframe:hover {
+                        width: 20rem;
+                        height: 20rem;
+                    }

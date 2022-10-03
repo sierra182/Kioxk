@@ -610,30 +610,7 @@ body, html {
             //    vertical-align:middle;
             width: 100%;
 
-            > iframe { // map
-                width: 9rem;
-                height: 9rem;
-                position: relative;
-                //  opacity:.6;
-                // top:0;
-                //bottom:2vw;
-                margin-left: 1rem;
-                margin-top: -1vw;
-                //padding:1rem;
-                //  transform: translate(-7%,-2%);
-                //border-width: 1vw;
-                //border-color: black;
-                border-radius: 100%;
-                z-index: 2;
-                // background-color: black;
-                transition: width 1s, height 1s;
-                filter: drop-shadow(3px 3px 3px black);
 
-                &:hover {
-                    width: 20rem;
-                    height: 20rem;
-                }
-            }
 
             > div:first-of-type { // ardoise
                 background-color: rgba(0, 0, 0, .4);
@@ -654,10 +631,39 @@ body, html {
                 //  background-color: red;
                 margin-top: .5rem;
 
+         /*       > iframe:first-of-type { // map
+                    width: 9rem;
+                    height: 9rem;
+                    position: relative;
+                    //  opacity:.6;
+                    // top:0;
+                    //bottom:2vw;
+                    margin-left: 1rem;
+                    margin-top: -1vw;
+                    //padding:1rem;
+                    //  transform: translate(-7%,-2%);
+                    //border-width: 1vw;
+                    //border-color: black;
+                    border-radius: 100%;
+                    z-index: 2;
+                    float: left;
+                    // background-color: black;
+                    transition: width 1s, height 1s;
+                    filter: drop-shadow(3px 3px 3px black);
+                    shape-outside: margin-box;
 
-                iframe { // bienvenue
-                    width: 100%;
+                    &:hover {
+                        width: 20rem;
+                        height: 20rem;
+                    }
+                }*/
+
+                iframe:last-of-type { // bienvenue
+                     width: 100%;
+                  //  display: none;
                     border: none;
+               //     background-color: azure;
+                    //   height:100vh;
                 }
             }
         }
