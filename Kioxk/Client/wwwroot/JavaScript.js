@@ -21,8 +21,16 @@
 function resizeIframe(obj) {
 
     let f = document.getElementById("myframe");
-    // let g = f.parentElement;
-    setTimeout(aftertime, 1000);
+    f.contentDocument.getElementById("map").addEventListener('mouseenter', () => {
+        console.log("iframe enter");
+        setTimeout(aftertime, 1000);
+    });
+    f.contentDocument.getElementById("map").addEventListener('mouseleave', () => {
+        console.log('iframe leave');
+        setTimeout(aftertime, 1000);
+    })
+    setTimeout(aftertime, 500);
+  
     function aftertime() {
 
 

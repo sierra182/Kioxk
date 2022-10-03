@@ -1,13 +1,14 @@
 ﻿#seb {   
     color: white ;
     font-size: max(.8rem,2.6vw);
+//pointer-events:none;
 }
 
 iframe {
    width: max(4rem,26vw);
                    height: max(4rem,26vw);
                     position: relative;
-                    //  opacity:.6;
+                    //
                     // top:0;
                     //bottom:2vw;
                     margin-left: 1rem;
@@ -30,6 +31,6 @@ margin-right:1rem;
  iframe:hover {
                         width: 20rem;
                         height: 20rem;
-float:none;
+//float:none;
 
                     }

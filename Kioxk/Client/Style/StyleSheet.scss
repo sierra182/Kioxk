@@ -589,7 +589,7 @@ body, html {
         height: fit-content; //auto;//calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
-        opacity: .8;
+      //  opacity: .8;
         //   background-color: mediumvioletred;
         @include ombre();
         //flex-shrink: 0;
@@ -609,11 +609,11 @@ body, html {
             height: fit-content;
             //    vertical-align:middle;
             width: 100%;
-
+            
 
 
             > div:first-of-type { // ardoise
-                background-color: rgba(0, 0, 0, .4);
+                background-color: rgba(0, 0, 0,.6);
                 filter: drop-shadow(2px 2px 1.3px black);
                 //   padding: 1rem;
                 //  position: absolute;
