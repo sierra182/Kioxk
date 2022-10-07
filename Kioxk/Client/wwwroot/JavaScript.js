@@ -19,7 +19,21 @@
 
 var togaf;
 function resizeIframe(obj) {
+    window.addEventListener("resize", () => {
+        console.log("deb addeventlistener");
+        var contifr = document.getElementsByClassName("contIfraJs");
 
+        for (var cif of contifr) {
+          //  cif.firstChild.style.setProperty("position", "initial");
+       //    void cif.firstChild.offsetWidth;
+            //  setTimeout(() => {
+            console.log(getComputedStyle(cif.firstChild).getPropertyValue("position"));
+
+         //   }, 100);
+
+        }
+        console.log("fin addeventlistener");
+    });
     let f = document.getElementById("myframe");
     f.contentDocument.getElementById("map").addEventListener('mouseenter', () => {
         console.log("iframe enter");
@@ -102,21 +116,22 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
             console.log("RES");
             if (togScal) { // a tej
 
-                if (window.innerWidth > 100) {
+               
 
                     myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height");
                     myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
                     myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
                     myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
                     maxs = getComputedStyle(phs).getPropertyValue("--max_size");
-                  //  contal.style.position = "relative";
+                 //   contal.style.position = "relative";
                     phs.style.position = "absolute";
                     phs.style.setProperty("--mult_ph-scale", myvarscale * 3.5);
                     phs.style.setProperty("--max_size", "0px");           
                     
                     phcont.style.setProperty("height", "fit-content");
 
-                    for (var cif of contifra) {
+                for (var cif of contifra) {
+                  
                         cif.firstChild.style.position = "relative";
                     }
                  //   ifra.style.position = "relative";
@@ -136,23 +151,11 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
 
                    // phs.style.transform = `translate(${-87}%,${0}%)`;/// ass !!!
                   
-                }
-                else {
-                    // doc.style.transform = `translate(${-}%,${-yy}%)`; // x y
-
-                    // obtenir une variable par ailleurs
-                    // let myvar = getComputedStyle(doc).getPropertyValue("--photo-width");
-
-                    // définir une variable dans un style en ligne
-
-                    // doc.style.zoom = "100%";
-                    //doc.style.innerWidth = "100%";
-                    //doc.style.innerHeight = "100%";
-                }
+              
             }
         }
         res();
-        //window.addEventListener("resize", () => { res(); });
+       
 
         phs.style.borderRadius = ".1%";
         phs.style.zIndex = "3";
@@ -170,7 +173,7 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         togScal = false;
 
         phs.style.borderRadius = "5%";
-        phs.style.position = "relative"; //...
+        phs.style.position = "relative"; 
 
 
         car.style.borderRadius = "0 50% 0 0";
@@ -192,7 +195,7 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         phcont.style.height = "var(--cp_ph-y)";
         phs.style.setProperty("--mult_ph-scale", myvarscale);
         phs.style.setProperty("--max_size", maxs);       
-        phs.style.transform = "";
+       // phs.style.transform = "";
         window.setTimeout(zin, 1000, true);
 
         function zin() {

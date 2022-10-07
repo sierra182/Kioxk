@@ -163,37 +163,6 @@ body, html {
     }
 }
 
-@mixin carres {
-    .carre {
-        position: absolute;
-        top: .25rem;
-        right: .25rem;
-        width: 2rem;
-        height: 2rem;
-        border: .25rem solid white;
-        z-index: 2;
-        border-radius: 0 50% 0 0;
-        transition: .1s all;
-
-        &:active {
-            transform: scale(.8);
-            background-color: mediumspringgreen;
-        }
-
-        .carre2 {
-            border-radius: inherit;
-            transition: 1s all;
-            border: .25rem solid red;
-            opacity: .5;
-            position: inherit;
-            top: 0;
-            right: 0;
-            width: inherit;
-            height: inherit;
-        }
-    }
-}
-
 @mixin ombre ($add-shadow: null) {
     filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5)) $add-shadow;
 }
@@ -589,7 +558,7 @@ body, html {
         height: fit-content; //auto;//calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
-      //  opacity: .8;
+        //  opacity: .8;
         //   background-color: mediumvioletred;
         @include ombre();
         //flex-shrink: 0;
@@ -609,7 +578,7 @@ body, html {
             height: fit-content;
             //    vertical-align:middle;
             width: 100%;
-            
+
 
 
             > div:first-of-type { // ardoise
@@ -660,9 +629,8 @@ body, html {
                 iframe:last-of-type { // bienvenue
                     width: 100%;
                     //  display: none;
-                  //  transition: height .5s;
-                    border: none ;
-                    
+                    //  transition: height .5s;
+                    border: none;
                     //overflow:visible;
                     //     background-color: azure;
                     //   height:100vh;
@@ -697,7 +665,8 @@ body, html {
         //left:0;right:0;
         // justify-self:self-end;
         //  flex-shrink:0;
-        user-select:none;
+        user-select: none;
+
         > div:first-child { //cont p
             width: 100%; //calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale));
             height: var(--cp_ph-y); // to auto
@@ -720,7 +689,7 @@ body, html {
             -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
             backdrop-filter: blur(15px);
             transition: transform .7s;
-            @include carres;
+            //  @include carres;
             //   background-color: red;
             z-index: 1;
             //  vertical-align: middle;
@@ -729,6 +698,36 @@ body, html {
             // display:inline-flex;
             //  line-height: var(--cp_ph-y); //100%;
             // padding: 20vw 0;
+
+            .carre {
+                position: absolute;
+                top: .25rem;
+                right: .25rem;
+                width: 2rem;
+                height: 2rem;
+                border: .25rem solid white;
+                z-index: 2;
+                border-radius: 0 50% 0 0;
+                transition: .1s all;
+
+                &:active {
+                    transform: scale(.8);
+                    background-color: mediumspringgreen;
+                }
+
+                .carre2 {
+                    border-radius: inherit;
+                    transition: 1s all;
+                    border: .25rem solid red;
+                    opacity: .5;
+                    position: inherit;
+                    top: 0;
+                    right: 0;
+                    width: inherit;
+                    height: inherit;
+                }
+            }
+
             span:nth-of-type(1) { // nos photos txt
                 //@include centrage_hor;
                 position: absolute;
@@ -759,7 +758,7 @@ body, html {
                 display: flex;
                 //  flex-wrap: wrap;
                 align-content: center;
-             //   will-change:contents;
+                //   will-change:contents;
                 /*     display:flex;             
                align-content:center;*/
                 #contPhAloneJs { //container images + leg - alone proute
@@ -776,8 +775,7 @@ body, html {
                     height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                     // display: flex;
                     transition: all linear .2s;
-                 
-                  // left:var(--phmove);
+                    // left:var(--phmove);
                     transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px )); //(-50% to 0%
                     align-items: center;
                     display: flex;
@@ -791,7 +789,7 @@ body, html {
                         width: 100%; //100%; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                         height: fit-content; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                         // fit-content;
-                         //  background-color: darkmagenta;
+                        //  background-color: darkmagenta;
                         //transform: translate(-5px);
                         //   flex-shrink: 0;
 
@@ -809,20 +807,23 @@ body, html {
                             //   min-height: 10rem;
                             position: relative;
                             // opacity:.6;
-                          //    visibility:hidden;
+                            //    visibility:hidden;
                             //  margin-left:-1px;
                             //  flex-shrink: 0;
                         }
+
+                       // overflow-y: hidden;
 
                         > div { //cont iframe contIfraJs
                             // position: absolute;
                             //  flex-shrink: 0;
                             //   background-color:greenyellow;
                             position: relative;
+                        //    overflow-y: hidden;
 
                             iframe { // legend
                                 width: calc(max(var(--photo-width),0)/2 * .9);
-                                height: 2.5rem; // 2.5rem;
+                                height: 3.5rem; // 2.5rem;
                                 background-color: red;
                                 opacity: .6;
                                 //color:white !important;
@@ -833,12 +834,13 @@ body, html {
                                 display: block;
                                 left: 0;
                                 right: 0;
+                               // vertical-align:center;
                                 //   margin-right:1px;
                                 //   transform:translate(-1px);
                                 /*     left: 50%;
                             transform: translate(-50%);*/
                                 //  right: 0;
-                                overflow-y: hidden;
+                                
                                 // font-size:15rem;
                                 //  flex-shrink: 0;
                             }
@@ -912,15 +914,20 @@ body, html {
             // --max_size: 0;
 
             > div:first-child {
-                height: fit-content;
+                height: fit-content !important;
+
+                .carre {
+                    display: none;
+                }
 
                 > div:nth-of-type(2) {
 
                     #contPhAloneJs {
                         > div {
                             > div {
+
                                 iframe {
-                                    position: relative;
+                                    position: relative !important;
                                     width: 65%;
                                 }
                             }
