@@ -759,10 +759,12 @@ body, html {
                 display: flex;
                 //  flex-wrap: wrap;
                 align-content: center;
+             //   will-change:contents;
                 /*     display:flex;             
                align-content:center;*/
                 #contPhAloneJs { //container images + leg - alone proute
-                    --phmove: 0%;
+                    --phpc: 0;
+                    --phpx: 0;
                     --qte_ph: 0;
                     // --ph_scale-height: -50%;
                     // top: 50%;
@@ -773,8 +775,10 @@ body, html {
                     width: calc(100% * var(--qte_ph)); //100%; //calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale)); //calc(var(--photo-width) * 4);
                     height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                     // display: flex;
-                    transition: transform linear .5s;
-                    transform: translate(var(--phmove)); //(-50% to 0%
+                    transition: all linear .2s;
+                 
+                  // left:var(--phmove);
+                    transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px )); //(-50% to 0%
                     align-items: center;
                     display: flex;
                     // vertical-align:baseline;
@@ -784,10 +788,10 @@ body, html {
                     // opacity:0.6;
                     > div { //cont img et cont ifrme - multy
 
-                        width: 50%; //100%; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
+                        width: 100%; //100%; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                         height: fit-content; // calc(max(var(--photo-width),var(--max_size)) /2 * var(--mult_ph-scale));
                         // fit-content;
-                        //   background-color: darkmagenta;
+                         //  background-color: darkmagenta;
                         //transform: translate(-5px);
                         //   flex-shrink: 0;
 
@@ -805,7 +809,7 @@ body, html {
                             //   min-height: 10rem;
                             position: relative;
                             // opacity:.6;
-                            //  visibility:hidden;
+                          //    visibility:hidden;
                             //  margin-left:-1px;
                             //  flex-shrink: 0;
                         }
