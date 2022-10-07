@@ -96,23 +96,27 @@
     double diff;
     double phpc;
     double phpx;
-    //bool sw_limit;
+    bool sw_pass;
     void OnMove(MouseEventArgs e)
     {
         //c.WriteLine("OnMove deb + primx + phsw + diff + newx : " + prim_x + " " + phsw + " " + diff + " " + new_x);
         if (e.Buttons == 1)
         {
-            new_x = e.ScreenX ;
-            diff =  new_x - prim_x;
-            phpx += diff;
-            prim_x = new_x;
-
+            if (!sw_pass)
+            {
+                new_x = e.ScreenX;
+                diff = new_x - prim_x;
+                phpx += diff;
+                prim_x = new_x;
+            }
             if(phpx > 150)
             {
+                sw_pass = true;
                 OnBack();
             }
             else if ( phpx < -150)
             {
+                sw_pass = true;
                 OnNext();
             }
             //if (phsw > 100)
@@ -149,7 +153,7 @@
     int trb = 0;
     int trn = 0;
     int phm = 0;
-    void OnNext()
+    async Task OnNext()
     {    
         if (srcJpg < qtph - 1)
         {
@@ -158,11 +162,12 @@
             phpc -= (100 / qtph);
             phpx = 0;
         }
-
+        await Task.Delay(500);
+        sw_pass = false;
     }
 
-    void OnBack()
-    {                                                                           //
+   async Task OnBack()
+    {                                                                           
         if (srcJpg > 0)
         {
             srcJpg--;
@@ -170,7 +175,8 @@
             phpc += (100 / qtph);
             phpx = 0;
         }
-
+        await Task.Delay(500);
+        sw_pass = false;
     }
 
 
