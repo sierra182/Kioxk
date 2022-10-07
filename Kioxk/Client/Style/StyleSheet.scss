@@ -697,7 +697,7 @@ body, html {
         //left:0;right:0;
         // justify-self:self-end;
         //  flex-shrink:0;
-
+        user-select:none;
         > div:first-child { //cont p
             width: 100%; //calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale));
             height: var(--cp_ph-y); // to auto

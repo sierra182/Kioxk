@@ -25,7 +25,9 @@
 }*@
 
 <div>
-    <div id="contPhAloneJs" draggable="false" @onmousedown="(s)=>OnDown(s)" @onmousemove="(s)=>OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp" style="--phpc:@phpc; --phpx:@phpx; --qte_ph:@qtph">
+    <div id="contPhAloneJs" draggable="false" style="--phpc:@phpc; --phpx:@phpx; --qte_ph:@qtph"
+         @ontouchstart="(s)=>OnTouchDown(s)" @ontouchmove="(s)=>OnTouchMove(s)" @ontouchend="OnTouchUp"
+         @onmousedown="(s)=>OnDown(s)" @onmousemove="(s)=>OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp">
         @for (int i = 0; i < qtph; i++)
         {
             string s = $"photo/maison{i}.jpg";
@@ -61,14 +63,14 @@
 
 @code {
 
-    int srcJpg = 0;
-    int qtph = 0;
-    async Task QtePh()
-    {
-        qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");
-        c.WriteLine("PHOTO QTEPH: ");
-        c.WriteLine(qtph);
-    }
+        int srcJpg = 0;
+        int qtph = 0;
+        async Task QtePh()
+        {
+            qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");
+            c.WriteLine("PHOTO QTEPH: ");
+            c.WriteLine(qtph);
+        }
 
     protected override async Task OnInitializedAsync()
     {
@@ -77,20 +79,13 @@
     }
 
     double prim_x;
-    void OnDown(MouseEventArgs e)
-    {
-        c.WriteLine("OnDown deb : primx : " + prim_x);
-        prim_x = e.ScreenX;
-        c.WriteLine("OnDown fin : primx : " + prim_x);
-    }
+    void OnDown(MouseEventArgs e)=> prim_x = e.ScreenX;  
 
-    void OnUp()
-    {
-        //   c.WriteLine("OnUp deb : primx : " + prim_x + " phsw: " + phsw);
-        //  prim_x = 0;
-        phpx = 0;
-        //   c.WriteLine("OnUp fin + primx + phsw: " + prim_x + " " + phsw);
-    }
+    void OnTouchDown(TouchEventArgs e) => prim_x = e.Touches.First().ScreenX;
+
+    void OnUp() => phpx = 0; 
+
+    void OnTouchUp(TouchEventArgs e) => phpx = 0;
 
     double new_x;
     double diff;
@@ -109,15 +104,15 @@
                 phpx += diff;
                 prim_x = new_x;
             }
-            if(phpx > 150)
+            if (phpx > 150)
             {
                 sw_pass = true;
-                OnBack();
+                _ = OnBack();
             }
-            else if ( phpx < -150)
+            else if (phpx < -150)
             {
                 sw_pass = true;
-                OnNext();
+                _ = OnNext();
             }
             //if (phsw > 100)
             //{
@@ -125,7 +120,7 @@
             //    OnBack();
             //    c.WriteLine("STOP");
             //}
-            // if (phsw < -280) 
+            // if (phsw < -280)
             //{
             //    sw_limit = true;
             //    OnNext();
@@ -140,44 +135,57 @@
 
     }
 
-    void OnNextSwipe() 
+    void OnTouchMove(TouchEventArgs e)
     {
-
-    }
-
-    void OnBackSwipe()
-    {
-
-    }
-
-    int trb = 0;
-    int trn = 0;
-    int phm = 0;
-    async Task OnNext()
-    {    
-        if (srcJpg < qtph - 1)
+        if (!sw_pass)
         {
-            srcJpg++;
-            trn += (100 / qtph);
-            phpc -= (100 / qtph);
-            phpx = 0;
+            new_x = e.Touches.First().ScreenX;
+            diff = new_x - prim_x;
+            phpx += diff;
+            prim_x = new_x;
         }
-        await Task.Delay(500);
-        sw_pass = false;
-    }
-
-   async Task OnBack()
-    {                                                                           
-        if (srcJpg > 0)
+        if (phpx > 50)
         {
-            srcJpg--;
-            trn -= (100 / qtph);
-            phpc += (100 / qtph);
-            phpx = 0;
+            sw_pass = true;
+            _ = OnBack();
         }
-        await Task.Delay(500);
-        sw_pass = false;
+        else if (phpx < -50)
+        {
+            sw_pass = true;
+            _ = OnNext();
+        }
     }
 
+   
 
-}
+        int trb = 0;
+        int trn = 0;
+        int phm = 0;
+        async Task OnNext()
+        {
+            if (srcJpg < qtph - 1)
+            {
+                srcJpg++;
+                trn += (100 / qtph);
+                phpc -= (100 / qtph);
+                phpx = 0;
+            }
+            await Task.Delay(300);
+            sw_pass = false;
+        }
+
+        async Task OnBack()
+        {
+            if (srcJpg > 0)
+            {
+                srcJpg--;
+                trn -= (100 / qtph);
+                phpc += (100 / qtph);
+                phpx = 0;
+            }
+            await Task.Delay(300);
+            sw_pass = false;
+        }
+
+
+    }
