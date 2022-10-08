@@ -1694,11 +1694,24 @@ body, html {
                 height: 100%;
                 left: 50%;
 
+                &::-webkit-scrollbar {
+                    background-color: whitesmoke;
+                    border-radius: 8px;
+                    //width:100%;
+                    // position:relative;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: black;
+                    border-radius: 8px;
+                    //  width: 8px;
+                }
+
                 @keyframes transpaye {
                     from {
                         // height: 0;
                         width: 0;
-                       // left: 0%;
+                        // left: 0%;
                     }
 
                     to {
@@ -1782,12 +1795,13 @@ body, html {
                     animation: transpaye-y 2s forwards;
                     // top:100%;
                     width: 100%;
-                    left:0;
+                    left: 0;
+
                     @keyframes transpaye-y {
                         from {
                             height: 0;
                             //  width: 0;
-                         //   left: 0%;
+                            //   left: 0%;
                             top: 100%;
                         }
 
