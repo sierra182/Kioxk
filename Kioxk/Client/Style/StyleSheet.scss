@@ -172,8 +172,8 @@ body, html {
     // top: -5vh;
     //  left: -2.5vw;
     //    @include ombre(drop-shadow(2px 2px 2px rgba(0,0,0,.5)));
-    // width:100%;
-    // background-color: goldenrod;
+     width:100%;
+   //  background-color: goldenrod;
 
 
     > div:first-of-type { //h1
@@ -224,7 +224,7 @@ body, html {
     #contact {
         width: 100%;
         height: 100%;
-        //     background-color: orange;
+          //   background-color: orange;
         //  display: contents;
 
         > div:first-child {
@@ -232,7 +232,7 @@ body, html {
             // transform: translate(95%,40%);
             width: fit-content; //30rem; // fit-content;//30rem; // fit-content;
             height: fit-content; //30rem; // fit-content;
-            // background-color: lightgreen;
+         //    background-color: lightgreen;
             // display: flex;
             position: relative; // relative;
             margin: auto;
@@ -493,7 +493,7 @@ body, html {
     background: linear-gradient(to right, #605C3C, #3C3B3F);
     // background-color: violet;
     height: max(3rem,6vw);
-    width: 100vw;
+    width: 100%;
     text-align: center;
     /* padding-top: 0;
     padding-bottom: 0;*/
@@ -515,7 +515,7 @@ body, html {
         right: 0;
         left: 0;
         margin: auto;
-        // background-color: grey;
+      //   background-color: grey;
         height: fit-content;
         width: fit-content;
         display: block;
@@ -554,16 +554,16 @@ body, html {
     //border:solid 2px red;
     #pretext {
         position: relative;
-        width: max(var(--child-width),26rem);
+        width: max(calc(var(--child-width) * 1),26rem);
         height: fit-content; //auto;//calc(var(--main-height) * 1% );
         z-index: 3;
         transition: transform .7s;
         //  opacity: .8;
         //   background-color: mediumvioletred;
         @include ombre();
-        //flex-shrink: 0;
+        // flex-shrink: 0;
         // display:flex;
-        min-width: 0;
+        //   min-width: 0;
 
         > div:first-child { //cont p
             //  background-color: blue;
@@ -588,7 +588,7 @@ body, html {
                 //  position: absolute;
                 /* top: 50%;
                 left: 50%;*/
-                width: 90%;
+                width: 95%;
                 // position: absolute;
                 /* top:0;
                 bottom:0;*/
@@ -811,15 +811,14 @@ body, html {
                             //  margin-left:-1px;
                             //  flex-shrink: 0;
                         }
-
-                       // overflow-y: hidden;
+                        // overflow-y: hidden;
 
                         > div { //cont iframe contIfraJs
                             // position: absolute;
                             //  flex-shrink: 0;
                             //   background-color:greenyellow;
                             position: relative;
-                        //    overflow-y: hidden;
+                            //    overflow-y: hidden;
 
                             iframe { // legend
                                 width: calc(max(var(--photo-width),0)/2 * .9);
@@ -834,13 +833,12 @@ body, html {
                                 display: block;
                                 left: 0;
                                 right: 0;
-                               // vertical-align:center;
+                                // vertical-align:center;
                                 //   margin-right:1px;
                                 //   transform:translate(-1px);
                                 /*     left: 50%;
                             transform: translate(-50%);*/
                                 //  right: 0;
-                                
                                 // font-size:15rem;
                                 //  flex-shrink: 0;
                             }
@@ -910,7 +908,7 @@ body, html {
 
     @media screen and (max-width:619px) {
         #photos {
-            width: 100%;
+            width: 96%;
             // --max_size: 0;
 
             > div:first-child {
@@ -939,14 +937,12 @@ body, html {
     }
 
     #hlp {
-        width: max(32vw,21rem);
+        width: max(32vw,21rem); //21
         height: auto;
         //  background-color: darkslategrey;
-        flex-shrink: 0;
+        //   flex-shrink: 0;
 
         > div:first-child { // cont p
-
-
 
             > div:first-child { //pannleg
 
@@ -963,12 +959,14 @@ body, html {
                 > div { // Item
                     display: flex;
                     // background-color: green;
+                    border: solid 1px orange;
 
                     > div { // elements comp cont
                         width: max(3vw,2rem);
                         height: max(3vw,2rem);
                         background-color: blue;
-
+                        flex-shrink: 0;
+                        margin: auto 0;
 
                         div { // in element
                             /* width: fit-content;
@@ -997,13 +995,14 @@ body, html {
                         }
                     }
 
+
                     > span {
-                        font-size: 1rem;
+                        font-size: .9rem;
                         //  display: inline;
                         position: relative;
                         //    left:1rem;
                         margin: auto 0;
-                        // margin-left: 1rem;
+                        margin-left: .5rem;
                     }
 
 
@@ -1012,6 +1011,8 @@ body, html {
                         width: max(3vw,2rem);
                         height: max(3vw,2rem);
                         filter: drop-shadow(2px 2px 1.3px black);
+                        flex-shrink: 0;
+                        margin: auto 0;
                     }
                     // background-color: red;
                     /* > div { // Element container
@@ -1051,7 +1052,8 @@ body, html {
         //  outline: solid red 2px;
         //  border:solid 2px;
         // display: flow-root;
-        flex-shrink: 0;
+        //   flex-shrink: 0;
+        //   background-color: blue;
 
         > div:first-of-type { // cont paylib
             float: left;
@@ -1166,16 +1168,16 @@ body, html {
     }
 
     #agenda {
-        --calendar-width: max(calc(var(--child-width) / 4 * 3),18rem);
+        --calendar-width: max(calc(var(--child-width) / 4 * 2.5),23rem);
         position: relative;
         width: max(var(--calendar-width),16rem);
         height: fit-content; //calc(var(--child-width) / 4 * 3);
         // left: 3vw;
         z-index: 2;
         transition: transform .7s;
-        // background-color: darkgoldenrod;
+        //  background-color: darkgoldenrod;
         @include ombre();
-        flex-shrink: 0;
+        // flex-shrink: 0;
 
         > div:first-child { //cont p
             position: relative; // abs
@@ -1237,7 +1239,7 @@ body, html {
                     div {
                         display: inline-block;
                         text-align: center;
-                        background-color: red;
+                        // background-color: red;
                         // transform: translate(-50%,0%);
 
                         span {
@@ -1245,7 +1247,7 @@ body, html {
                             padding: 0 1rem;
                             font-size: 1rem; // .8rem; //calc(.8vh + .8vw);
                             line-height: 1; // .8rem; //calc(.8vh + .8vw);
-                            background-color: orange;
+                            //   background-color: orange;
                         }
                     }
                 }
@@ -1600,15 +1602,19 @@ body, html {
                     background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
                     overflow-y: auto;
                     overflow-x: visible;
-                    /*   &::-webkit-scrollbar {
-                        background-color: blue;
+
+                    &::-webkit-scrollbar {
+                        background-color: whitesmoke;
+                        border-radius: 8px;
+                        //width:100%;
+                        // position:relative;
                     }
 
                     &::-webkit-scrollbar-thumb {
-                        background: red;
+                        background: black;
                         border-radius: 8px;
-                        width: 8px;
-                    }*/
+                        //  width: 8px;
+                    }
                     /*  ::-webkit-scrollbar-track {
                         background-color: red;
                         width: 16px;
@@ -1685,19 +1691,20 @@ body, html {
                 // left: 0;
                 // transition: left 4s;
                 animation: transpaye 2s forwards;
+                height: 100%;
+                left: 50%;
 
                 @keyframes transpaye {
                     from {
-                        height: 0;
+                        // height: 0;
                         width: 0;
-                        left: 0%;
+                       // left: 0%;
                     }
 
                     to {
                         width: 50%; //100%; //51%;
-                        left: 50%;
                         // top: 0;
-                        height: 100%; //26rem; //100%; //26rem;
+                        //    height: 100%; //26rem; //100%; //26rem;
                     }
                 }
 
@@ -1759,7 +1766,7 @@ body, html {
     @media screen and (max-width:500px) {
         #reserv {
             > div:first-child { // cont p
-                width: 100%;
+                width: 95%;
                 height: 100%;
 
                 #form {
@@ -1774,16 +1781,18 @@ body, html {
                 > div:nth-child(2) { //cont recap + paie contscrooljs
                     animation: transpaye-y 2s forwards;
                     // top:100%;
+                    width: 100%;
+                    left:0;
                     @keyframes transpaye-y {
                         from {
                             height: 0;
-                            width: 0;
-                            left: 0%;
+                            //  width: 0;
+                         //   left: 0%;
                             top: 100%;
                         }
 
                         to {
-                            width: 100%; //51%;
+                            //51%;
                             // left:50%;
                             top: 0;
                             height: 100%; //26rem;
