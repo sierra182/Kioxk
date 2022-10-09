@@ -775,7 +775,7 @@ body, html {
                     height: fit-content; //calc(var(--photo-height)/2 * var(--mult_ph-scale)); // to
                     // display: flex;
                     transition: all linear .2s;
-                    // left:var(--phmove);
+                //    left:var(--phpx);
                     transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px )); //(-50% to 0%
                     align-items: center;
                     display: flex;
@@ -861,12 +861,12 @@ body, html {
                 --triremplback: 0%;
                 --triremplnext: 0%;
                 width: 100%;
-                height: 10px;
+               // height: 10px;
                 @include centrage_hor;
                 @include centrage_ver;
                 position: absolute;
                 transform: translate(-50%,-50%);
-                //background-color: orange;
+               background-color: orange;
 
                 #mytriback { // Triangle Back
                     position: absolute;

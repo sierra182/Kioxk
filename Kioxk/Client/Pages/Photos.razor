@@ -9,7 +9,7 @@
 </div>
 
 <span>
-    Nos Photos
+    Nos Photos   
 </span>
 
 @*@{
@@ -26,8 +26,8 @@
 
 <div>
     <div id="contPhAloneJs" draggable="false" style="--phpc:@phpc; --phpx:@phpx; --qte_ph:@qtph"
-         @ontouchstart="(s)=>OnTouchDown(s)" @ontouchmove="(s)=>OnTouchMove(s)" @ontouchend="OnTouchUp"
-         @onmousedown="(s)=>OnDown(s)" @onmousemove="(s)=>OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp">
+         @ontouchstart="(s)=>OnTouchDown(s)" @ontouchmove="(s)=>  OnTouchMove(s)" @ontouchend="OnTouchUp"
+         @onmousedown="(s)=>OnDown(s)" @onmousemove="(s)=>OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp"> 
         @for (int i = 0; i < qtph; i++)
         {
             string s = $"photo/maison{i}.jpg";
@@ -62,7 +62,6 @@
 </div>
 
 @code {
-
     int srcJpg = 0;
     int qtph = 0;
     async Task QtePh()
@@ -80,11 +79,11 @@
 
     double prim_x;
 
-    void OnDown(MouseEventArgs e) => prim_x = e.ScreenX;
+    void OnDown(MouseEventArgs e) =>  prim_x = e.ScreenX;
 
-    void OnTouchDown(TouchEventArgs e) => prim_x = e.Touches.First().ScreenX;
+    void OnTouchDown(TouchEventArgs e) =>  prim_x = Math.Round(e.Touches.First().ScreenX);
 
-    void OnUp() => phpx = 0;
+    void OnUp() =>  phpx = 0;
 
     void OnTouchUp(TouchEventArgs e) => phpx = 0;
 
@@ -108,7 +107,7 @@
             if (phpx > 150)
             {
                 sw_pass = true;
-                _ = OnBack();
+                 _ = OnBack();
             }
             else if (phpx < -150)
             {
@@ -120,22 +119,23 @@
 
     void OnTouchMove(TouchEventArgs e)
     {
-        if (!sw_pass)
-        {
-            new_x = e.Touches.First().ScreenX;
+        if (true)//!sw_pass)
+        { 
+            new_x = Math.Round(e.Touches.First().ScreenX);
             diff = new_x - prim_x;
             phpx += diff;
             prim_x = new_x;
         }
-        if (phpx > 50)
+      //  js.InvokeVoidAsync("alert", "MOUVE");
+        if (phpx > 100)
         {
             sw_pass = true;
             _ = OnBack();
         }
-        else if (phpx < -50)
+        else if (phpx < -100)
         {
             sw_pass = true;
-            _ = OnNext();
+             _ = OnNext();
         }
     }
 
@@ -157,7 +157,7 @@
         sw_pass = false;
     }
 
-    async Task OnBack()
+   async Task OnBack()
     {
         if (srcJpg > 0)
         {
