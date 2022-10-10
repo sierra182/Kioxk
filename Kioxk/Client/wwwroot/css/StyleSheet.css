@@ -9,141 +9,10 @@ body, html {
   @import url("https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap");
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
   font-family: "Twinkle Star", cursive;
-  background-image: url("/photo/papierinp.jpg");
   font-size: max(0.8rem, 1.2vw);
+  background-image: url("/photo/papierinp.jpg");
 }
 
-/*@media screen and (max-width:1000px) {
-    :root {
-        --maincontchild-width-percent: 50;
-
-        #maincont {
-            #pretext {
-                height: auto;
-            }
-
-            #agenda {
-                align-self: flex-start;
-                margin-top: 3.2rem;
-
-                #calendar {
-                    position: relative;
-                    transform: translate(-50%,0);
-
-                    > #panneau {                      
-
-                        > div { // Item
-
-                            span { // jours Int
-                                font-size: 2.4vw;
-                            }
-
-                            > span { // jours Sem
-                                font-size: 2.4vw;
-                            }
-                        }
-                    }
-                }                
-
-                > div:nth-child(2) {
-                    position: relative;
-                    transform: translate(-50%,0);
-                }
-            }
-        }
-    }
-}
-
-@media screen and (max-height:400px) {
-    :root {
-        --main-height: 100%;
-    }
-}
-
-@media screen and (max-width:500px) {
-    :root {
-        --maincontchild-width-percent: 100;
-        --main-height: auto;
-
-        #maincont {
-            #pretext {
-                //  --main-height: 100%;
-            }
-
-            #photos {
-                //background-color: yellow;
-
-                span {
-                    //   position: relative;
-                }
-
-                > div:first-of-type {
-                    //  background-color: palevioletred;                  
-                    top: 0;
-                    left: 0;
-                    margin-top: 10%;
-
-                    > div {
-                        img {
-
-                        }
-
-                        div {
-                            iframe {
-                                position: relative;
-                                bottom: 0;
-                            }
-                        }
-                    }
-                }
-            }
-
-            #agenda {
-                margin-top: 3.2rem;
-                background-color: aqua;             
-                --calendar-width: calc(var(--child-width)/100 * 90);
-
-                #calendar {
-                    transform: translate(-50%,0);
-
-                    > :first-child {
-                        div {
-                            span {
-                                font-size: 1rem;                               
-                            }
-                        }
-                    }
-
-                    > #panneau {                      
-
-                        > div { // Item                           
-
-                            span { // jours Int
-                                font-size: 4.8vw;
-                            }
-
-                            > span { // jours Sem
-                                font-size: 4.8vw;
-                            }
-                        }
-                    }
-                }
-
-                #periodes {
-                    position: relative;
-                }               
-            }
-
-            #reserv {
-                #form {
-                    > :first-child { // EditForm
-                        margin-top: 1rem;                        
-                    }
-                }
-            }
-        }
-    }
-}*/
 #header {
   position: relative;
   width: 100%;
@@ -152,117 +21,84 @@ body, html {
   position: relative;
   top: 0;
   left: 0;
+  width: 100%;
+  height: max(3rem, 6vw);
   background: #3C3B3F;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #605C3C, #3C3B3F);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  width: 100%;
-  height: max(3rem, 6vw);
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
   text-shadow: 6px 6px 2px rgba(0, 0, 0, 0.5);
 }
 #header > div:first-of-type h1 {
-  font-size: max(1rem, 2.5vw);
-  font-weight: 800;
-  color: white;
-  font-family: "Montserrat", sans-serif;
   display: block;
-  margin: auto;
-  width: fit-content;
-  height: fit-content;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  color: white;
+  font-size: max(1rem, 2.5vw);
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
 }
 #header > div:first-of-type h1 em {
-  font-style: normal;
   position: relative;
   margin-left: min(19.2vw, 16rem);
+  font-style: normal;
 }
 #header #contact {
   width: 100%;
   height: 100%;
-  /*  #car {
-      // content: "";
-      position: relative;
-       display:block;
-      top: 0;
-      left: 0;
-      width: 200px;
-      height:calc(9.5rem - 10vw);// calc(2 / calc(2vw));
-      //height: calc(
-     // background-color: yellowgreen;
-  }*/
 }
 #header #contact > div:first-child {
-  width: fit-content;
-  height: fit-content;
+  display: flex;
+  z-index: 2;
   position: relative;
-  margin: auto;
   left: 0;
   right: 0;
-  z-index: 2;
-  display: flex;
-}
-#header #contact > div:first-child > div:first-of-type {
   width: fit-content;
   height: fit-content;
-  position: relative;
+  margin: auto;
+}
+#header #contact > div:first-child > div:first-of-type {
   display: flex;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
   align-items: center;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
-  /* align-content:center;
-  flex-wrap:wrap ;*/
-  /* &:focus {
-      //width: 12rem;
-  }*/
-  /*  div { // num et img
-      position: relative; //abs
-     background-color:blue;// #212120;
-      width: fit-content;//4rem;
-      height: fit-content;//4rem;
-      transition: all .5s;
-      border: solid 2px white;
-
-      img { // tel.png
-          width: 3.82rem;
-          height: 3.82rem;
-      }
-  }*/
-  /* > div {
-      transition: width .5s;
-  }*/
 }
 #header #contact > div:first-child > div:first-of-type div:last-of-type {
-  border: solid 1px;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: -1;
+  position: relative;
   width: 0.3rem;
   height: 3rem;
-  text-align: center;
   overflow: hidden;
-  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
+  text-align: center;
+  align-content: center;
   font-family: "Malgun Gothic";
+  border: solid 1px;
   border-bottom-right-radius: 5% 10%;
   border-top-right-radius: 5% 10%;
-  display: flex;
-  align-content: center;
-  flex-wrap: wrap;
+  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
   transition: all 0.5s;
-  position: relative;
-  z-index: -1;
 }
 #header #contact > div:first-child > div:first-of-type div:last-of-type span {
-  height: fit-content;
   position: absolute;
+  height: fit-content;
   right: 1rem;
   top: 0;
   bottom: 0;
   margin: auto;
   font-size: 1rem;
-  /*   margin:auto;*/
 }
 #header #contact > div:first-child > div:first-of-type:focus div:last-of-type {
   width: 9rem;
@@ -278,55 +114,26 @@ body, html {
 }
 #header #contact > div:first-child > div:first-of-type div:first-of-type {
   position: relative;
-  background-color: aqua;
   transition: all 0.5s;
-  /* &:active {
-      transition: none;
-      background-color: transparent;
-      border: none;
-
-      &:before {
-          content: "";
-          z-index: -1;
-          position: absolute;
-          background-color: lightseagreen; // #3be365;
-          width: 3.9rem;
-          height: 3.9rem;
-          border-radius: 10%;
-          border: solid 4px,
-      }
-  }*/
+  background-color: aqua;
 }
 #header #contact > div:first-child > div:first-of-type div:first-of-type img {
   width: 4rem;
   height: 4rem;
 }
 #header #contact > div:first-child > div:last-of-type {
+  display: flex;
+  position: relative;
   width: fit-content;
   height: fit-content;
-  position: relative;
-  display: flex;
-  align-items: center;
   margin-left: 0.4rem;
+  align-items: center;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
-  /* div { // support mail et img
-      position: relative; //abs
-      background-color: cornflowerblue;
-      width: 4rem;
-      height: 4rem;
-      transition: all .5s;
-    //  visibility:hidden;
-      img { // mail.png
-          width: 3.9rem;
-          height: 3.9rem;
-          visibility:hidden;
-      }
-  }*/
 }
 #header #contact > div:first-child > div:last-of-type:focus div:first-of-type {
+  position: relative;
   width: 12rem;
   height: 3rem;
-  position: relative;
 }
 #header #contact > div:first-child > div:last-of-type:focus div:last-of-type {
   border-bottom-left-radius: 50% 10%;
@@ -336,19 +143,19 @@ body, html {
   background-color: chartreuse;
 }
 #header #contact > div:first-child > div:last-of-type div:first-of-type {
-  transition: width 0.5s;
-  border: solid 1px;
+  display: flex;
+  flex-wrap: wrap;
   width: 0.3rem;
   height: 3rem;
-  text-align: center;
   overflow: hidden;
-  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
+  align-content: center;
+  text-align: center;
   font-family: "Malgun Gothic";
+  border: solid 1px;
   border-bottom-left-radius: 5% 10%;
   border-top-left-radius: 5% 10%;
-  display: flex;
-  align-content: center;
-  flex-wrap: wrap;
+  filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
+  transition: width 0.5s;
   background-color: white;
 }
 #header #contact > div:first-child > div:last-of-type div:first-of-type span {
@@ -359,23 +166,8 @@ body, html {
 #header #contact > div:first-child > div:last-of-type div:last-of-type {
   position: relative;
   right: 0;
-  background-color: cyan;
   transition: all 0.5s;
-  /*   &:active {
-      transition: none;
-      background-color: transparent;
-
-      &:before {
-          content: "";
-          z-index: -1;
-          position: absolute;
-          background-color: lightseagreen; // #3be365;
-          width: 3.9rem;
-          height: 3.9rem;
-          border-radius: 10%;
-          border: solid 4px;
-      }
-  }*/
+  background-color: cyan;
 }
 #header #contact > div:first-child > div:last-of-type div:last-of-type img {
   width: 4rem;
@@ -385,30 +177,26 @@ body, html {
 #footer {
   position: fixed;
   bottom: 0;
+  width: 100%;
+  height: max(3rem, 6vw);
+  text-align: center;
   font-size: max(0.7rem, 1vw);
   background: #3C3B3F;
   background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);
   background: linear-gradient(to right, #605C3C, #3C3B3F);
-  height: max(3rem, 6vw);
-  width: 100%;
-  text-align: center;
-  /* padding-top: 0;
-  padding-bottom: 0;*/
 }
 #footer:before {
   content: "Siret: 299792458ms \aWebmaster Freelance - sierra-echo@msn.com";
   white-space: pre;
-  /* left: 50%;
-          transform: translate(-50%,20%);*/
+  display: block;
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  margin: auto;
-  height: fit-content;
   width: fit-content;
-  display: block;
+  height: fit-content;
+  margin: auto;
 }
 #footer:before em {
   color: blue;
@@ -418,79 +206,49 @@ body, html {
   --maincont-width: 95vw;
   --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
   display: flex;
+  flex-wrap: wrap;
   position: relative;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
-  margin-top: 1rem;
-  flex-wrap: wrap;
   width: var(--maincont-width);
   height: 90vh;
+  margin: auto;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
   border-radius: 2.5%/5%;
   background-color: rgba(0, 0, 0, 0.05);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-size: 100% 100%;
   background-position: center;
-  align-items: center;
-  justify-content: center;
-  row-gap: 2rem;
 }
 #maincont #pretext {
+  z-index: 3;
   position: relative;
   width: max(var(--child-width) * 1, 26rem);
   height: fit-content;
-  z-index: 3;
   transition: transform 0.7s;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
 }
 #maincont #pretext > div:first-child {
-  margin: auto;
+  display: block;
   position: relative;
   left: 0;
   right: 0;
-  display: block;
-  height: fit-content;
   width: 100%;
+  height: fit-content;
+  margin: auto;
 }
 #maincont #pretext > div:first-child > div:first-of-type {
-  background-color: rgba(0, 0, 0, 0.4);
-  filter: drop-shadow(2px 2px 1.3px black);
-  /* top: 50%;
-  left: 50%;*/
   width: 95%;
-  /* top:0;
-  bottom:0;*/
   margin: auto;
   margin-top: 0.5rem;
-  /*       > iframe:first-of-type { // map
-      width: 9rem;
-      height: 9rem;
-      position: relative;
-      //  opacity:.6;
-      // top:0;
-      //bottom:2vw;
-      margin-left: 1rem;
-      margin-top: -1vw;
-      //padding:1rem;
-      //  transform: translate(-7%,-2%);
-      //border-width: 1vw;
-      //border-color: black;
-      border-radius: 100%;
-      z-index: 2;
-      float: left;
-      // background-color: black;
-      transition: width 1s, height 1s;
-      filter: drop-shadow(3px 3px 3px black);
-      shape-outside: margin-box;
-
-      &:hover {
-          width: 20rem;
-          height: 20rem;
-      }
-  }*/
+  filter: drop-shadow(2px 2px 1.3px black);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 #maincont #pretext > div:first-child > div:first-of-type iframe:last-of-type {
   width: 100%;
@@ -504,32 +262,27 @@ body, html {
   --photo-height: calc(var(--main-height) * 1%);
   --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 );
   --max_size: 50rem;
-  position: relative;
-  /*   top:0;left:0;right:0;
-   margin:auto;*/
-  width: calc(max(var(--photo-width), var(--max_size)) / 2 * var(--mult_ph-scale));
-  height: fit-content;
   display: flex;
+  position: relative;
   left: 0;
   right: 0;
   top: 0;
+  width: calc(max(var(--photo-width), var(--max_size)) / 2 * var(--mult_ph-scale));
+  height: fit-content;
   margin: auto;
-  filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
   user-select: none;
+  filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
 }
 #maincont #photos > div:first-child {
-  width: 100%;
-  height: var(--cp_ph-y);
+  z-index: 1;
   position: relative;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100%;
+  height: var(--cp_ph-y);
   margin: auto;
-  /*  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);*/
   overflow-x: hidden;
   overflow-y: visible;
   border-radius: 1%;
@@ -538,16 +291,15 @@ body, html {
   /* assure la compatibilité avec safari */
   backdrop-filter: blur(15px);
   transition: transform 0.7s;
-  z-index: 1;
 }
 #maincont #photos > div:first-child .carre {
+  z-index: 2;
   position: absolute;
   top: 0.25rem;
   right: 0.25rem;
   width: 2rem;
   height: 2rem;
   border: 0.25rem solid white;
-  z-index: 2;
   border-radius: 0 50% 0 0;
   transition: 0.1s all;
 }
@@ -556,84 +308,74 @@ body, html {
   background-color: mediumspringgreen;
 }
 #maincont #photos > div:first-child .carre .carre2 {
-  border-radius: inherit;
-  transition: 1s all;
-  border: 0.25rem solid red;
-  opacity: 0.5;
   position: inherit;
   top: 0;
   right: 0;
   width: inherit;
   height: inherit;
+  border-radius: inherit;
+  border: 0.25rem solid red;
+  opacity: 0.5;
+  transition: 1s all;
 }
 #maincont #photos > div:first-child span:nth-of-type(1) {
+  z-index: 1;
   position: absolute;
-  margin: auto;
+  top: 5%;
   left: 0;
   right: 0;
   width: 10rem;
+  margin: auto;
   font-weight: 900;
   font-size: 1rem;
-  z-index: 1;
   text-align: center;
-  top: 5%;
   font-family: "Montserrat", sans-serif;
   color: whitesmoke;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
   align-content: center;
-  /*     display:flex;             
-  align-content:center;*/
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs {
   --phpc: 0;
   --phpx: 0;
   --qte_ph: 0;
-  margin: auto;
+  display: flex;
+  flex-shrink: 0;
   position: relative;
   width: calc(100% * var(--qte_ph));
   height: fit-content;
+  margin: auto;
+  align-items: center;
   transition: all linear 0.2s;
   transform: translate(calc(var(--phpc) * 1% + var(--phpx) * 1px));
-  align-items: center;
-  display: flex;
-  flex-shrink: 0;
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div {
   width: 100%;
   height: fit-content;
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div img {
+  position: relative;
   width: 100%;
   height: auto;
-  /*  max-width: 100% !important; //auto;
-  height: auto;*/
-  position: relative;
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div {
   position: relative;
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div iframe {
-  width: calc(max(var(--photo-width), 0) / 2 * 0.9);
-  height: 3.5rem;
-  background-color: red;
-  opacity: 0.6;
-  border-radius: 10%;
-  position: absolute;
-  margin: auto;
   display: block;
+  position: absolute;
   left: 0;
   right: 0;
-  /*     left: 50%;
-  transform: translate(-50%);*/
-}
-#maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div .scalePh {
-  /* height: 4rem;
-  background-color:red;*/
+  width: calc(max(var(--photo-width), 0) / 2 * 0.9);
+  height: 3.5rem;
+  margin: auto;
+  opacity: 0.6;
+  border-radius: 10%;
+  background-color: red;
 }
 #maincont #photos > div:first-child > div:last-child {
   --triremplback: 0%;
@@ -651,12 +393,12 @@ body, html {
 }
 #maincont #photos > div:first-child > div:last-child #mytriback {
   position: absolute;
+  left: 0;
+  top: 50%;
   width: calc(var(--photo-width) / 2 / 5);
   height: calc(var(--photo-width) / 2 / 5);
   transform-origin: center;
   transform: translateY(-50%) rotateZ(-180deg);
-  left: 0;
-  top: 50%;
   filter: drop-shadow(-3px -3px 2px rgba(0, 0, 0, 0.7));
 }
 #maincont #photos > div:first-child > div:last-child #mytriback:active {
@@ -669,12 +411,12 @@ body, html {
 }
 #maincont #photos > div:first-child > div:last-child #mytrinext {
   position: absolute;
+  top: 50%;
   right: 0;
   width: calc(var(--photo-width) / 2 / 5);
   height: calc(var(--photo-width) / 2 / 5);
-  filter: drop-shadow(-3px 3px 2px rgba(0, 0, 0, 0.7));
-  top: 50%;
   transform: translateY(-50%);
+  filter: drop-shadow(-3px 3px 2px rgba(0, 0, 0, 0.7));
 }
 #maincont #photos > div:first-child > div:last-child #mytrinext:active {
   transition: transform 0.1s;
@@ -706,8 +448,6 @@ body, html {
 #maincont #hlp > div:first-child > div:first-child {
   width: 100%;
   height: auto;
-  /* padding-bottom: 3vw;
-  padding-top: 2vw;*/
   border: solid 1px;
   border-radius: 5px;
   backdrop-filter: blur(3px);
@@ -716,60 +456,27 @@ body, html {
 #maincont #hlp > div:first-child > div:first-child > div {
   display: flex;
   border: solid 1px orange;
-  /* > div { // Element container
-      display: inherit;
-      width: 3vw;
-      height: 3vw;
-      border: solid;
-      border-width: calc(max(.4vw,4px));
-      border-radius: 10%;
-      border-color: green;
-      filter: drop-shadow(2px 2px 1.3px black)
-  }*/
-  /*  span { // tous
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin: auto;
-  }
-
-  > span { // text
-      font-size: 1rem;
-      color: black;
-      margin: auto 0;
-      margin-left: 1vw;
-  }*/
 }
 #maincont #hlp > div:first-child > div:first-child > div > div {
+  flex-shrink: 0;
   width: max(3vw, 2rem);
   height: max(3vw, 2rem);
-  background-color: blue;
-  flex-shrink: 0;
   margin: auto 0;
+  background-color: blue;
 }
 #maincont #hlp > div:first-child > div:first-child > div > div div {
-  /* width: fit-content;
-  height: fit-content;*/
-  /*   display: flex;
-  justify-content: center;*/
+  display: flex;
   position: relative;
-  background-color: red;
-  /* width: 100%;
-  height: 100%;*/
   height: 100%;
   justify-content: center;
-  display: flex;
   align-items: center;
-}
-#maincont #hlp > div:first-child > div:first-child > div > div div span {
-  /* font-weight: bold;
-  font-size: 1.2rem;
-  margin: auto;*/
+  background-color: red;
 }
 #maincont #hlp > div:first-child > div:first-child > div > span {
-  font-size: 0.9rem;
   position: relative;
   margin: auto 0;
   margin-left: 0.5rem;
+  font-size: 0.9rem;
 }
 #maincont #hlp > div:first-child > div:first-child > div svg {
   width: max(3vw, 2rem);
@@ -779,18 +486,14 @@ body, html {
   margin: auto 0;
 }
 #maincont #payment {
-  /* top: 25%;
-  left: 2%;*/
   width: 20rem;
   height: fit-content;
 }
 #maincont #payment > div:first-of-type {
-  float: left;
   display: block;
-  /*  width: 4rem;
-  height: 4rem;*/
-  margin: 0.2rem 0.5rem 0 0.5rem;
+  float: left;
   width: fit-content;
+  margin: 0.2rem 0.5rem 0 0.5rem;
 }
 #maincont #payment > div:first-of-type img {
   position: relative;
@@ -800,12 +503,10 @@ body, html {
 }
 #maincont #payment #lf {
   display: block;
-  clear: left;
-  /*  width: 5vw;
-  height: 5vw;*/
   float: left;
-  text-indent: initial;
+  clear: left;
   margin-right: 0.5rem;
+  text-indent: initial;
 }
 #maincont #payment #lf img {
   width: 4rem;
@@ -813,15 +514,15 @@ body, html {
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
 }
 #maincont #payment > span {
-  position: relative;
   display: block;
-  text-indent: 1rem;
+  position: relative;
   margin: 0.5rem;
+  text-indent: 1rem;
 }
 #maincont #payment > div:last-of-type {
-  text-indent: 1rem;
   margin: 0.5rem;
   margin-top: 1rem;
+  text-indent: 1rem;
 }
 #maincont #payment > div:last-of-type span {
   font-size: 90%;
@@ -832,10 +533,10 @@ body, html {
 #maincont #payment > div:last-of-type span span {
   display: block;
   position: relative;
+  width: 80%;
   margin-top: 2rem;
   margin-left: auto;
   margin-right: 0;
-  width: 80%;
   text-align: center;
   font-style: italic;
 }
@@ -858,13 +559,9 @@ body, html {
   bottom: 0;
   left: 0;
   right: 0;
-  /*  width:100%;
-  height:var(--calendar-width);*/
-  /*  width: max(calc(var(--child-width)), 16rem);
-  height: max(calc(var(--child-width)), 16rem);*/
-  margin: auto;
   width: 100%;
   height: 80%;
+  margin: auto;
 }
 #maincont #agenda > div:first-child #calendar {
   position: relative;
@@ -885,8 +582,8 @@ body, html {
   border-width: 3px 5px;
   border-color: cornflowerblue;
   border-radius: 60%/30%;
-  background-color: rgba(0, 0, 0, 0.3);
   filter: drop-shadow(2px 2px 2px black);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 #maincont #agenda > div:first-child #calendar > :first-child div {
   display: inline-block;
@@ -895,39 +592,30 @@ body, html {
 #maincont #agenda > div:first-child #calendar > :first-child div span {
   display: block;
   padding: 0 1rem;
-  font-size: 1rem;
   line-height: 1;
+  font-size: 1rem;
 }
 #maincont #agenda > div:first-child #calendar > #panneau {
   display: grid;
   position: relative;
-  width: 100%;
-  height: var(--calendar-width);
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(7, 1fr);
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+  width: 100%;
+  height: var(--calendar-width);
   margin: auto;
   margin-top: 1.5rem;
-  /*&:hover {
-      width: 120%;
-  }
-
-  &:hover p {
-      font-size: 1.8vw;
-  }*/
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
 }
 #maincont #agenda > div:first-child #calendar > #panneau > div {
   display: flex;
   width: auto;
-  /*calc(3.5714vw - 2px);*/
   height: auto;
-  /*calc(3.5714vw - 2px);*/
   margin: 1px;
-  background-color: transparent;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
+  background-color: transparent;
 }
 #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(1), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(2), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(3), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(4), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(5), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(6), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(7) {
   border: solid;
@@ -948,17 +636,15 @@ body, html {
 #maincont #agenda > div:first-child #calendar > #panneau > div span {
   display: inherit;
   margin: auto;
-  font-weight: bold;
-  font-size: 1rem;
   line-height: 1;
-  /* background-color: green;*/
+  font-size: 1rem;
+  font-weight: bold;
 }
 #maincont #agenda > div:first-child #calendar > #panneau > div > span {
   color: ghostwhite;
-  font-weight: 800;
-  font-size: 1rem;
   line-height: 1;
-  /*  background-color: lightgreen;*/
+  font-size: 1rem;
+  font-weight: 800;
 }
 #maincont #agenda > div:first-child #periodes {
   position: relative;
@@ -966,8 +652,8 @@ body, html {
   left: 0;
   width: 80%;
   height: auto;
-  color: black;
   margin: auto;
+  color: black;
 }
 #maincont #agenda > div:first-child #periodes div {
   margin-bottom: 2px;
@@ -1024,15 +710,15 @@ body, html {
   }
 }
 #maincont #agenda > div:first-child > div:nth-child(2) {
-  position: relative;
-  top: 100%;
   --triremplnext: 0%;
   --triremplback: 0%;
   --mycall-height: 0%;
   --button-width: 100%;
   display: flex;
-  width: 50%;
   z-index: 1;
+  position: relative;
+  top: 100%;
+  width: 50%;
   margin: auto;
 }
 #maincont #agenda > div:first-child > div:nth-child(2) #mytriback {
@@ -1136,21 +822,19 @@ body, html {
 }
 #maincont #reserv {
   display: flex;
+  flex-shrink: 0;
   position: relative;
   width: max(var(--child-width) * 2, 16rem);
   height: max(var(--child-width), 32rem);
   justify-content: center;
   align-items: center;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
-  flex-shrink: 0;
 }
 #maincont #reserv > div:first-child {
+  flex-shrink: 0;
   position: relative;
   width: 62%;
   height: 80%;
-  /*min-height: auto;
-  min-width: auto;*/
-  flex-shrink: 0;
 }
 #maincont #reserv > div:first-child #form {
   --displres: block;
@@ -1190,23 +874,23 @@ body, html {
 }
 #maincont #reserv > div:first-child #form > :first-child {
   height: 100%;
+  overflow-x: visible;
+  overflow-y: auto;
   font-size: 1rem;
   border-radius: 10%/5%;
   background: linear-gradient(90deg, #0b0b0b 0%, #3c3731 35%, #090a0a 100%);
-  overflow-y: auto;
-  overflow-x: visible;
   /*  ::-webkit-scrollbar-track {
       background-color: red;
       width: 16px;
   }*/
 }
 #maincont #reserv > div:first-child #form > :first-child::-webkit-scrollbar {
-  background-color: whitesmoke;
   border-radius: 8px;
+  background-color: whitesmoke;
 }
 #maincont #reserv > div:first-child #form > :first-child::-webkit-scrollbar-thumb {
-  background: black;
   border-radius: 8px;
+  background: black;
 }
 #maincont #reserv > div:first-child #form > :first-child label {
   display: block;
@@ -1230,9 +914,9 @@ body, html {
   height: 5rem;
   line-height: 1.2em;
   background-image: url("/photo/papierinp.jpg");
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
 }
 #maincont #reserv > div:first-child #form > :first-child label:first-of-type {
   position: relative;
@@ -1252,28 +936,27 @@ body, html {
   line-height: 0.9rem;
   border: solid 4px;
   border-radius: 5%/45%;
-  background-color: #32de84;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
+  background-color: #32de84;
 }
 #maincont #reserv > div:first-child > div:nth-child(2) {
   position: absolute;
   top: 0;
-  height: 1%;
+  left: 50%;
   overflow-y: auto;
   scroll-behavior: smooth;
   border-radius: 10%/5%;
   background-color: peru;
   animation: transpaye 2s forwards;
   height: 100%;
-  left: 50%;
 }
 #maincont #reserv > div:first-child > div:nth-child(2)::-webkit-scrollbar {
-  background-color: whitesmoke;
   border-radius: 8px;
+  background-color: whitesmoke;
 }
 #maincont #reserv > div:first-child > div:nth-child(2)::-webkit-scrollbar-thumb {
-  background: black;
   border-radius: 8px;
+  background: black;
 }
 @keyframes transpaye {
   from {
@@ -1307,11 +990,10 @@ body, html {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   color: white;
-  /**/
 }
 #maincont #reserv > div:first-child > div:nth-child(2) #contpaie > div:first-of-type > div:first-of-type {
-  background-color: orange;
   border-top-right-radius: 2vw;
+  background-color: orange;
 }
 #maincont #reserv > div:first-child #avert {
   position: relative;
@@ -1335,9 +1017,9 @@ body, html {
     transform: translateY(calc(var(--trans) * 1%));
   }
   #maincont #reserv > div:first-child > div:nth-child(2) {
-    animation: transpaye-y 2s forwards;
-    width: 100%;
     left: 0;
+    width: 100%;
+    animation: transpaye-y 2s forwards;
   }
   @keyframes transpaye-y {
     from {
@@ -1352,12 +1034,12 @@ body, html {
   #maincont #reserv > div:first-child #avert {
     top: 55%;
     left: 0;
-    margin: auto;
     width: 60%;
     height: fit-content;
+    margin: auto;
     font-size: 1rem;
     background-color: yellow;
   }
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Users/sierr/source/repos/Kioxk/Kioxk/Client/Style/StyleSheet.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%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A;AACA;AAAA;AAAA;AAAA;EAKA;EACA;EACA;EACA;EACA;AAAqC;EACrC;EACA;EAGA;;AAQA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIR;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAjkBZ;;AAskBQ;EAEI;EACA;EAMA;EAEA;AAEA;AAAA;;AAEA;EACI;EACA;EACA;EAKA;EACA;EACA;EACA;EAEA;EAEA;EACA;EACA;EAIA;;AAEA;EAEI;EACA;;AAMA;EAEI;EAEA;AAEA;AAAA;EAMA;;AAQJ;EAII;;AAGA;EACI;EACA;EACA;EACA;EAGA;EACA;EACA;EACA;EACA;EACA;AAIA;AAAA;;AAQR;AAII;AAAA;;AAShB;EACI;EACA;EACA;EA3sBZ;EACA;EACA;EAIA;EACA;EACA;EAusBY;EACA;EACD;;AAEC;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AA/sBhB;EACI;EACA;;AAitBY;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EAEA;EACA;;AAjuBhB;EACI;EACA;;AAkuBY;EACI;EACA;;AAOpB;EACI;IACI;;EAGA;IACI;;EAEA;IACI;;EASY;IACI;IACA;;;AAUhC;EACI;EACA;;AAMI;EAEI;EACA;AACA;AAAA;EAEA;EACA;EACA;EACA;;AAGA;EACI;EAEA;AAwDA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAUA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAhEA;EACI;EACA;EACA;EACA;EACA;;AAEA;AACI;AAAA;AAEA;AAAA;EAEA;EACA;AACA;AAAA;EAEA;EAEA;EACA;EACA;;AAGA;AAEI;AAAA;AAAA;;AAUZ;EACI;EAEA;EAEA;EACA;;AAKJ;EACI;EACA;EACA;EACA;EACA;;AA8BpB;AAEI;AAAA;EAEA;EACA;;AAQA;EACI;EACA;AAEA;AAAA;EAEA;EAKA;;AAEA;EAEI;EAEA;EACA;EA74BZ;;AAm5BI;EACI;EACA;AAEA;AAAA;EAGA;EACA;EASA;;AAEA;EAGI;EACA;EA16BZ;;AAg7BI;EAII;EACA;EACA;EACA;;AASJ;EAII;EACA;EACA;;AAEA;EACI;;AAIA;EACI;;AAKJ;EAEI;EACA;EAEA;EACA;EACA;EAGA;EACA;EACA;;AAKR;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EAEA;EACA;EAl/BJ;;AAu/BI;EACI;EACA;EACA;EACA;EACA;AAEA;AAAA;AAEA;AAAA;EAEA;EAEA;EACA;;AAOA;EAMI;EACA;EACA;EACA;EACA;EAGA;EACA;EACA;EAEA;;AAIA;EACI;EACA;EAIA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAIA;EACI;EACA;EACA;EACA;;AAMZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AAGA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAQA;EACI;EACA;AAAa;EACb;AAAc;EACd;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EAEA;EACA;AACA;;AAGJ;EACI;EACA;EACA;EACA;AACA;;AAMhB;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;;AAGJ;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAKZ;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAGA;;AAEA;EACI;EACA;EACA;EACA;EAGA;;AAxuChB;EACI;EACA;;AAwuCY;EACI;EACA;;AAIR;EACI;EACA;EAEA;EAEA;;AAtvChB;EACI;EACA;;AAsvCY;EACI;EACA;;AAIR;EACI;EACA;;AAhwChB;EACI;EACA;;AAkwCY;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAW5B;EACI;EACA;EACA;EAEA;EACA;EACA;EAx1CJ;EA21CI;;AAEA;EACI;EACA;EACA;AACA;AAAA;EAGA;;AAKA;EACI;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKJ;EACI;EACA;EACA;EAKA;EACA;EACA;AAcA;AAAA;AAAA;AAAA;;AAZA;EACI;EACA;;AAKJ;EACI;EACA;;AAQJ;EACI;;AAGA;EACI;EACA;EACA;EACA;EACA;EAEA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAEA;EACI;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;EAGA;EACA;EACA;;AAEA;EACI;EACA;;AAKJ;EACI;EACA;;AAIJ;EACI;IAEI;;EAIJ;IACI;;;AAQR;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;AAGA;;AACA;EAEI;EACA;;AAMhB;EACI;EACA;EACA;EAIA;EACA;EACA;EACA;;AAKZ;EAEQ;IACI;IACA;;EAEA;IACI;IACA;;EAEA;IACI;;EAIR;IACI;IAEA;IACA;;EAEA;IACI;MACI;MAGA;;IAGJ;MAGI;MACA;;;EAKZ;IAEI;IACA;IAEA;IAEA;IACA;IACA;IACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Users/sierr/source/repos/Kioxk/Kioxk/Client/Style/StyleSheet.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22;AAAC;EACG;EACA;;;AAGJ;EACY;EACA;EACA;EACR;EACA;EACA;;;AA0BJ;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;EACzD;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;;AAKZ;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EAjEZ;;AAoEY;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAKR;EACI;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;;AAEA;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EAlIZ;;AAsIY;EACI;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAKR;EACI;EACA;EACA;EACA;;AAEA;EACI;EACA;;;AAQxB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EAzPJ;;AA6PI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAShB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAzSJ;;AA6SI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AAAqC;EACrC;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAzWZ;;AA8WQ;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAGA;EACI;EACA;EACA;;AAGJ;EACI;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAOpB;EACI;EACA;EACA;EA1bZ;EACA;EACA;EAIA;EACA;EACA;EAqbY;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;;AA9bhB;EACI;EACA;;AA+bY;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EAEA;;AA/chB;EACI;EACA;;AAgdY;EACI;EACA;;AAOpB;EACI;IACI;;EAEA;IACI;;EAEA;IACI;;EAQY;IACI;IACA;;;AAUhC;EACI;EACA;;AAKI;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAOpB;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EAxjBZ;;AA8jBI;EACI;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EAxkBZ;;AA8kBI;EACI;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;;AAGA;EACI;;AAGA;EACI;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKR;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EAEA;EACA;EAhoBJ;;AAqoBI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAMZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;;AAOhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;;AAGJ;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EAEA;;AAj1BhB;EACI;EACA;;AAk1BY;EACI;EACA;;AAIR;EACI;EACA;EAEA;EACA;;AA/1BhB;EACI;EACA;;AAg2BY;EACI;EACA;;AAIR;EACI;EACA;;AA12BhB;EACI;EACA;;AA42BY;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAS5B;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EAh8BJ;;AAo8BI;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;AAWA;AAAA;AAAA;AAAA;;AATA;EACI;EACA;;AAGJ;EACI;EACA;;AAOJ;EACI;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAEA;EACI;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EAEQ;IACI;IACA;;EAEA;IACI;IACA;;EAEA;IACI;;EAIR;IACI;IACA;IACA;;EAEA;IACI;MACI;MACA;;IAGJ;MACI;MACA;;;EAKZ;IACI;IACA;IACA;IACA;IACA;IACA;IACA%22%7D */
