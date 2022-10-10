@@ -10,25 +10,30 @@
     <label>
         <span>Prénom :</span>
         <InputText @bind-Value="Com.FirstName" maxlength="50" minlength="1" placeholder=" requis" required />
+
     </label>
 
     <label>
         <span>Nom :</span>
         <InputText @bind-Value="@Com.LastName" maxlength="50" minlength="1" placeholder=" requis" required />
+
     </label>
 
     <label>
         <span>Téléphone :</span>
         <InputNumber @bind-Value="@Com.Phone" min="0" max="10000000000" placeholder=" requis" required />
+
     </label>
 
     <label>
         <span>Adresse :</span>
         <InputTextArea @bind-Value="@Com.Address" maxlength="250" placeholder=" requis" minlength="1" required />
+
     </label>
     <label>
         <span>e-m@il :</span>
         <InputText @bind-Value="@Com.Email" maxlength="50" minlength="3" placeholder=" requis pour le reçu" required />
+
     </label>
 
     <label>

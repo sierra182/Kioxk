@@ -6,28 +6,18 @@
 
 <div id="carreph" class="carre" onclick="scaler('photos','carreph','carre2ph','25','0','-25','25')">
     <div id="carre2ph" class="carre2" />
+
 </div>
 
 <span>
     Nos Photos   
 </span>
 
-@*@{
-    string p_unit;
-    if (!sw_limit)
-    {
-        p_unit = $"{phsw}px";
-    }
-    else
-    {
-        p_unit = $"{phm}%";
-    }
-}*@
-
 <div>
     <div id="contPhAloneJs" draggable="false" style="--phpc:@phpc; --phpx:@phpx; --qte_ph:@qtph"
          @ontouchstart="(s)=>OnTouchDown(s)" @ontouchmove="(s)=>  OnTouchMove(s)" @ontouchend="OnTouchUp"
          @onmousedown="(s)=>OnDown(s)" @onmousemove="(s)=>OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp"> 
+
         @for (int i = 0; i < qtph; i++)
         {
             string s = $"photo/maison{i}.jpg";
@@ -36,6 +26,7 @@
                 <img draggable="false" src="@s" />
                 <div class="contIfraJs">
                     <iframe src="@l" />
+
                 </div>
             </div>
         }
@@ -46,39 +37,35 @@
     string t1 = $"{trb}%";
     string t2 = $"{trn}%";
 }
+
 <div style="--triremplnext:@t1;--triremplback:@t2">
 
     <svg @onclick="OnBack"
          data-src="/svg/tri.svg"
          id="mytriback"
          data-js="enabled"
-         data-unique-ids="disabled"></svg>
+         data-unique-ids="disabled">
+     </svg>
 
     <svg @onclick="OnNext"
          data-src="/svg/tri.svg"
          id="mytrinext"
          data-js="enabled"
-         data-unique-ids="disabled"></svg>
+         data-unique-ids="disabled">
+     </svg>
+
 </div>
 
 @code {
+
     int srcJpg = 0;
     int qtph = 0;
-    async Task QtePh()
-    {
-        qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");
-        c.WriteLine("PHOTO QTEPH: ");
-        c.WriteLine(qtph);
-    }
 
-    protected override async Task OnInitializedAsync()
-    {
-        await QtePh();
+    async Task QtePh()=>  qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");     
 
-    }
-
+    protected override async Task OnInitializedAsync() => await QtePh();
+   
     double prim_x;
-
     void OnDown(MouseEventArgs e) =>  prim_x = e.ScreenX;
 
     void OnTouchDown(TouchEventArgs e) =>  prim_x = Math.Round(e.Touches.First().ScreenX);
@@ -119,14 +106,14 @@
 
     void OnTouchMove(TouchEventArgs e)
     {
-        if (true)//!sw_pass)
+        if (true)
         { 
             new_x = Math.Round(e.Touches.First().ScreenX);
             diff = new_x - prim_x;
             phpx += diff;
             prim_x = new_x;
         }
-      //  js.InvokeVoidAsync("alert", "MOUVE");
+     
         if (phpx > 100)
         {
             sw_pass = true;
@@ -139,11 +126,10 @@
         }
     }
 
-
-
     int trb = 0;
     int trn = 0;
     int phm = 0;
+
     async Task OnNext()
     {
         if (srcJpg < qtph - 1)

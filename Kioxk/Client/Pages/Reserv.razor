@@ -5,9 +5,7 @@
 @using System.Web
 @using System.IO
 
-
 @{
-
     if (Selected.Any())  // ouvre
     {
         op = 0.9;
@@ -20,41 +18,35 @@
         pter = "initial";
         trans = "0";   // ferme
     }
-
 }
 
 <div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans">
-    <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>       
+    <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>
+
 </div>
 
 @if (mails! is not null)
 {
     <div id="contscrollJs">
-        
+
         @if (paie!.Value.ajoutmail is not null && pay)
         {
             <div id="contpaie">
-                <div>                    
-                    @(
-                        (MarkupString)paie.Value.ajoutmail
-                        )
+                <div>
+                    @((MarkupString)paie.Value.ajoutmail)
                 </div>
-
             </div>
         }
 
         <div id="mailcont">
-            <div>                
+            <div>
                 @((MarkupString)mails.Value.mybodymail!)
             </div>
             <div>
                 <button style="background-color:@butcol; color:@butcoltxt" @onclick='ChangeOnClick' class="btn btn-success"> @but </button>
 
             </div>
-
         </div>
-             
-
     </div>
 
     <div id="avert" style="display:@dispavert">
@@ -63,30 +55,24 @@
     </div>
 }
 
-
 @code {
 
     [Parameter]
     public HashSet<DateTime> Selected { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
-
     [Parameter]
     public HashSet<DateTime>[] Seasons { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
-
     [Parameter]
     public int[] Prices { get; set; }
     [Parameter]
     public EventCallback<int[]> PricesChanged { get; set; }
 
-
-
     string pter = "initial";
     double op = 0;
     string trans = "0";
-
 
     private Commande com;
     private Kioxk.Shared.Mails.Mails? mails;
@@ -101,34 +87,32 @@
 
     bool scrollHaut = false;
     bool scrollBas = true;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        Console.WriteLine("onafterrenderasync");
+    {       
         if (scrollHaut)
         {
             await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
             scrollHaut = false;
         }
-
-
     }
+
     string dispavert = "none";
     private bool pay;
     string butcoltxt = "";
     string butcol = "";
     string but = "Paiement";
     bool tog = false;
+
     private void ChangeOnClick()
     {
         if (!tog)
         {
-
             pay = true; scrollHaut = true;
             butcoltxt = "orange";
             butcol = "white";
-            but = "Fermer";            
+            but = "Fermer";
             tog = true;
-
         }
         else
         {
@@ -143,13 +127,17 @@
             tog = false;
         }
     }
+
     private void PayandScrollHaut()
     {
-        pay = true; scrollHaut = true;
+        pay = true;
+        scrollHaut = true;
     }
+
     private void Quit()
     {
-        pay = true; scrollHaut = true;
+        pay = true; 
+        scrollHaut = true;
     }
 
     private async Task CreateCommande()
@@ -198,15 +186,14 @@
         }
         finally
         {
-            Selected.Clear();
-            // await SelectedChanged.InvokeAsync(Selected);
+            Selected.Clear();            
             mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
             paie = new();
             dispavert = "block";
             StateHasChanged();
-            _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");
-            Console.WriteLine("finaly clear!");
+            _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");            
         }
     }
+
 }
 

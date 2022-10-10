@@ -15,7 +15,7 @@
         int prixPer = nmbrtab[3];
         if (per.Count == 1)
         {
-            <span style"--mycall-height:80%"> Le @deb </span> //
+            <span style"--mycall-height:80%"> Le @deb </span> 
             if (nmbrJourNorm == 1)
             {
                 <span>Un jour au prix normal: @Prices[1] €  </span>
@@ -69,21 +69,19 @@
 }
 
 @code {
+
     [Parameter]
     public HashSet<DateTime> Selected { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
-
     [Parameter]
     public HashSet<DateTime>[] Seasons { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
-
     [Parameter]
     public int[] Prices { get; set; }
     [Parameter]
     public EventCallback<int[]> PricesChanged { get; set; }
-
     [Parameter]
     public List<List<DateTime>> periodes { get; set; } = new();
     [Parameter]
@@ -95,29 +93,24 @@
     private string spanPrix = "ajoutPer";
 
     public void Extern()
-    {
-        Console.WriteLine("EXT"); 
+    {        
         _ = OnParametersSetAsync();
         CalculUi();
     }
 
     void CalculUi()
-    {
-        Console.WriteLine("CALCULUI");
+    {       
         foreach (var per in periodes)
         {                                                                                               // Calcul du Prix Total pour Extern.
             nmbrtabext = ComparePeriode(per);
-            int prixPer = nmbrtabext[3];
-            Console.WriteLine("LALA prix per " + prixPer + " price0 " + Prices[0]);
-
-            Prices[0] += prixPer;
-            Console.WriteLine("LALA SUITE prix per " + prixPer + " price0 " + Prices[0]);
+            int prixPer = nmbrtabext[3];   
+            Prices[0] += prixPer;            
         }
-
     }
 
     bool pass = true;
     List<List<DateTime>> exper = new();
+
     protected async override Task OnParametersSetAsync()
     {       
         if (pass)
@@ -205,15 +198,7 @@
 
         HashSet<DateTime> intersecHp = new(list);
         intersecHp.IntersectWith(Seasons[1]);
-
-        foreach (var s in Seasons[0])
-        {
-           // Console.WriteLine("seas in compare!!!!!**** ZERO " + s);
-        }
-        foreach (var s in Seasons[0])
-        {
-          //  Console.WriteLine("seas in compare!!!!!**** UN " + s);
-        }
+     
         int mpint = 0;
         if (intersecMp.Count > 0)
         {
@@ -228,7 +213,7 @@
 
         var normint = list.Count - hpint - mpint;
         var prixper = normint * Prices[1] + mpint * Prices[2] + hpint * Prices[3];
-        Console.WriteLine("MYPERPER prix per " + prixper + " normint " + normint + " mpint " + mpint + " hpint " + hpint + " P " + Prices[1] +" p2 " + Prices[2] + " p3 " + Prices[3] + " p4 " +Prices[0]);
         return new int[] { normint, mpint, hpint, prixper };
     }
+
 }

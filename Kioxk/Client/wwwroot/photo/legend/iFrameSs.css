@@ -1,36 +1,23 @@
-﻿#seb {   
-    color: white ;
-    font-size: max(.8rem,2.6vw);
-//pointer-events:none;
+﻿#seb {
+    color: white;
+    font-size: max(.8rem,2.6vw);    
 }
 
 iframe {
-   width: max(4rem,26vw);
-                   height: max(4rem,26vw);
-                    position: relative;
-                    //
-                    // top:0;
-                    //bottom:2vw;
-                    margin-left: 1rem;
-                    margin-top: -1vw;
-                    //padding:1rem;
-                    //  transform: translate(-7%,-2%);
-                    //border-width: 1vw;
-                    //border-color: black;
-                    border-radius: 100%;
-                  //  z-index: 2;
-                    float:left;
- shape-outside: margin-box;
-margin-right:1rem;
-                    // background-color: black;
-                    transition: width 1s, height 1s;
-                    filter: drop-shadow(3px 3px 3px black);
-
-
+    float: left;
+    position: relative;
+    width: max(4rem,26vw);
+    height: max(4rem,26vw);
+    margin-left: 1rem;
+    margin-top: -1vw;
+    margin-right: 1rem;
+    border-radius: 100%;
+    shape-outside: margin-box;
+    transition: width 1s, height 1s;
+    filter: drop-shadow(3px 3px 3px black);
 }
- iframe:hover {
-                        width: max(8rem, 50vw);
-                        height: max(8rem, 50vw);
-//float:none;
 
-                    }
+    iframe:hover {
+        width: max(8rem, 50vw);
+        height: max(8rem, 50vw);
+    }

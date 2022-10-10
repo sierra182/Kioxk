@@ -1,57 +1,19 @@
-﻿////async function unloadPer(numper) {
-////    console.log("unload " + numper);
-////    await new Promise(resolve => setTimeout(resolve, 5000));
-////    // setTimeout(async , 5000);
-////    console.log("timeoutfin");
-////    //var per = document.getElementsByClassName("jsDivPer");
-////    //for (var enf of per) {
-////    //    enf.addEventListener("beforeunload", () => { console.log("onmous"); });
-////    //}
-////    //var child = per.firstChild;
-////    //var pc = document.getElementById(child);
-
-////    //if (child != null && pc!= null) {
-
-////    //    child.addEventListener("onmouseover", () => { console.log("onmous"); });
-
-////    //}
-////}
-
+﻿
 var togaf;
 function resizeIframe(obj) {
-    window.addEventListener("resize", () => {
-        console.log("deb addeventlistener");
-        var contifr = document.getElementsByClassName("contIfraJs");
 
-        for (var cif of contifr) {
-          //  cif.firstChild.style.setProperty("position", "initial");
-       //    void cif.firstChild.offsetWidth;
-            //  setTimeout(() => {
-            console.log(getComputedStyle(cif.firstChild).getPropertyValue("position"));
-
-         //   }, 100);
-
-        }
-        console.log("fin addeventlistener");
-    });
     let f = document.getElementById("myframe");
     f.contentDocument.getElementById("map").addEventListener('mouseenter', () => {
-        console.log("iframe enter");
         setTimeout(aftertime, 1000);
     });
     f.contentDocument.getElementById("map").addEventListener('mouseleave', () => {
-        console.log('iframe leave');
         setTimeout(aftertime, 1000);
     })
     setTimeout(aftertime, 500);
-  
+
     function aftertime() {
 
         f.style.setProperty("transition", "none");
-      //  void f.offsetWidth;
-      //  f.style.height = 0;  f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
-      //  f.style.setProperty("transition", "height .5s");
-        //void f.offsetWidth;
         window.addEventListener('resize', () => {
             console.log("RESIZE");
             setTimeout(() => {
@@ -59,28 +21,18 @@ function resizeIframe(obj) {
                 f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px';
 
             }, 1000);
-            //  g.style.height = 0; g.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
         });
-      //  f.style.setProperty("transition", "height .5s");
-      //  void f.offsetWidth;
-       // console.log(f.id + "idee");
-      //  f.style.setProperty("transition", "none");
-      //  f.style.height = 0;
-        
+
         if (togaf) {
             f.style.setProperty("transition", "height .5s");
             togaf = false;
         } else {
             togaf = true;
-        }   
-       
+        }
+
         f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px'; console.log("resize fin");
-    //   
     }
 }
-
-
-
 
 var togScal = false;
 var phcont
@@ -102,7 +54,6 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
     phs = document.getElementById("photos");
     phcont = phs.firstChild;
     contifra = document.getElementsByClassName("contIfraJs");
-    
     contmlt = document.getElementsByClassName("contPhMultJs");
     contal = document.getElementById("contPhAloneJs");
     car = document.getElementById(carre);
@@ -113,49 +64,25 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         togScal = true;
 
         function res() {
-            console.log("RES");
-            if (togScal) { // a tej
 
-               
+            if (togScal) {
 
-                    myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height");
-                    myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
-                    myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
-                    myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
-                    maxs = getComputedStyle(phs).getPropertyValue("--max_size");
-                 //   contal.style.position = "relative";
-                    phs.style.position = "absolute";
-                    phs.style.setProperty("--mult_ph-scale", myvarscale * 3.5);
-                    phs.style.setProperty("--max_size", "0px");           
-                    
-                    phcont.style.setProperty("height", "fit-content");
+                myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height");
+                myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
+                myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
+                myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
+                maxs = getComputedStyle(phs).getPropertyValue("--max_size");
+                phs.style.position = "absolute";
+                phs.style.setProperty("--mult_ph-scale", myvarscale * 3.5);
+                phs.style.setProperty("--max_size", "0px");
+                phcont.style.setProperty("height", "fit-content");
 
                 for (var cif of contifra) {
-                  
-                        cif.firstChild.style.position = "relative";
-                    }
-                 //   ifra.style.position = "relative";
-                    //phs.style.setProperty("--cp_mult-h", myvarcp * 2.6);
-                 //   phcont.style.setProperty("height", phcont.clientHeight + 60 + "px");
-                    //phs.style.setProperty("--max_size", ".8rem");
-                    /*   void phs.offsetWidth;*/
-                    //setTimeout(() => {
-                        
-                    //}, 4000);
-                 
-                  //  phs.style.setProperty("align-self", "flex-start");
-                 //   phs.style.left = "0";
-                 //   phs.style.right = "0";
-                  //  phs.style.margin = "0 auto";
-                 ////   phs.style.display = "block";
-
-                   // phs.style.transform = `translate(${-87}%,${0}%)`;/// ass !!!
-                  
-              
+                    cif.firstChild.style.position = "relative";
+                }               
             }
         }
         res();
-       
 
         phs.style.borderRadius = ".1%";
         phs.style.zIndex = "3";
@@ -173,8 +100,7 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         togScal = false;
 
         phs.style.borderRadius = "5%";
-        phs.style.position = "relative"; 
-
+        phs.style.position = "relative";
 
         car.style.borderRadius = "0 50% 0 0";
         car2.style.transform = "scale(1,1)";
@@ -182,51 +108,34 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         car2.style.borderColor = "red";
         car2.style.opacity = ".5";
         car2.style.borderRadius = "0 50% 0 0";
-
-        //for (var cif of contifra) {
-        //    cif.classList.remove("scalePh");
-        //}
-
-      //  phs.style.setProperty("--cp_ph-y", myvarcp);
-       // contal.style.position = "absolute";
+       
         for (var cif of contifra) {
             cif.firstChild.style.position = "absolute";
         }
         phcont.style.height = "var(--cp_ph-y)";
         phs.style.setProperty("--mult_ph-scale", myvarscale);
-        phs.style.setProperty("--max_size", maxs);       
-       // phs.style.transform = "";
+        phs.style.setProperty("--max_size", maxs);
+      
         window.setTimeout(zin, 1000, true);
-
         function zin() {
-
             phs.style.zIndex = "0";
         }
     }
-
-
 }
 
 function scroll(el, sens) {
-    console.log("scroll DEb2");
+    
     var elem = document.getElementById(el);
 
-    if (sens === "bas") {
-        console.log("bas");
+    if (sens === "bas") {       
         setTimeout(() => {
             var coo = elem.scrollHeight;
-            elem.scrollTo(0, coo);
-            console.log("bas fin");
+            elem.scrollTo(0, coo);            
         }, 2000)
 
-    } else if (sens === "haut") {
-        console.log("haut");
+    } else if (sens === "haut") {       
         var coo = elem.scrollHeight;
-        elem.scrollTo(0, -coo);
-        console.log("haut fin");
+        elem.scrollTo(0, -coo);       
     };
-
-    console.log("scroll FIN");
-    // void elem.offsetWidth;
 }
 

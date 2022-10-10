@@ -4,24 +4,6 @@
     {
         <span style="color: white">@DateTime.Day</span>
     }
-    
-
-
-    @*@if (Selected is true) 
-        {                                                                    // Jour selectionné en violet.
-            <p style="color: mediumvioletred">@DateTime.Day</p>
-        }
-        else
-        {                                                                    // Prend en charge la valeur nullable pour ne rien afficher sur les éléments vides.
-            if (UnSelectable is false)
-            {                                                                // Jour selectionnable en vert.
-                <p style="color: green ">@DateTime.Day</p>
-            }
-            else if (UnSelectable is true)
-            {                                                                // Jour non-selectionnable en rouge.
-                <p style="color: red ">@DateTime.Day</p>
-            }
-        }*@
 </div>
 
 @code {
@@ -30,17 +12,14 @@
     public DateTime DateTime { get; set; }
     [Parameter]
     public EventCallback<DateTime> DateTimeChanged { get; set; }
-
     [Parameter]
     public bool? UnSelectable { get; set; }
     [Parameter]
     public EventCallback<bool?> UnSelectableChanged { get; set; }
-
     [Parameter]
-    public bool? Selected { get; set; } 
+    public bool? Selected { get; set; }
     [Parameter]
     public EventCallback<bool?> SelectedChanged { get; set; }
-
     [Parameter]
     public bool?[] Seasons { get; set; }
     [Parameter]
@@ -69,11 +48,7 @@
                 if (Seasons[1] is true)
                     colorday = "darkmagenta";
             }
-            //if (UnSelectable is false)
-            //{
-            //    colorday = "green";
-            //}
-            /* else */
+          
             if (UnSelectable is true)
             {
                 colorday = "red";
@@ -85,7 +60,8 @@
             colorday = "orange";
             borderColor = "orange";
         }
-        if (UnSelectable is null) {
+        if (UnSelectable is null)
+        {
             colorday = "transparent";
             borderColor = "white";
         }

@@ -12,11 +12,10 @@
                 <div>
                     <img src="/photo/tel.png" />
                 </div>
-                 <div>
+                <div>
                     <span>0692121212</span>
-                </div> 
-               
-                              
+                </div>
+
             </div>
 
             <div tabindex="0">
@@ -26,24 +25,22 @@
                 <div>
                     <img src="/photo/mail.png" />
                 </div>
+
             </div>
         </div>
     </div>
 
-
 </div>
 
 <div id="footer" />
+
 <div id="maincont">
-
-
 
     <div id="pretext">
         <div>
             <Pretext />
 
         </div>
-
     </div>
 
     <div id="photos">
@@ -51,7 +48,6 @@
             <Photos />
 
         </div>
-
     </div>
 
     <div id="hlp">
@@ -71,7 +67,6 @@
             <Agenda @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" />
 
         </div>
-
     </div>
 
     <div id="reserv">
@@ -79,28 +74,16 @@
             <Reserv @bind-Selected="@Selected" Seasons="@Seasons" Prices="@Prices" />
 
         </div>
-
     </div>
-
 </div>
-
-
-
-
-@*<div id="textebas">
-    « C’est sidérant, et c’était totalement inconcevable jusqu’à la semaine dernière », réagit Gaétan Heymes, météorologue à Météo-France. Le scientifique, qui a passé un an en Antarctique, compare l’amplitude du phénomène à celle du dôme de chaleur qui avait touché le nord-ouest du continent américain en juin 2020, avec près de 50 °C au Canada. « Cet événement totalement inédit change définitivement ce que nous pensions être possible en matière de climat antarctique », abonde Jonathan Wille, chercheur post-doctorant étudiant la météorologie polaire à l’Institut des géosciences de l’environnement, à Grenoble.
-
-    Il faut s’imaginer un instant l’intérieur du continent blanc battu par des vents glacés, à plus de 3 000 mètres d’altitude, où les températures oscillent entre – 50 °C et – 55 °C à cette période de l’année. Le 18 mars, elles ont atteint – 11,5 °C sur la base scientifique franco-italienne Concordia et – 17,7 °C sur la base russe Vostok. De quoi battre très largement (de 15 °C) les précédents records pour le mois de mars ; mais il s’agit également du maximum jamais enregistré, toutes saisons confondues, à Concordia.
-</div>*@
 
 @code {
 
     [Parameter]
     public HashSet<DateTime> Selected { get; set; } = new();
-
     [Parameter]
     public HashSet<DateTime>[] Seasons { get; set; } = new HashSet<DateTime>[2] { new(), new() };
-
     [Parameter]
     public int[] Prices { get; set; } = new int[4];
+
 }
