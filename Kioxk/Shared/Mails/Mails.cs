@@ -7,32 +7,26 @@ namespace Kioxk.Shared.Mails
         public readonly string mysub = "Votre réservation";
         public readonly string mybodymail;
 
-        readonly int CommandeId { get; init; }
-        readonly long Ref { get; init; }
-        readonly string FirstName { get; init; }
-        readonly string LastName { get; init; }
-        readonly Nullable<long> Phone { get; init; }
-        readonly string Address { get; init; }
-        readonly string Email { get; init; }
-        readonly string RgtsCompl { get; init; }
-        readonly HashSet<Datetime> Selected { get; init; }
-        readonly List<Hashset> Seasons { get; init; }
-        readonly List<Int> Prices { get; init; }
-        readonly float Total { get; init; }
+        private readonly int CommandeId;    
+        private readonly string FirstName;
+        private readonly string LastName;
+        private readonly Nullable<long> Phone;
+        private readonly string Address;
+        private readonly string Email;
+        private readonly string RgtsCompl;
+        private readonly HashSet<Datetime> Selected;
+        private readonly float Total;
 
-        public Mails(int comid, long @refe, string fn, string ln, long? ph, string ad, string em, string rgc, HashSet<Datetime> sel, List<Hashset> seas, List<Int> prx, float tot)
+        public Mails(int comid, string fn, string ln, long? ph, string ad, string em, string rgc, HashSet<Datetime> sel, float tot)
         {
-            CommandeId = comid;
-            Ref = @refe;
+            CommandeId = comid;          
             FirstName = fn;
             LastName = ln;
             Phone = ph;
             Address = ad;
             Email = em;
             RgtsCompl = rgc;
-            Selected = sel;
-            Seasons = seas;
-            Prices = prx;
+            Selected = sel;                    
             Total = tot;
 
             mybodymail = @"
@@ -41,22 +35,22 @@ namespace Kioxk.Shared.Mails
             </br>
             <div style='font-size:1rem;'>
             <div>" + DateTime.Now.ToShortDateString() + @"
-            <div style='font-size:1rem;text-decoration-style:wavy;text-underline-offset:.1rem;text-decoration-line:underline;  text-decoration-thickness:.15rem'> Numéro de commande: " + comid + "/" + DateTime.Now.Year + @"</div> 
+            <div style='font-size:1rem;text-decoration-style:wavy;text-underline-offset:.1rem;text-decoration-line:underline;  text-decoration-thickness:.15rem'> Numéro de commande: " + CommandeId + "/" + DateTime.Now.Year + @"</div> 
             </br>
-            <div style='font-size:inherit'> Prénom: " + fn + @"</div>
-            <div style=''> Nom: " + ln + @"</div>
-            <div style='font-size:inherit'> Tel: 0" + ph + @"</div>
-            <div style='font-size:inherit'> Adresse: " + ad + @"</div>
-            <div style='font-size:inherit'> em@il: " + em + @"</div>
-            <div style='font-size:inherit'> RgtsCompl: " + rgc + @"</div>
+            <div style='font-size:inherit'> Prénom: " + FirstName + @"</div>
+            <div style=''> Nom: " + LastName + @"</div>
+            <div style='font-size:inherit'> Tel: 0" + Phone + @"</div>
+            <div style='font-size:inherit'> Adresse: " + Address + @"</div>
+            <div style='font-size:inherit'> em@il: " + Email + @"</div>
+            <div style='font-size:inherit'> RgtsCompl: " + RgtsCompl + @"</div>
             </br>
             <div> Jours selectionnés: 
             ";
 
             var sil = new HashSet<DateTime>();
-            foreach (var dt in sel)                 // Convertis Selected en en objet 
+            foreach (var dt in Selected)                 // Convertis Selected en en objet 
             {
-                sil.Add(dt.dt);
+                sil.Add(dt.Dt);
             }
             var exdtsel = new DateTime();
 
@@ -73,7 +67,7 @@ namespace Kioxk.Shared.Mails
             mybodymail += @"</div>   
             </br>
             </div>
-            <div style='text-underline-offset:7px; text-decoration-line:underline; text-decoration-thickness:6px; '> Total: " + tot + @" €</div>
+            <div style='text-underline-offset:7px; text-decoration-line:underline; text-decoration-thickness:6px; '> Total: " + Total + @" €</div>
             </br>
             </div>
             ";

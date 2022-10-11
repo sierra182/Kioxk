@@ -35,7 +35,7 @@ LectureBd();
 
 app.Run();
 
-void LectureBd()
+static void LectureBd()
 {
     _ = Task.Run(() =>
     {
@@ -55,9 +55,9 @@ void LectureBd()
                 Console.WriteLine("");
                 Console.WriteLine(" END");
             }
-            else if (order.StartsWith("val "))
+            else if (order!.StartsWith("val "))
             {
-                string value = order.Substring(4);
+                string value = order[4..];
                 if (!String.IsNullOrWhiteSpace(value))
                 {
                     try
@@ -73,7 +73,7 @@ void LectureBd()
             }
             else if (order.StartsWith("rm "))
             {
-                string value = order.Substring(3);
+                string value = order[3..];
                 if (!String.IsNullOrWhiteSpace(value))
                 {
                     Console.WriteLine("Are you sure ? Pin:");

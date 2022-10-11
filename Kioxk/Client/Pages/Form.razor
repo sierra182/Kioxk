@@ -9,7 +9,7 @@
 
     <label>
         <span>Prénom :</span>
-        <InputText @bind-Value="Com.FirstName" maxlength="50" minlength="1" placeholder=" requis" required />
+        <InputText @bind-Value="Com!.FirstName" maxlength="50" minlength="1" placeholder=" requis" required />
 
     </label>
 
@@ -42,7 +42,7 @@
 
     </label>
 
-    <button class="btn btn-success" type="submit" @onclick='()=> { if (ec.Validate()){ComRapp.InvokeAsync(Com);}}'>
+    <button class="btn btn-success" type="submit" @onclick='()=> { if (ec!.Validate()){ComRapp.InvokeAsync(Com);}}'>
         Envoyez
     </button>
 
@@ -53,14 +53,14 @@
 @code {
 
     [Parameter]
-    public Commande Com { get; set; }
+    public Commande? Com { get; set; }
     [Parameter]
     public EventCallback ComRapp { get; set; }
 
-    private EditContext ec { get; set; }
+    private EditContext? ec { get; set; }
     protected override void OnInitialized()
     {
-        ec = new EditContext(Com);
+        ec = new EditContext(Com!);
     }
 }
 

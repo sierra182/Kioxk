@@ -10,7 +10,7 @@ namespace Kioxk.Shared.Models
     {
         public int LivretId { get; set; }
         public  HashSet<Datetime>? UnSelectable { get; set; }
-        public  List<Hashset>? Seasons { get; set; }   
+        public List<Hashset>? Seasons { get; set; } 
         public  IList<Int>? Prices { get; set; }
              
     }
@@ -18,8 +18,8 @@ namespace Kioxk.Shared.Models
     public class Datetime
     {
         public int DatetimeId { get; set; }
-        public int index { get; set; }
-        public DateTime dt { get; set; }       
+        public int Index { get; set; }
+        public DateTime Dt { get; set; }       
 
         [ForeignKey("LivretId")]
         public Livret? Livret { get; set; }
@@ -46,8 +46,8 @@ namespace Kioxk.Shared.Models
     public class Int
     {
         public int IntId { get; set; }
-        public int index { get; set; }
-        public int it { get; set; }
+        public int Index { get; set; }
+        public int It { get; set; }
                   
         [ForeignKey("LivretId")]
         public Livret? Livret { get; set; }

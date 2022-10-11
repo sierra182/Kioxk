@@ -16,7 +16,7 @@
         var t = datetime[i];
         var e = i;
         <div @onclick="() => { OnClickWeekOnly(e, t); }">
-            <Element @bind-DateTime="@datetime[i]" @bind-UnSelectable="@unselectable[i]" @bind-Selected="@selected[i]" Seasons="@mySeason(e)"></Element>
+            <Element @bind-DateTime="@datetime[i]" @bind-UnSelectable="@unselectable![i]" @bind-Selected="@selected![i]" Seasons="@mySeason(e)"></Element>
 
         </div>
     }
@@ -29,29 +29,29 @@
     [Parameter]
     public EventCallback<DateTime> DateTimeChanged { get; set; }
     [Parameter]
-    public HashSet<DateTime> UnSelectable { get; set; }
+    public HashSet<DateTime>? UnSelectable { get; set; } = new();
     [Parameter]
     public EventCallback<HashSet<DateTime>> UnSelectableChanged { get; set; }
     [Parameter]
-    public HashSet<DateTime> Selected { get; set; }
+    public HashSet<DateTime>? Selected { get; set; } = new();
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
-    public HashSet<DateTime>[] Seasons { get; set; }
+    public HashSet<DateTime>[]? Seasons { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
 
     private const int nbrElement = 42;
     private DateTime[] datetime = new DateTime[nbrElement];
-    private bool?[] unselectable;
-    private bool?[] selected;
-    private string monthName;
+    private bool?[]? unselectable;
+    private bool?[]? selected;
+    private string? monthName;
     private int year;
-    private bool[,] seasons;
+    private bool[,]? seasons;
 
     bool?[] mySeason(int it)
     {                                                                       // Passage d'une ligne d'un tableau multidimentionnel à tableau unidimentionnel.
-        return new bool?[2] { seasons[it, 0], seasons[it, 1] };
+        return new bool?[2] { seasons![it, 0], seasons[it, 1] };
     }
 
     private DateTime firstDay;
@@ -90,26 +90,26 @@
         for (int i = offSet, a = 0; i < monthDays + offSet; i++, a++)
         {                                                                  // Remplit les jours du mois apres le offset.
             datetime[i] = firstDay.AddDays(a);                             // Les rends selectionnables.
-            unselectable[i] = false;
+            unselectable![i] = false;
 
-            if (UnSelectable.Contains(datetime[i]))
+            if (UnSelectable!.Contains(datetime[i]))
             {
                 unselectable[i] = true;                                    // Rend non-selectionnables les jours donnés.
             }
 
-            if (Selected.Contains(datetime[i]))
+            if (Selected!.Contains(datetime[i]))
             {
-                selected[i] = true;                                        // Rend selectionnés les jours donnés.
+                selected![i] = true;                                        // Rend selectionnés les jours donnés.
             }
 
-            if (Seasons[0].Contains(datetime[i]))                                  // Rend moyens les jours donnés.
+            if (Seasons![0].Contains(datetime[i]))                                  // Rend moyens les jours donnés.
             {
-                seasons[i, 0] = true;
+                seasons![i, 0] = true;
             }
 
             if (Seasons[1].Contains(datetime[i]))                                  // Rend hauts les jours donnés.
             {
-                seasons[i, 1] = true;
+                seasons![i, 1] = true;
             }
         }
     }
@@ -117,7 +117,7 @@
     void OnClickWeekOnly(int i, DateTime t)
     {                                                               // Selection minimale hebdomadaire avec
         r = true;                                                   // Rend les elements vides clickable par le programme.
-        if (unselectable[i] == null)                                // Rend les elements vides non clickable par l'utilisateur.
+        if (unselectable![i] == null)                                // Rend les elements vides non clickable par l'utilisateur.
             return;
 
         DateTime nt = t;
@@ -143,15 +143,15 @@
     {
         if (!r)
         {
-            if (unselectable[i] == null)                            // Rend les éléments vides non clickable sans OnClickWeekOnly
+            if (unselectable![i] == null)                            // Rend les éléments vides non clickable sans OnClickWeekOnly
                 return;
         }
 
-        if (Selected.Contains(t))
+        if (Selected!.Contains(t))
         {
             Selected.Remove(t);                                     // Supprime la selection si elle existe.
         }
-        else if (!UnSelectable.Contains(t))
+        else if (!UnSelectable!.Contains(t))
         {
             Selected.Add(t);                                        // Sinon ajoute le selection si elle n'est pas dans Unselectable
         }

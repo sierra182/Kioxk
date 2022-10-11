@@ -6,7 +6,7 @@
 @using System.IO
 
 @{
-    if (Selected.Any())  // ouvre
+    if (Selected is not null)  // ouvre
     {
         op = 0.9;
         pter = "none";
@@ -56,17 +56,16 @@
 }
 
 @code {
-
     [Parameter]
-    public HashSet<DateTime> Selected { get; set; }
+    public HashSet<DateTime>? Selected { get; set; } 
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
-    public HashSet<DateTime>[] Seasons { get; set; }
+    public HashSet<DateTime>[]? Seasons { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
     [Parameter]
-    public int[] Prices { get; set; }
+    public int[]? Prices { get; set; } 
     [Parameter]
     public EventCallback<int[]> PricesChanged { get; set; }
 
@@ -74,7 +73,7 @@
     double op = 0;
     string trans = "0";
 
-    private Commande com;
+    private Commande? com;
     private Kioxk.Shared.Mails.Mails? mails;
     private Kioxk.Shared.Mails.Paiement? paie;
     private int i;
@@ -142,58 +141,60 @@
 
     private async Task CreateCommande()
     {
-        var sel = new HashSet<Datetime>();                                      // Convertis en entitée.
-        foreach (var j in Selected)
+        if (Selected is not null && Seasons is not null && Prices is not null)
         {
-            sel.Add(new Datetime() { dt = j });
-        }
-
-        var sea = new List<Hashset>();
-        var f = 0;
-        foreach (var s in Seasons)
-        {
-            sea.Add(new Hashset() { Hs = new HashSet<Datetime>() });
-            foreach (var x in s)
+            var sel = new HashSet<Datetime>();                                      // Convertis en entitée.
+            foreach (var j in Selected)
             {
-                sea[f].Hs.Add(new Datetime() { dt = x });
+                sel.Add(new Datetime() { Dt = j });
             }
-            f++;
-        }
 
-        var pri = new List<Int>();
-        var indp = 0;
-        foreach (var p in Prices)                                           // Evite le désordonnement de la liste dans la base.
-        {
-            pri.Add(new Int() { it = p, index = indp });                    // enregistre l'ordre dans index.
-            indp++;
-        }
+            var sea = new List<Hashset>();
+            var f = 0;
+            foreach (var s in Seasons)
+            {
+                sea.Add(new Hashset() { Hs = new HashSet<Datetime>() });
+                foreach (var x in s)
+                {
+                    sea[f].Hs!.Add(new Datetime() { Dt = x });
+                }
+                f++;
+            }
 
-        com.Selected = sel;
-        com.Seasons = sea;
-        com.Prices = pri;
-        com.Total = pri[0].it;
+            var pri = new List<Int>();
+            var indp = 0;
+            foreach (var p in Prices)                                           // Evite le désordonnement de la liste dans la base.
+            {
+                pri.Add(new Int() { It = p, Index = indp });                    // enregistre l'ordre dans Index.
+                indp++;
+            }
 
-        try
-        {
-            var id = await Http.PostAsJsonAsync("api/commande/", com);
-            i = await id.Content.ReadFromJsonAsync<int>();
-            Console.WriteLine("Numero de commande: " + i);
-            await js.InvokeVoidAsync("alert", "Réservation validé");
-        }
-        catch (Exception)
-        {
-            await js.InvokeVoidAsync("alert", "Echec de Connexion.!.");
-        }
-        finally
-        {
-            Selected.Clear();            
-            mails = new(i, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
-            paie = new();
-            dispavert = "block";
-            StateHasChanged();
-            _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");            
+            com!.Selected = sel;
+            com.Seasons = sea;
+            com.Prices = pri;
+            com.Total = pri[0].It;
+
+            try
+            {
+                var id = await Http.PostAsJsonAsync("api/commande/", com);
+                i = await id.Content.ReadFromJsonAsync<int>();
+                Console.WriteLine("Numero de commande: " + i);
+                await js.InvokeVoidAsync("alert", "Réservation validé");
+            }
+            catch (Exception)
+            {
+                await js.InvokeVoidAsync("alert", "Echec de Connexion.!.");
+            }
+            finally
+            {
+                Selected.Clear();
+                mails = new(i, com.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected, com.Total);
+                paie = new();
+                dispavert = "block";
+                StateHasChanged();
+                _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");
+            }
         }
     }
-
 }
 

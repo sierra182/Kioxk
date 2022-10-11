@@ -5,7 +5,9 @@ using Kioxk.Shared.Models;
 using Microsoft.EntityFrameworkCore.Query;
 using MimeKit;
 using MimeKit.Text;
+using MailKit.Security;
 using c = System.Console;
+using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Kioxk.Server.Controllers
 {
@@ -13,19 +15,19 @@ namespace Kioxk.Server.Controllers
     [ApiController]
     public class CommandeController : ControllerBase
     {
-        public IIncludableQueryable<Commande, HashSet<Datetime>>? comContext;
-        public IIncludableQueryable<Livret, HashSet<Datetime>>? livContext;
-        public readonly AppDBContext? _context;
-        string milog;
-        string mipass;
+        public IIncludableQueryable<Commande, HashSet<Datetime>> comContext;
+        public IIncludableQueryable<Livret, HashSet<Datetime>> livContext;
+        public readonly AppDBContext _context;
+        readonly string milog;
+        readonly string mipass;
         Shared.Mails.Mails mails;
-        Shared.Mails.Paiement paiement = new();
+        readonly Shared.Mails.Paiement paiement = new();
         public CommandeController(AppDBContext context)
         {
             this._context = context;
 
-            comContext = _context.Commandes.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.Selected);
-            livContext = _context.Livret.Include(e => e.Seasons).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.UnSelectable);
+            comContext = _context.Commandes!.Include(e => e.Seasons!).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.Selected!);
+            livContext = _context.Livret!.Include(e => e.Seasons!).ThenInclude(e => e.Hs).Include(e => e.Prices).Include(e => e.UnSelectable!);
 
             string projectPath = AppDomain.CurrentDomain.BaseDirectory.Split(new String[] { @"bin\" }, StringSplitOptions.None)[0];
             IConfigurationRoot configuration = new ConfigurationBuilder()
@@ -38,219 +40,108 @@ namespace Kioxk.Server.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        public int GetQtePh()
-        {
-            Console.WriteLine("serv qte ph: ");
-            string[] files = Directory.GetFiles(@"C:\Users\sierr\source\repos\Kioxk\Kioxk\Client\wwwroot\photo", "maison*.*");
-            return files.Length;
-        }
+        public int GetQtePh() =>
+        Directory.GetFiles(@"C:\Users\sierr\source\repos\Kioxk\Kioxk\Client\wwwroot\photo", "maison*.*").Length;
 
-        void t1()
-        {
-            if (_context.Livret is null)
-            {
-                Console.WriteLine("context livret is null)");
-            }
-
-            if (_context.Livret is not null)
-            {
-                Console.WriteLine("context livret is not null, any?: " + _context.Livret.Any() + " count: " + _context.Livret.Count());
-            }
-
-            if (!_context.Livret.Any())
-            {
-                Console.WriteLine("il n'y a pas de livret");
-                var ndt = new Datetime() { dt = new DateTime(2021, 11, 15) };   // Unselectable
-                var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 16) };
-                var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 17) };
-
-                var ndt3 = new Datetime() { dt = new DateTime(2021, 12, 15) };
-                var ndt4 = new Datetime() { dt = new DateTime(2021, 12, 16) };
-                var ndt5 = new Datetime() { dt = new DateTime(2021, 12, 17) };
-
-                var nhs = new HashSet<Datetime>();
-                nhs.Add(ndt);
-                nhs.Add(ndt1);
-                nhs.Add(ndt2);
-                nhs.Add(ndt3);
-                nhs.Add(ndt4);
-                nhs.Add(ndt5);
-
-                var ndts = new Datetime() { dt = new DateTime(2000, 12, 19) };   // Saison 0
-                var ndts1 = new Datetime() { dt = new DateTime(2000, 12, 20) };
-                var ndts2 = new Datetime() { dt = new DateTime(2000, 12, 21) };
-                var nhst = new HashSet<Datetime>();
-                nhst.Add(ndts);
-                nhst.Add(ndts1);
-                nhst.Add(ndts2);
-
-                var ndtsh = new Datetime() { dt = new DateTime(2000, 10, 23) };  // saison 1
-                var ndts1h = new Datetime() { dt = new DateTime(2000, 10, 24) };
-                var ndts2h = new Datetime() { dt = new DateTime(2000, 10, 25) };
-                var nhsth = new HashSet<Datetime>();
-                nhsth.Add(ndtsh);
-                nhsth.Add(ndts1h);
-                nhsth.Add(ndts2h);
-
-                var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
-
-                var nint = new Int() { it = 100 };
-                var nint1 = new Int() { it = 120 };
-                var nint2 = new Int() { it = 150 };
-                var nintf = new List<Int> { nint, nint1, nint2 };
-
-                _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
-                _context.SaveChanges();
-            }
-            Console.WriteLine("livret done! from ui");
-        }
-        void t2()
-        {
-            try
-            {
-                if (livContext is null)
-                {
-                    Console.WriteLine("t2: livcontext is null");
-                }
-                if (livContext is not null)
-                {
-                    Console.WriteLine("t2: livcontext is not null, livcontext any ?: " + livContext.Any() + " count: " + livContext.Count());
-                }
-
-                if (_context.Livret is null)
-                {
-                    Console.WriteLine("t2: context livret is nulll????");
-                }
-
-                if (!_context.Livret.Any())
-                {
-                    var ndt = new Datetime() { dt = new DateTime(2021, 11, 12) };
-                    var ndt1 = new Datetime() { dt = new DateTime(2021, 11, 13) };
-                    var ndt2 = new Datetime() { dt = new DateTime(2021, 11, 14) };
-                    var nhs = new HashSet<Datetime>();
-                    nhs.Add(ndt);
-                    nhs.Add(ndt1);
-                    nhs.Add(ndt2);
-
-                    var ndts = new Datetime() { dt = new DateTime(2000, 11, 16) };
-                    var ndts1 = new Datetime() { dt = new DateTime(2000, 11, 17) };
-                    var ndts2 = new Datetime() { dt = new DateTime(2000, 11, 18) };
-                    var nhst = new HashSet<Datetime>();
-                    nhst.Add(ndts);
-                    nhst.Add(ndts1);
-                    nhst.Add(ndts2);
-
-                    var ndtsh = new Datetime() { dt = new DateTime(2000, 11, 20) };
-                    var ndts1h = new Datetime() { dt = new DateTime(2000, 11, 21) };
-                    var ndts2h = new Datetime() { dt = new DateTime(2000, 11, 22) };
-                    var nhsth = new HashSet<Datetime>();
-                    nhsth.Add(ndtsh);
-                    nhsth.Add(ndts1h);
-                    nhsth.Add(ndts2h);
-
-                    var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
-
-                    var nint = new Int() { it = 300 };
-                    var nint1 = new Int() { it = 320 };
-                    var nint2 = new Int() { it = 340 };
-                    var nintf = new List<Int> { nint, nint1, nint2 };
-
-                    try
-                    {
-                        _context.Livret.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
-                        _context.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("t2trycom livret add: " + ex);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ex: " + ex);
-            }
-        }
+        [HttpGet]
+        public IActionResult Get() => Ok(livContext.Single()); 
 
         public void AfficheLivret()
         {
-            if (livContext is null)
-            {
-                Console.WriteLine(" livcontext is null");
-            }
-            else
-            {
-                Console.WriteLine("liv context is not null");
-            }
-            if (_context.Livret is null)
-            {
-                Console.WriteLine(" contextlivret is null");
-            }
-            else
-            {
-                Console.WriteLine(" context livret is not null");
-                try
-                {
-                    if (_context.Livret.Any())
-                    {
-                        Console.WriteLine(" a au moins un livret dedans: any?: " + _context.Livret.Any() + " count: " + _context.Livret.Count());
-                        try
-                        {
-                            #region MyRegion
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine(" Livret:");
-                            Console.ResetColor();
-                            // Avant de retrouver la commande parente.
-                            if (livContext.Any())
-                            {
-                                foreach (var c in livContext)
-                                {                                                    // Affiche Unselectable et la Commande associée.
-                                    Console.WriteLine("");
-                                    foreach (var it in c.Prices)                                                    // Affiche le tableau de prix.
-                                    {
-                                        Console.WriteLine(" Price: " + it.it);
-                                    }
+            ManagementLivret();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" Livret:");
+            Console.ResetColor();           
 
-                                    Console.WriteLine("");
-                                    var j = 0;
-                                    foreach (var Hs in c.Seasons)                                                   // Affiche les Saisons.
-                                    {
-                                        foreach (var dt in Hs.Hs)
-                                        {
-                                            Console.WriteLine($" Seasons {j}: {dt.dt.ToShortDateString()}");
-                                        }
-                                        j++;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine(" aucun livret");
-                                t2();
-                            }
-                            #endregion
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("ex:" + ex);
-                        }
-                    }
-                    else { Console.WriteLine(" a pa livret dedans donc t2"); t2(); }
-                }
-                catch (Exception ex)
+            foreach (var c in livContext)
+            {                                                    // Affiche Unselectable et la Commande associée.
+                Console.WriteLine("");
+                foreach (var it in c.Prices!)                                                    // Affiche le tableau de prix.
                 {
-                    Console.WriteLine(" catch: " + ex);
+                    Console.WriteLine(" Price: " + it.It);
+                }
+
+                Console.WriteLine("");
+                var j = 0;
+                foreach (var Hs in c.Seasons!)                                                   // Affiche les Saisons.
+                {
+                    foreach (var dt in Hs.Hs!)
+                    {
+                        Console.WriteLine($" Seasons {j}: {dt.Dt.ToShortDateString()}");
+                    }
+                    j++;
                 }
             }
         }
 
+        void ManagementLivret()
+        {
+            if (_context.Livret is not null) c.WriteLine($"Livret ok! :{_context.Livret.Count()}...");
+
+            else
+            {
+                Console.WriteLine("Il n'y a pas de livret...");
+
+                var ndt = new Datetime() { Dt = new DateTime(2021, 11, 15) };   // Unselectable
+                var ndt1 = new Datetime() { Dt = new DateTime(2021, 11, 16) };
+                var ndt2 = new Datetime() { Dt = new DateTime(2021, 11, 17) };
+
+                var ndt3 = new Datetime() { Dt = new DateTime(2021, 12, 15) };
+                var ndt4 = new Datetime() { Dt = new DateTime(2021, 12, 16) };
+                var ndt5 = new Datetime() { Dt = new DateTime(2021, 12, 17) };
+
+                var nhs = new HashSet<Datetime>
+                {
+                    ndt,
+                    ndt1,
+                    ndt2,
+                    ndt3,
+                    ndt4,
+                    ndt5
+                };
+
+                var ndts = new Datetime() { Dt = new DateTime(2000, 12, 19) };   // Saison 0
+                var ndts1 = new Datetime() { Dt = new DateTime(2000, 12, 20) };
+                var ndts2 = new Datetime() { Dt = new DateTime(2000, 12, 21) };
+                var nhst = new HashSet<Datetime>
+                {
+                    ndts,
+                    ndts1,
+                    ndts2
+                };
+
+                var ndtsh = new Datetime() { Dt = new DateTime(2000, 10, 23) };  // saison 1
+                var ndts1h = new Datetime() { Dt = new DateTime(2000, 10, 24) };
+                var ndts2h = new Datetime() { Dt = new DateTime(2000, 10, 25) };
+                var nhsth = new HashSet<Datetime>
+                {
+                    ndtsh,
+                    ndts1h,
+                    ndts2h
+                };
+
+                var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
+
+                var nint = new Int() { It = 100 };
+                var nint1 = new Int() { It = 120 };
+                var nint2 = new Int() { It = 150 };
+                var nintf = new List<Int> { nint, nint1, nint2 };
+
+                _context.Livret!.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
+                _context.SaveChanges();
+
+                Console.WriteLine("livret done!");
+            }
+        }
         public void AfficheCommandes()
         {
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(" Commandes:");
             Console.ResetColor();
-            if (comContext is not null && comContext.Count() > 0)
+
+            if (_context.Commandes is null) c.WriteLine("Il n'y a pas de Commandes...");
+            else
             {
                 foreach (var c in comContext.ToList())
                 {
@@ -267,16 +158,16 @@ namespace Kioxk.Server.Controllers
                     Console.WriteLine(" Date: " + c.Date);
                     Console.WriteLine(" Name: " + c.FirstName + " " + c.LastName);
                     Console.WriteLine(" Links: " + "0" + c.Phone + " " + c.Email);
-                    Console.WriteLine(" Address: " + c.Address.ToString().Replace("\n", " "));
+                    Console.WriteLine(" Address: " + c.Address!.ToString().Replace("\n", " "));
                     if (c.RgtsCompl is not null)
                     {
                         Console.WriteLine(" Rgts: " + c.RgtsCompl.Replace("\n", " "));
                     }
 
                     var sel = new HashSet<DateTime>();
-                    foreach (var dt in c.Selected.ToList())                 // Convertis Selected en en objet 
+                    foreach (var dt in c.Selected!.ToList())                 // Convertis Selected en en objet 
                     {
-                        sel.Add(dt.dt);
+                        sel.Add(dt.Dt);
                     }
 
                     var exdtsel = new DateTime();
@@ -294,9 +185,9 @@ namespace Kioxk.Server.Controllers
                     Console.ResetColor();
                     Console.WriteLine("");
                     int indexprice = 0;
-                    foreach (var it in c.Prices.ToList().OrderBy(key => key.index))    // Classe le tableau de prix par ordre de la propriété index.
+                    foreach (var it in c.Prices!.ToList().OrderBy(key => key.Index))    // Classe le tableau de prix par ordre de la propriété index.
                     {
-                        Console.WriteLine($" Price{indexprice}: " + it.it);         // Affiche le tableau de prix.
+                        Console.WriteLine($" Price{indexprice}: " + it.It);         // Affiche le tableau de prix.
                         indexprice++;
                     }
                     Console.WriteLine("");
@@ -306,11 +197,11 @@ namespace Kioxk.Server.Controllers
                         int j = 0;
                         List<List<DateTime>> seasConf = new() { new(), new() };
 
-                        foreach (var Hs in c.Seasons)             //  Pour chaque élément du tableau convertion en objet, l'ordonne et l'affiche.
+                        foreach (var Hs in c.Seasons!)             //  Pour chaque élément du tableau convertion en objet, l'ordonne et l'affiche.
                         {
-                            foreach (var dt in Hs.Hs)
+                            foreach (var dt in Hs.Hs!)
                             {
-                                seasConf[j].Add(dt.dt);
+                                seasConf[j].Add(dt.Dt);
                             }
                             j++;
                         }
@@ -337,14 +228,7 @@ namespace Kioxk.Server.Controllers
                         Console.WriteLine(ex);
                     }
                 }
-            }
-            else { Console.WriteLine(" pas de commandes..."); }
-        }
-        public void ClearAll()
-        {            
-            _context.RemoveRange(comContext);
-            _context.RemoveRange(livContext);
-            _context.SaveChanges();           
+            }           
         }
 
         public void Valided(int value)
@@ -354,48 +238,44 @@ namespace Kioxk.Server.Controllers
             _context.Update(arem);
             _context.SaveChanges();
         }
+
         public void Remove(int value)
         {
             try
-            {               
-                var arem = comContext.First(k => k.CommandeId == value);             
-                foreach (var ar in arem.Selected)
+            {
+                var arem = comContext.First(k => k.CommandeId == value);
+                foreach (var ar in arem.Selected!)
                 {
-                    _context.Remove(livContext.First().UnSelectable.First(k => k.dt == ar.dt));
+                    _context.Remove(livContext.First().UnSelectable!.First(k => k.Dt == ar.Dt));
                     _context.SaveChanges();
                 }
                 foreach (var sl in arem.Selected)
                 {
                     arem.Selected.Remove(sl);
                     _context.SaveChanges();
-                }              
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
         }
-        public void ClearLivret()
-        {            
-            _context.Livret.RemoveRange(_context.Livret);
-            _context.SaveChanges();           
-        }
 
         public void ClearComs()
-        {           
+        {
             try
             {
                 foreach (var com in comContext)
                 {
-                    foreach (var ar in com.Selected)
+                    foreach (var ar in com.Selected!)
                     {
-                        _context.Remove(livContext.First().UnSelectable.First(k => k.dt == ar.dt));
+                        _context.Remove(livContext.First().UnSelectable!.First(k => k.Dt == ar.Dt));
                         _context.SaveChanges();
                     }
-                }            
+                }
 
-                _context.Commandes.RemoveRange(_context.Commandes);
-                _context.SaveChanges();              
+                _context.Commandes!.RemoveRange(_context.Commandes);
+                _context.SaveChanges();
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -404,73 +284,97 @@ namespace Kioxk.Server.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<Livret> Get()
-        {  
-            t1();       
-            return livContext.Single();
+        public void ClearLivret()
+        {
+            try
+            {
+                _context.Livret!.RemoveRange(_context.Livret);
+                _context.SaveChanges();
+            }
+            catch (Exception ex) { c.WriteLine(ex); }
+        }
+         
+        public void ClearAll()
+        {
+            try
+            {
+                _context.RemoveRange(comContext);
+                _context.RemoveRange(livContext);
+                _context.SaveChanges();
+            }
+            catch (Exception ex) { c.WriteLine(ex); }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Commande com)
+        {
+            try
+            {
+                if (Verification(com))
+                {
+                    foreach (var ci in com.Selected!)                            // Transfert de la selection dans Unselectable du Livret.
+                    {
+                        livContext.Single().UnSelectable!.Add(ci);
+                    }
+                    com.Date = DateTime.Now;
+                    _context.Commandes!.Add(com);                                // Ajoute la commande à la bd.
+                    await _context.SaveChangesAsync();
+                    Mail(com);
+                    return Ok(com.CommandeId);
+                }
+            }
+            catch (Exception ex) { c.WriteLine(ex); }
+            return new BadRequestResult();   // Retourne l'identifiant de confirmation.
         }
 
         void Mail(Commande com)
         {
-            mails = new(com.CommandeId, com.Ref, com.FirstName, com.LastName, com.Phone, com.Address, com.Email, com.RgtsCompl, com.Selected, com.Seasons, com.Prices, com.Total);
+            mails = new(com.CommandeId, com.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected!, com.Total);
 
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(milog));
             email.To.Add(MailboxAddress.Parse(com.Email));
             email.Subject = mails.mysub;
             email.Body = new TextPart(TextFormat.Html) { Text = paiement.ajoutmail + mails.mybodymail };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp-mail.outlook.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate(milog, mipass);
+            smtp.Send(email);
+            smtp.Disconnect(true);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Post(Commande com)
-        {         
-            if (Verification(com))
-            {
-                foreach (var ci in com.Selected)                            // Transfert de la selection dans Unselectable du Livret.
-                {
-                    livContext.Single().UnSelectable.Add(ci);
-                }
-                com.Date = DateTime.Now;
-                _context.Commandes.Add(com);                                // Ajoute la commande à la bd.
-                await _context.SaveChangesAsync();             
-                return Ok(com.CommandeId);
-            }  
-            return new BadRequestResult();   // Retourne l'identifiant de confirmation.
-        }
-
         private bool Verification(Commande com)
         {
             if (!Embrouille(com))
             {
                 return false;
             }
-         
+
             var query = from sel in com.Selected
-                        from li in livContext.Single().UnSelectable
-                        where li.dt == sel.dt
+                        from li in livContext.Single().UnSelectable!
+                        where li.Dt == sel.Dt
                         select li;
             if (query.Count() > 1)
             {
                 foreach (var frit in query)
                 {
-                    Console.WriteLine("QUERy: " + frit.dt.ToShortDateString());
+                    Console.WriteLine("QUERy: " + frit.Dt.ToShortDateString());
                 }
                 return false;
             }
             else
                 return true;
         }
+
         private bool Embrouille(Commande com)
-        {          
+        {
             var seasons = new List<HashSet<DateTime>>();
             var i = 0;
-            foreach (var Hs in livContext.Single().Seasons)
+            foreach (var Hs in livContext.Single().Seasons!)
             {
                 seasons.Add(new());
-                foreach (var dt in Hs.Hs)
+                foreach (var dt in Hs.Hs!)
                 {
-                    seasons[i].Add(dt.dt);
+                    seasons[i].Add(dt.Dt);
                 }
                 i++;
             }
@@ -491,18 +395,19 @@ namespace Kioxk.Server.Controllers
             var prices = new List<int>();
             var j = 1;
             prices.Add(new());
-            foreach (var it in livContext.Single().Prices)
+
+            foreach (var it in livContext.Single().Prices!)
             {
-                Console.WriteLine("priCe " + it.it);
+                Console.WriteLine("priCe " + it.It);
                 prices.Add(new());
-                prices[j] = it.it;
+                prices[j] = it.It;
                 j++;
             }
 
             var selected = new HashSet<DateTime>();
-            foreach (var it in com.Selected)
+            foreach (var it in com.Selected!)
             {
-                selected.Add(it.dt);
+                selected.Add(it.Dt);
             }
             Console.WriteLine("price0 " + prices[0]);
             Console.WriteLine("price1 " + prices[1]);
@@ -519,10 +424,10 @@ namespace Kioxk.Server.Controllers
             {
                 Console.WriteLine("Prices SEAS 1 : " + myse.Date);
             }
-            Console.WriteLine("Prices Com : " + com.Prices[0].it);
+            Console.WriteLine("Prices Com : " + com.Prices![0].It);
             Console.WriteLine("Prices Verifiee : " + emb.Prices[0]);
 
-            if (com.Prices[0].it != emb.Prices[0])
+            if (com.Prices[0].It != emb.Prices[0])
             {
                 return false;
             }

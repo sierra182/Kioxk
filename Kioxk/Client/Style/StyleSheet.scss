@@ -9,7 +9,7 @@ body, html {
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     font-family: 'Twinkle Star', cursive;
     font-size: max(.8rem,1.2vw);
-    background-image: url("/photo/papierinp.jpg");
+    background-image: url("/item/papierinp.jpg");
 }
 
 @mixin centrage_hor {
@@ -1086,7 +1086,7 @@ body, html {
                         textarea {
                             height: 5rem;
                             line-height: 1.2em;
-                            background-image: url("/photo/papierinp.jpg");
+                            background-image: url("/item/papierinp.jpg");
                             background-position: center;
                             background-size: cover;
                             background-repeat: no-repeat;

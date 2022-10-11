@@ -19,9 +19,9 @@ namespace Kioxk.Server.Data
             string connectionString = configuration.GetConnectionString("DefaultSQLiteConnection");
             optionsBuilder.UseSqlite(connectionString);
 
-        }       
-        public DbSet<Livret> Livret { get; set; }        
-        public DbSet<Commande> Commandes { get; set; }
+        }
+        public DbSet<Livret>? Livret { get; set; } 
+        public DbSet<Commande>? Commandes { get; set; } 
 
     }
 }

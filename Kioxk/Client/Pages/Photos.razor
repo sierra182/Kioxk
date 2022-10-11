@@ -15,8 +15,8 @@
 
 <div>
     <div id="contPhAloneJs" draggable="false" style="--phpc:@phpc; --phpx:@phpx; --qte_ph:@qtph"
-         @ontouchstart="(s)=>OnTouchDown(s)" @ontouchmove="(s)=>  OnTouchMove(s)" @ontouchend="OnTouchUp"
-         @onmousedown="(s)=>OnDown(s)" @onmousemove="(s)=>OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp"> 
+         @ontouchstart="(s)=> OnTouchDown(s)" @ontouchmove="(s)=>  OnTouchMove(s)" @ontouchend="OnTouchUp"
+         @onmousedown="(s)=> OnDown(s)" @onmousemove="(s)=> OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp"> 
 
         @for (int i = 0; i < qtph; i++)
         {
@@ -67,7 +67,7 @@
    
     double prim_x;
     void OnDown(MouseEventArgs e) =>  prim_x = e.ScreenX;
-
+    
     void OnTouchDown(TouchEventArgs e) =>  prim_x = Math.Round(e.Touches.First().ScreenX);
 
     void OnUp() =>  phpx = 0;
