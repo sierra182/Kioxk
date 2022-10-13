@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Kioxk.Server.Migrations
 {
-    public partial class casimir : Migration
+    public partial class mydb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,8 +73,8 @@ namespace Kioxk.Server.Migrations
                 {
                     IntId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    index = table.Column<int>(type: "INTEGER", nullable: false),
-                    it = table.Column<int>(type: "INTEGER", nullable: false),
+                    Index = table.Column<int>(type: "INTEGER", nullable: false),
+                    It = table.Column<int>(type: "INTEGER", nullable: false),
                     LivretId = table.Column<int>(type: "INTEGER", nullable: true),
                     CommandeId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
@@ -99,8 +99,8 @@ namespace Kioxk.Server.Migrations
                 {
                     DatetimeId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    index = table.Column<int>(type: "INTEGER", nullable: false),
-                    dt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Index = table.Column<int>(type: "INTEGER", nullable: false),
+                    Dt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LivretId = table.Column<int>(type: "INTEGER", nullable: true),
                     CommandeId = table.Column<int>(type: "INTEGER", nullable: true),
                     HashsetId = table.Column<int>(type: "INTEGER", nullable: true)

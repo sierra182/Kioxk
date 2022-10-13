@@ -32,8 +32,20 @@
     public HashSet<DateTime>? UnSelectable { get; set; } = new();
     [Parameter]
     public EventCallback<HashSet<DateTime>> UnSelectableChanged { get; set; }
+
+    private HashSet<DateTime>? sel;
     [Parameter]
-    public HashSet<DateTime>? Selected { get; set; } = new();
+    public HashSet<DateTime>? Selected
+    {
+        get { return sel; }
+        set
+        {
+            if (value is not null)
+                sel = new(value);
+            else
+                sel = null;
+        }
+    }
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
@@ -97,7 +109,7 @@
                 unselectable[i] = true;                                    // Rend non-selectionnables les jours donnés.
             }
 
-            if (Selected!.Contains(datetime[i]))
+            if (Selected is not null && Selected.Contains(datetime[i]))
             {
                 selected![i] = true;                                        // Rend selectionnés les jours donnés.
             }
@@ -146,16 +158,33 @@
             if (unselectable![i] == null)                            // Rend les éléments vides non clickable sans OnClickWeekOnly
                 return;
         }
-
-        if (Selected!.Contains(t))
+        if (Selected is not null && Selected.Contains(t))
         {
-            Selected.Remove(t);                                     // Supprime la selection si elle existe.
+            c.WriteLine("selected is not null et selected contain");
+            Selected.Remove(t);                                    // Supprime la selection si elle existe.
+            if (Selected.Count is 0)               // Si le panier est vide supprime le panier.
+            {
+                c.WriteLine("selected count is 0");
+
+                Selected = null;
+                // SelectedChanged.InvokeAsync(Selected);
+            }
         }
         else if (!UnSelectable!.Contains(t))
         {
-            Selected.Add(t);                                        // Sinon ajoute le selection si elle n'est pas dans Unselectable
-        }
+            c.WriteLine("elif unselectable ne contient pas la sel");
 
+            if (Selected is null)
+            {
+                c.WriteLine("Dans elif selected is null ");
+
+                Selected = new();                                         // Sinon ajoute le selection si elle n'est pas dans Unselectable
+            }
+            c.WriteLine("add");
+            Selected.Add(t);
+            // Selected = Selected;
+        }
+        c.WriteLine("calinvoke");
         SelectedChanged.InvokeAsync(Selected);
     }
-    }
+}

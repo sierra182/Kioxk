@@ -44,7 +44,7 @@
     </div>
 
     <div id="photos">
-        <div id="ideee">
+        <div>
             <Photos />
 
         </div>
@@ -78,9 +78,8 @@
 </div>
 
 @code {
-
     [Parameter]
-    public HashSet<DateTime> Selected { get; set; } = new();
+    public HashSet<DateTime>? Selected { get; set; } = new();
     [Parameter]
     public HashSet<DateTime>[] Seasons { get; set; } = new HashSet<DateTime>[2] { new(), new() };
     [Parameter]

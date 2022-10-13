@@ -71,16 +71,16 @@ namespace Kioxk.Server.Migrations
                     b.Property<int?>("CommandeId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("Dt")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("HashsetId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("LivretId")
+                    b.Property<int>("Index")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("dt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("index")
+                    b.Property<int?>("LivretId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("DatetimeId");
@@ -124,13 +124,13 @@ namespace Kioxk.Server.Migrations
                     b.Property<int?>("CommandeId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Index")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("It")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("LivretId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("index")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("it")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("IntId");

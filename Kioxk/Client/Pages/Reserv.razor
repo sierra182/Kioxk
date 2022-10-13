@@ -85,7 +85,7 @@
     }
 
     bool scrollHaut = false;
-    bool scrollBas = true;
+    
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {       
@@ -187,7 +187,8 @@
             }
             finally
             {
-                Selected.Clear();
+                // Selected.Clear();
+                Selected = null;
                 mails = new(i, com.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected, com.Total);
                 paie = new();
                 dispavert = "block";

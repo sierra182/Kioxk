@@ -52,12 +52,38 @@
     <Periodes @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" @bind-periodes="@periodes" />
 </div>
 
-
 @code {
-
-    public HashSet<DateTime> sel = new();
+    private HashSet<DateTime>? sel;
     [Parameter]
-    public HashSet<DateTime> Selected { get { return sel; } set { if (!sel.SetEquals(value)) { SelectedChanged.InvokeAsync(value); } sel = new(value); } }
+    public HashSet<DateTime>? Selected
+    {
+        get { return sel; }
+        set
+        {
+            if (sel is not null && value is not null)
+            {
+                if (!sel.SetEquals(value))
+                {
+                    sel = new(value);
+                    SelectedChanged.InvokeAsync(Selected);
+                }
+            }
+            else
+            {
+                if (sel is not null && value is null)
+                {
+                    sel = null;
+                    SelectedChanged.InvokeAsync(Selected);
+                }
+                else if (sel is null && value is not null)
+                {
+                    sel = new(value);
+                    SelectedChanged.InvokeAsync(Selected);
+                }
+            }
+        }
+    }
+
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
@@ -89,7 +115,7 @@
     {
         HashSet<DateTime>[] exSeasons = { new(), new() };
         List<int> exPrices = new() { 0, 0, 0, 0 };
-        Livret? livret;
+        Livret? livret = null;
 
         while (true)
         {
@@ -98,131 +124,149 @@
 
             if (Prices is not null)
                 exPrices = Prices.ToList();
+            try
+            {
+                var ivret = await Http.GetAsync("api/commande");
+                if (ivret.StatusCode is System.Net.HttpStatusCode.NoContent)
+                {
+                    c.WriteLine("NO CONTENT");
+                    livret = null;
+                }
+                if (ivret.StatusCode is System.Net.HttpStatusCode.OK)
+                    livret = await ivret.Content.ReadFromJsonAsync<Livret>();
+            }
 
-            livret = await Http.GetFromJsonAsync<Livret>("api/commande");
+            catch (Exception ex) { c.WriteLine(ex); }
 
             if (livret is not null)
             {
+                c.WriteLine("ICI livret is not nul");
                 installLivret(livret);
                 afterSync(exSeasons, exPrices);
                 StateHasChanged();
             }
+            else
+            {
+                c.WriteLine("ICI livret is null");
+            }
 
             await Task.Delay(5000);
-        }
-    }
-
-    void installLivret(Livret livret)
-    {
-        UnSelectable = new();                                                            // Convertis les entitées en Objet.
-
-        if (livret.UnSelectable is not null)
-            foreach (var dt in livret.UnSelectable)                                                  // Installe Unselectable.
-                UnSelectable.Add(dt.Dt);
-
-        for (int prevDay = now.Day; prevDay >= 1; prevDay--)                                      // Rend non-selectable les jours précédents le jour actuel.
-            UnSelectable.Add(new DateTime(now.Year, now.Month, prevDay));
-
-        CompleteWeek();
-
-        Seasons![1] = new();
-        Seasons[0] = new();
-        var i = 0;
-
-        if (livret.Seasons is not null)
-        {
-            foreach (var Hs in livret.Seasons)                                              // Installe les saisons.
-            {
-                foreach (var dt in Hs.Hs!)
-                    Seasons[i].Add(dt.Dt);
-
-                i++;
-            }
-            foreach (var f in Seasons[1].ToList())                                          // Rend les moyennes et hautes saisons annuelles.
-            {
-                Seasons[1].Add(new DateTime(now.Year, f.Month, f.Day));
-                Seasons[1].Add(new DateTime(now.Year + 1, f.Month, f.Day));
-                Seasons[1].Remove(f);
-            }
-
-            foreach (var f in Seasons[0].ToList())
-            {
-                Seasons[0].Add(new DateTime(now.Year, f.Month, f.Day));
-                Seasons[0].Add(new DateTime(now.Year + 1, f.Month, f.Day));
-                Seasons[0].Remove(f);
             }
         }
-        var j = 1;
 
-        foreach (var it in livret.Prices!)                                              // Installe les prix.
+        void installLivret(Livret livret)
         {
-            Prices![j] = it.It;
-            j++;
-        }
-    }
+            UnSelectable = new();                                                            // Convertis les entitées en Objet.
 
-    int j;
-    DateTime ntime;
+            if (livret.UnSelectable is not null)
+                foreach (var dt in livret.UnSelectable)                                                  // Installe Unselectable.
+                    UnSelectable.Add(dt.Dt);
 
-    void CompleteWeek()
-    {                                                                           // Rend non-selectable les derniers jours de la semaine actuelle.
-        j = (Int32)now.DayOfWeek;
-        ntime = now.Date;
-        while (j != 0)
-        {
-            ntime = ntime.AddDays(1);
-            UnSelectable.Add(ntime);
-            j = (Int32)ntime.DayOfWeek;
-        }
-    }
+            for (int prevDay = now.Day; prevDay >= 1; prevDay--)                                      // Rend non-selectable les jours précédents le jour actuel.
+                UnSelectable.Add(new DateTime(now.Year, now.Month, prevDay));
 
-    HashSet<DateTime>? intersec;
-    HashSet<DateTime>? unionExSais;
-    HashSet<DateTime>? unionSais;
-    HashSet<DateTime>? intersecExSais;
-    HashSet<DateTime>? intersecSais;
+            CompleteWeek();
 
-    void afterSync(HashSet<DateTime>[] seas, List<int> pric)
-    {
-        intersec = new HashSet<DateTime>(Selected);
-        intersec.IntersectWith(UnSelectable);
-        if (intersec.Count > 0)
-        {
-            foreach (var i in intersec)
-                Selected.Remove(i);
+            Seasons![1] = new();
+            Seasons[0] = new();
+            var i = 0;
 
-            js.InvokeVoidAsync("alert", "Attention une période que vous avez selectionnée n'est désormais plus disponible, et a été supprimé de votre selection. Veuillez re-vérifier vos date svp.");
-        }
+            if (livret.Seasons is not null)
+            {
+                foreach (var Hs in livret.Seasons)                                              // Installe les saisons.
+                {
+                    foreach (var dt in Hs.Hs!)
+                        Seasons[i].Add(dt.Dt);
 
-        unionExSais = new HashSet<DateTime>(seas[0]);         //  Réunis les anciennes saisons dans le meme HashSet
-        unionExSais.UnionWith(seas[1]);
+                    i++;
+                }
+                foreach (var f in Seasons[1].ToList())                                          // Rend les moyennes et hautes saisons annuelles.
+                {
+                    Seasons[1].Add(new DateTime(now.Year, f.Month, f.Day));
+                    Seasons[1].Add(new DateTime(now.Year + 1, f.Month, f.Day));
+                    Seasons[1].Remove(f);
+                }
 
-        unionSais = new HashSet<DateTime>(Seasons![0]);        //  Réunis les nouvelles saisons dans le meme HashSet
-        unionSais.UnionWith(Seasons[1]);
+                foreach (var f in Seasons[0].ToList())
+                {
+                    Seasons[0].Add(new DateTime(now.Year, f.Month, f.Day));
+                    Seasons[0].Add(new DateTime(now.Year + 1, f.Month, f.Day));
+                    Seasons[0].Remove(f);
+                }
+            }
+            var j = 1;
 
-        intersecExSais = new HashSet<DateTime>(Selected);     // Calcule si parmis les anciennes saisons, une date correspond à la selection.
-        intersecExSais.IntersectWith(unionExSais);
-        intersecSais = new HashSet<DateTime>(Selected);       // Calcule si parmis les nouvelles saisons, une date correspond à la selection.
-        intersecSais.IntersectWith(unionSais);
-
-        // Si les anciennes saisons ne correspondent plus aux nouvelles et qu'aucune selection ne fait partie des anciennes ou noouvelles saisons.
-        if ((!seas[0].SetEquals(Seasons[0]) || !seas[1].SetEquals(Seasons[1])) && (intersecExSais.Count > 0 || intersecSais.Count > 0))
-        {
-            js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les dates des saisons ont été modifiées depuis le serveur, à l'instant. Veuillez vérifier votre commande.");
+            foreach (var it in livret.Prices!)                                              // Installe les prix.
+            {
+                Prices![j] = it.It;
+                j++;
+            }
         }
 
-        pric.Remove(pric.ElementAt(0));             // Enlève le prix total aux anciens prix.
-        var npric = Prices!.ToList();                // Crée une nouvelle liste des prix udpdated.
-        npric.Remove(npric.ElementAt(0));           // Y enlève le prix Total
+        int j;
+        DateTime ntime;
 
-        if (!pric.SequenceEqual(npric) && Selected.Count > 0)  // Si les prix ont changés et qu'il y a au moins une selection.
-        {
-            js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les prix ont potentiellement été modifiés. Veuillez re-vérifier votre commande.");
+        void CompleteWeek()
+        {                                                                           // Rend non-selectable les derniers jours de la semaine actuelle.
+            j = (Int32)now.DayOfWeek;
+            ntime = now.Date;
+            while (j != 0)
+            {
+                ntime = ntime.AddDays(1);
+                UnSelectable.Add(ntime);
+                j = (Int32)ntime.DayOfWeek;
+            }
         }
-    }
+
+        HashSet<DateTime>? intersec;
+        HashSet<DateTime>? unionExSais;
+        HashSet<DateTime>? unionSais;
+        HashSet<DateTime>? intersecExSais;
+        HashSet<DateTime>? intersecSais;
+
+        void afterSync(HashSet<DateTime>[] seas, List<int> pric)
+        {
+            if (Selected is not null)
+            {
+                intersec = new HashSet<DateTime>(Selected);
+                intersec.IntersectWith(UnSelectable);
+                if (intersec.Count > 0)
+                {
+                    foreach (var i in intersec)
+                        Selected.Remove(i);
+
+                    js.InvokeVoidAsync("alert", "Attention une période que vous avez selectionnée n'est désormais plus disponible, et a été supprimé de votre selection. Veuillez re-vérifier vos date svp.");
+                }
+
+                unionExSais = new HashSet<DateTime>(seas[0]);         //  Réunis les anciennes saisons dans le meme HashSet
+                unionExSais.UnionWith(seas[1]);
+
+                unionSais = new HashSet<DateTime>(Seasons![0]);        //  Réunis les nouvelles saisons dans le meme HashSet
+                unionSais.UnionWith(Seasons[1]);
+
+                intersecExSais = new HashSet<DateTime>(Selected);     // Calcule si parmis les anciennes saisons, une date correspond à la selection.
+                intersecExSais.IntersectWith(unionExSais);
+                intersecSais = new HashSet<DateTime>(Selected);       // Calcule si parmis les nouvelles saisons, une date correspond à la selection.
+                intersecSais.IntersectWith(unionSais);
+
+                // Si les anciennes saisons ne correspondent plus aux nouvelles et qu'aucune selection ne fait partie des anciennes ou nouvelles saisons.
+                if ((!seas[0].SetEquals(Seasons[0]) || !seas[1].SetEquals(Seasons[1])) && (intersecExSais.Count > 0 || intersecSais.Count > 0))
+                {
+                    js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les dates des saisons ont été modifiées depuis le serveur, à l'instant. Veuillez vérifier votre commande.");
+                }
+
+                pric.Remove(pric.ElementAt(0));             // Enlève le prix total aux anciens prix.
+                var npric = Prices!.ToList();                // Crée une nouvelle liste des prix udpdated.
+                npric.Remove(npric.ElementAt(0));           // Y enlève le prix Total
+
+                if (!pric.SequenceEqual(npric))  // Si les prix ont changés et qu'il y a au moins une selection.
+                {
+                    js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les prix ont potentiellement été modifiés. Veuillez re-vérifier votre commande.");
+                }
+            }
+        }
 
     protected override void OnInitialized() => _ = Task.Run(() => _ = Sync());
-       
 
     const int maxMonth = 12;
     int maxNext;
@@ -269,7 +313,8 @@
 
     void OnClearAll()
     {
-        Selected.Clear();
-        SelectedChanged.InvokeAsync(Selected);
+        //Selected.Clear();
+        Selected = null;
+        // SelectedChanged.InvokeAsync(Selected);
     }
 }

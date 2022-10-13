@@ -1,67 +1,73 @@
 ﻿@inject IJSRuntime js
 
-@{ 
+@{
     int c = 0;
     Prices![0] = 0;
-    foreach (var per in periodesUi!)
-    {                                                                                                 // Affiche les périodes
-        var deb = per.First<DateTime>();
-        var fin = per.Last<DateTime>();
 
-        var nmbrtab = ComparePeriode(per);
-        int nmbrJourNorm = nmbrtab[0];
-        int nmbrJourMoy = nmbrtab[1];
-        int nmbrJourHaute = nmbrtab[2];
-        int prixPer = nmbrtab[3];
-        if (per.Count == 1)
-        {
-            <span style"--mycall-height:80%"> Le @deb </span> 
-            if (nmbrJourNorm == 1)
-            {
-                <span>Un jour au prix normal: @Prices[1] €  </span>
-            }
+    if (periodesUi is not null)
 
-            if (nmbrJourMoy == 1)
-            {
-                <span>Un jour au prix moyenne saison: @Prices[2] € </span>
+        foreach (var per in periodesUi)
+        {                                                                                                 // Affiche les périodes
+            var deb = per.First<DateTime>();
+            var fin = per.Last<DateTime>();
 
-            }
-            if (nmbrJourHaute == 1)
+            var nmbrtab = ComparePeriode(per);
+            int nmbrJourNorm = nmbrtab[0];
+            int nmbrJourMoy = nmbrtab[1];
+            int nmbrJourHaute = nmbrtab[2];
+            int prixPer = nmbrtab[3];
+            if (per.Count == 1)
             {
-                <span>Un jour au prix haute saison:  @Prices[3] €</span>
+                <span style"--mycall-height:80%"> Le @deb </span>
+                if (nmbrJourNorm == 1)
+                {
+                    <span>Un jour au prix normal: @Prices[1] €  </span>
+                }
+
+                if (nmbrJourMoy == 1)
+                {
+                    <span>Un jour au prix moyenne saison: @Prices[2] € </span>
+
+                }
+                if (nmbrJourHaute == 1)
+                {
+                    <span>Un jour au prix haute saison:  @Prices[3] €</span>
+                }
             }
+            else
+            {
+                var tnorm = nmbrJourNorm * Prices[1];
+                var tmoy = nmbrJourMoy * Prices[2];
+                var thaute = nmbrJourHaute * Prices[3];
+
+                <div class="@divPerClass[c]">
+                    @{
+                        c++;
+                    }
+                    <span>Du @deb.ToShortDateString() au @fin.ToShortDateString()</span>
+
+                    @if (nmbrJourNorm > 0)
+                    {
+                        <span> @nmbrJourNorm jours à @Prices[1] € = @tnorm € </span>
+                    }
+                    @if (nmbrJourMoy > 0)
+                    {
+                        <span> @nmbrJourMoy jours à @Prices[2] € = @tmoy €</span>
+                    }
+                    @if (nmbrJourHaute > 0)
+                    {
+                        <span> @nmbrJourHaute jours à @Prices[3] € = @thaute €</span>
+                    }
+                    @if (!(tnorm == prixPer || tmoy == prixPer || thaute == prixPer))
+                    {
+                        <span>Prix période: @prixPer €</span>
+                    }
+
+                </div>
+            }
+            Prices[0] += prixPer;
         }
-        else
-        {
-            var tnorm = nmbrJourNorm * Prices[1];
-            var tmoy = nmbrJourMoy * Prices[2];
-            var thaute = nmbrJourHaute * Prices[3];
 
-            <div class="@divPerClass[c]">
-                @{c++;}
-                <span>Du @deb.ToShortDateString() au @fin.ToShortDateString()</span>
-
-                @if (nmbrJourNorm > 0)
-                {
-                    <span> @nmbrJourNorm jours à @Prices[1] € = @tnorm € </span>
-                }
-                @if (nmbrJourMoy > 0)
-                {
-                    <span> @nmbrJourMoy jours à @Prices[2] € = @tmoy €</span>
-                }
-                @if (nmbrJourHaute > 0)
-                {
-                    <span> @nmbrJourHaute jours à @Prices[3] € = @thaute €</span>
-                }
-                @if (!(tnorm == prixPer || tmoy == prixPer || thaute == prixPer))
-                {
-                    <span>Prix période: @prixPer €</span>
-                }
-
-            </div>
-        }
-        Prices[0] += prixPer;
-    }
     @if (@Prices[0] > 0)
     {
         <span class="@spanPrix">Prix Total: @Prices[0] €</span>
@@ -93,18 +99,18 @@
     private string spanPrix = "ajoutPer";
 
     public void Extern()
-    {        
+    {
         _ = OnParametersSetAsync();
         CalculUi();
     }
 
     void CalculUi()
-    {       
+    {
         foreach (var per in periodes)
         {                                                                                               // Calcul du Prix Total pour Extern.
             nmbrtabext = ComparePeriode(per);
-            int prixPer = nmbrtabext[3];   
-            Prices![0] += prixPer;            
+            int prixPer = nmbrtabext[3];
+            Prices![0] += prixPer;
         }
     }
 
@@ -112,106 +118,123 @@
     List<List<DateTime>> exper = new();
 
     protected async override Task OnParametersSetAsync()
-    {       
-        if (pass)
-        {            
-            pass = false;                                                                                    /// Ecarte le surmenage et l'invoque replay sauf pour l'Ui.
+    {
+        try
+        {
+            if (pass)
+            {
+                pass = false;                                                                                   /// Ecarte le surmenage et l'invoque replay sauf pour l'Ui.
+                periodes.Clear();
+                // Efface périodes.                                                /// Crée périodes à partir de selection...
 
-            periodes.Clear();                                                                                 // Efface périodes.                                                /// Crée périodes à partir de selection...
-            var sel = Selected!.OrderBy(key => key);                                                           // Ordonne les selections
-
-            foreach (var s in sel)
-                if (periodes.Count > 0 && periodes.Last<List<DateTime>>().Last<DateTime>() == s.AddDays(-1))  // Si le dernier jour de la dernière période, si elle existe, vaut la selection moins un jour.
-                    periodes.Last<List<DateTime>>().Add(s);                                                   // Ajouter la selection à la dernière période.
-                else
-                    periodes.Add(new List<DateTime>() { s });                                                 // Sinon crée une nouvelle période à périodes.
-
-            var expbis = new List<List<DateTime>>(exper);                                                      // Détermine si une ou plusieurs periodes ont disparuent.         /// Animation des Périodes.
-            foreach (var per in periodes)                                                                      // Rend une liste de periodes supprimées nommé exbis.
-                foreach (var exp in exper)
-                    if (per.SequenceEqual(exp))
-                        expbis.Remove(exp);
-
-            var expbisAdded = new List<List<DateTime>>(periodes);                                             // Détermine si une ou plusieurs periodes sont apparuent.
-            foreach (var per in periodes)                                                                     // Rend une liste de periodes ajoutées nommé exbisAdded.
-                foreach (var exp in exper)
-                    if (per.SequenceEqual(exp))
-                        expbisAdded.Remove(per);
-
-            periodesUi = exper;                                                                                // Donne la version ancienne des périodes à l'Ui.
-
-            if (expbis.Count > 0)                                                                              // Si au moins une période est supprimée:
-            {            
-                foreach (var exp in expbis)                                                                    // Pour chaque élement de la liste des supprimées:
+                if (Selected is not null)
                 {
-                    var ind = exper.FindIndex(r => r.Equals(exp));                                             // Trouve l'index du supprimé de l'ancienne période.
-                    divPerClass[ind] = "remPer";                                                               // Sa classe est changée pour remove.
+                    var sel = Selected.OrderBy(key => key);                                                           // Ordonne les selections
+
+                    foreach (var s in sel)
+                        if (periodes.Count > 0 && periodes.Last<List<DateTime>>().Last<DateTime>() == s.AddDays(-1))  // Si le dernier jour de la dernière période, si elle existe, vaut la selection moins un jour.
+                            periodes.Last<List<DateTime>>().Add(s);                                                   // Ajouter la selection à la dernière période.
+                        else
+                            periodes.Add(new List<DateTime>() { s });
+                }
+                // Sinon crée une nouvelle période à périodes.
+                var expbis = new List<List<DateTime>>(exper);                                                      // Détermine si une ou plusieurs periodes ont disparuent.         /// Animation des Périodes.
+                foreach (var per in periodes)                                                                      // Rend une liste de periodes supprimées nommé exbis.
+                    foreach (var exp in exper)
+                        if (per.SequenceEqual(exp))
+                            expbis.Remove(exp);
+
+                var expbisAdded = new List<List<DateTime>>(periodes);                                             // Détermine si une ou plusieurs periodes sont apparuent.
+                foreach (var per in periodes)                                                                     // Rend une liste de periodes ajoutées nommé exbisAdded.
+                    foreach (var exp in exper)
+                        if (per.SequenceEqual(exp))
+                            expbisAdded.Remove(per);
+
+                periodesUi = exper;                                                                                // Donne la version ancienne des périodes à l'Ui.
+
+                if (expbis.Count > 0)                                                                              // Si au moins une période est supprimée:
+                {
+                    foreach (var exp in expbis)                                                                    // Pour chaque élement de la liste des supprimées:
+                    {
+                        var ind = exper.FindIndex(r => r.Equals(exp));                                             // Trouve l'index du supprimé de l'ancienne période.
+                        divPerClass[ind] = "remPer";                                                               // Sa classe est changée pour remove.
+                    }
+
+                    if (periodes.Count == 0)                                                                       // Si la liste des nouvelles periodes est vide:
+                    {
+                        spanPrix = "remPer";                                                                       // Change la classe du Prix vers remove.
+                        _ = periodesChanged.InvokeAsync(periodes);                                                 // Invoque le changement de période, immédiatement, pour anim Bouttons Clear. Le retour est bloqué.
+                    }
+
+                    await Task.Delay(500);                                                                         // Actualise l'Ui pendant le temps de l'animation. Puis:
+
+                    divPerClass.Clear();                                                                           // Efface le tableau des classes des périodes.
+                    foreach (var per in periodes) divPerClass.Add(new string(""));                                 // Remplit le tableau avec aucune classe selon le nombre des nouvelles périodes.
+
+                }
+                if (expbisAdded.Count > 0)                                                                         // Si au moins une période est ajoutée:
+                {
+                    divPerClass.Clear();                                                                           // Efface le tableau des classes des périodes.
+                    foreach (var per in exper) divPerClass.Add(new string(""));                                    // Remplit le tableau avec aucune classe selon le nombre des anciennes périodes.
+
+                    await Task.Delay(1);                                                                           // Actualise l'Ui. Puis:
+
+                    divPerClass.Clear();                                                                           // Efface le tableau des classes des périodes.
+                    foreach (var per in periodes) divPerClass.Add(new string(""));                                 // Remplit le tableau avec aucune classe selon le nombre des nouvelles périodes.
+
+                    foreach (var exp in expbisAdded)                                                               // Pour chaque élement de la liste des ajoutées:
+                    {
+                        var ind = periodes.FindIndex(r => r.Equals(exp));                                          // Trouve l'index de l'ajouté de la nouvelle période.
+                        divPerClass[ind] = "ajoutPer";                                                             // Sa classe est changée pour ajout.
+                    }
+
+                    spanPrix = "ajoutPer";                                                                         // Change la classe du Prix vers ajout.
+                    periodesUi = periodes;                                                                         // Donne la version nouvelles des périodes à l'Ui, pour l'invoque qui reactualise l'Ui avant.
+                    if (periodes.Count == 1)                                                                       // Si le nombre de période est égal a 1: active le boutton ClearAll.
+                        _ = periodesChanged.InvokeAsync(periodes);                                                 // Invoque le changement de période, immédiatement, pour anim Bouttons Clear. Le retour est bloqué.
                 }
 
-                if (periodes.Count == 0)                                                                       // Si la liste des nouvelles periodes est vide:
-                {
-                    spanPrix = "remPer";                                                                       // Change la classe du Prix vers remove.
-                    _ = periodesChanged.InvokeAsync(periodes);                                                 // Invoque le changement de période, immédiatement, pour anim Bouttons Clear. Le retour est bloqué.
-                }
+                periodesUi = periodes;                                                                             // Donne la version nouvelles des périodes à l'Ui.
 
-                await Task.Delay(500);                                                                         // Actualise l'Ui pendant le temps de l'animation. Puis:
+                exper.Clear();                                                                                     // Efface les anciennes périodes.
+                foreach (var per in periodes) exper.Add(per);                                                      // Actualise l'ancienne période avec la nouvelle.
 
-                divPerClass.Clear();                                                                           // Efface le tableau des classes des périodes.
-                foreach (var per in periodes) divPerClass.Add(new string(""));                                 // Remplit le tableau avec aucune classe selon le nombre des nouvelles périodes.
-
+                pass = true;
             }
-            if (expbisAdded.Count > 0)                                                                         // Si au moins une période est ajoutée:
-            {                
-                divPerClass.Clear();                                                                           // Efface le tableau des classes des périodes.
-                foreach (var per in exper) divPerClass.Add(new string(""));                                    // Remplit le tableau avec aucune classe selon le nombre des anciennes périodes.
 
-                await Task.Delay(1);                                                                           // Actualise l'Ui. Puis:
+        }
+        catch (Exception ex)
+        {
 
-                divPerClass.Clear();                                                                           // Efface le tableau des classes des périodes.
-                foreach (var per in periodes) divPerClass.Add(new string(""));                                 // Remplit le tableau avec aucune classe selon le nombre des nouvelles périodes.
-
-                foreach (var exp in expbisAdded)                                                               // Pour chaque élement de la liste des ajoutées:
-                {
-                    var ind = periodes.FindIndex(r => r.Equals(exp));                                          // Trouve l'index de l'ajouté de la nouvelle période.
-                    divPerClass[ind] = "ajoutPer";                                                             // Sa classe est changée pour ajout.
-                }
-
-                spanPrix = "ajoutPer";                                                                         // Change la classe du Prix vers ajout.
-                periodesUi = periodes;                                                                         // Donne la version nouvelles des périodes à l'Ui, pour l'invoque qui reactualise l'Ui avant.
-                if (periodes.Count == 1)                                                                       // Si le nombre de période est égal a 1: active le boutton ClearAll.
-                    _ = periodesChanged.InvokeAsync(periodes);                                                 // Invoque le changement de période, immédiatement, pour anim Bouttons Clear. Le retour est bloqué.
-            }
-
-            periodesUi = periodes;                                                                             // Donne la version nouvelles des périodes à l'Ui.
-
-            exper.Clear();                                                                                     // Efface les anciennes périodes.
-            foreach (var per in periodes) exper.Add(per);                                                      // Actualise l'ancienne période avec la nouvelle.
-
-            pass = true;
+            c.WriteLine(ex);
         }
     }
 
-    int[] ComparePeriode(List<DateTime> list)
+        
+    int[] ComparePeriode(List<DateTime> list)                                         // Détermine le nombre de jour normaux, moyens, et hauts.                                  
     {
-                                                                             // Détermine le nombre de jour normaux, moyens, et hauts.
+        int mpint = 0;
+        int hpint = 0;
+        if (Seasons is not null)
+        {
             HashSet<DateTime> intersecMp = new(list);                               // Calcule le prix de la période et retourne l'ensemble.
             intersecMp.IntersectWith(Seasons![0]);
 
             HashSet<DateTime> intersecHp = new(list);
             intersecHp.IntersectWith(Seasons[1]);
 
-            int mpint = 0;
+           
             if (intersecMp.Count > 0)
             {
                 mpint = intersecMp.Count;
             }
 
-            int hpint = 0;
+           
             if (intersecHp.Count > 0)
             {
                 hpint = intersecHp.Count;
             }
-        
+        }
         var normint = list.Count - hpint - mpint;
         var prixper = normint * Prices![1] + mpint * Prices[2] + hpint * Prices[3];
         return new int[] { normint, mpint, hpint, prixper };
