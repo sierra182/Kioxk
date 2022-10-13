@@ -106,11 +106,11 @@ namespace Kioxk.Server.Controllers
                     ndt5
                 };
 
-                //if (comContext.Any())                                           // rajoute les anciennes commandes dans unselectable
-                //    foreach (var com in comContext)
-                //        if(com.Selected is not null)
-                //        foreach (var sel in com.Selected)
-                //            nhs.Add(sel);
+                if (comContext.Any())                                           // rajoute les anciennes commandes dans unselectable
+                    foreach (var com in comContext)
+                        if (com.Selected is not null)
+                            foreach (var sel in com.Selected)
+                                nhs.Add(sel);
 
                 var ndts = new Datetime() { Dt = new DateTime(2000, 12, 19) };   // Saison 0
                 var ndts1 = new Datetime() { Dt = new DateTime(2000, 12, 20) };
@@ -134,7 +134,7 @@ namespace Kioxk.Server.Controllers
 
                 var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
 
-                var nint = new Int() { It = 100 };
+                var nint = new Int() { It = 80 };
                 var nint1 = new Int() { It = 120 };
                 var nint2 = new Int() { It = 150 };
                 var nintf = new List<Int> { nint, nint1, nint2 };
@@ -386,9 +386,8 @@ namespace Kioxk.Server.Controllers
         private bool Embrouille(Commande com)
         {
             List<HashSet<DateTime>>? seasons = null;
-            if (_context.Livret!.Single().Seasons is not null)
-            {
-                c.WriteLine("Season is not null");
+            if (livContext.Single().Seasons!.Any())
+            {               
                 seasons = new List<HashSet<DateTime>>();
                 var i = 0;
                 foreach (var Hs in livContext.Single().Seasons!)
@@ -414,6 +413,7 @@ namespace Kioxk.Server.Controllers
                     seasons[0].Remove(f);
                 }
             }
+          
             var prices = new List<int>();
             var j = 1;
             prices.Add(new());
