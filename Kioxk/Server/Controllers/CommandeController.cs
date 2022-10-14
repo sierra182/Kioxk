@@ -436,6 +436,7 @@ namespace Kioxk.Server.Controllers
             Console.WriteLine("price2 " + prices[2]);
             Console.WriteLine("price3 " + prices[3]);
             HashSet<DateTime>[]? seasAr = null;
+
             if (seasons is not null)
                 seasAr = seasons.ToArray();
 

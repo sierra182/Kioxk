@@ -42,7 +42,7 @@
 
     </label>
 
-    <button class="btn btn-success" type="submit" @onclick='()=> { if (ec!.Validate()){ComRapp.InvokeAsync(Com);}}'>
+    <button class="btn btn-success" type="submit" @onclick='async()=> { if (ec!.Validate()){c.WriteLine("avant invoke");await ComRapp.InvokeAsync(Com);c.WriteLine("apres invoke");}}'>
         Envoyez
     </button>
 
