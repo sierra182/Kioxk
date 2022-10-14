@@ -238,7 +238,7 @@
                 foreach (var i in intersec)
                     Selected.Remove(i);
 
-                js.InvokeVoidAsync("alert", "Attention une période que vous avez selectionnée n'est désormais plus disponible, et a été supprimé de votre selection. Veuillez re-vérifier vos date svp.");
+                js.InvokeVoidAsync("alert", "Attention une période que vous avez selectionnée n'est désormais plus disponible, et a été supprimé de votre selection. Veuillez re-vérifier vos dates svp.");
             }
 
             unionExSais = new HashSet<DateTime>(seas[0]);         //  Réunis les anciennes saisons dans le meme HashSet
@@ -252,7 +252,7 @@
             intersecSais = new HashSet<DateTime>(Selected);       // Calcule si parmis les nouvelles saisons, une date correspond à la selection.
             intersecSais.IntersectWith(unionSais);
 
-            // Si les anciennes saisons ne correspondent plus aux nouvelles et qu'aucune selection ne fait partie des anciennes ou nouvelles saisons.
+            // Si les anciennes saisons ne correspondent plus aux nouvelles et qu'une selection fait partie des anciennes ou nouvelles saisons.
             if ((!seas[0].SetEquals(Seasons[0]) || !seas[1].SetEquals(Seasons[1])) && (intersecExSais.Count > 0 || intersecSais.Count > 0))
             {
                 js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les dates des saisons ont été modifiées depuis le serveur, à l'instant. Veuillez vérifier votre commande.");

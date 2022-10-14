@@ -88,13 +88,13 @@ namespace Kioxk.Server.Controllers
             else
             {
                 c.WriteLine("Il n'y a pas de livret...");
-                var ndt = new Datetime() { Dt = new DateTime(2021, 11, 15) };   // Unselectable
-                var ndt1 = new Datetime() { Dt = new DateTime(2021, 11, 16) };
-                var ndt2 = new Datetime() { Dt = new DateTime(2021, 11, 17) };
-
-                var ndt3 = new Datetime() { Dt = new DateTime(2021, 12, 15) };
-                var ndt4 = new Datetime() { Dt = new DateTime(2021, 12, 16) };
-                var ndt5 = new Datetime() { Dt = new DateTime(2021, 12, 17) };
+                var ndt = new Datetime() { Dt = new DateTime(2022, 12, 12) };   // Unselectable
+                var ndt1 = new Datetime() { Dt = new DateTime(2022, 12, 13) };
+                var ndt2 = new Datetime() { Dt = new DateTime(2022, 12, 14) };
+                var ndt3 = new Datetime() { Dt = new DateTime(2022, 12, 15) };
+                var ndt4 = new Datetime() { Dt = new DateTime(2022, 12, 16) };
+                var ndt5 = new Datetime() { Dt = new DateTime(2022, 12, 17) };
+                var ndt6 = new Datetime() { Dt = new DateTime(2022, 12, 18) };              
 
                 var nhs = new HashSet<Datetime>
                 {
@@ -103,7 +103,8 @@ namespace Kioxk.Server.Controllers
                     ndt2,
                     ndt3,
                     ndt4,
-                    ndt5
+                    ndt5,
+                    ndt6
                 };
 
                 if (comContext.Any())                                           // rajoute les anciennes commandes dans unselectable
@@ -112,8 +113,8 @@ namespace Kioxk.Server.Controllers
                             foreach (var sel in com.Selected)
                                 nhs.Add(sel);
 
-                var ndts = new Datetime() { Dt = new DateTime(2000, 12, 19) };   // Saison 0
-                var ndts1 = new Datetime() { Dt = new DateTime(2000, 12, 20) };
+                var ndts = new Datetime() { Dt = new DateTime(2000, 12, 26) };   // Saison 0
+                var ndts1 = new Datetime() { Dt = new DateTime(2000, 12, 22) };
                 var ndts2 = new Datetime() { Dt = new DateTime(2000, 12, 21) };
                 var nhst = new HashSet<Datetime>
                 {
@@ -134,14 +135,14 @@ namespace Kioxk.Server.Controllers
 
                 var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
 
-                var nint = new Int() { It = 80 };
+                var nint = new Int() { It = 90 };
                 var nint1 = new Int() { It = 120 };
-                var nint2 = new Int() { It = 150 };
+                var nint2 = new Int() { It = 950 };
                 var nintf = new List<Int> { nint, nint1, nint2 };
 
 
 
-                _context.Livret!.Add(new() { UnSelectable = nhs, Seasons = nhstf, Prices = nintf });
+                _context.Livret!.Add(new() { UnSelectable = null, Seasons = nhstf, Prices = nintf });
                 _context.SaveChanges();
 
                 Console.WriteLine("livret done!");
