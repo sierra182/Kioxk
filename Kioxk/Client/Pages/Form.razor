@@ -1,5 +1,7 @@
 ﻿@inject HttpClient Http
 @inject IJSRuntime js
+@inject MyEvents myevents
+
 @using System.Threading
 @using Kioxk.Shared.Models
 
@@ -42,7 +44,7 @@
 
     </label>
 
-    <button class="btn btn-success" type="submit" @onclick='async()=> { if (ec!.Validate()){c.WriteLine("avant invoke");await ComRapp.InvokeAsync(Com);c.WriteLine("apres invoke");}}'>
+    <button class="btn btn-success @btnw" type="submit" @onclick='async()=> { myevents.RisePointerEvent(); if (ec!.Validate()){ btnw = "btn-wait";  await ComRapp.InvokeAsync(Com); btnw = ""; } myevents.RisePointerEvent();}'>
         Envoyez
     </button>
 
@@ -58,6 +60,9 @@
     public EventCallback ComRapp { get; set; }
 
     private EditContext? ec { get; set; }
+
+    string? btnw;
+
     protected override void OnInitialized()
     {
         ec = new EditContext(Com!);

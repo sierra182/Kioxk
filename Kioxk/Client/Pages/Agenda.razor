@@ -1,8 +1,9 @@
 ﻿@inject IJSRuntime js
 @inject HttpClient Http
+@inject MyEvents myevents;
+
 @using Kioxk.Shared.Models
 @using Kioxk.Client.Shared
-@inject MySync mysync;
 
 <div id="calendar">
     <Calendar @bind-DateTime="@DateTime" @bind-UnSelectable="@UnSelectable" @bind-Selected="@Selected" @bind-Seasons="@Seasons" />
@@ -112,7 +113,6 @@
     private string visNext = "Visible";
     private DateTime now = DateTime.Now;
 
-
     async Task Sync(CancellationToken token)
     {
         HashSet<DateTime>[] exSeasons = { new(), new() };
@@ -121,8 +121,6 @@
 
         while (true)
         {
-
-            c.WriteLine("GO");
             if (Seasons is not null)
                 exSeasons = new HashSet<DateTime>[] { new(Seasons[0]), new(Seasons[1]) };
 
@@ -143,7 +141,7 @@
             catch (Exception ex) { c.WriteLine(ex); }
 
             if (token.IsCancellationRequested)
-            { c.WriteLine("Cancel requested"); tsk.Dispose(); }
+                tsk?.Dispose();
 
             if (livret is not null)
             {
@@ -153,7 +151,6 @@
             }
 
             await Task.Delay(5000);
-
         }
     }
 
@@ -268,34 +265,21 @@
             }
         }
     }
+
     public static CancellationTokenSource cts = new();
-    public static Task tsk;
+    private Task? tsk;
 
-    //public void CallInit()
-    //{
-    //    c.WriteLine("callinit");
-
-    //    // _ = SetParametersAsync(new ParameterView());
-    //    OnInitialized();
-    //}
     public void LaunchTask()
     {
-        mysync.myEvent += () => 
-        { 
-            c.WriteLine("OnEveeeent");
-cts = new();
+        myevents.MySync += () =>
+        {
+            cts = new();
             tsk = Task.Run(() => _ = Sync(cts.Token), cts.Token);
         };
-        mysync.RiseEvent();
+         myevents.RiseSyncEvent();
+    }
 
-    }
-    protected override void OnInitialized()  
-    {
-        c.WriteLine("ONinit");
-        // cts = new();
-        //  tsk = Task.Run(() => _ = Sync(cts.Token), cts.Token);
-        LaunchTask();
-    }
+    protected override void OnInitialized() => LaunchTask();
 
     const int maxMonth = 12;
     int maxNext;
@@ -340,10 +324,6 @@ cts = new();
         trbu = trn + "%";
     }
 
-    void OnClearAll()
-    {
-        //Selected.Clear();
-        Selected = null;
-        // SelectedChanged.InvokeAsync(Selected);
-    }
+    void OnClearAll() => Selected = null;
+
 }

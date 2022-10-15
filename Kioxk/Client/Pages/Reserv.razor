@@ -1,12 +1,14 @@
 ﻿@inject HttpClient Http
 @inject IJSRuntime js
+@inject MyEvents myevents
+
 @using Kioxk.Shared.Models
 @using System
 @using System.Web
 @using System.IO
-@inject MySync mysync;
+
 @{
-    if (Selected is not null || maintien )  // ouvre
+    if (Selected is not null)  // ouvre
     {
         op = 0.9;
         pter = "none";
@@ -122,22 +124,17 @@
             paie = null;
             pay = false;
             tog = false;
-            maintien = false;
+
             Selected = null;
             await SelectedChanged.InvokeAsync(Selected);
-            mysync.RiseEvent();
-            // Agenda.tsk.Start();
-          //  var a = new Agenda();
-          //  a.LaunchTask();
-            //  ag.CallInit();
-
+            myevents.RiseSyncEvent();           
         }
     }
 
     private async Task CreateCommande()
     {
-        if (Selected is not null && Seasons is not null && Prices is not null)
-        {
+        if ( Selected is not null && Seasons is not null && Prices is not null ) 
+    {
             var sel = new HashSet<Datetime>();                                      // Convertis en entitée.
             foreach (var j in Selected)
             {
@@ -169,49 +166,28 @@
             com.Prices = pri;
             com.Total = pri[0].It;
 
-
-
-
-            //  var y = 
-            var y = Send();
-
-
-            c.WriteLine("avant wait");
-            // var g = y.GetAwaiter();
-            // g.OnCompleted(() => c.WriteLine("apres wait2"));
-            c.WriteLine("apres wait");
+            await Send();
         }
     }
-
-    bool maintien;
+      
     private async Task Send(){
         try
         {
             Agenda.cts.Cancel();
-           
-            c.WriteLine("send");
-            var id = await Http.PostAsJsonAsync("api/commande/", com);
-            c.WriteLine("send2");
+                      
+            var id = await Http.PostAsJsonAsync("api/commande/", com);          
             i = await id.Content.ReadFromJsonAsync<int>();         
             Console.WriteLine("Numero de commande: " + i);
             //  await js.InvokeVoidAsync("alert", "Réservation pré-validé");
-            c.WriteLine("send3");
+        
         }
         catch (Exception)
         {
             await js.InvokeVoidAsync("alert", "Echec de Connexion.!.");
         }
         finally
-        {
-            Selected = null;
-         //   Agenda.tsk.Dispose();
-            
-            
-           // Agenda.tsk.Dispose();
-            //  maintien = true;
-           // Agenda.zool = false;
-          //  _ = SelectedChanged.InvokeAsync(Selected);
-            mails = new(i, com.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected, com.Total);
+        {          
+            mails = new(i, com!.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected!, com.Total);
             paie = new();
             dispavert = "block";
             StateHasChanged();

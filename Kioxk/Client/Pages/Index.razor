@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject IJSRuntime js
+@inject MyEvents myevents
 
 <div id="header">
     <div>
@@ -62,7 +63,7 @@
 
     </div>
 
-    <div id="agenda">
+    <div id="agenda" style="--agenda_pointer-event:@pnter">
         <div>
             <Agenda @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" />
 
@@ -79,10 +80,31 @@
 
 @code {
     [Parameter]
-    public HashSet<DateTime>? Selected { get; set; } //= new();
+    public HashSet<DateTime>? Selected { get; set; }
     [Parameter]
     public HashSet<DateTime>[] Seasons { get; set; } = new HashSet<DateTime>[2] { new(), new() };
     [Parameter]
     public int[] Prices { get; set; } = new int[4];
-  
+
+    string? pnter;
+    bool tog_pnter = true;
+    protected override void OnInitialized()
+    {
+        myevents.MyPointer += ()=> 
+        {
+            if (tog_pnter)
+            {
+                tog_pnter = false;
+                pnter = "none";
+                StateHasChanged();
+            }
+            else
+            {
+                tog_pnter = true;
+                pnter = "initial";
+                StateHasChanged();
+            }
+        };
+    }
+    
 }

@@ -140,8 +140,6 @@ namespace Kioxk.Server.Controllers
                 var nint2 = new Int() { It = 950 };
                 var nintf = new List<Int> { nint, nint1, nint2 };
 
-
-
                 _context.Livret!.Add(new() { UnSelectable = null, Seasons = nhstf, Prices = nintf });
                 _context.SaveChanges();
 

@@ -665,15 +665,15 @@ body, html {
 
     #agenda {
         --calendar-width: max(calc(var(--child-width) / 4 * 2.5),23rem);
+        --agenda_pointer-event: initial;
+        z-index: 2;
         position: relative;
         width: max(var(--calendar-width),16rem);
-        height: fit-content; //calc(var(--child-width) / 4 * 3);
-        // left: 3vw;
-        z-index: 2;
+        height: fit-content;
+        pointer-events: var(--agenda_pointer-event);
         transition: transform .7s;
-        //  background-color: darkgoldenrod;
         @include ombre();
-        // flex-shrink: 0;
+        //  background-color: darkgoldenrod;
 
         > div:first-child { //cont p
             position: relative;
@@ -686,6 +686,7 @@ body, html {
             margin: auto;
             // background-color: rebeccapurple;
 
+
             #calendar {
                 position: relative;
                 top: 0;
@@ -697,6 +698,7 @@ body, html {
                 margin: auto;
                 text-align: center;
                 // background-color: red;
+
 
                 > :first-child { // Mois Année
                     display: inline-block;
@@ -738,6 +740,7 @@ body, html {
                     grid-template-columns: repeat(7, 1fr);
                     grid-template-rows: repeat(7, 1fr);
                     // background-color: darkcyan;
+                    //  pointer-events: none;
 
                     > div { // Item
                         display: flex;
@@ -1114,7 +1117,31 @@ body, html {
                         border: solid 4px;
                         border-radius: 5% / 45%;
                         filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
-                        background-color: #32de84; // #0BDA51; // #018749;
+                        background-color: #32de84;
+                    }
+
+                    .btn-wait {                      
+                        pointer-events: none;
+                        touch-action: none;
+                        --agenda_pointer-event: none;
+                        animation: attente 3s infinite;
+                    }
+
+                    @keyframes attente{
+                
+                        from {
+                            background-color: #32de84;
+                            
+                        }
+
+                        50% {
+                            background-color: orange;
+                           
+                        }
+
+                        to {
+                            background-color: #32de84;
+                        }
                     }
                 }
             }
