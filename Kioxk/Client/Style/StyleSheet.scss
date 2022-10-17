@@ -310,6 +310,12 @@ body, html {
             }
         }
     }
+    /* @media screen and ${var(--boule)} {
+        #pretext {
+            opacity:0.5;
+            display:none;
+        }
+        }*/
 
     #photos {
         --cp_mult-h: 1;
@@ -319,6 +325,8 @@ body, html {
         --photo-height: calc(var(--main-height) * 1%);
         --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 );
         --max_size: 50rem;
+        //  --coef_more-width:0;
+
         display: flex;
         position: relative;
         left: 0;
@@ -330,6 +338,7 @@ body, html {
         user-select: none;
         @include ombre();
         // background-color: green;
+        backdrop-filter: blur(2px);
 
         > div:first-child { //cont p
             z-index: 1;
@@ -398,7 +407,7 @@ body, html {
 
             > div:nth-of-type(2) {
                 display: flex;
-                width: 100%;
+                width: 100%; //fit-content;//100%;
                 height: 100%;
                 align-content: center;
                 // background-color: blueviolet;
@@ -409,7 +418,7 @@ body, html {
                     --qte_ph: 0;
                     display: flex;
                     flex-shrink: 0;
-                    position: relative;
+                    // position: relative;
                     width: calc(100% * var(--qte_ph));
                     height: fit-content;
                     margin: auto;
@@ -419,14 +428,17 @@ body, html {
                     // background-color: yellow;
 
                     > div { //cont img et cont ifrme - multy
-                        width: 100%;
+                        width: 100%; //fit-content;//100%; !!!!!!!!!!!!!!!!!!!!!
                         height: fit-content;
                         //  background-color: darkmagenta;
-
+                        //  background-filter:blur(2px);
                         img {
                             position: relative;
                             width: 100%;
                             height: auto;
+                            margin: auto; //!!
+                            display: block; //!!
+                            max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
                         }
 
                         > div { //cont iframe contIfraJs
@@ -500,7 +512,8 @@ body, html {
 
     @media screen and (max-width:619px) {
         #photos {
-            width: 96%;
+            width: 95vw !important;
+            position: relative !important;
 
             > div:first-child {
                 height: fit-content !important;
@@ -513,10 +526,35 @@ body, html {
 
                     #contPhAloneJs {
                         > div {
+                            img {
+                                width: 100% !important;
+                                height: auto !important;
+                                max-height: none !important;
+                            }
+
                             > div {
                                 iframe {
                                     position: relative !important;
                                     width: 65%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media screen and (orientation:landscape) {
+            #photos {
+                width:auto;
+               
+                > div:first-child {
+                    > div:nth-of-type(2) {
+                        #contPhAloneJs {
+                            > div {
+                                img {
+                                    width: auto !important;
+                                    height: 95vh !important;                                  
                                 }
                             }
                         }
@@ -1120,23 +1158,21 @@ body, html {
                         background-color: #32de84;
                     }
 
-                    .btn-wait {                      
+                    .btn-wait {
                         pointer-events: none;
                         touch-action: none;
                         --agenda_pointer-event: none;
                         animation: attente 3s infinite;
                     }
 
-                    @keyframes attente{
-                
+                    @keyframes attente {
+
                         from {
                             background-color: #32de84;
-                            
                         }
 
                         50% {
                             background-color: orange;
-                           
                         }
 
                         to {
