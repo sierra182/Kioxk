@@ -1,6 +1,7 @@
 ﻿:root {
     --maincontchild-width-percent: 50;
     --main-height: 100;
+    --doc-height: 100%;
 }
 
 body, html {
@@ -9,8 +10,34 @@ body, html {
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     font-family: 'Twinkle Star', cursive;
     font-size: max(.8rem,1.2vw);
+    background-color:aqua;
     background-image: url("/item/papierinp.jpg");
+    //  min-height: 100vh;
+    //  min-height: stretch;
+    // min-height: fill-available();
+    /*padding: 0;
+    margin: 0;
+    height: 100vh;*/ /* fallback for Js load */
+    /*height: var(--doc-height);*/
 }
+
+/*body {
+    min-height: 100vh;
+    min-height:stretch;
+    min-height: -webkit-fill-available();
+    min-height: -webkit-fill-available;
+    min-height:fill-available();
+    min-height:fill-available;
+
+}
+
+html {
+    height: stretch;
+    height: -webkit-fill-available();
+    height: -webkit-fill-available;
+    height: fill-available();
+    height: fill-available;
+}*/
 
 @mixin centrage_hor {
     position: relative;
@@ -519,7 +546,7 @@ body, html {
                 height: fit-content !important;
 
                 .carre {
-                    display: none;
+//display: none;
                 }
 
                 > div:nth-of-type(2) {
@@ -545,17 +572,51 @@ body, html {
         }
 
         @media screen and (orientation:landscape) {
+
             #photos {
-                width:auto;
-               
+                width: auto;
+
                 > div:first-child {
                     > div:nth-of-type(2) {
                         #contPhAloneJs {
                             > div {
                                 img {
                                     width: auto !important;
-                                    height: 95vh !important;                                  
+                                    height: calc( .95 * var(--doc-height)) !important; //95vh;
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /**/
+    @media screen and (orientation:landscape) {
+
+        #photos {
+            //  width: auto!important;
+            /*:fullscreen {
+                background-color: red !important;*/
+            /*background-color: transparent !important;
+                backdrop-filter: blur(2px) !important;*/
+            /*}*/
+//width:fit-content !important;
+            &:fullscreen {
+                //  background-color: yellow !important;
+             //   background-color: transparent !important;
+                background-color: aqua;
+                background-image: url("/item/papierinp.jpg");
+                 backdrop-filter: blur(2px) !important;
+            }
+
+            > div:first-child {
+                > div:nth-of-type(2) {
+                    #contPhAloneJs {
+                        > div {
+                            img {
+                                width: auto !important;
+                                height: calc( .8 * var(--doc-height)) !important; //95vh;
                             }
                         }
                     }

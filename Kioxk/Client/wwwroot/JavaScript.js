@@ -21,6 +21,8 @@ function resizeIframe(obj) {
                 f.style.height = 0; f.style.height = f.contentWindow.document.documentElement.scrollHeight + 'px';
 
                 aftergardPhoto();
+                const doc = document.documentElement;
+                doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
             }, 1000);
         });
 
@@ -92,8 +94,19 @@ function aftergardPhoto() {
                 oneimg.style.width = "100%";
                 oneimg.style.height = "auto";                
             }
-        }                
+        }  
+
+      
     }
+}
+
+function resizeBody() {
+   
+    //    const doc = document.documentElement
+    //doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+    
+    //window.addEventListener(‘resize’, documentHeight)
+    //documentHeight()
 }
 
 var togScal = false;
@@ -175,9 +188,18 @@ function scaler(docu, carre, carre2, xx, yy, x, y) {
         car2.style.backgroundColor = "white";
         car2.style.borderColor = "white";
         car2.style.opacity = "1";
+
+        phs.requestFullscreen();
+       // allimg.firstChild.requestFullscreen();
+        //for (var oneimg of allimg) {
+        //    oneimg.firstChild.requestFullscreen();
+        //}
     }
+
+
     else {
 
+        document.exitFullscreen();
         togScal = false;
 
         phs.style.borderRadius = "5%";
