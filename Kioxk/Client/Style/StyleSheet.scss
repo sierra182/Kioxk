@@ -62,6 +62,18 @@ html {
     filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5)) $add-shadow;
 }
 
+@mixin hover-supported {
+    /* 
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer 
+     * coarse: The primary input mechanism includes a pointing device of limited accuracy.
+     */
+    @media not all and (pointer: coarse) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
 #header {
     position: relative;
     width: 100%;
@@ -333,17 +345,12 @@ html {
                     width: 100%;
                     border: none;
                     // background-color: azure;
+                   
                 }
             }
         }
     }
-    /* @media screen and ${var(--boule)} {
-        #pretext {
-            opacity:0.5;
-            display:none;
-        }
-        }*/
-
+   
     #photos {
         --cp_mult-h: 1;
         --mult_ph-scale: 1;
