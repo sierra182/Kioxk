@@ -92,7 +92,7 @@ function scaler() {
         //**********************************************
 
         phs.style.borderRadius = ".1%";
-        phs.style.zIndex = "3";                         /// voir si encore utile
+        //phs.style.zIndex = "3";                         /// voir si encore utile
 
         car.style.borderRadius = "10%";
         car2.style.borderRadius = "10%";
@@ -156,10 +156,10 @@ function scaler() {
         //    cif.firstChild.style.position = "absolute";    /// iframe legend cont en absolute
         //}
         //*********************************************
-        window.setTimeout(zin, 1000, true);
-        function zin() {
-            phs.style.zIndex = "0";                   /// voir si utile
-        }
+        //window.setTimeout(zin, 1000, true);
+        //function zin() {
+        //    phs.style.zIndex = "1";                   /// voir si utile
+        //}
 
         togScal = true;
     }
@@ -179,10 +179,11 @@ function photosWatchDogScreenAndFullScreen() {
     console.log("ratio window, img: " + window.screen.availWidth + "/" + window.screen.availHeight + " ... " + naturalX + "/" + naturalY);
 
     phs.style.position = "absolute";
+    //for (var mult of contmlt) {
+    //    mult.style.overflowY = "visible";
+    //}    
     phcont.style.setProperty("height", "fit-content");
-    for (var cif of contifra) {
-        cif.firstChild.style.position = "relative";
-    }
+   
 
     if ((window.screen.availWidth / window.screen.availHeight) < (naturalX / naturalY)) {
         console.log("ratio screen < ratio img");
@@ -207,25 +208,24 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.height = "auto";
             oneimg.style.maxHeight = "none";
         }
+
+        for (var cif of contifra) {
+            cif.firstChild.style.marginTop = "auto";
+            cif.firstChild.style.zIndex = "2";
+            cif.firstChild.style.position = "relative";
+        }
+       
         console.log("mode portrait hé");
 
     }
     else {
 
-        if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
-            //var noYetFullScreen;
-            //var fse = document.fullscreenElement;
-            //if (fse === null) {
-            //    noYetFullScreen = true;
-            //}
-            //else {
-            //    noYetFullScreen = false;
-            //}
-
+     //   if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
+         
             if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
                 phs.requestFullscreen();
             }
-        }
+     //   }
         phs.style.setProperty("width", "auto");
 
         for (var oneimg of allimg) {
@@ -233,9 +233,14 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.height = "95vh";
             oneimg.style.maxHeight = "none";
         }
+
+        for (var cif of contifra) {            
+            cif.firstChild.style.marginTop = "-3.6rem";
+            cif.firstChild.style.zIndex = "1";
+            cif.firstChild.style.position = "absolute";
+        }
         console.log("mode land ho");
-    }
-    // }
+    }    
 }
 //phs = document.getElementById("photos");
 //allimg = phs.getElementsByTagName("img");

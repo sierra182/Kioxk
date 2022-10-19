@@ -466,6 +466,7 @@ html {
                         //  background-color: darkmagenta;
                         //  background-filter:blur(2px);
                         img {
+                           // opacity:.5;
                             position: relative;
                             width: 100%;
                             height: auto;
@@ -479,12 +480,13 @@ html {
                             // background-color:greenyellow;
 
                             iframe { // legend
+//z-index:-99;
                                 display: block;
                                 position: absolute;
                                 left: 0;
                                 right: 0;
                                 width: calc(max(var(--photo-width),0)/2 * .9);
-                                height: 3.5rem;
+                                height: 3.5rem;//10vh;// 3.5rem;
                                 margin: auto;
                                 opacity: .6;
                                 border-radius: 10%;
