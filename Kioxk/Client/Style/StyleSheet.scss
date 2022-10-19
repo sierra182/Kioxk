@@ -345,12 +345,11 @@ html {
                     width: 100%;
                     border: none;
                     // background-color: azure;
-                   
                 }
             }
         }
     }
-   
+
     #photos {
         --cp_mult-h: 1;
         --mult_ph-scale: 1;
@@ -382,7 +381,7 @@ html {
             right: 0;
             bottom: 0;
             width: 100%;
-            height: var(--cp_ph-y);
+            height: calc(max(var(--photo-width),var(--max_size)) /2 );      //var(--cp_ph-y);
             margin: auto;
             overflow-x: hidden;
             overflow-y: visible;
@@ -391,7 +390,7 @@ html {
             -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
             backdrop-filter: blur(15px);
             transition: transform .7s;
-            // background-color: red;
+           // background-color: red;
 
             .carre {
                 z-index: 2;
@@ -543,18 +542,13 @@ html {
             }
         }
     }
-
-    @media screen and (max-width:619px) {
+    /*@media screen and (max-width:619px) {
         #photos {
             width: 95vw !important;
             position: relative !important;
 
             > div:first-child {
                 height: fit-content !important;
-
-                .carre {
-//display: none;
-                }
 
                 > div:nth-of-type(2) {
 
@@ -597,40 +591,54 @@ html {
                 }
             }
         }
-    }
+    }*/
     /**/
-    @media screen and (orientation:landscape) {
+    /*@media screen and (orientation:landscape) {
 
         #photos {
-            //  width: auto!important;
-            /*:fullscreen {
+            //  width: auto!important;*/
+    /*:fullscreen {
                 background-color: red !important;*/
-            /*background-color: transparent !important;
+    /*background-color: transparent !important;
                 backdrop-filter: blur(2px) !important;*/
-            /*}*/
-//width:fit-content !important;
+    /*}*/
+    /*//width:fit-content !important;
             &:fullscreen {
                 //  background-color: yellow !important;
-             //   background-color: transparent !important;
+                //   background-color: transparent !important;
+                background-color: aqua;
+              //  background-image: url("/item/papierinp.jpg");
+             //   backdrop-filter: blur(2px) !important;
+            }
+
+            &:fullscreen > div:first-child {
                 background-color: aqua;
                 background-image: url("/item/papierinp.jpg");
-                 backdrop-filter: blur(2px) !important;
+              //  background-op opacity:.5;
+               // backdrop-filter: blur(2px) !important
             }
 
             > div:first-child {
+
                 > div:nth-of-type(2) {
+
+
                     #contPhAloneJs {
+
+
                         > div {
+
+
                             img {
                                 width: auto !important;
-                                height: calc( .8 * var(--doc-height)) !important; //95vh;
+                                height: calc( .85 * var(--doc-height)) !important; //95vh;
                             }
                         }
                     }
                 }
             }
         }
-    }
+    }*/
 
     #hlp {
         width: max(32vw,21rem);

@@ -4,7 +4,7 @@
 @inject HttpClient Http
 @inject IJSRuntime js;
 
-<div id="carreph" class="carre" onclick="scaler('photos','carreph','carre2ph','25','0','-25','25')">
+<div id="carreph" class="carre" onclick="scaler()">
     <div id="carre2ph" class="carre2" />
 
 </div>
@@ -23,7 +23,7 @@
             string s = $"photo/maison{i}.jpg";
             string l = $"photo/legend/legend{i}.html";
             <div class="contPhMultJs">
-                <img draggable="false" src="@s" />
+                <img draggable="false" onload="imgNatural(this)" src="@s" />
                 <div class="contIfraJs">
                     <iframe src="@l" />
 
