@@ -14,7 +14,7 @@
 </span>
 
 <div>
-    <div id="contPhAloneJs" draggable="false" style="--phpc:@phpc; --phpx:@phpx; --qte_ph:@qtph"
+    <div id="contPhAloneJs" draggable="false" style="--phpc:@sphpc; --phpx:@phpx; --qte_ph:@qtph"
          @ontouchstart="(s)=> OnTouchDown(s)" @ontouchmove="(s)=>  OnTouchMove(s)" @ontouchend="OnTouchUp"
          @onmousedown="(s)=> OnDown(s)" @onmousemove="(s)=> OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp"> 
 
@@ -45,29 +45,28 @@
          id="mytriback"
          data-js="enabled"
          data-unique-ids="disabled">
-     </svg>
+    </svg>
 
     <svg @onclick="OnNext"
          data-src="/svg/tri.svg"
          id="mytrinext"
          data-js="enabled"
          data-unique-ids="disabled">
-     </svg>
+    </svg>
 
 </div>
 
 @code {
-
     int srcJpg = 0;
     int qtph = 0;
 
-    async Task QtePh()=>  qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh");     
+    async Task QtePh()   {qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); c.WriteLine("qte: " + qtph); }
 
     protected override async Task OnInitializedAsync() => await QtePh();
-   
+
     double prim_x;
     void OnDown(MouseEventArgs e) =>  prim_x = e.ScreenX;
-    
+
     void OnTouchDown(TouchEventArgs e) =>  prim_x = Math.Round(e.Touches.First().ScreenX);
 
     void OnUp() =>  phpx = 0;
@@ -77,6 +76,7 @@
     double new_x;
     double diff;
     double phpc;
+    string sphpc;
     double phpx;
     bool sw_pass;
 
@@ -94,7 +94,7 @@
             if (phpx > 150)
             {
                 sw_pass = true;
-                 _ = OnBack();
+                _ = OnBack();
             }
             else if (phpx < -150)
             {
@@ -113,7 +113,7 @@
             phpx += diff;
             prim_x = new_x;
         }
-     
+
         if (phpx > 100)
         {
             sw_pass = true;
@@ -122,7 +122,7 @@
         else if (phpx < -100)
         {
             sw_pass = true;
-             _ = OnNext();
+            _ = OnNext();
         }
     }
 
@@ -135,20 +135,31 @@
         {
             srcJpg++;
             trn += (100 / qtph);
-            phpc -= (100 / qtph);
+
+            var e = (100.0 / qtph);
+            //   var de = e.ToString().Replace(",",".");
+
+            //  var ef = Math.Round(e, 1);
+            c.WriteLine("runey float next " + e + " ");// + Math.Round(e));
+            phpc -= e;//Math.Round(e);
+            sphpc = phpc.ToString().Replace(",", ".");
+            //   phpc = Math.Round(phpc);
             phpx = 0;
         }
         await Task.Delay(300);
         sw_pass = false;
     }
 
-   async Task OnBack()
+    async Task OnBack()
     {
         if (srcJpg > 0)
         {
             srcJpg--;
             trn -= (100 / qtph);
-            phpc += (100 / qtph);
+            var e = (100.0 / qtph);
+            c.WriteLine("rfloat back " + e + " ");// + Math.Round(e));
+            phpc += e;// Math.Round(e);
+            sphpc = phpc.ToString().Replace(",", ".");
             phpx = 0;
         }
         await Task.Delay(300);

@@ -139,6 +139,7 @@ function scaler() {
 
         for (var cif of contifra) {
             cif.firstChild.style.position = "absolute";
+            cif.firstChild.style.marginTop = "auto";
         }
         //*********************************************
         //phs.style.position = "relative";                  /// photo en relative
@@ -224,7 +225,7 @@ function photosWatchDogScreenAndFullScreen() {
         else {
             for (var cif of contifra) {
                 cif.firstChild.style.marginTop = "auto";
-                cif.firstChild.style.zIndex = "2";
+            //    cif.firstChild.style.zIndex = "2";
                 cif.firstChild.style.position = "relative";
             }
 
@@ -255,14 +256,14 @@ function photosWatchDogScreenAndFullScreen() {
 
         for (var cif of contifra) {
             cif.firstChild.style.marginTop = "-3.6rem";
-            cif.firstChild.style.zIndex = "1";
+           // cif.firstChild.style.zIndex = "1";
             cif.firstChild.style.position = "absolute";
         }
     }
     else {
         for (var cif of contifra) {
             cif.firstChild.style.marginTop = "auto";
-            cif.firstChild.style.zIndex = "2";
+           // cif.firstChild.style.zIndex = "2";
             cif.firstChild.style.position = "relative";
         }
 }
