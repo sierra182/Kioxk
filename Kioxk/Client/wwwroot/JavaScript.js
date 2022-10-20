@@ -140,6 +140,8 @@ function scaler() {
         for (var cif of contifra) {
             cif.firstChild.style.position = "absolute";
             cif.firstChild.style.marginTop = "auto";
+            cif.firstChild.style.margin = "auto";
+           // void cif.offsetWidth;
         }
         //*********************************************
         //phs.style.position = "relative";                  /// photo en relative
@@ -258,6 +260,8 @@ function photosWatchDogScreenAndFullScreen() {
             cif.firstChild.style.marginTop = "-3.6rem";
            // cif.firstChild.style.zIndex = "1";
             cif.firstChild.style.position = "absolute";
+            void cif.offsetWidth;
+
         }
     }
     else {
