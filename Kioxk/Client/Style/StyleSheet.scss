@@ -5,39 +5,14 @@
 }
 
 body, html {
-    @import url('/photo/legend/iFrameSs.css'); //
+    @import url('/photo/legend/iFrameSs.css');
     @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     font-family: 'Twinkle Star', cursive;
     font-size: max(.8rem,1.2vw);
     background-color:aqua;
-    background-image: url("/item/papierinp.jpg");
-    //  min-height: 100vh;
-    //  min-height: stretch;
-    // min-height: fill-available();
-    /*padding: 0;
-    margin: 0;
-    height: 100vh;*/ /* fallback for Js load */
-    /*height: var(--doc-height);*/
+    background-image: url("/item/papierinp.jpg");    
 }
-
-/*body {
-    min-height: 100vh;
-    min-height:stretch;
-    min-height: -webkit-fill-available();
-    min-height: -webkit-fill-available;
-    min-height:fill-available();
-    min-height:fill-available;
-
-}
-
-html {
-    height: stretch;
-    height: -webkit-fill-available();
-    height: -webkit-fill-available;
-    height: fill-available();
-    height: fill-available;
-}*/
 
 @mixin centrage_hor {
     position: relative;
@@ -358,9 +333,8 @@ html {
         --photo-width: var(--child-width);
         --photo-height: calc(var(--main-height) * 1%);
         --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 );
-        --max_size: 50rem;
-        //  --coef_more-width:0;
-
+        --max_size: 50rem;   
+        
         display: flex;
         position: relative;
         left: 0;
@@ -373,9 +347,8 @@ html {
         @include ombre();
         // background-color: green;
         backdrop-filter: blur(2px);
-        
-        > div:first-child { //cont p
 
+        > div:first-child { //cont p
             position: relative;
             top: 0;
             left: 0;
@@ -441,7 +414,7 @@ html {
 
             > div:nth-of-type(2) {
                 display: flex;
-                width:100%;//fit-content;// 100%; //fit-content;//100%;
+                width: 100%; 
                 height: 100%;
                 align-content: center;
                 // background-color: blueviolet;
@@ -452,28 +425,27 @@ html {
                     --qte_ph: 0;
                     display: flex;
                     flex-shrink: 0;
-                       position: relative;
+                    position: relative;
                     width: calc(100% * var(--qte_ph));
                     height: fit-content;
                     margin: auto;
                     align-items: center;
                     transition: all linear .2s;
                     transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
-                   //  background-color: yellow;
+                    //  background-color: yellow;
 
                     > div { //cont img et cont ifrme - multy
-                        width: 100%; //fit-content;//100%; !!!!!!!!!!!!!!!!!!!!!
+                        width: 100%; 
                         height: fit-content;
                         //  background-color: darkmagenta;
-                        //  background-filter:blur(2px);
+                       
                         img {
-                         //    opacity:.5;
                             position: relative;
                             width: 100%;
                             height: auto;
-                            margin: auto; //!!
-                            display: block; //!!
-                           max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
+                            max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
+                            margin: auto;
+                            display: block;
                         }
 
                         > div { //cont iframe contIfraJs
@@ -481,13 +453,12 @@ html {
                             // background-color:greenyellow;
 
                             iframe { // legend
-                                //z-index:-99;
                                 display: block;
                                 position: absolute;
                                 left: 0;
                                 right: 0;
                                 width: calc(max(var(--photo-width),0)/2 * .9);
-                                height: 3.5rem; //10vh;// 3.5rem;
+                                height: 3.5rem;
                                 margin: auto;
                                 opacity: .6;
                                 border-radius: 10%;
