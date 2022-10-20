@@ -4,12 +4,12 @@ var frame;
 function resizeIframe() {
     console.log("Dans resize Iframe!");
     if (fr_Frame) {
-        window.addEventListener('resize', setTimeout(resizeOnResizeOrMouseEnter, 1000));
+        window.addEventListener('resize', ()=> setTimeout(resizeOnResizeOrMouseEnter, 1000));
         // window.onresize += setTimeout(resizeOnResizeOrMouseEnter(), 1000);
         frame = document.getElementById("myframe");
 
-        frame.contentDocument.getElementById("map").addEventListener('mouseenter', setTimeout(resizeOnResizeOrMouseEnter, 1000));
-        frame.contentDocument.getElementById("map").addEventListener('mouseleave', setTimeout(resizeOnMouseLeave, 1000));
+        frame.contentDocument.getElementById("map").addEventListener('mouseenter', ()=> setTimeout(resizeOnResizeOrMouseEnter, 1000));
+        frame.contentDocument.getElementById("map").addEventListener('mouseleave', ()=> (resizeOnMouseLeave, 1000));
 
         setTimeout(resizeOnResizeOrMouseEnter, 500);
 
@@ -18,17 +18,19 @@ function resizeIframe() {
 }
 
 function resizeOnResizeOrMouseEnter() {
-    console.log("windows resize");
+    console.log("resizeonmouseenter");
     frame.style.setProperty("transition", "none");
     frameSet();
 }
 
 function resizeOnMouseLeave() {
+    console.log("resizeonmouseleave");
     frame.style.setProperty("transition", "height .5s");
     frameSet();
 }
 
 function frameSet() {
+    console.log("frameset");
     frame.style.height = 0;
     frame.style.height = frame.contentWindow.document.documentElement.scrollHeight + 'px';
 }
@@ -179,6 +181,7 @@ function photosWatchDogScreenAndFullScreen() {
     console.log("ratio window, img: " + window.screen.availWidth + "/" + window.screen.availHeight + " ... " + naturalX + "/" + naturalY);
 
     phs.style.position = "absolute";
+  //  phs.style.zIndex = "2";
     //for (var mult of contmlt) {
     //    mult.style.overflowY = "visible";
     //}    
@@ -188,16 +191,16 @@ function photosWatchDogScreenAndFullScreen() {
     if ((window.screen.availWidth / window.screen.availHeight) < (naturalX / naturalY)) {
         console.log("ratio screen < ratio img");
 
-        var yetFullScreen;
-        var fse = document.fullscreenElement;
-        if (fse === null) {
-            yetFullScreen = true;
-        }
-        else {
-            yetFullScreen = false;
-        }
+        //var yetFullScreen;
+        //var fse = document.fullscreenElement;
+        //if (fse === null) {
+        //    yetFullScreen = true;
+        //}
+        //else {
+        //    yetFullScreen = false;
+        //}
 
-        if (document.fullscreenEnabled && phs.requestFullscreen && yetFullScreen) {
+        if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
             phs.requestFullscreen();
         }
 
@@ -209,19 +212,34 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.maxHeight = "none";
         }
 
-     
-       
-        console.log("mode portrait hé");
+        if ((window.screen.availWidth / window.screen.availHeight) > 1) {
 
+
+            for (var cif of contifra) {
+                cif.firstChild.style.marginTop = "-3.6rem";
+                cif.firstChild.style.zIndex = "1";
+                cif.firstChild.style.position = "absolute";
+            }
+        }
+        else {
+            for (var cif of contifra) {
+                cif.firstChild.style.marginTop = "auto";
+                cif.firstChild.style.zIndex = "2";
+                cif.firstChild.style.position = "relative";
+            }
+
+            console.log("mode portrait hé");
+
+        }
     }
     else {
 
-     //   if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
+       if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
          
             if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
                 phs.requestFullscreen();
             }
-     //   }
+        }
         phs.style.setProperty("width", "auto");
 
         for (var oneimg of allimg) {

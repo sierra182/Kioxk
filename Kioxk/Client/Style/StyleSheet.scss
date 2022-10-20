@@ -351,6 +351,7 @@ html {
     }
 
     #photos {
+        z-index: 3;
         --cp_mult-h: 1;
         --mult_ph-scale: 1;
         --trans-height: 0%;
@@ -374,14 +375,14 @@ html {
         backdrop-filter: blur(2px);
 
         > div:first-child { //cont p
-            z-index: 1;
+
             position: relative;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             width: 100%;
-            height: calc(max(var(--photo-width),var(--max_size)) /2 );      //var(--cp_ph-y);
+            height: calc(max(var(--photo-width),var(--max_size)) /2 ); //var(--cp_ph-y);
             margin: auto;
             overflow-x: hidden;
             overflow-y: visible;
@@ -390,7 +391,7 @@ html {
             -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
             backdrop-filter: blur(15px);
             transition: transform .7s;
-           // background-color: red;
+            // background-color: red;
 
             .carre {
                 z-index: 2;
@@ -466,7 +467,7 @@ html {
                         //  background-color: darkmagenta;
                         //  background-filter:blur(2px);
                         img {
-                           // opacity:.5;
+                            // opacity:.5;
                             position: relative;
                             width: 100%;
                             height: auto;
@@ -480,13 +481,13 @@ html {
                             // background-color:greenyellow;
 
                             iframe { // legend
-//z-index:-99;
+                                //z-index:-99;
                                 display: block;
                                 position: absolute;
                                 left: 0;
                                 right: 0;
                                 width: calc(max(var(--photo-width),0)/2 * .9);
-                                height: 3.5rem;//10vh;// 3.5rem;
+                                height: 3.5rem; //10vh;// 3.5rem;
                                 margin: auto;
                                 opacity: .6;
                                 border-radius: 10%;
