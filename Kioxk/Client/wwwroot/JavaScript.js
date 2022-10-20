@@ -184,7 +184,7 @@ function photosWatchDogScreenAndFullScreen() {
     //}    
     phcont.style.setProperty("height", "fit-content");
    
-
+    
     if ((window.screen.availWidth / window.screen.availHeight) < (naturalX / naturalY)) {
         console.log("ratio screen < ratio img");
 
@@ -209,11 +209,7 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.maxHeight = "none";
         }
 
-        for (var cif of contifra) {
-            cif.firstChild.style.marginTop = "auto";
-            cif.firstChild.style.zIndex = "2";
-            cif.firstChild.style.position = "relative";
-        }
+     
        
         console.log("mode portrait hé");
 
@@ -233,14 +229,25 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.height = "95vh";
             oneimg.style.maxHeight = "none";
         }
+       
+        console.log("mode land ho");
+    }  
+    if ((window.screen.availWidth / window.screen.availHeight) > 1) {
 
-        for (var cif of contifra) {            
+
+        for (var cif of contifra) {
             cif.firstChild.style.marginTop = "-3.6rem";
             cif.firstChild.style.zIndex = "1";
             cif.firstChild.style.position = "absolute";
         }
-        console.log("mode land ho");
-    }    
+    }
+    else {
+        for (var cif of contifra) {
+            cif.firstChild.style.marginTop = "auto";
+            cif.firstChild.style.zIndex = "2";
+            cif.firstChild.style.position = "relative";
+        }
+}
 }
 //phs = document.getElementById("photos");
 //allimg = phs.getElementsByTagName("img");
