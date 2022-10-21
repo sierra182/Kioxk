@@ -1,37 +1,44 @@
 ﻿
 var fr_Frame = true;
 var frame;
-function resizeIframe() {
-    console.log("Dans resize Iframe!");
-    if (fr_Frame) {
-        window.addEventListener('resize', () => setTimeout(resizeOnResizeOrMouseEnter, 1000)); 
+//function resizeIframe() {
+//    console.log("Dans resize Iframe!");
+//    if (fr_Frame) {
+//        window.addEventListener('resize', () => setTimeout(resizeOnResizeOrMouseEnter, 1000)); 
         
-        frame = document.getElementById("myframe");
-        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeOnResizeOrMouseEnter, 1000));
-        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeOnMouseLeave, 1000));
+//        frame = document.getElementById("myframe");
+//        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeOnResizeOrMouseEnter, 1000));
+//        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeOnMouseLeave, 1000));
 
-        setTimeout(resizeOnResizeOrMouseEnter, 500);
+//        setTimeout(resizeOnResizeOrMouseEnter, 500);
+//        phs = document.getElementById("photos");
+//        // window.onfocus.addEventListener(() => console.log("ONFOCUSCHANGED :" + document.activeElement.id));
+//        phs.addEventListener('focus', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
+//        phs.addEventListener('blur', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
+//        phs.focus();
+//        //window.blur();
+//        //window.focus();
 
-        fr_Frame = false;
-    }
-    function resizeOnResizeOrMouseEnter() {
-        console.log("resizeonmouseenter");
-        frame.style.setProperty("transition", "height .5s");
-        frameSet();
-    }
+//        fr_Frame = false;
+//    }
+//    function resizeOnResizeOrMouseEnter() {
+//        console.log("resizeonmouseenter");
+//        frame.style.setProperty("transition", "height .5s");
+//        frameSet();
+//    }
 
-    function resizeOnMouseLeave() {
-        console.log("resizeonmouseleave");
-        frame.style.setProperty("transition", "none");
-        frameSet();
-    }
+//    function resizeOnMouseLeave() {
+//        console.log("resizeonmouseleave");
+//        frame.style.setProperty("transition", "none");
+//        frameSet();
+//    }
 
-    function frameSet() {
-        console.log("frameset");
-        frame.style.height = 0;
-        frame.style.height = frame.contentWindow.document.documentElement.scrollHeight + 'px';
-    }
-}
+//    function frameSet() {
+//        console.log("frameset");
+//        frame.style.height = 0;
+//        frame.style.height = frame.contentWindow.document.documentElement.scrollHeight + 'px';
+//    }
+//}
 
 var fr_Scaler = true;
 var togScal = false;
@@ -69,7 +76,7 @@ function scaler() {
 
     if (togScal) {
         console.log("scaler");
-        phs.focus(); //       
+       // phs.focus(); //       
 
         myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height"); // voir si maj auto
         myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
@@ -139,9 +146,26 @@ function photosWatchDogScreenAndFullScreen() {
     document.addEventListener("fullscreenchange", () => {
         console.log("fullscreenchange");
         setTimeout(() => {
-            window.focus();
-            document.focus();
-        }, 3000);
+            //window.blur()
+            //window.focus();
+           
+            for (var cif of contifra) {
+                cif.firstChild.style.backgroundColor = "green";
+                //cif.firstChild.style.margin = "auto";
+                //cif.firstChild.style.position = "relative";
+            }
+          //  document.getElementById("carreph").focus();
+           // phs.focus();
+         //   document.focus();
+        }, 4000);
+        setTimeout(() => {
+            for (var cif of contifra) {
+                cif.firstChild.style.backgroundColor = "red";
+                //cif.firstChild.style.margin = "auto";
+                //cif.firstChild.style.position = "relative";
+            }
+        }, 6000);
+       
     });
 
     if ((window.screen.availWidth / window.screen.availHeight) > 1) {   // land reel
@@ -161,11 +185,7 @@ function photosWatchDogScreenAndFullScreen() {
 
     if ((window.screen.availWidth / window.screen.availHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
         console.log("ratio screen < ratio img");
-
-        if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
-            phs.requestFullscreen();
-        }
-
+            
         phs.style.setProperty("width", "95vw");
 
         for (var oneimg of allimg) {
@@ -173,18 +193,13 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.height = "auto";
             oneimg.style.maxHeight = "none";
         }
-        
+
+        if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
+            phs.requestFullscreen();
+        }
         console.log("mode portrait!");
     }
     else {
-
-        if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
-
-            if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
-                phs.requestFullscreen();
-            }
-        }
-
         phs.style.setProperty("width", "auto");
 
         for (var oneimg of allimg) {
@@ -193,7 +208,16 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.maxHeight = "none";
         }
 
-        console.log("mode land ho");
+        setTimeout(() => {
+            if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
+
+                if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
+                    phs.requestFullscreen();
+                }
+            }
+            console.log("mode land ho");
+        }, 2000);
+       
     }     
 }
 
