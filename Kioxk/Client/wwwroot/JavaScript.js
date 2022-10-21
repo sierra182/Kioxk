@@ -4,38 +4,17 @@ var frame;
 function resizeIframe() {
     console.log("Dans resize Iframe!");
     if (fr_Frame) {
-        window.addEventListener('resize', () => setTimeout(test, 500)); 
-        
         frame = document.getElementById("myframe");
-        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(test, 1000));
-        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(test, 1000));
 
-        //setTimeout(resizeOnResizeOrMouseEnter, 500);        
-        test();
+        window.addEventListener('resize', () => setTimeout(resizeWatch, 500));
+        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeWatch, 1000));
+        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeWatch, 1000));       
+        
+        const resizeWatch = ()=> {
+            frame.style.height = (parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height) * 1.07) + "px";
+        }
+        resizeWatch();
         fr_Frame = false;
-    }
-    function resizeOnResizeOrMouseEnter() {
-        console.log("resizeonmouseenter");
-      //  frame.style.setProperty("transition", "height .5s");
-        frameSet();
-    }
-
-    function resizeOnMouseLeave() {
-        console.log("resizeonmouseleave");
-     //   frame.style.setProperty("transition", "none");
-        frameSet();
-    }
-
-    function frameSet() {
-        console.log("frameset");
-        frame.style.height = 0;
-        frame.style.height = frame.contentWindow.document.documentElement.scrollHeight + 'px';
-    }
-
-    function test() {
-        var r = parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height);
-        console.log("test: height: " + r);
-        frame.style.height = (parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height) * 1.07) + "px";
     }
 }
 
@@ -73,10 +52,7 @@ function scaler() {
         togScal = true;      
     }
 
-    if (togScal) {
-        console.log("scaler");
-       // phs.focus(); //       
-
+    if (togScal) { 
         myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height"); // voir si maj auto
         myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
         myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
