@@ -1,44 +1,44 @@
 ﻿
 var fr_Frame = true;
 var frame;
-//function resizeIframe() {
-//    console.log("Dans resize Iframe!");
-//    if (fr_Frame) {
-//        window.addEventListener('resize', () => setTimeout(resizeOnResizeOrMouseEnter, 1000)); 
+function resizeIframe() {
+    console.log("Dans resize Iframe!");
+    if (fr_Frame) {
+        window.addEventListener('resize', () => setTimeout(resizeOnResizeOrMouseEnter, 500)); 
         
-//        frame = document.getElementById("myframe");
-//        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeOnResizeOrMouseEnter, 1000));
-//        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeOnMouseLeave, 1000));
+        frame = document.getElementById("myframe");
+        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeOnResizeOrMouseEnter, 1000));
+        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeOnMouseLeave, 1000));
 
-//        setTimeout(resizeOnResizeOrMouseEnter, 500);
-//        phs = document.getElementById("photos");
-//        // window.onfocus.addEventListener(() => console.log("ONFOCUSCHANGED :" + document.activeElement.id));
-//        phs.addEventListener('focus', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
-//        phs.addEventListener('blur', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
-//        phs.focus();
-//        //window.blur();
-//        //window.focus();
+        setTimeout(resizeOnResizeOrMouseEnter, 500);
+        //phs = document.getElementById("photos");
+        // window.onfocus.addEventListener(() => console.log("ONFOCUSCHANGED :" + document.activeElement.id));
+        //phs.addEventListener('focus', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
+        //phs.addEventListener('blur', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
+        //phs.focus();
+        //window.blur();
+        //window.focus();
 
-//        fr_Frame = false;
-//    }
-//    function resizeOnResizeOrMouseEnter() {
-//        console.log("resizeonmouseenter");
-//        frame.style.setProperty("transition", "height .5s");
-//        frameSet();
-//    }
+        fr_Frame = false;
+    }
+    function resizeOnResizeOrMouseEnter() {
+        console.log("resizeonmouseenter");
+        frame.style.setProperty("transition", "height .5s");
+        frameSet();
+    }
 
-//    function resizeOnMouseLeave() {
-//        console.log("resizeonmouseleave");
-//        frame.style.setProperty("transition", "none");
-//        frameSet();
-//    }
+    function resizeOnMouseLeave() {
+        console.log("resizeonmouseleave");
+        frame.style.setProperty("transition", "none");
+        frameSet();
+    }
 
-//    function frameSet() {
-//        console.log("frameset");
-//        frame.style.height = 0;
-//        frame.style.height = frame.contentWindow.document.documentElement.scrollHeight + 'px';
-//    }
-//}
+    function frameSet() {
+        console.log("frameset");
+        frame.style.height = 0;
+        frame.style.height = frame.contentWindow.document.documentElement.scrollHeight + 'px';
+    }
+}
 
 var fr_Scaler = true;
 var togScal = false;
@@ -143,30 +143,30 @@ function photosWatchDogScreenAndFullScreen() {
     phs.style.position = "absolute";
     phcont.style.setProperty("height", "fit-content");
 
-    document.addEventListener("fullscreenchange", () => {
-        console.log("fullscreenchange");
-        setTimeout(() => {
-            //window.blur()
-            //window.focus();
+    //document.addEventListener("fullscreenchange", () => {
+    //    console.log("fullscreenchange");
+    //    setTimeout(() => {
+    //        //window.blur()
+    //        //window.focus();
            
-            for (var cif of contifra) {
-                cif.firstChild.style.backgroundColor = "green";
-                //cif.firstChild.style.margin = "auto";
-                //cif.firstChild.style.position = "relative";
-            }
-          //  document.getElementById("carreph").focus();
-           // phs.focus();
-         //   document.focus();
-        }, 4000);
-        setTimeout(() => {
-            for (var cif of contifra) {
-                cif.firstChild.style.backgroundColor = "red";
-                //cif.firstChild.style.margin = "auto";
-                //cif.firstChild.style.position = "relative";
-            }
-        }, 6000);
+    //        for (var cif of contifra) {
+    //            cif.firstChild.style.backgroundColor = "green";
+    //            //cif.firstChild.style.margin = "auto";
+    //            //cif.firstChild.style.position = "relative";
+    //        }
+    //      //  document.getElementById("carreph").focus();
+    //       // phs.focus();
+    //     //   document.focus();
+    //    }, 4000);
+    //    setTimeout(() => {
+    //        for (var cif of contifra) {
+    //            cif.firstChild.style.backgroundColor = "red";
+    //            //cif.firstChild.style.margin = "auto";
+    //            //cif.firstChild.style.position = "relative";
+    //        }
+    //    }, 6000);
        
-    });
+    //});
 
     if ((window.screen.availWidth / window.screen.availHeight) > 1) {   // land reel
         for (var cif of contifra) {
@@ -216,7 +216,7 @@ function photosWatchDogScreenAndFullScreen() {
                 }
             }
             console.log("mode land ho");
-        }, 2000);
+        }, 1000);
        
     }     
 }
