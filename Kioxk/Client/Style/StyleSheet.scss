@@ -319,6 +319,8 @@ body, html {
                 iframe:last-of-type { // bienvenue
                     width: 100%;
                     border: none;
+                    transition:height .5s;
+                     //   height:fit-content;
                     // background-color: azure;
                 }
             }

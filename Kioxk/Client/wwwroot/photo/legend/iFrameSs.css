@@ -17,10 +17,17 @@ iframe {
     filter: drop-shadow(3px 3px 3px black);
 }
 
-@media not all and (pointer: coarse) {
+//@media not all and (pointer: coarse) {
   iframe:hover {
     width: max(8rem, 50vw);
         height: max(8rem, 50vw);
   }
+//}
+
+div {
+text-align:center;
+width:fit-content;
+height:fit-content;
+//background-color:red;
 }
    

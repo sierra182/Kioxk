@@ -1,14 +1,13 @@
 div {
-text-align:center;
-color:white;
-font-weight:bold;
-font-size: max(.7rem,5.5vw);
-//line-height:max(.6rem,5.4vw);
-height:fit-content;
-width:fit-content;
-//background-color:yellow;
 display:block;
+position: absolute;
 top:0;bottom:0;left:0;right:0;
 margin:auto;
-position: absolute;
+height:fit-content;
+width:fit-content;
+text-align:center;
+font-weight:bold;
+font-size: max(.7rem,5.5vw);
+color:white;
+//background-color:yellow;
 }

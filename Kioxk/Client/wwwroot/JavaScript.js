@@ -4,32 +4,25 @@ var frame;
 function resizeIframe() {
     console.log("Dans resize Iframe!");
     if (fr_Frame) {
-        window.addEventListener('resize', () => setTimeout(resizeOnResizeOrMouseEnter, 500)); 
+        window.addEventListener('resize', () => setTimeout(test, 500)); 
         
         frame = document.getElementById("myframe");
-        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeOnResizeOrMouseEnter, 1000));
-        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeOnMouseLeave, 1000));
+        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(test, 1000));
+        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(test, 1000));
 
-        setTimeout(resizeOnResizeOrMouseEnter, 500);
-        //phs = document.getElementById("photos");
-        // window.onfocus.addEventListener(() => console.log("ONFOCUSCHANGED :" + document.activeElement.id));
-        //phs.addEventListener('focus', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
-        //phs.addEventListener('blur', (event) => { console.log("ONFOCUSCHANGED :" + event.target + " " + event.currentTarget + " " + event.relatedTarget); });
-        //phs.focus();
-        //window.blur();
-        //window.focus();
-
+        //setTimeout(resizeOnResizeOrMouseEnter, 500);        
+        test();
         fr_Frame = false;
     }
     function resizeOnResizeOrMouseEnter() {
         console.log("resizeonmouseenter");
-        frame.style.setProperty("transition", "height .5s");
+      //  frame.style.setProperty("transition", "height .5s");
         frameSet();
     }
 
     function resizeOnMouseLeave() {
         console.log("resizeonmouseleave");
-        frame.style.setProperty("transition", "none");
+     //   frame.style.setProperty("transition", "none");
         frameSet();
     }
 
@@ -37,6 +30,12 @@ function resizeIframe() {
         console.log("frameset");
         frame.style.height = 0;
         frame.style.height = frame.contentWindow.document.documentElement.scrollHeight + 'px';
+    }
+
+    function test() {
+        var r = parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height);
+        console.log("test: height: " + r);
+        frame.style.height = (parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height) * 1.07) + "px";
     }
 }
 
@@ -93,7 +92,6 @@ function scaler() {
         car2.style.backgroundColor = "white";
         car2.style.borderColor = "white";
         car2.style.opacity = "1";
-
    
         window.addEventListener('resize', photosWatchDogScreenAndFullScreen);
         photosWatchDogScreenAndFullScreen();
@@ -142,31 +140,6 @@ function photosWatchDogScreenAndFullScreen() {
 
     phs.style.position = "absolute";
     phcont.style.setProperty("height", "fit-content");
-
-    //document.addEventListener("fullscreenchange", () => {
-    //    console.log("fullscreenchange");
-    //    setTimeout(() => {
-    //        //window.blur()
-    //        //window.focus();
-           
-    //        for (var cif of contifra) {
-    //            cif.firstChild.style.backgroundColor = "green";
-    //            //cif.firstChild.style.margin = "auto";
-    //            //cif.firstChild.style.position = "relative";
-    //        }
-    //      //  document.getElementById("carreph").focus();
-    //       // phs.focus();
-    //     //   document.focus();
-    //    }, 4000);
-    //    setTimeout(() => {
-    //        for (var cif of contifra) {
-    //            cif.firstChild.style.backgroundColor = "red";
-    //            //cif.firstChild.style.margin = "auto";
-    //            //cif.firstChild.style.position = "relative";
-    //        }
-    //    }, 6000);
-       
-    //});
 
     if ((window.screen.availWidth / window.screen.availHeight) > 1) {   // land reel
         for (var cif of contifra) {
