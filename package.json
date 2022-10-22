@@ -1,0 +1,38 @@
+{
+  "name": "kioxk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+"prefix": "npx postcss ./Kioxk/Client/wwwroot/css/StyleSheet.css --use autoprefixer -d ./Kioxk/Client/wwwroot/prefixed/"
+},
+
+  "dependencies": {
+    "autoprefixer": "^10.4.12",
+    "browserslist": "last 4 versions",
+    "caniuse-lite": "^1.0.30001423",
+    "electron-to-chromium": "^1.4.284",
+    "escalade": "^3.1.1",
+    "fraction.js": "^4.2.0",
+    "nanoid": "^3.3.4",
+    "node-releases": "^2.0.6",
+    "normalize-range": "^0.1.2",
+    "picocolors": "^1.0.0",
+    "postcss": "^8.4.18",
+    "postcss-value-parser": "^4.2.0",
+    "source-map-js": "^1.0.2",
+    "update-browserslist-db": "^1.0.10"
+  },
+  "devDependencies": {},
+ 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sierra182/Kioxk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sierra182/Kioxk/issues"
+  },
+  "homepage": "https://github.com/sierra182/Kioxk#readme"
+}

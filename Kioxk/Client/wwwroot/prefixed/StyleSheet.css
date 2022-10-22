@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   @import url("/photo/legend/iFrameSs.css");
   @import url("https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap");
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
@@ -26,7 +26,6 @@ body, html {
   height: max(3rem, 6vw);
   background: #3C3B3F;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #605C3C, #3C3B3F);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -40,7 +39,9 @@ body, html {
   bottom: 0;
   left: 0;
   right: 0;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
   color: white;
@@ -63,14 +64,18 @@ body, html {
   position: relative;
   left: 0;
   right: 0;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
 }
 #header #contact > div:first-child > div:first-of-type {
   display: flex;
   position: relative;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   align-items: center;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
@@ -94,6 +99,7 @@ body, html {
 }
 #header #contact > div:first-child > div:first-of-type div:last-of-type span {
   position: absolute;
+  height: -moz-fit-content;
   height: fit-content;
   right: 1rem;
   top: 0;
@@ -125,7 +131,9 @@ body, html {
 #header #contact > div:first-child > div:last-of-type {
   display: flex;
   position: relative;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin-left: 0.4rem;
   align-items: center;
@@ -183,7 +191,6 @@ body, html {
   text-align: center;
   font-size: max(0.7rem, 1vw);
   background: #3C3B3F;
-  background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);
   background: linear-gradient(to right, #605C3C, #3C3B3F);
 }
 #footer:before {
@@ -195,7 +202,9 @@ body, html {
   bottom: 0;
   right: 0;
   left: 0;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
 }
@@ -214,6 +223,7 @@ body, html {
   right: 0;
   bottom: 0;
   width: var(--maincont-width);
+  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
   margin-top: 1rem;
@@ -231,6 +241,7 @@ body, html {
   z-index: 3;
   position: relative;
   width: max(var(--child-width) * 1, 26rem);
+  height: -moz-fit-content;
   height: fit-content;
   transition: transform 0.7s;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
@@ -241,6 +252,7 @@ body, html {
   left: 0;
   right: 0;
   width: 100%;
+  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
 }
@@ -271,9 +283,12 @@ body, html {
   right: 0;
   top: 0;
   width: calc(max(var(--photo-width), var(--max_size)) / 2 * var(--mult_ph-scale));
+  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
   /* 
    * https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer 
@@ -282,7 +297,8 @@ body, html {
 }
 @media not all and (pointer: coarse) {
   #maincont #photos:hover {
-    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
   }
 }
 #maincont #photos > div:first-child {
@@ -355,6 +371,7 @@ body, html {
   flex-shrink: 0;
   position: relative;
   width: calc(100% * var(--qte_ph));
+  height: -moz-fit-content;
   height: fit-content;
   margin: auto;
   align-items: center;
@@ -363,6 +380,7 @@ body, html {
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div {
   width: 100%;
+  height: -moz-fit-content;
   height: fit-content;
 }
 #maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div img {
@@ -417,8 +435,11 @@ body, html {
   transform: translateY(-50%) rotateZ(-180deg) scale(0.8);
 }
 #maincont #photos > div:first-child > div:last-child #mytriback #path2416 {
-  clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+          clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+  transition: -webkit-clip-path linear 1s;
   transition: clip-path linear 1s;
+  transition: clip-path linear 1s, -webkit-clip-path linear 1s;
 }
 #maincont #photos > div:first-child > div:last-child #mytrinext {
   position: absolute;
@@ -434,8 +455,11 @@ body, html {
   transform: translateY(-50%) scale(0.8);
 }
 #maincont #photos > div:first-child > div:last-child #mytrinext #path2416 {
-  clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+          clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+  transition: -webkit-clip-path 1s;
   transition: clip-path 1s;
+  transition: clip-path 1s, -webkit-clip-path 1s;
 }
 #maincont #hlp {
   width: max(32vw, 21rem);
@@ -446,7 +470,8 @@ body, html {
   height: auto;
   border: solid 1px;
   border-radius: 5px;
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
 }
 #maincont #hlp > div:first-child > div:first-child > div {
@@ -483,11 +508,13 @@ body, html {
 }
 #maincont #payment {
   width: 20rem;
+  height: -moz-fit-content;
   height: fit-content;
 }
 #maincont #payment > div:first-of-type {
   display: block;
   float: left;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 0.2rem 0.5rem 0 0.5rem;
 }
@@ -546,6 +573,7 @@ body, html {
   z-index: 2;
   position: relative;
   width: max(var(--calendar-width), 16rem);
+  height: -moz-fit-content;
   height: fit-content;
   pointer-events: var(--agenda_pointer-event);
   transition: transform 0.7s;
@@ -662,7 +690,6 @@ body, html {
   border-radius: 2%;
   background: #3C3B3F;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #605C3C, #3C3B3F);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -680,7 +707,6 @@ body, html {
   border-color: white;
   background: #FF416C;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #FF4B2B, #FF416C);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -731,8 +757,11 @@ body, html {
   transform: rotateZ(-180deg) scale(0.8);
 }
 #maincont #agenda > div:first-child > div:nth-child(2) #mytriback #path2416 {
-  clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+          clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+  transition: -webkit-clip-path 1s;
   transition: clip-path 1s;
+  transition: clip-path 1s, -webkit-clip-path 1s;
 }
 #maincont #agenda > div:first-child > div:nth-child(2) #mytrinext {
   width: var(--button-width);
@@ -745,8 +774,11 @@ body, html {
   transform: translate(0) scale(0.8);
 }
 #maincont #agenda > div:first-child > div:nth-child(2) #mytrinext #path2416 {
-  clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
+          clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
+  transition: -webkit-clip-path 1s;
   transition: clip-path 1s;
+  transition: clip-path 1s, -webkit-clip-path 1s;
 }
 #maincont #agenda > div:first-child > div:nth-child(2) div {
   width: var(--button-width);
@@ -868,7 +900,8 @@ body, html {
   background-position-y: 25%;
   background-size: 85%;
   background-position-x: center;
-  backdrop-filter: blur(1.2px);
+  -webkit-backdrop-filter: blur(1.2px);
+          backdrop-filter: blur(1.2px);
   filter: drop-shadow(1px 2px 1px black);
 }
 #maincont #reserv > div:first-child #form > :first-child {
@@ -1016,6 +1049,7 @@ body, html {
   top: -47%;
   left: 1.4%;
   width: 47%;
+  height: -moz-fit-content;
   height: fit-content;
   font-size: 80%;
   background-color: yellow;
@@ -1054,11 +1088,10 @@ body, html {
     top: 55%;
     left: 0;
     width: 60%;
+    height: -moz-fit-content;
     height: fit-content;
     margin: auto;
     font-size: 1rem;
     background-color: yellow;
   }
 }
-
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Users/sierr/source/repos/Kioxk/Kioxk/Client/Style/StyleSheet.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACA;EACY;EACA;EACA;EACR;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAsCJ;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;EACzD;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;;AAKZ;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EA7EZ;;AAgFY;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAKR;EACI;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;;AAEA;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EA9IZ;;AAkJY;EACI;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAKR;EACI;EACA;EACA;EACA;;AAEA;EACI;EACA;;;AAQxB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EArQJ;;AAyQI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAQhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAtTJ;AAIA;AAAA;AAAA;AAAA;;AAIA;EACI;IAkTI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAGA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAzXZ;;AA8XQ;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAOpB;EACI;EACA;EACA;EA7cZ;EACA;EACA;EAIA;EACA;EACA;EAwcY;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;;AAjdhB;EACI;EACA;;AAkdY;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EAEA;;AAlehB;EACI;EACA;;AAmeY;EACI;EACA;;AAOpB;EACI;EACA;;AAKI;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAOpB;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EA/iBZ;;AAqjBI;EACI;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EA/jBZ;;AAqkBI;EACI;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;;AAGA;EACI;;AAGA;EACI;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKR;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAxnBJ;;AA4nBI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAMZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;;AAOhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;AAAqB;EACrB;AAAiE;EACjE;AAAyD;;AAG7D;EACI;;AAGJ;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EAEA;;AA30BhB;EACI;EACA;;AA40BY;EACI;EACA;;AAIR;EACI;EACA;EAEA;EACA;;AAz1BhB;EACI;EACA;;AA01BY;EACI;EACA;;AAIR;EACI;EACA;;AAp2BhB;EACI;EACA;;AAs2BY;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAS5B;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EA37BJ;;AA+7BI;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;AAWA;AAAA;AAAA;AAAA;;AATA;EACI;EACA;;AAGJ;EACI;EACA;;AAOJ;EACI;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAEA;EACI;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;;AAGJ;EAEI;IACI;;EAGJ;IACI;;EAGJ;IACI;;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAKZ;EACI;IACI;;EAEA;IACI;IACA;;EAEA;IACI;IACA;;EAEA;IACI;;EAIR;IACI;IACA;IACA;;EAEA;IACI;MACI;MACA;;IAGJ;MACI;MACA;;;EAKZ;IACI;IACA;IACA;IACA;IACA;IACA;IACA%22%7D */

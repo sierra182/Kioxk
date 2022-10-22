@@ -1,13 +1,14 @@
-﻿:root {
+﻿
+:root {
+    @import url('/photo/legend/iFrameSs.css');
+    @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     --maincontchild-width-percent: 50;
     --main-height: 100;
     --doc-height: 100%;
 }
 
 body, html {
-    @import url('/photo/legend/iFrameSs.css');
-    @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     font-family: 'Twinkle Star', cursive;
     font-size: max(.8rem,1.2vw);
     background-color:aqua;
