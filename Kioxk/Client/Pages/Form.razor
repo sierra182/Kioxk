@@ -44,8 +44,8 @@
 
     </label>
 
-    <button class="btn btn-success @btnw" type="submit" @onclick='async()=> { myevents.RisePointerEvent(); if (ec!.Validate()){ btnw = "btn-wait";  await ComRapp.InvokeAsync(Com); btnw = ""; } myevents.RisePointerEvent();}'>
-        Envoyez
+    <button class="btn btn-success @btnw" type="submit" @onclick='async()=> { myevents.RisePointerEvent(); if (ec!.Validate()){ btnw = "btn-wait"; text= "En cours..."; await ComRapp.InvokeAsync(Com); btnw = ""; text = "Envoyez"; } myevents.RisePointerEvent();}'>
+        @text
     </button>
 
     <ValidationSummary />
@@ -62,6 +62,7 @@
     private EditContext? ec { get; set; }
 
     string? btnw;
+    string text = "Envoyez";
 
     protected override void OnInitialized()
     {
