@@ -6,7 +6,7 @@ function resizeIframe() {
     if (fr_Frame) {
         frame = document.getElementById("myframe");
 
-        window.addEventListener('resize', () => setTimeout(resizeWatch, 500));
+        window.addEventListener('resize', () => setTimeout(resizeWatch, 800));
         frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeWatch, 1000));
         frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeWatch, 1000));       
         
@@ -165,7 +165,7 @@ function photosWatchDogScreenAndFullScreen() {
                 }
             }
             console.log("mode land ho");
-        }, 1000);
+        }, 1200);
        
     }     
 }

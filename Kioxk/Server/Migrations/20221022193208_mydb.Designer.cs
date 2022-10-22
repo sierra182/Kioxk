@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kioxk.Server.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20221011073246_mydb")]
+    [Migration("20221022193208_mydb")]
     partial class mydb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,7 @@ namespace Kioxk.Server.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")

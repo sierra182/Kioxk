@@ -71,7 +71,9 @@ namespace Kioxk.Shared.Models
         public Nullable<long> Phone { get; set; }
         [Required]
         public string? Address { get; set; }
+        [Required]
         public string? Email { get; set; }
+       
         public string? RgtsCompl { get; set; }
         public HashSet<Datetime>? Selected { get; set; }
         public List<Hashset>? Seasons { get; set; }

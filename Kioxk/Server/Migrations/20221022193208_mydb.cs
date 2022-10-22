@@ -22,7 +22,7 @@ namespace Kioxk.Server.Migrations
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     Phone = table.Column<long>(type: "INTEGER", nullable: false),
                     Address = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
                     RgtsCompl = table.Column<string>(type: "TEXT", nullable: true),
                     Total = table.Column<float>(type: "REAL", nullable: false)
                 },
