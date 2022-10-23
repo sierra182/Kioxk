@@ -112,12 +112,12 @@ var naturalX;
 var naturalY;
 
 function photosWatchDogScreenAndFullScreen() {
-    console.log("ratio window, img: " + window.screen.availWidth + "/" + window.screen.availHeight + " ... " + naturalX + "/" + naturalY);
+    console.log("ratio window, img: " + document.body.offsetWidth + "/" + document.documentElement.clientHeight + " ... " + naturalX + "/" + naturalY);
 
     phs.style.position = "absolute";
     phcont.style.setProperty("height", "fit-content");
 
-    if ((window.screen.availWidth / window.screen.availHeight) > 1) {   // land reel
+    if ((document.body.offsetWidth / document.documentElement.clientHeight) > 1) {   // land reel
         for (var cif of contifra) {
             cif.firstChild.style.backgroundColor = "blue";
             cif.firstChild.style.margin = "-3.6rem auto auto auto";
@@ -132,7 +132,7 @@ function photosWatchDogScreenAndFullScreen() {
         }
     }  
 
-    if ((window.screen.availWidth / window.screen.availHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
+    if ((document.body.offsetWidth / document.documentElement.clientHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
         console.log("ratio screen < ratio img");
             
         phs.style.setProperty("width", "95vw");
