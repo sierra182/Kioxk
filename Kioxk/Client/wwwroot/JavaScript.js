@@ -153,7 +153,7 @@ function photosWatchDogScreenAndFullScreen() {
 
         for (var oneimg of allimg) {
             oneimg.style.width = "auto";                        // mode land 
-            oneimg.style.height = "95vh";
+            oneimg.style.height = .95 * document.documentElement.clientHeight + "px";//  "95vh";
             oneimg.style.maxHeight = "none";
         }
 
