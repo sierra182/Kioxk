@@ -1,10 +1,39 @@
 ﻿@page "/"
 @inject IJSRuntime js
 @inject MyEvents myevents
-
+@using Kioxk.Client.Pages
 <div id="header">
     <div>
         <h1>LOUEZ une maison <br /> <em>à la Réunion en 4clics</em></h1>
+        <div id="lambcont">
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+            <Lamb />
+
+           
+
+          
+        </div>
     </div>
 
     <div id="contact">
@@ -90,7 +119,7 @@
     bool tog_pnter = true;
     protected override void OnInitialized()
     {
-        myevents.MyPointer += ()=> 
+        myevents.MyPointer += () =>
         {
             if (tog_pnter)
             {
@@ -106,5 +135,5 @@
             }
         };
     }
-    
+
 }

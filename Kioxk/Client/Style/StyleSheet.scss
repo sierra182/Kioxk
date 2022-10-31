@@ -11,8 +11,45 @@
 body, html {
     font-family: 'Twinkle Star', cursive;
     font-size: max(.8rem,1.2vw);
-    background-color:aqua;
-    background-image: url("/item/papierinp.jpg");    
+    background-color: aqua;
+   // background-image: url("/item/papierinp.jpg");
+
+ 
+        
+    
+}
+/** {
+    margin: 0;
+    padding: 0;
+}*/
+#lambcont {
+    position: relative;
+    bottom: -100%;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+  //  background: blue;
+  //  display: none;
+}
+svg {
+    display: block;
+    // flex-wrap:wrap;
+    //display:none;
+    margin: 0;
+    padding: 0;
+    //   background: red;
+    // opacity:.5;
+    &:nth-of-type(10) {
+        margin-top: 4rem;
+    }
+
+    &:nth-of-type(11) {
+        margin-top: 4rem;
+    }
+/*
+    &:nth-of-type(14) {
+        margin-top: 4rem;
+    }*/
 }
 
 @mixin centrage_hor {
@@ -314,8 +351,8 @@ body, html {
                 width: 95%;
                 margin: auto;
                 margin-top: .5rem;
-                filter: drop-shadow(2px 2px 1.3px black);
-                background-color: rgba(0, 0, 0,.4);
+             //   filter: drop-shadow(2px 2px 1.3px black);
+              //  background-color: rgba(0, 0, 0,.4);
 
                 iframe:last-of-type { // bienvenue
                     width: 100%;
@@ -532,15 +569,15 @@ body, html {
             > div:first-child { //pannleg
                 width: 100%;
                 height: auto;
-                border: solid 1px;
+               // border: solid 1px;
                 border-radius: 5px;
-                backdrop-filter: blur(3px);
+              //  backdrop-filter: blur(3px);
                 box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-                // background-color: red;
+                 background-color: white;
 
                 > div { // Item
                     display: flex;
-                    border: solid 1px orange;
+                  //  border: solid 1px orange;
                     // background-color: green;
 
                     > div { // elements comp cont

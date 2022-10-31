@@ -192,3 +192,35 @@ function scroll(el, sens) {
     };
 }
 
+var t = true;
+function lamb() {
+
+    console.log("lamb");
+  //  var svg = document.getElementById("sv");
+    var svgDocument = document.getElementsByClassName("lamb");
+    for (var l of svgDocument) {
+        console.log("log " + l.id);
+    }
+    console.log("lamb2");
+  //  console.log("ici " + document.body.clientWidth / 5);
+    for (var l of svgDocument) {
+        l.style.width = document.body.clientWidth / 20;
+        l.style.height = "fit-content";//document.body.clientWidth / 10;
+    }
+   
+    if (t) { 
+        for (var l of svgDocument) {
+            l.getElementById('anel').beginElement();
+           
+        }
+   
+        t = false;
+    }
+    else {
+        for (var l of svgDocument) {
+            l.getElementById('anel').endElement();
+        }
+       
+        t = true;
+    }
+}
