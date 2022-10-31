@@ -12,44 +12,7 @@ body, html {
     font-family: 'Twinkle Star', cursive;
     font-size: max(.8rem,1.2vw);
     background-color: aqua;
-   // background-image: url("/item/papierinp.jpg");
-
- 
-        
-    
-}
-/** {
-    margin: 0;
-    padding: 0;
-}*/
-#lambcont {
-    position: relative;
-    bottom: -100%;
-    display: flex;
-    width: fit-content;
-    height: fit-content;
-  //  background: blue;
-  //  display: none;
-}
-svg {
-    display: block;
-    // flex-wrap:wrap;
-    //display:none;
-    margin: 0;
-    padding: 0;
-    //   background: red;
-    // opacity:.5;
-    &:nth-of-type(10) {
-        margin-top: 4rem;
-    }
-
-    &:nth-of-type(11) {
-        margin-top: 4rem;
-    }
-/*
-    &:nth-of-type(14) {
-        margin-top: 4rem;
-    }*/
+   // background-image: url("/item/papierinp.jpg");   
 }
 
 @mixin centrage_hor {
@@ -124,6 +87,29 @@ svg {
                 position: relative;
                 margin-left: min(19.2vw, 16rem);
                 font-style: normal;
+            }
+        }
+
+        #lambcont {
+            position: relative;
+            bottom: -100%;
+            display: flex;
+            width: fit-content;
+            height: calc(100vw/20/3.3); // fit-content;
+            background-color: whitesmoke;
+        }
+
+        svg {
+            width: calc(100%/20) !important;
+            height: fit-content !important;
+            // background: red;
+
+            &:nth-of-type(10) {
+                margin-top: 4rem;
+            }
+
+            &:nth-of-type(11) {
+                margin-top: 4rem;
             }
         }
     }
