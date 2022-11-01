@@ -2,11 +2,13 @@
 @inject IJSRuntime js
 @inject MyEvents myevents
 @using Kioxk.Client.Pages
+
 <div id="header">
     <div>
         <h1>LOUEZ une maison <br /> <em>à la Réunion en 4clics</em></h1>
+
         <div id="lambcont">
-            @for (int i = 0; i < 20; i++)
+            @for (int i = 0; i < b; i++)
             {
                 <Lamb />
             }
@@ -93,10 +95,26 @@
     [Parameter]
     public int[] Prices { get; set; } = new int[4];
 
+    protected override async Task OnAfterRenderAsync(bool firstRender) =>
+        await js.InvokeVoidAsync("lamb", DotNetObjectReference.Create(this));
+
+    int b;
+    [JSInvokable]
+    public void CSharpLamb(int ce)
+    {
+        b = 0;
+        StateHasChanged();
+        b = ce;
+        StateHasChanged();
+    }
+
     string? pnter;
     bool tog_pnter = true;
+
     protected override void OnInitialized()
     {
+        StateHasChanged();
+
         myevents.MyPointer += () =>
         {
             if (tog_pnter)

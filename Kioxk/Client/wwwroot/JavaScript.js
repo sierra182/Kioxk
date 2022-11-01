@@ -8,9 +8,9 @@ function resizeIframe() {
 
         window.addEventListener('resize', () => setTimeout(resizeWatch, 800));
         frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeWatch, 1000));
-        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeWatch, 1000));       
-        
-        const resizeWatch = ()=> {
+        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeWatch, 1000));
+
+        const resizeWatch = () => {
             frame.style.height = (parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height) * 1.07) + "px";
         }
         resizeWatch();
@@ -49,15 +49,15 @@ function scaler() {
         car2 = document.getElementById('carre2ph');
 
         fr_Scaler = false;
-        togScal = true;      
+        togScal = true;
     }
 
-    if (togScal) { 
+    if (togScal) {
         myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height"); // voir si maj auto
         myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
         myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
         myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
-        maxs = getComputedStyle(phs).getPropertyValue("--max_size");      
+        maxs = getComputedStyle(phs).getPropertyValue("--max_size");
 
         phs.style.borderRadius = ".1%";
 
@@ -68,7 +68,7 @@ function scaler() {
         car2.style.backgroundColor = "white";
         car2.style.borderColor = "white";
         car2.style.opacity = "1";
-   
+
         window.addEventListener('resize', photosWatchDogScreenAndFullScreen);
         photosWatchDogScreenAndFullScreen();
 
@@ -76,7 +76,7 @@ function scaler() {
     }
 
 
-    else {      
+    else {
         window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
         document.exitFullscreen();
 
@@ -99,11 +99,11 @@ function scaler() {
         }
 
         for (var cif of contifra) {
-            cif.firstChild.style.position = "absolute";           
+            cif.firstChild.style.position = "absolute";
             cif.firstChild.style.backgroundColor = "red";
-            cif.firstChild.style.margin = "auto";          
+            cif.firstChild.style.margin = "auto";
         }
-    
+
         togScal = true;
     }
 }
@@ -130,11 +130,11 @@ function photosWatchDogScreenAndFullScreen() {
             cif.firstChild.style.margin = "auto";
             cif.firstChild.style.position = "relative";
         }
-    }  
+    }
 
     if ((document.body.offsetWidth / document.documentElement.clientHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
         console.log("ratio screen < ratio img");
-            
+
         phs.style.setProperty("width", "95vw");
 
         for (var oneimg of allimg) {
@@ -166,8 +166,8 @@ function photosWatchDogScreenAndFullScreen() {
             }
             console.log("mode land ho");
         }, 1200);
-       
-    }     
+
+    }
 }
 
 function imgNatural(img) {
@@ -192,35 +192,65 @@ function scroll(el, sens) {
     };
 }
 
-var t = true;
-function lamb() {
+var frLamb = true;
+var nmbrEl = 0;
+function lamb(dotNet) {
 
-    console.log("lamb");
-  //  var svg = document.getElementById("sv");
-    var svgDocument = document.getElementsByClassName("lamb");
-    for (var l of svgDocument) {
-        console.log("log " + l.id);
-    }
-    console.log("lamb2");
-  //  console.log("ici " + document.body.clientWidth / 5);
-    for (var l of svgDocument) {
-        l.style.width = document.body.clientWidth / 20;
-        l.style.height = "fit-content";//document.body.clientWidth / 10;
-    }
-   
-    if (t) { 
-        for (var l of svgDocument) {
-            l.getElementById('anel').beginElement();
-           
-        }
-   
-        t = false;
-    }
-    else {
-        for (var l of svgDocument) {
-            l.getElementById('anel').endElement();
-        }
-       
-        t = true;
+    if (frLamb) {
+        const ajustLamb = () => {
+
+            if (window.matchMedia("(max-width:500px)").matches) {
+                console.log("lamb max width");
+                nmbrEl = 10;
+            }
+            else {
+                console.log("lamb else");
+                nmbrEl = 20;
+            }
+            dotNet.invokeMethodAsync('CSharpLamb', nmbrEl);
+        };
+        ajustLamb();
+        window.addEventListener("resize", ajustLamb);
+
+        frLamb = false;
     }
 }
+
+    //const CsharpFunction = Blazor.platform.findMethod(
+    //    "CSharpLamb"
+    //);
+
+  //   v = 15;
+/* Blazor.platform.callMethod(CsharpFunction, 15);*/
+
+
+    //console.log("lamb");
+    //console.log("bw: " + document.body.clientWidth);
+
+  //  var svg = document.getElementById("sv");
+  //  var svgDocument = document.getElementsByClassName("lamb");
+  //  for (var l of svgDocument) {
+  //      console.log("log " + l.id);
+  //  }
+  //  console.log("lamb2");
+  ////  console.log("ici " + document.body.clientWidth / 5);
+  //  for (var l of svgDocument) {
+  //      l.style.width = document.body.clientWidth / 20;
+  //      l.style.height = "fit-content";//document.body.clientWidth / 10;
+  //  }
+
+  //  if (t) {
+  //      for (var l of svgDocument) {
+  //          l.getElementById('anel').beginElement();
+
+  //      }
+
+  //      t = false;
+  //  }
+  //  else {
+  //      for (var l of svgDocument) {
+  //          l.getElementById('anel').endElement();
+  //      }
+
+  //      t = true;
+  //  }
