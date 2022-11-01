@@ -417,6 +417,10 @@ body, html {
         user-select: none;
         @include ombre();
         // background-color: green;
+        // backdrop-filter: blur(2px);
+       // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
+        clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
+        backdrop-filter: blur(0);
 
         @include hover-supported {
             backdrop-filter: blur(2px);
@@ -439,6 +443,7 @@ body, html {
             //  backdrop-filter: blur(2px);
             transition: transform .7s;
             // background-color: red;
+            border-radius: 5%;
 
             .carre {
                 z-index: 2;
@@ -504,7 +509,7 @@ body, html {
                     height: fit-content;
                     margin: auto;
                     align-items: center;
-                    transition: all linear .2s;
+                    transition: all linear .5s;
                     transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
                     //  background-color: yellow;
 
@@ -534,9 +539,9 @@ body, html {
                                 width: calc(max(var(--photo-width),0)/2 * .9);
                                 height: 3.5rem;
                                 margin: auto;
-                                opacity: .6;
+                                //opacity: .6;
                                 border-radius: 10%;
-                                // background-color: red;
+                                background-color: red;
                             }
                         }
                     }
