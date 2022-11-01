@@ -133,6 +133,7 @@ body, html {
             width: fit-content;
             height: calc(100vw/20/3.35); // fit-content;
             background-color: whitesmoke;
+            //border:solid 1px;
             perspective: 25vw;
             perspective-origin: top;
         }
@@ -535,7 +536,7 @@ body, html {
                                 margin: auto;
                                 opacity: .6;
                                 border-radius: 10%;
-                                background-color: red;
+                                // background-color: red;
                             }
                         }
                     }
