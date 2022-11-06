@@ -1,4 +1,6 @@
-﻿<div>
+﻿@inject IJSRuntime js;
+
+<div>
     <a target="_blank" href="https://www.paylib.fr">
         <img href="https://www.paylib.fr" src="/item/paylib.svg" />
 
@@ -28,3 +30,16 @@
 
     </span>
 </div>
+
+@code {
+
+      protected override async Task OnAfterRenderAsync(bool firstRender)
+    {       
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("welcome");
+            
+        }
+    }
+
+}

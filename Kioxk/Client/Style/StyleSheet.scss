@@ -365,6 +365,7 @@ body, html {
         position: relative;
         width: max(calc(var(--child-width) * 1),26rem);
         height: fit-content;
+        margin:auto;
         transition: transform .7s;
         @include ombre();
         // background-color: mediumvioletred;
@@ -390,7 +391,6 @@ body, html {
                     width: 100%;
                     border: none;
                     transition: height .5s;
-                    //   height:fit-content;
                     // background-color: azure;
                 }
             }
@@ -416,11 +416,10 @@ body, html {
         margin: auto;
         user-select: none;
         @include ombre();
-        // background-color: green;
-        // backdrop-filter: blur(2px);
-       // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
-        clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
+        // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
+        clip-path: polygon(0% 25%, 75% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
         backdrop-filter: blur(0);
+        // background-color: red;
 
         @include hover-supported {
             backdrop-filter: blur(2px);
@@ -439,11 +438,9 @@ body, html {
             overflow-y: visible;
             border-radius: 1%;
             border: groove 2px;
-            // -webkit-backdrop-filter: blur(2px); /* assure la compatibilité avec safari */
-            //  backdrop-filter: blur(2px);
             transition: transform .7s;
-            // background-color: red;
             border-radius: 5%;
+            // background-color: red;
 
             .carre {
                 z-index: 2;
@@ -539,7 +536,6 @@ body, html {
                                 width: calc(max(var(--photo-width),0)/2 * .9);
                                 height: 3.5rem;
                                 margin: auto;
-                                //opacity: .6;
                                 border-radius: 10%;
                                 background-color: red;
                             }
@@ -599,7 +595,9 @@ body, html {
     #hlp {
         width: max(32vw,21rem);
         height: auto;
-        //  background-color: darkslategrey;
+       // margin:auto;
+      //  margin-right:-5rem;
+      //  background-color: darkslategrey;
 
         > div:first-child { // cont p
 
@@ -608,9 +606,9 @@ body, html {
                 height: auto;
                 // border: solid 1px;
                 border-radius: 5px;
-                //  backdrop-filter: blur(3px);
+                //  backdrop-filter: blur(3px);                
                 box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-                background-color: white;
+                background-color: rgba(white,.5);
 
                 > div { // Item
                     display: flex;
@@ -654,9 +652,10 @@ body, html {
     }
 
     #payment {
-        width: 20rem;
+        width: 30rem;
         height: fit-content;
-        //   background-color: blue;
+        transition: 5s transform;               
+        // background-color: blue;        
 
         > div:first-of-type { // cont paylib
             display: block;
@@ -740,10 +739,11 @@ body, html {
         position: relative;
         width: max(var(--calendar-width),16rem);
         height: fit-content;
+        margin-left:10rem;
         pointer-events: var(--agenda_pointer-event);
         transition: transform .7s;
         @include ombre();
-        //  background-color: darkgoldenrod;
+        // background-color: darkgoldenrod;
 
         > div:first-child { //cont p
             position: relative;

@@ -3,6 +3,8 @@
 @inject MyEvents myevents
 @using Kioxk.Client.Pages
 
+<img src="item/land.svg" style="position:fixed;top:20%;height:65%; margin:auto;left:0;right:0" />
+
 <div id="header">
     <div>
         <h1>LOUEZ une maison <br /> <em>à la Réunion en 4clics</em></h1>
@@ -44,7 +46,7 @@
 
 <div id="footer" />
 
-<div id="maincont">
+<div id="maincont"> 
 
     <div id="pretext">
         <div>
@@ -67,16 +69,16 @@
         </div>
     </div>
 
-    <div id="payment">
-        <Paiement />
-
-    </div>
-
     <div id="agenda" style="--agenda_pointer-event:@pnter">
         <div>
             <Agenda @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" />
 
         </div>
+    </div>
+
+     <div id="payment">
+        <Paiement />
+
     </div>
 
     <div id="reserv">

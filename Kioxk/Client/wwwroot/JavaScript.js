@@ -1,6 +1,7 @@
 ﻿
 var fr_Frame = true;
 var frame;
+
 function resizeIframe() {
     console.log("Dans resize Iframe!");
     if (fr_Frame) {
@@ -194,6 +195,7 @@ function scroll(el, sens) {
 
 var frLamb = true;
 var nmbrEl = 0;
+
 function lamb(dotNet) {
 
     if (frLamb) {
@@ -216,41 +218,12 @@ function lamb(dotNet) {
     }
 }
 
-    //const CsharpFunction = Blazor.platform.findMethod(
-    //    "CSharpLamb"
-    //);
-
-  //   v = 15;
-/* Blazor.platform.callMethod(CsharpFunction, 15);*/
-
-
-    //console.log("lamb");
-    //console.log("bw: " + document.body.clientWidth);
-
-  //  var svg = document.getElementById("sv");
-  //  var svgDocument = document.getElementsByClassName("lamb");
-  //  for (var l of svgDocument) {
-  //      console.log("log " + l.id);
-  //  }
-  //  console.log("lamb2");
-  ////  console.log("ici " + document.body.clientWidth / 5);
-  //  for (var l of svgDocument) {
-  //      l.style.width = document.body.clientWidth / 20;
-  //      l.style.height = "fit-content";//document.body.clientWidth / 10;
-  //  }
-
-  //  if (t) {
-  //      for (var l of svgDocument) {
-  //          l.getElementById('anel').beginElement();
-
-  //      }
-
-  //      t = false;
-  //  }
-  //  else {
-  //      for (var l of svgDocument) {
-  //          l.getElementById('anel').endElement();
-  //      }
-
-  //      t = true;
-  //  }
+function welcome() {
+    var pay = document.getElementById("payment");
+    console.log("welcome");
+    window.onscroll = () => {
+        console.log("onscroll: " + document.documentElement.scrollTop + " " + document.documentElement.clientHeight + " " + pay.offsetTop);
+        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop) { console.log("YEP!"); }
+    };
+}
+   
