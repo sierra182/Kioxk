@@ -342,7 +342,7 @@ body, html {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    top: 0;
+    top: 50vh;
     left: 0;
     right: 0;
     bottom: 0;
@@ -365,10 +365,13 @@ body, html {
         position: relative;
         width: max(calc(var(--child-width) * 1),26rem);
         height: fit-content;
-        margin:auto;
+        margin: auto;
         transition: transform .7s;
         @include ombre();
-        // background-color: mediumvioletred;
+        //  clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
+        clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 90%,90% 100%, 0% 100%, 0% 100%);
+        background-color: rgba(orange,.9);
+        backdrop-filter: blur(0px);
 
         > div:first-child { //cont p
             display: block;
@@ -417,10 +420,10 @@ body, html {
         user-select: none;
         @include ombre();
         // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
-        clip-path: polygon(0% 25%, 75% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
+        clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
         backdrop-filter: blur(0);
+        // filter:drop-shadow(5px 0px 0px black);
         // background-color: red;
-
         @include hover-supported {
             backdrop-filter: blur(2px);
         }
@@ -595,9 +598,9 @@ body, html {
     #hlp {
         width: max(32vw,21rem);
         height: auto;
-       // margin:auto;
-      //  margin-right:-5rem;
-      //  background-color: darkslategrey;
+        // margin:auto;
+        //  margin-right:-5rem;
+        //  background-color: darkslategrey;
 
         > div:first-child { // cont p
 
@@ -606,7 +609,7 @@ body, html {
                 height: auto;
                 // border: solid 1px;
                 border-radius: 5px;
-                //  backdrop-filter: blur(3px);                
+                //  backdrop-filter: blur(3px);
                 box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
                 background-color: rgba(white,.5);
 
@@ -654,8 +657,8 @@ body, html {
     #payment {
         width: 30rem;
         height: fit-content;
-        transition: 5s transform;               
-        // background-color: blue;        
+        transition: 5s transform;
+        // background-color: blue;
 
         > div:first-of-type { // cont paylib
             display: block;
@@ -739,7 +742,7 @@ body, html {
         position: relative;
         width: max(var(--calendar-width),16rem);
         height: fit-content;
-        margin-left:10rem;
+        margin-left: 10rem;
         pointer-events: var(--agenda_pointer-event);
         transition: transform .7s;
         @include ombre();
