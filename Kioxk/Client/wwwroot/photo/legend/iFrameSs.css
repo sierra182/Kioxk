@@ -1,6 +1,7 @@
 ﻿#seb {
-    color: white;
+    color:black;
     font-size: max(.8rem,2.6vw);    
+   // -webkit-text-stroke: 1px white;   
 }
 
 iframe {
@@ -28,6 +29,5 @@ div {
 text-align:center;
 width:fit-content;
 height:fit-content;
-//background-color:red;
 }
    
