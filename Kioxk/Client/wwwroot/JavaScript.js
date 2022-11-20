@@ -177,6 +177,11 @@ function imgNatural(img) {
     naturalY = img.naturalHeight;
 }
 
+function myscrollTo(el) {   
+    var elem = document.getElementById(el);
+    window.scrollTo(0, elem.scrollHeight + 50);
+}
+
 function scroll(el, sens) {
 
     var elem = document.getElementById(el);
