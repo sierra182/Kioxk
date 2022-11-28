@@ -354,7 +354,7 @@ body, html {
     justify-content: center;
     row-gap: 2rem;
     border-radius: 2.5%/5%;
-    background-color: rgba(0,0,0,.05); //.05);
+    background-color: rgba(black,.1); //.05);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-size: 100% 100%;
@@ -363,20 +363,29 @@ body, html {
     #pretext {
         z-index: 3;
         position: relative;
-        width: max(calc(var(--child-width) * 1),26rem);
+        width: max(calc(var(--child-width) * .95 ),26rem);
         height: fit-content;
         margin: auto;
         transition: transform .7s;
         // @include ombre();
         //  clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
-        clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
+        ///// clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
         //  background-color: rgba(#3C3B3F,1);
-        background-color: rgba(white,.9);
         //  background-color: #3C3B3F;
         // backdrop-filter: blur(0px);
         //background-clip: text;
-       // --webkit-background-clip: text;
+        // --webkit-background-clip: text;
 
+        &:before {
+            content: "";
+            position: absolute;
+            top: 1vw;
+            left: .4vw;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0% 10%, 5% 0%,95% 0%, 100% 5%, 100% 95%,95% 100%, 5% 100%, 0% 95%);
+            background-color: rgba(black,.5);
+        }
 
         > div:first-child { //cont p
             display: block;
@@ -386,21 +395,21 @@ body, html {
             width: 100%;
             height: fit-content;
             margin: auto;
-            // background-color: blue;
+            clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
+            background-color: rgba(white,.9);
 
             > div:first-of-type { // ardoise
-                width: 95%;
+                width: 75%;
                 margin: auto;
                 margin-top: .5rem;
-                //   filter: drop-shadow(2px 2px 1.3px black);
-                //  background-color: rgba(0, 0, 0,.4);
+                // background-color: grey;
 
                 iframe:last-of-type { // bienvenue
                     width: 100%;
                     border: none;
                     transition: height .5s;
                     // background-color: azure;
-                  //  --webkit-background-clip: text;
+                    //  --webkit-background-clip: text;
                 }
             }
         }
@@ -522,7 +531,20 @@ body, html {
                     > div { //cont img et cont ifrme - multy
                         width: 100%;
                         height: fit-content;
+                        position: relative;
                         //  background-color: darkmagenta;
+                        &:before {
+                            content: "";
+                            z-index: -1;
+                            position: absolute;
+                            top: -.3vw;
+                            left: 0vw;
+                            width: 90%;
+                            height: 112%;
+                            border-radius: 1vw;
+                            //  clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
+                            background-color: rgba(black,.8);
+                        }
 
                         img {
                             position: relative;
@@ -543,7 +565,7 @@ body, html {
                                 left: 0;
                                 right: 0;
                                 width: calc(max(var(--photo-width),0)/2 * .9);
-                                height: 3.5rem;
+                                height: 1.2rem; //3.5rem;
                                 margin: auto;
                                 border-radius: 10%;
                                 // background-color: red;

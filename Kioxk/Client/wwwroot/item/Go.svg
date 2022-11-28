@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.50333193"
-     inkscape:cx="105.29831"
-     inkscape:cy="-55.629294"
+     inkscape:zoom="1.0066639"
+     inkscape:cx="25.827886"
+     inkscape:cy="147.02028"
      inkscape:window-width="1366"
      inkscape:window-height="745"
      inkscape:window-x="-8"
@@ -54,24 +54,31 @@
      id="layer1"
      transform="translate(-77.179873,-121.59847)">
     <ellipse
-       style="opacity:1;fill:#da552c;fill-opacity:1;stroke:#e10027;stroke-width:3.865;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#f50a62;fill-opacity:1;stroke:#e10027;stroke-width:3.865;stroke-dasharray:7.73000002, 3.86500001, 1.93250001, 3.86500001;stroke-opacity:1;stroke-dashoffset:0"
        id="path1465"
        cx="114.59467"
        cy="157.69911"
        rx="35.4823"
        ry="34.16814" />
+    <ellipse
+       style="fill:#da552c;fill-opacity:1;stroke:#e10027;stroke-width:0.931;stroke-dasharray:7.44799996,0.931;stroke-opacity:1;stroke-dashoffset:0"
+       id="path1465-3"
+       cx="114.87166"
+       cy="157.55894"
+       rx="30.509859"
+       ry="29.508751" />
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,28.911504,18.39823)"
        id="text4461"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4463);fill:#000000;fill-opacity:1;stroke:none" />
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4463);display:inline;fill:#000000;fill-opacity:1;stroke:none" />
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,66.759292,35.219469)"
        id="text4517"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;line-height:1.25;font-family:Impact;-inkscape-font-specification:Impact;white-space:pre;shape-inside:url(#rect4519);fill:#000000;fill-opacity:1;stroke:none"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.3333px;line-height:1.25;font-family:Impact;-inkscape-font-specification:Impact;white-space:pre;shape-inside:url(#rect4519);display:inline;fill:#ffffff;fill-opacity:1;stroke:none"><tspan
          x="145.0332"
          y="480.54532"
-         id="tspan5623">Go !</tspan></text>
+         id="tspan337150">Go !</tspan></text>
   </g>
 </svg>
