@@ -50,6 +50,18 @@ body, html {
     }
 }
 
+img#land {
+    //display:block;
+    position: fixed;
+   // padding: 10% 0;
+    top: 0;
+    height: 58%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 #header {
     position: relative;
     width: 100%;
