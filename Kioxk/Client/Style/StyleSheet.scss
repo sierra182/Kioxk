@@ -380,7 +380,7 @@ img#land {
         margin: auto;
         transition: transform .7s;
         // @include ombre();
-        //  clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
+        clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
         ///// clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
         //  background-color: rgba(#3C3B3F,1);
         //  background-color: #3C3B3F;
@@ -396,7 +396,7 @@ img#land {
             width: 100%;
             height: 100%;
             clip-path: polygon(0% 10%, 5% 0%,95% 0%, 100% 5%, 100% 95%,95% 100%, 5% 100%, 0% 95%);
-            background-color: rgba(black,.5);
+            //  background-color: rgba(black,.5);
         }
 
         > div:first-child { //cont p
@@ -408,6 +408,7 @@ img#land {
             height: fit-content;
             margin: auto;
             clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
+            clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
             background-color: rgba(white,.9);
 
             > div:first-of-type { // ardoise
@@ -450,9 +451,10 @@ img#land {
         clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
         backdrop-filter: blur(0);
         // filter:drop-shadow(5px 0px 0px black);
-        // background-color: red;
+        // background-color: rgba(orange,.1);
+        backdrop-filter: blur(2px);
+
         @include hover-supported {
-            // backdrop-filter: blur(2px);
         }
 
         > div:first-child { //cont p
