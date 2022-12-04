@@ -235,11 +235,11 @@ function welcome() { // en travaux...
 
 function spinScrolling() {
     var go = document.getElementById("go");
-    var stack = 42;
+    var stack;
 
     window.addEventListener('scroll', () => {        
         stack = document.documentElement.scrollTop;      
         go.style.transform = `rotate(${stack/2}deg)`;
-        console.log("SPIN " + document.body.scrollTop + " " + document.body.scrollY);
+        // console.log("SPIN " + document.body.scrollTop + " " + document.body.scrollY);
     });
 }
