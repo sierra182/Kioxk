@@ -239,7 +239,7 @@ function spinScrolling() {
 
     window.addEventListener('scroll', () => {        
         stack = document.documentElement.scrollTop;      
-        go.style.transform = `rotate(${stack/2}deg)`;
+        go.style.transform = `rotate(${stack/2}deg)`; 
         // console.log("SPIN " + document.body.scrollTop + " " + document.body.scrollY);
     });
 }
