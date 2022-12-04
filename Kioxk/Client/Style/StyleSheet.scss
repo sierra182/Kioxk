@@ -62,6 +62,14 @@ img#land {
     bottom: 0;
 }
 
+svg#go {
+    position: absolute;
+    top: 25vw;
+    left: 10vw;
+    width: 14vw;
+    transition: transform .2s linear;
+}
+
 #header {
     position: relative;
     width: 100%;

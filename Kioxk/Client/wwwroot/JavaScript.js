@@ -223,12 +223,23 @@ function lamb(dotNet) {
     }
 }
 
-function welcome() {
-    var pay = document.getElementById("payment");
+function welcome() { // en travaux...
     console.log("welcome");
-    window.onscroll = () => {
+    var pay = document.getElementById("payment");    
+    window.addEventListener('scroll', () => {
         console.log("onscroll: " + document.documentElement.scrollTop + " " + document.documentElement.clientHeight + " " + pay.offsetTop);
         if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop) { console.log("YEP!"); }
-    };
+    });
+    spinScrolling();
 }
-   
+
+function spinScrolling() {
+    var go = document.getElementById("go");
+    var stack = 42;
+
+    window.addEventListener('scroll', () => {        
+        stack = document.documentElement.scrollTop;      
+        go.style.transform = `rotate(${stack/2}deg)`;
+        console.log("SPIN " + document.body.scrollTop + " " + document.body.scrollY);
+    });
+}
