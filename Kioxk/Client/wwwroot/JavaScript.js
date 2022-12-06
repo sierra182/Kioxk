@@ -226,9 +226,13 @@ function lamb(dotNet) {
 function welcome() { // en travaux...
     console.log("welcome");
     var pay = document.getElementById("payment");    
+    var main = document.getElementById("maincont");  
     window.addEventListener('scroll', () => {
-        console.log("onscroll: " + document.documentElement.scrollTop + " " + document.documentElement.clientHeight + " " + pay.offsetTop);
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop) { console.log("YEP!"); }
+        console.log("onscroll: " + document.documentElement.scrollTop + " " + document.documentElement.clientHeight + " " + pay.offsetTop + " here " + main.offsetTop);
+        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop + main.offsetTop) {
+            console.log("YEP!");
+            pay.classList.add('welcome_pay');
+        }        
     });
     spinScrolling();
 }

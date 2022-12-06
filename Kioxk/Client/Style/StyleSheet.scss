@@ -710,14 +710,18 @@ svg#go {
         }
     }
 
+    .welcome_pay#payment {        
+        transform: none;
+    }
+
     #payment {
         width: 30rem;
         height: fit-content;
-        transition: 5s transform;
+        transition: 2s transform;
         box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
         background-color: rgba(white,.75);
-        // background-color: blue;
-
+        transform: translate(-100%);
+             
         > div:first-of-type { // cont paylib
             display: block;
             float: left;
