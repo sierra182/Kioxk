@@ -386,13 +386,21 @@ svg#go {
     background-size: 100% 100%;
     background-position: center;
 
+    .welcome_pre#pretext {
+        transform: none;
+    }
+
     #pretext {
         z-index: 3;
+        display:flex;
+        flex-grow:.3;
         position: relative;
-        width: max(calc(var(--child-width) * .95 ),26rem);
+       // width: max(calc(var(--child-width) * .95 ),26rem);
         height: fit-content;
         margin: auto;
-        transition: transform .7s;
+        transition: 2s transform;
+        transform: translate(-100vw);
+        //transition: transform .7s;
         // @include ombre();
         clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
         ///// clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
@@ -423,7 +431,7 @@ svg#go {
             margin: auto;
             clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
             clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
-            background-color: rgba(white,.9);
+            background-color: rgba(white,.8);
 
             > div:first-of-type { // ardoise
                 width: 75%;
@@ -511,7 +519,7 @@ svg#go {
                     width: inherit;
                     height: inherit;
                     border-radius: inherit;
-                    border: .25rem solid red;
+                    border: .25rem solid green;
                     opacity: .5;
                     transition: 1s all;
                 }
@@ -529,7 +537,7 @@ svg#go {
                 font-size: 1rem;
                 text-align: center;
                 font-family: 'Montserrat', sans-serif;
-                color: whitesmoke;
+                color: black;
                 @include ombre();
                 //   background-color: green;
             }
@@ -560,15 +568,16 @@ svg#go {
                         width: 100%;
                         height: fit-content;
                         position: relative;
+                        border: solid 2px;
                         //  background-color: darkmagenta;
                         &:before {
                             content: "";
                             z-index: -1;
                             position: absolute;
-                            top: -.3vw;
+                            top: 10%;
                             left: 0vw;
                             width: 90%;
-                            height: 112%;
+                            height: 100%;
                             border-radius: 1vw;
                             //  clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
                             background-color: rgba(black,.8);
@@ -651,9 +660,19 @@ svg#go {
         }
     }
 
+    .welcome_hlp#hlp {
+        transform: none;
+    }
+
     #hlp {
-        width: max(32vw,21rem);
+       // width:  max(32vw,21rem);
         height: auto;
+        position: relative;
+        // left:-10vw;
+        transition: 2s transform;
+        transform: translate(-100vw);
+       
+        display:flex;
         // margin:auto;
         //  margin-right:-5rem;
         //  background-color: darkslategrey;
@@ -710,18 +729,18 @@ svg#go {
         }
     }
 
-    .welcome_pay#payment {        
+    .welcome_pay#payment {
         transform: none;
     }
 
     #payment {
-        width: 30rem;
+        width: 35rem;
         height: fit-content;
-        transition: 2s transform;
         box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
         background-color: rgba(white,.75);
-        transform: translate(-100%);
-             
+        transition: 2s transform;
+        transform: translate(-100vw);
+
         > div:first-of-type { // cont paylib
             display: block;
             float: left;

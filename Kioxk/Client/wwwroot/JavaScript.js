@@ -225,14 +225,23 @@ function lamb(dotNet) {
 
 function welcome() { // en travaux...
     console.log("welcome");
+    var main = document.getElementById("maincont");
     var pay = document.getElementById("payment");    
-    var main = document.getElementById("maincont");  
+    var hlp = document.getElementById("hlp");
+    var pre = document.getElementById("pretext");
+
     window.addEventListener('scroll', () => {
         console.log("onscroll: " + document.documentElement.scrollTop + " " + document.documentElement.clientHeight + " " + pay.offsetTop + " here " + main.offsetTop);
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop + main.offsetTop) {
-            console.log("YEP!");
+        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop + main.offsetTop) {            
             pay.classList.add('welcome_pay');
-        }        
+        } 
+        if (document.documentElement.scrollTop + document.documentElement.clientHeight > hlp.offsetTop + main.offsetTop) {          
+            hlp.classList.add('welcome_hlp');
+        } 
+        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pre.offsetTop + main.offsetTop) {
+            console.log("YEP!");
+            pre.classList.add('welcome_pre');
+        } 
     });
     spinScrolling();
 }
