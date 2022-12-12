@@ -6,11 +6,14 @@
     --maincontchild-width-percent: 50;
     --main-height: 100;
     --doc-height: 100%;
+    overflow-x: hidden;
 }
 
 body, html {
     font-family: 'Twinkle Star', cursive;
     font-size: max(.8rem,1.2vw);
+    
+
     // background-color: aqua;
     // background-image: url("/item/papierinp.jpg");
 }
@@ -53,6 +56,7 @@ body, html {
 img#land {
     //display:block;
     position: fixed;
+    z-index:-1;
     // padding: 10% 0;
     top: 0;
     height: 58%;
@@ -72,7 +76,7 @@ svg#go {
 
     &:active {
         width: 13.5vw;
-        left: 10.5vw;
+        left: 10.6vw;
     }
 }
 
@@ -385,6 +389,7 @@ svg#go {
     background-size: 100% 100%;
     background-size: 100% 100%;
     background-position: center;
+    //backdrop-filter: blur(1px);
 
     .welcome_pre#pretext {
         transform: none;
@@ -392,17 +397,18 @@ svg#go {
 
     #pretext {
         z-index: 3;
-        display:flex;
-        flex-grow:.3;
+        display: flex;
+        flex-grow: .4;
         position: relative;
-       // width: max(calc(var(--child-width) * .95 ),26rem);
+        // width: max(calc(var(--child-width) * .95 ),26rem);
         height: fit-content;
         margin: auto;
         transition: 2s transform;
         transform: translate(-100vw);
+        user-select: none;
         //transition: transform .7s;
         // @include ombre();
-        clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
+        //  clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
         ///// clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
         //  background-color: rgba(#3C3B3F,1);
         //  background-color: #3C3B3F;
@@ -419,6 +425,7 @@ svg#go {
             height: 100%;
             clip-path: polygon(0% 10%, 5% 0%,95% 0%, 100% 5%, 100% 95%,95% 100%, 5% 100%, 0% 95%);
             //  background-color: rgba(black,.5);
+            // backdrop-filter: blur(2px);
         }
 
         > div:first-child { //cont p
@@ -429,21 +436,37 @@ svg#go {
             width: 100%;
             height: fit-content;
             margin: auto;
-            clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
-            clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
-            background-color: rgba(white,.8);
-
+            //  clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 100%,90% 101%, 10% 101%, 0% 100%);
+            // clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
+            // background-color: rgba(#066db5,.1);
+            // background: linear-gradient(to right, #605C3C, #3C3B3F);
+            backdrop-filter: blur(5px);
+            border-end-end-radius: 10px;
+            border: solid 1px;
+            border-radius: 5px;
+            // background-color: wh
             > div:first-of-type { // ardoise
-                width: 75%;
+                width: 80%;
                 margin: auto;
                 margin-top: .5rem;
-                // background-color: grey;
-
+                margin-bottom: .5rem;
+                border: outset 1px;
+                border-radius: 5px;
+                //background-color: rgba(#3fe64f,.9); // rgba(#066db5,.8);
+                clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 90%,90% 101%, 10% 101%, 0% 100%);
+                background: linear-gradient(90deg, rgba(68,133,47,1) 0%, rgba(63,230,79,1) 53%, rgba(6,181,158,1) 100%);
+                opacity: .9;
+                //  background-color:black;
                 iframe:last-of-type { // bienvenue
-                    width: 100%;
+                    width: 92%;
+                    // position:absolute;
+                    margin: auto;
+                    display: block;
                     border: none;
                     transition: height .5s;
-                    // background-color: azure;
+                    font-family: Montserrat;
+                    letter-spacing: 1vw;
+                    //   background-color: blue;
                     //  --webkit-background-clip: text;
                 }
             }
@@ -470,11 +493,25 @@ svg#go {
         user-select: none;
         // @include ombre();
         // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
-        clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
-        backdrop-filter: blur(0);
+        // backdrop-filter: blur(0);
         // filter:drop-shadow(5px 0px 0px black);
         // background-color: rgba(orange,.1);
-        backdrop-filter: blur(2px);
+        // backdrop-filter: blur(2px);
+
+        &:before {
+            content: "";
+            width: 110%;
+            height: 110%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            backdrop-filter: blur(2px);
+            border: solid 1px;
+            border-radius: 5px;
+            // border-start-end-radius:50px;
+            // background-color: rgba(black,.5);
+        }
 
         @include hover-supported {
         }
@@ -491,6 +528,7 @@ svg#go {
             overflow-x: hidden;
             overflow-y: visible;
             border-radius: 1%;
+            clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
             //  border: groove 2px;
             transition: transform .7s;
             border-radius: 5%;
@@ -538,8 +576,28 @@ svg#go {
                 text-align: center;
                 font-family: 'Montserrat', sans-serif;
                 color: black;
-                @include ombre();
-                //   background-color: green;
+                // @include ombre();
+                // background-color: white;
+
+                &:before {
+                    content: "";
+                    z-index: -1;
+                    width: 100%;
+                    height: 128%;
+                    background-color: rgba(white,.8);
+                    display: block;
+                    position: absolute;
+                    margin: auto;
+                    top: 0;
+                    bottom: 0;
+                    //left:0;right:0;
+                    /* top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);*/
+                    border-radius: 10px;
+                    filter: blur(3px);
+                }
+                // filter: blur(4px);
             }
 
             > div:nth-of-type(2) {
@@ -568,7 +626,7 @@ svg#go {
                         width: 100%;
                         height: fit-content;
                         position: relative;
-                        border: solid 2px;
+                        border: outset 1px;
                         //  background-color: darkmagenta;
                         &:before {
                             content: "";
@@ -665,34 +723,58 @@ svg#go {
     }
 
     #hlp {
-       // width:  max(32vw,21rem);
+        // width:  max(32vw,21rem);
         height: auto;
         position: relative;
         // left:-10vw;
         transition: 2s transform;
         transform: translate(-100vw);
-       
-        display:flex;
+        display: flex;
         // margin:auto;
         //  margin-right:-5rem;
         //  background-color: darkslategrey;
 
+        &:before {
+            content: "";
+            position: absolute;
+            /*  top:0;
+            left:0;
+            display:block;*/
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            //z-index: -1;
+            width: 110%;
+            height: 110%;
+            // background-color: rgba(yellow,1);
+            backdrop-filter: blur(4px);
+            border: solid 1px;
+            border-radius: 5px;
+            // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+            //  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+        }
+
         > div:first-child { // cont p
+
 
             > div:first-child { //pannleg
                 width: 100%;
                 height: auto;
-                // border: solid 1px;
-                border-radius: 5px;
+                //border: outset 1px;
+               // border-radius: 5px;
                 //  backdrop-filter: blur(3px);
-                box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-                background-color: rgba(white,.75);
+             //   border: outset 1px;
+                background-color: rgba(white,.9);
+                position: relative;
+                // opacity:.9;
+
 
                 > div { // Item
                     display: flex;
+                    position: relative;
                     //  border: solid 1px orange;
                     // background-color: green;
-
+                    //      z-index:20;
                     > div { // elements comp cont
                         flex-shrink: 0;
                         width: max(3vw,2rem);
@@ -736,10 +818,29 @@ svg#go {
     #payment {
         width: 35rem;
         height: fit-content;
-        box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-        background-color: rgba(white,.75);
+        background-color: rgba(white,.8);
         transition: 2s transform;
-        transform: translate(-100vw);
+        transform: translate(100vw);
+        position: relative;
+        // backdrop-filter: blur(4px);
+      //  border: outset 1px;
+//border-radius:5px;
+        &:before {
+            content: "";
+            position: absolute;
+            //   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: -1;
+            width: 110%;
+            height: 15rem;
+            // background-color: rgba(yellow,1);
+            backdrop-filter: blur(4px);
+            border: solid 1px;
+            border-radius: 5px;
+            //  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+        }
 
         > div:first-of-type { // cont paylib
             display: block;
@@ -826,8 +927,20 @@ svg#go {
         margin-left: 10rem;
         pointer-events: var(--agenda_pointer-event);
         transition: transform .7s;
-        @include ombre();
+        // @include ombre();
         // background-color: darkgoldenrod;
+        &:before {
+            content: "";
+            width: 110%;
+            height: 110%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            backdrop-filter: blur(2px);
+            //  background-color: rgba(black,.5);
+            // border: solid 1px;
+        }
 
         > div:first-child { //cont p
             position: relative;
@@ -1149,15 +1262,48 @@ svg#go {
         justify-content: center;
         align-items: center;
         margin-bottom: max(3rem,4vw);
-        @include ombre();
-        // background-color: blue; //#00c6b0;
+        //  @include ombre();
+        //background-color: blue; //#00c6b0;
 
         > div:first-child { //cont p
             flex-shrink: 0;
             position: relative;
             width: 62%;
             height: 80%;
-            // background-color: yellow;
+            //  background-color: rgba(yellow,.9);
+
+            &:before {
+                content: "";
+                position: absolute;
+                //   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                z-index: -1;
+                width: 110%;
+                height: 110%;
+                // background-color: rgba(yellow,.6);
+                backdrop-filter: blur(4px);
+                border: solid 1px;
+                border-radius: 5px;
+                //  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                //   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                backdrop-filter: blur(8px);
+                z-index: -1;
+                width: 100%;
+                height: 100%;
+                // background-color: rgba(white,.9);
+                border: outset 1px;
+                border-radius: 5px;
+            }
 
             #form {
                 --displres: block;

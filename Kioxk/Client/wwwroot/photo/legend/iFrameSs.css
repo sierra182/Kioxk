@@ -1,20 +1,14 @@
 ﻿#seb {
-    color: black;
-    font-size: max(.8rem,2.3vw);
-  
-   
-    
-
-      
+    color: white;
+    font-size: max(.8rem,2.3vw);    
 }
-p {
-    // background: black;
-    background: rgb(2,0,36);
+p {  
+/*    background: rgb(2,0,36);
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,17,16,1) 55%, rgba(0,212,255,1) 100%);
-    // background-color: transparent;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+*/    background-color: transparent;
+   /* -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;*/
 }
 iframe {
     float: left;

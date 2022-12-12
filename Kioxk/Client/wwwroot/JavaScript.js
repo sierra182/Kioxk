@@ -179,7 +179,7 @@ function imgNatural(img) {
 
 function myscrollTo(el) {   
     var elem = document.getElementById(el);
-    window.scrollTo(0, elem.scrollHeight + 50);
+    window.scrollTo(0, elem.offsetTop + .35 * elem.offsetTop);
 }
 
 function scroll(el, sens) {
@@ -235,7 +235,7 @@ function welcome() { // en travaux...
         if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop + main.offsetTop) {            
             pay.classList.add('welcome_pay');
         } 
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight > hlp.offsetTop + main.offsetTop) {          
+        if (document.documentElement.scrollTop + document.documentElement.clientHeight > hlp.offsetTop + main.offsetTop + .3 * hlp.offsetTop) {          
             hlp.classList.add('welcome_hlp');
         } 
         if (document.documentElement.scrollTop + document.documentElement.clientHeight > pre.offsetTop + main.offsetTop) {
