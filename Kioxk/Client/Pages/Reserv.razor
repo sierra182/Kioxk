@@ -13,16 +13,18 @@
         op = 0.9;
         pter = "none";
         trans = "100.5";
+        visib = "hidden";
     }
     else if (mails! is null)
     {
         op = .9;
         pter = "initial";
         trans = "0";   // ferme
+        visib = "visible";
     }
 }
 
-<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans">
+<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; --visib:@visib">
     <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>
 
 </div>
@@ -74,7 +76,7 @@
     string pter = "initial";
     double op = 0;
     string trans = "0";
-
+    string visib = "visible";
     private Commande? com;
     private Kioxk.Shared.Mails.Mails? mails;
     private Kioxk.Shared.Mails.Paiement? paie;

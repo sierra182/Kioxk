@@ -1,6 +1,12 @@
 ﻿#seb {
     color: white;
-    font-size: max(.8rem,2.3vw);    
+    font-size: max(.8rem,2.3vw);
+    font-weight: 100;
+    letter-spacing: .1rem;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: fit-content;
+    margin-left:1rem;
 }
 p {  
 /*    background: rgb(2,0,36);
@@ -17,7 +23,9 @@ iframe {
     height: max(4rem,26vw);
     margin-left: 1rem;
     margin-top: -1vw;
-    margin-right: 1rem;
+    margin-right: 2rem;
+    margin-bottom:1rem;
+    padding:.3rem;
     border-radius: 100%;
     shape-outside: margin-box;
     transition: width 1s, height 1s;
@@ -32,8 +40,13 @@ iframe:hover {
 }
 
 div {
-text-align:center;
-width:fit-content;
-height:fit-content;
+    /*text-align:center;*/
+    width: fit-content;
+    height: fit-content;
+    color: white;
+    font-size: max(.8rem,2.3vw);
+    font-weight: 100;
+    letter-spacing: .1rem;
+    font-family: 'Montserrat', sans-serif;
 }
    
