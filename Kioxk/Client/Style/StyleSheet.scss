@@ -403,7 +403,7 @@ svg#go {
         display: flex;
         flex-grow: .8;
         position: relative;
-        // width: max(calc(var(--child-width) * .95 ),26rem);
+        width: 30%; // max(calc(var(--child-width) * .95 ),26rem);
         height: fit-content;
         margin: auto;
         transition: 2s transform;
@@ -1284,6 +1284,25 @@ svg#go {
         //  @include ombre();
         //background-color: blue; //#00c6b0;
 
+        &:before {
+            content:"";
+            width:2.5rem;
+            height:2.5rem;
+           // background-color:red;
+            position:absolute;
+            top:6rem;
+            right:20rem;
+            background-image:url(/item/interog.svg);
+            background-size:contain;
+            background-repeat:no-repeat;
+            background-position:center;
+
+            &:active {
+
+            }
+          //  left:0;
+        }
+
         > div:first-child { //cont p
             flex-shrink: 0;
             position: relative;
@@ -1302,30 +1321,31 @@ svg#go {
                 width: 110%;
                 height: 110%;
                 // background-color: rgba(yellow,.6);
-                  backdrop-filter: blur(4px);
+                backdrop-filter: blur(4px);
                 border: solid 1px;
                 border-radius: 5px;
                 //  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+             
             }
 
             &:after {
                 content: "";
                 position: absolute;
                 //   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-               // top: 50%;
-              //  left: 50%;
-              //  transform: translate(-50%,-50%);
-              top:0;
-              bottom:0;
-              left:0;
-              right:0;
-              margin:auto;
+                // top: 50%;
+                //  left: 50%;
+                //  transform: translate(-50%,-50%);
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
                 // backdrop-filter: blur(6px);
                 z-index: -1;
                 width: 100%;
                 height: 100%;
-                 background-color: rgba(white,.9);
-               // border: outset 1px;
+                background-color: rgba(white,.9);
+                // border: outset 1px;
                 border-radius: 5px;
             }
 
@@ -1337,15 +1357,15 @@ svg#go {
                 --visib: "visible";
                 display: block;
                 position: relative;
-                    top:50%;
+                top: 50%;
                 left: 50%;
                 width: 70%;
                 height: fit-content;
                 opacity: 1;
                 overflow-y: visible;
-                transform:translate(-50%,-50%);
+                transform: translate(-50%,-50%);
                 //    filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
-               //  background-color: gray;
+                //  background-color: gray;
 
                 &::after { // couv
                     content: "";
@@ -1375,21 +1395,21 @@ svg#go {
                     //  filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
                     //  background-color: rgba(black,.9);
                     //filter:none;
-                    visibility:var(--visib);
+                    visibility: var(--visib);
                 }
 
                 > :first-child { // > EditForm { // EditForm
                     height: 100%; //fit-content;// 100%;
                     overflow-x: hidden;
-                    overflow-y: hidden;//visible; //hidden;//auto
+                    overflow-y: hidden; //visible; //hidden;//auto
                     font-size: 1rem;
-                 //   border: solid 1px;
+                    //   border: solid 1px;
                     border-radius: 5px; // 10% / 5%;
                     //   background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(60,55,49,1) 35%, rgba(9,10,10,1) 100%);
                     // background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
                     // background: rgb(27,87,51);
                     //  background: linear-gradient(90deg, rgba(27,87,51,1) 78%, rgba(6,181,158,1) 100%);
-//background-color: white; //dodgerblue;
+                    //background-color: white; //dodgerblue;
                     // transform-origin: left;
                     // transition: 2s all;
                     //backface-visibility:white;
@@ -1592,7 +1612,7 @@ svg#go {
                                 position: relative;
                                 top: 30rem;
                                 width: 50%;
-                                opacity:1;
+                                opacity: 1;
                             }
 
                             to {
@@ -1605,9 +1625,9 @@ svg#go {
 
                         @keyframes up {
                             to {
-                                transform:translateY(-45rem);
-                               // bottom:0;
-                               // top:0;
+                                transform: translateY(-45rem);
+                                // bottom:0;
+                                // top:0;
                             }
                         }
                         /* @keyframes textareaone {
