@@ -1284,24 +1284,6 @@ svg#go {
         //  @include ombre();
         //background-color: blue; //#00c6b0;
 
-        &:before {
-            content:"";
-            width:2.5rem;
-            height:2.5rem;
-           // background-color:red;
-            position:absolute;
-            top:6rem;
-            right:20rem;
-            background-image:url(/item/interog.svg);
-            background-size:contain;
-            background-repeat:no-repeat;
-            background-position:center;
-
-            &:active {
-
-            }
-          //  left:0;
-        }
 
         > div:first-child { //cont p
             flex-shrink: 0;
@@ -1309,6 +1291,73 @@ svg#go {
             width: 62%;
             height: 80%;
             //  background-color: rgba(yellow,.9);
+
+            #couv { // couv
+                --visib: "visible";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                z-index: 2;
+                /*  top: 0;*/
+                //  width: 100%;
+                //  height: 100%;
+                font-size: 3rem;
+                opacity: var(--opres);
+                transition: 1s opacity, 1s transform;
+                transform: translate(calc(-1 * var(--trans)*1%));
+                pointer-events: var(--pointres);
+                //  border: solid;
+                //  border-width: 1px;
+                //    border-radius: 5px; //10% / 5%;
+                //   backdrop-filter: blur(1.2px);
+                //  filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
+                background-color: rgba(white,.9);
+                //filter:none;
+                visibility: var(--visib);
+                user-select:none;
+                /*&:after {
+                    content: "Selectionnez une date";*/
+                /* width:100%;
+                    height:100%;*/
+                /*}*/
+              /*  &:active span {
+                    opacity: 1 !important;
+                    animation: tet 10s;
+                }
+                @keyframes tet {
+                   to { transform:translate(10rem);}
+                }*/
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    // opacity:0 !important;
+                }
+
+                span {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    display: block;
+                    width: fit-content;
+                    height: fit-content;
+                    color: white;
+                    //  height:20%;
+                    font-size: 1rem;
+                    background-color: red;
+                   // opacity: 0 !important;
+                }
+            }
 
             &:before {
                 content: "";
@@ -1325,7 +1374,6 @@ svg#go {
                 border: solid 1px;
                 border-radius: 5px;
                 //  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-             
             }
 
             &:after {
@@ -1349,54 +1397,60 @@ svg#go {
                 border-radius: 5px;
             }
 
+            #pinterog {
+                position: absolute;
+                top: 0;
+                right: 0;
+                transition: all 1s;
+                /*&:active {
+                    transform:scale(.9) !important;
+                }*/
+
+                img {
+                    width: 5rem;
+                }
+            }
+
+            #donnees {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: fit-content;
+                height: fit-content;
+                opacity: 0;
+
+                img {
+                    width: 30rem;
+                }
+            }
+
+            #donnees, #form {
+                transition: opacity 1s;
+            }
+
             #form {
                 --displres: block;
                 --pointres: initial;
                 --opres: 1;
                 --trans: 0;
-                --visib: "visible";
                 display: block;
                 position: relative;
                 top: 50%;
                 left: 50%;
                 width: 70%;
                 height: fit-content;
-                opacity: 1;
+                // opacity: 1;
                 overflow-y: visible;
                 transform: translate(-50%,-50%);
                 //    filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
                 //  background-color: gray;
 
-                &::after { // couv
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    //  z-index: -1;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    font-size: 3rem;
-                    opacity: var(--opres);
-                    transition: 1s opacity, 1s transform;
-                    transform: translate(calc(-1 * var(--trans)*1%));
-                    pointer-events: var(--pointres);
-                    border: solid;
-                    border-width: 1px;
-                    border-radius: 5px; //10% / 5%;
-                    background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                    background-color: white;
-                    background-image: url("/item/res.webp");
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                    background-position-y: 25%;
-                    background-size: 85%;
-                    background-position-x: center;
-                    //   backdrop-filter: blur(1.2px);
-                    //  filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
-                    //  background-color: rgba(black,.9);
-                    //filter:none;
-                    visibility: var(--visib);
-                }
+
+
+
 
                 > :first-child { // > EditForm { // EditForm
                     height: 100%; //fit-content;// 100%;
@@ -1779,7 +1833,7 @@ svg#go {
                 }
             }
 
-            > div:nth-child(2) { //cont recap + paie contscrooljs
+            > div:nth-child(5) { //cont recap + paie contscrooljs
                 position: absolute;
                 top: 0;
                 left: 50%;

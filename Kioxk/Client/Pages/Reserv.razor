@@ -23,8 +23,20 @@
         visib = "visible";
     }
 }
-
-<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; --visib:@visib">
+<div id="couv" style="--visib:@visib" @onclick="(e)=>selectBefore(e)">
+    <img src="/item/res.webp" 
+    />
+    <span style="opacity:@spanop"> &nbsp; Selectionnez dabord une date sur le calendrier :) &nbsp; </span>
+</div>
+<div id="pinterog" @onclick="pinterogToggle" style="transform:rotateY(@(pintdeg)deg)">
+    <img src="/item/interog.svg"
+    />
+</div>
+<div id="donnees" style="opacity:@donop">
+    <img src="/item/donnees.svg"
+    />
+</div>
+<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop">
     <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>
 
 </div>
@@ -82,6 +94,11 @@
     private Kioxk.Shared.Mails.Paiement? paie;
     private int i;
 
+    private int donop = 0;
+    private int formop = 1;
+    private int pintdeg = 0;
+    private int spanop = 0;
+
     protected override void OnInitialized()
     {
         com = new Commande();
@@ -95,6 +112,33 @@
         {
             await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
             scrollHaut = false;
+        }
+    }
+
+    bool ptog = false;
+    private void pinterogToggle () {
+        if (!ptog)
+        {
+            donop = 1; formop = 0;
+            pintdeg = 180;
+        } else 
+        {
+            donop = 0; formop = 1;
+            pintdeg = 0;
+        }
+        ptog = !ptog;
+
+    }
+
+    bool selectpass = true;
+    private async Task selectBefore (MouseEventArgs e) {
+        if (selectpass)
+        {
+            selectpass = false;
+            spanop = 1;
+            await Task.Delay(5000);
+            spanop = 0;
+            selectpass = true;
         }
     }
 
