@@ -1,12 +1,16 @@
-﻿#seb {
+﻿@import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
+
+#seb {
+   
     color: white;
     font-size: max(.8rem,2.3vw);
     font-weight: 100;
     letter-spacing: .1rem;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Unbounded', cursive;
+    // font-family: 'Montserrat', sans-serif;
     width: 100%;
     height: fit-content;
-    margin-left:1rem;
+    margin-left: 1rem;
 }
 p {  
 /*    background: rgb(2,0,36);
@@ -44,9 +48,10 @@ div {
     width: fit-content;
     height: fit-content;
     color: white;
-    font-size: max(.8rem,2.3vw);
+    font-size: max(.8rem,1vw);
     font-weight: 100;
-    letter-spacing: .1rem;
-    font-family: 'Montserrat', sans-serif;
+   // letter-spacing: .1rem;
+    font-family: 'Unbounded', cursive;
+    // font-family: 'Montserrat', sans-serif;
 }
    

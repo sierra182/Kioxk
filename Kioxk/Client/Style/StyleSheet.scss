@@ -1,17 +1,20 @@
 ﻿
 :root {
     @import url('/photo/legend/iFrameSs.css');
-    @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
+    //  @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
     --maincontchild-width-percent: 50;
     --main-height: 100;
     --doc-height: 100%;
     overflow-x: hidden;
+   // @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
+   
 }
 
-body, html {
-    font-family: 'Twinkle Star', cursive;
-    font-size: max(.8rem,1.2vw);
+body, html{
+    font-family: 'Unbounded', cursive;
+    //  font-family: 'Twinkle Star', cursive;
+    font-size: max(.8rem,1vw);
     // background-color: aqua;
     // background-image: url("/item/papierinp.jpg");
 }
@@ -66,12 +69,13 @@ img#land {
 
 svg#go {
     position: absolute;
-    top: 24vw;
-    left: 10vw;
-    width: 14vw;
+    top: 58.5%;
+    left: 35.5%;
+    height:14vw;
+    width: 14vw;  
     filter: drop-shadow(0px 0px 1px rgba(0,0,0,1));
     transition: transform .2s linear;
-
+    // background-color:green;
     &:active {
         width: 13.5vw;
         left: 10.6vw;
@@ -227,7 +231,7 @@ svg#go {
                     overflow: hidden;
                     text-align: center;
                     align-content: center;
-                    font-family: 'Malgun Gothic';
+                  //  font-family: 'Malgun Gothic';
                     border: solid 1px;
                     border-bottom-right-radius: 5% 10%;
                     border-top-right-radius: 5% 10%;
@@ -305,7 +309,7 @@ svg#go {
                     overflow: hidden;
                     align-content: center;
                     text-align: center;
-                    font-family: 'Malgun Gothic';
+                   // font-family: 'Malgun Gothic';
                     border: solid 1px;
                     border-bottom-left-radius: 5% 10%;
                     border-top-left-radius: 5% 10%;
@@ -385,7 +389,7 @@ svg#go {
     margin-top: 1rem;
     align-items: center;
     justify-content: center;
-    row-gap: 2rem;
+    row-gap: 20vw; //2rem;
     border-radius: 2.5%/5%;
     // background-color: rgba(black,.1); //.05);
     background-repeat: no-repeat;
@@ -395,26 +399,27 @@ svg#go {
     //backdrop-filter: blur(1px);
 
     .welcome_pre#pretext {
-        transform: none;
+        // transform: none;
     }
 
     #pretext {
         z-index: 3;
         display: flex;
-        flex-grow: .8;
+        flex-grow: .6;
         position: relative;
-        width: 30%; // max(calc(var(--child-width) * .95 ),26rem);
+        width: 50%; // max(calc(var(--child-width) * .95 ),26rem);
         height: fit-content;
         margin: auto;
         transition: 2s transform;
-        transform: translate(-100vw);
+        transform: translate(-8vw);
         user-select: none;
+        //   border-radius:50%;
         //transition: transform .7s;
         // @include ombre();
         //  clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
         ///// clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
         //  background-color: rgba(#3C3B3F,1);
-        //  background-color: #3C3B3F;
+        //   background-color: #3C3B3F;
         // backdrop-filter: blur(0px);
         //background-clip: text;
         // --webkit-background-clip: text;
@@ -422,11 +427,18 @@ svg#go {
         &:before {
             content: "";
             position: absolute;
-            width: 100%;
-            height: 100%;
+            // margin:auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            bottom: 0;
+            /*     left:2.5rem;
+            right:2.5rem;*/
+            width: calc(100% + 5vw);
+            height: calc(100% + 5vw);
             backdrop-filter: blur(5px);
             border: solid 1px;
-            border-radius: 5px;
+            border-radius: 50px;
             //  background-color: rgba(mediumseagreen,.5);
             // backdrop-filter: blur(2px);
         }
@@ -443,16 +455,22 @@ svg#go {
             // clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
             // background-color: rgba(#066db5,.1);
             // background: linear-gradient(to right, #605C3C, #3C3B3F);
-            // background-color: wh
+            background-color: rbga(blue,.5);
+
             > div:first-of-type { // ardoise
-                width: 80%;
+                width: 100%;
+                //  position:relative;
                 margin: auto;
-                margin-top: .5rem;
-                margin-bottom: .5rem;
+                //   top:2.5rem;
+                //  bottom:2.5rem;
+                //  display:block;
+                position: relative;
+                /*margin-top: .5rem;*/
+                /*   margin-bottom: .5rem;*/
                 border: outset 1px;
-                border-radius: 5px;
-                background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                //background-color: rgba(#3fe64f,.9); // rgba(#066db5,.8);
+                border-radius: 50px; //;
+                background-color: darkcyan;
+                //                //background-color: rgba(#3fe64f,.9); // rgba(#066db5,.8);
                 // clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 101%,90% 101%, 10% 101%, 0% 100%);
                 //  background: linear-gradient(90deg, rgba(68,133,47,1) 0%, rgba(63,230,79,1) 53%, rgba(6,181,158,1) 100%);
                 //      opacity: .9;
@@ -464,7 +482,7 @@ svg#go {
                     display: block;
                     border: none;
                     transition: height .5s;
-                    font-family: Montserrat;
+                    //  font-family: Montserrat;
                     letter-spacing: 1vw;
                     //   background-color: blue;
                     //  --webkit-background-clip: text;
@@ -574,7 +592,7 @@ svg#go {
                 font-weight: 900;
                 font-size: 1rem;
                 text-align: center;
-                font-family: 'Montserrat', sans-serif;
+                // font-family: 'Montserrat', sans-serif;
                 color: black;
                 // @include ombre();
                 // background-color: white;
@@ -741,7 +759,8 @@ svg#go {
     }
 
     #hlp {
-        // width:  max(32vw,21rem);
+        // width: 100%;// max(32vw,21rem);
+         
         height: auto;
         position: relative;
         // left:-10vw;
@@ -762,8 +781,8 @@ svg#go {
             left: 50%;
             transform: translate(-50%,-50%);
             //z-index: -1;
-            width: 110%;
-            height: 110%;
+            width: calc(100% + 5vw);
+            height: calc(100% + 5vw);
             // background-color: rgba(yellow,1);
             backdrop-filter: blur(4px);
             border: solid 1px;
@@ -779,7 +798,7 @@ svg#go {
                 width: 100%;
                 height: auto;
                 //border: outset 1px;
-                // border-radius: 5px;
+                border-radius: 5px;
                 //  backdrop-filter: blur(3px);
                 //   border: outset 1px;
                 background-color: rgba(white,.9);
@@ -842,7 +861,7 @@ svg#go {
         position: relative;
         // backdrop-filter: blur(4px);
         //  border: outset 1px;
-        //border-radius:5px;
+        border-radius:5px;
         &:before {
             content: "";
             position: absolute;
@@ -851,8 +870,9 @@ svg#go {
             left: 50%;
             transform: translate(-50%,-50%);
             z-index: -1;
-            width: 110%;
-            height: 15rem;
+            width: calc(100% + 5vw);
+            height: calc(100% + 5vw);
+            
             // background-color: rgba(yellow,1);
             backdrop-filter: blur(4px);
             border: solid 1px;
@@ -1103,7 +1123,7 @@ svg#go {
 
                 > span:last-child { // Prix Total
                     color: white;
-                    font-family: 'Montserrat', sans-serif;
+                    //   font-family: 'Montserrat', sans-serif;
                     border: solid;
                     border-width: calc(max(.4vw,4px));
                     border-radius: 2.5%;
@@ -1315,16 +1335,54 @@ svg#go {
                 //    border-radius: 5px; //10% / 5%;
                 //   backdrop-filter: blur(1.2px);
                 //  filter: drop-shadow(1px 2px 1px rgba(0,0,0,1));
-                background-color: rgba(white,.9);
+                //  background-color: rgba(black,.05);
                 //filter:none;
                 visibility: var(--visib);
-                user-select:none;
+                user-select: none;
+                border: solid white 1px;
+                border-radius: 7px;
+
+                &:before {
+                    content: "";
+                    //   z-index: 2;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 100%;
+                    height: 2rem;
+                    border-top: solid rgba(white,.6) 1px;
+                    background: rgb(39,133,117);
+                    background: linear-gradient(90deg, rgba(39,133,117,1) 0%, rgba(44,189,56,1) 35%, rgba(105,197,28,1) 59%, rgba(0,212,255,1) 100%);
+                    filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
+                }
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 2rem;
+                    // border: solid 1px;
+                    border-left: solid rgba(white,.6) 1px;
+                    height: 100%;
+                    // border: solid 1px;
+                    background: rgb(39,133,117);
+                    background: linear-gradient(180deg, rgba(39,133,117,1) 0%, rgba(44,189,56,1) 35%, rgba(105,197,28,1) 59%, rgba(0,212,255,1) 100%);
+                    filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
+                }
                 /*&:after {
                     content: "Selectionnez une date";*/
                 /* width:100%;
                     height:100%;*/
                 /*}*/
-              /*  &:active span {
+                /*  &:active span {
                     opacity: 1 !important;
                     animation: tet 10s;
                 }
@@ -1338,6 +1396,10 @@ svg#go {
                     right: 0;
                     bottom: 0;
                     margin: auto;
+                    border-radius: 5px;
+                    border: solid 1px;
+                    width: 30vw;
+                    filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
                     // opacity:0 !important;
                 }
 
@@ -1354,8 +1416,9 @@ svg#go {
                     color: white;
                     //  height:20%;
                     font-size: 1rem;
+                    border-radius: 5px;
                     background-color: red;
-                   // opacity: 0 !important;
+                    // opacity: 0 !important;
                 }
             }
 
@@ -1367,8 +1430,8 @@ svg#go {
                 left: 50%;
                 transform: translate(-50%,-50%);
                 z-index: -1;
-                width: 110%;
-                height: 110%;
+                width: calc(100% + 5vw);
+                height: calc(100% + 5vw);
                 // background-color: rgba(yellow,.6);
                 backdrop-filter: blur(4px);
                 border: solid 1px;
@@ -1438,6 +1501,7 @@ svg#go {
                 --trans: 0;
                 display: block;
                 position: relative;
+                //  z-index:-1;
                 top: 50%;
                 left: 50%;
                 width: 70%;
@@ -1589,6 +1653,7 @@ svg#go {
 
                         button {
                             visibility: hidden;
+                            // font-size:.6rem;
                         }
 
                         @keyframes spansend {
@@ -1790,8 +1855,8 @@ svg#go {
 
                     button { // Envoyez
                         display: block;
-                        width: 7rem;
-                        height: 1.8rem;
+                        // width: 7rem;
+                        // height: 1.8rem;
                         //margin: auto;
                         position: relative;
                         margin: auto;
@@ -1800,8 +1865,9 @@ svg#go {
                         //   top: 10%;
                         //  left: 50%;
                         //transform: translate(-50%,-50%);
-                        padding: 0;
-                        line-height: .9rem;
+                        padding: .5rem .8rem;
+                        // line-height: .9rem;
+                        //  font-size:.2rem;
                         border: solid 4px;
                         border-radius: 5% / 45%;
                         //  filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
