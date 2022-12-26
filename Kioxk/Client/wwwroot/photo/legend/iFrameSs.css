@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 
 #seb {
-   
+  
     color: white;
     font-size: max(.8rem,2.3vw);
     font-weight: 100;
@@ -10,29 +10,35 @@
     // font-family: 'Montserrat', sans-serif;
     width: 100%;
     height: fit-content;
-    margin-left: 1rem;
+   // margin-left: 1rem;
 }
-p {  
-/*    background: rgb(2,0,36);
+p {
+    /*    background: rgb(2,0,36);
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,17,16,1) 55%, rgba(0,212,255,1) 100%);
-*/    background-color: transparent;
-   /* -webkit-text-fill-color: transparent;
+*/// background-color: transparent;
+  //  background-color: red;
+  // display:block;
+    //margin-left:5rem;
+   
+    /* -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;*/
 }
 iframe {
     float: left;
     position: relative;
-    width: max(4rem,26vw);
-    height: max(4rem,26vw);
+    width: max(4rem,22vw);
+    height: max(4rem,22vw);
     margin-left: 1rem;
-    margin-top: -1vw;
-    margin-right: 2rem;
-    margin-bottom:1rem;
+   // margin-top: 1rem;
+   // margin-right: 2rem;
+   // margin-bottom:1rem;
     padding:.3rem;
     border-radius: 100%;
     shape-outside: margin-box;
+    border:solid white 2px;
     transition: width 1s, height 1s;
+    transform:translate(-1rem);
     filter: drop-shadow(3px 3px 3px black);
 }
 
@@ -49,9 +55,12 @@ div {
     height: fit-content;
     color: white;
     font-size: max(.8rem,1vw);
+    //vertical-align:bottom;
     font-weight: 100;
-   // letter-spacing: .1rem;
+    // letter-spacing: .1rem;
     font-family: 'Unbounded', cursive;
     // font-family: 'Montserrat', sans-serif;
+    //margin-left: 5rem;
+    //display:inline;
 }
    

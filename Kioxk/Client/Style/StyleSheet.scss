@@ -69,8 +69,8 @@ img#land {
 
 svg#go {
     position: absolute;
-    top: 58.5%;
-    left: 35.5%;
+    top: 40%;
+    left: 10%;
     height:14vw;
     width: 14vw;  
     filter: drop-shadow(0px 0px 1px rgba(0,0,0,1));
@@ -405,14 +405,17 @@ svg#go {
     #pretext {
         z-index: 3;
         display: flex;
-        flex-grow: .6;
+        //flex-grow: 0;
+        align-self:flex-start;
+     //  flex-shrink:.5;
         position: relative;
-        width: 50%; // max(calc(var(--child-width) * .95 ),26rem);
+        width: 40%; // max(calc(var(--child-width) * .95 ),26rem);
         height: fit-content;
-        margin: auto;
+        margin: 0 6rem;
         transition: 2s transform;
-        transform: translate(-8vw);
+        transform: translate(-5vw);
         user-select: none;
+       // visibility:hidden;
         //   border-radius:50%;
         //transition: transform .7s;
         // @include ombre();
@@ -434,12 +437,13 @@ svg#go {
             bottom: 0;
             /*     left:2.5rem;
             right:2.5rem;*/
-            width: calc(100% + 5vw);
-            height: calc(100% + 5vw);
+            width: calc(100% + 2vw);
+            height: calc(100% + 2vw);
+            filter: blur(5px);
             backdrop-filter: blur(5px);
-            border: solid 1px;
+            // border: solid 1px;
             border-radius: 50px;
-            //  background-color: rgba(mediumseagreen,.5);
+            background-color: rgba(white,.5);
             // backdrop-filter: blur(2px);
         }
 
@@ -467,18 +471,19 @@ svg#go {
                 position: relative;
                 /*margin-top: .5rem;*/
                 /*   margin-bottom: .5rem;*/
-                border: outset 1px;
+                border: solid white 1px;
                 border-radius: 50px; //;
-                background-color: darkcyan;
+                background-color: rgba(darkcyan,.8);
                 //                //background-color: rgba(#3fe64f,.9); // rgba(#066db5,.8);
                 // clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 101%,90% 101%, 10% 101%, 0% 100%);
                 //  background: linear-gradient(90deg, rgba(68,133,47,1) 0%, rgba(63,230,79,1) 53%, rgba(6,181,158,1) 100%);
                 //      opacity: .9;
                 //  background-color:black;
                 iframe:last-of-type { // bienvenue
-                    width: 92%;
+                    width: 88%;
                     // position:absolute;
                     margin: auto;
+                    margin-top:1rem;
                     display: block;
                     border: none;
                     transition: height .5s;
@@ -501,13 +506,15 @@ svg#go {
         --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 );
         --max_size: 50rem;
         display: flex;
+        align-self:flex-end;
         position: relative;
         left: 0;
         right: 0;
         top: 0;
-        width: calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale));
-        height: fit-content;
-        margin: auto;
+        width: calc(max(var(--photo-width),var(--max_size)) / 1.2 * var(--mult_ph-scale));       
+        //height: fit-content;
+       height:fit-content;
+     //   margin: auto;
         user-select: none;
         // @include ombre();
         // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
@@ -541,12 +548,12 @@ svg#go {
             right: 0;
             bottom: 0;
             width: 100%;
-            height: calc(max(var(--photo-width),var(--max_size)) /2 ); //var(--cp_ph-y);
+            height: calc(max(var(--photo-width),var(--max_size)) / 1.5 ); //var(--cp_ph-y);
             margin: auto;
             overflow-x: hidden;
             overflow-y: visible;
             border-radius: 1%;
-            clip-path: polygon(0% 25%, 25% 0%, 100% 0%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
+            clip-path: polygon(0% 15%, 15% 0%, 100% 0%, 100% 85%,85% 100%, 15% 100%, 0% 85%);
             //  border: groove 2px;
             transition: transform .7s;
             border-radius: 5%;
@@ -663,7 +670,7 @@ svg#go {
                             position: relative;
                             width: 100%;
                             height: auto;
-                            max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
+                          //  max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
                             margin: auto;
                             display: block;
                             border-radius: 5px;
@@ -760,13 +767,14 @@ svg#go {
 
     #hlp {
         // width: 100%;// max(32vw,21rem);
-         
+
         height: auto;
         position: relative;
         // left:-10vw;
         transition: 2s transform;
         transform: translate(-100vw);
         display: flex;
+        align-self:flex-start;
         // margin:auto;
         //  margin-right:-5rem;
         //  background-color: darkslategrey;
@@ -861,7 +869,8 @@ svg#go {
         position: relative;
         // backdrop-filter: blur(4px);
         //  border: outset 1px;
-        border-radius:5px;
+        border-radius: 5px;
+
         &:before {
             content: "";
             position: absolute;
@@ -872,7 +881,6 @@ svg#go {
             z-index: -1;
             width: calc(100% + 5vw);
             height: calc(100% + 5vw);
-            
             // background-color: rgba(yellow,1);
             backdrop-filter: blur(4px);
             border: solid 1px;
