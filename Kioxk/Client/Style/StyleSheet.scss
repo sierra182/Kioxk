@@ -473,22 +473,24 @@ svg#go {
                 /*   margin-bottom: .5rem;*/
                 border: solid white 1px;
                 border-radius: 50px; //;
-                background-color: rgba(darkcyan,.8);
+                background-color: rgba(darkcyan,.7);
                 //                //background-color: rgba(#3fe64f,.9); // rgba(#066db5,.8);
                 // clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 101%,90% 101%, 10% 101%, 0% 100%);
                 //  background: linear-gradient(90deg, rgba(68,133,47,1) 0%, rgba(63,230,79,1) 53%, rgba(6,181,158,1) 100%);
                 //      opacity: .9;
                 //  background-color:black;
                 iframe:last-of-type { // bienvenue
-                    width: 88%;
-                    // position:absolute;
-                    margin: auto;
-                    margin-top:1rem;
+                    width: 100%;//calc(100% - 2rem);//88%;
+                     position:relative;
+                    //margin: auto;
+                 //   margin-left:2rem;
+                  //  margin-right:2rem;
+                    margin-top:2rem;
                     display: block;
                     border: none;
                     transition: height .5s;
                     //  font-family: Montserrat;
-                    letter-spacing: 1vw;
+                  //  letter-spacing: 1vw;
                     //   background-color: blue;
                     //  --webkit-background-clip: text;
                 }
@@ -674,6 +676,7 @@ svg#go {
                             margin: auto;
                             display: block;
                             border-radius: 5px;
+                           // border:solid 2px;
                         }
 
                         > div { //cont iframe contIfraJs

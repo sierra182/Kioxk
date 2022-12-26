@@ -17,9 +17,9 @@ p {
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,17,16,1) 55%, rgba(0,212,255,1) 100%);
 */// background-color: transparent;
-  //  background-color: red;
+  
   // display:block;
-    //margin-left:5rem;
+    margin-left:2rem;
    
     /* -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;*/
@@ -29,7 +29,7 @@ iframe {
     position: relative;
     width: max(4rem,22vw);
     height: max(4rem,22vw);
-    margin-left: 1rem;
+    margin-left: 2rem;
    // margin-top: 1rem;
    // margin-right: 2rem;
    // margin-bottom:1rem;
@@ -60,7 +60,8 @@ div {
     // letter-spacing: .1rem;
     font-family: 'Unbounded', cursive;
     // font-family: 'Montserrat', sans-serif;
-    //margin-left: 5rem;
+   // margin-left: 2rem;
     //display:inline;
+  //  background-color: orangered;
 }
    
