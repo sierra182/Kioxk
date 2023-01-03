@@ -6,15 +6,23 @@
     --maincontchild-width-percent: 50;
     --main-height: 100;
     --doc-height: 100%;
-    overflow-x: hidden;
-   // @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
-   
+    
+    // @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 }
-
-body, html{
+body {}
+html {
+  //  font-size: 5px;
+    /* overflow-x: hidden;
+    overflow-y: visible;*/
+    //   overflow-y:visible;
+}
+body, html {
     font-family: 'Unbounded', cursive;
-    //  font-family: 'Twinkle Star', cursive;
-    font-size: max(.8rem,1vw);
+    // font-family: 'Global Sans Serif', cursive;
+    //font-size: max(1.6rem,1vw);
+    font-size: 16px;
+    line-height:16px;
+    //text-size-adjust:none;
     // background-color: aqua;
     // background-image: url("/item/papierinp.jpg");
 }
@@ -54,14 +62,18 @@ body, html{
     }
 }
 
-img#land {
-    //display:block;
-    position: fixed;
-    z-index: -1;
-    // padding: 10% 0;
+img#land {    
+    position:fixed;
+    z-index: -1;   
+   // height: 58%;
+
+width:65vw;
+//height:100%;
+margin: auto;
+/*top:50%;
+left:50%;
+transform:translate(-50%,-50%);*/
     top: 0;
-    height: 58%;
-    margin: auto;
     left: 0;
     right: 0;
     bottom: 0;
@@ -391,16 +403,19 @@ svg#go {
     height: fit-content; // 90vh;
     margin: auto;
     margin-top: 1rem;
-    align-items: center;
-    justify-content: center;
-    row-gap: 20vw; //2rem;
+    // align-items: center;
+    // justify-content: center;
+    //  row-gap: 20vw; //2rem;
     border-radius: 2.5%/5%;
-    // background-color: rgba(black,.1); //.05);
-    background-repeat: no-repeat;
+    background-color: rgba(black,1); //.05);
+    /* background-repeat: no-repeat;
     background-size: 100% 100%;
     background-size: 100% 100%;
-    background-position: center;
+    background-position: center;*/
     //backdrop-filter: blur(1px);
+    // overflow-x: hidden;
+    // overflow-y: visible;
+    flex-shrink: 0;
 
     .welcome_pre#pretext {
         // transform: none;
@@ -410,23 +425,25 @@ svg#go {
         z-index: 3;
         display: flex;
         //flex-grow: 0;
-        align-self:flex-start;
-     //  flex-shrink:.5;
+        // align-self: flex-start;
+        //  flex-shrink:.5;
         position: relative;
-        width: 40%; // max(calc(var(--child-width) * .95 ),26rem);
+        width: 40%; //max(calc(var(--child-width) * .95 ),26rem); //40%
         height: fit-content;
-        margin: 0 6rem;
+        margin: 5%;
+        // margin: 0 6rem;
         transition: 2s transform;
-        transform: translate(-5vw);
+        // transform: translate(-5vw);
         user-select: none;
-       // visibility:hidden;
+        //  overflow-y: visible;
+        // visibility:hidden;
         //   border-radius:50%;
         //transition: transform .7s;
         // @include ombre();
         //  clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
         ///// clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
         //  background-color: rgba(#3C3B3F,1);
-        //   background-color: #3C3B3F;
+        background-color: #3C3B3F;
         // backdrop-filter: blur(0px);
         //background-clip: text;
         // --webkit-background-clip: text;
@@ -448,6 +465,7 @@ svg#go {
             // border: solid 1px;
             border-radius: 50px;
             background-color: rgba(white,.5);
+            //  overflow-y: visible;
             // backdrop-filter: blur(2px);
         }
 
@@ -484,17 +502,17 @@ svg#go {
                 //      opacity: .9;
                 //  background-color:black;
                 iframe:last-of-type { // bienvenue
-                    width: 100%;//calc(100% - 2rem);//88%;
-                     position:relative;
+                    width: 100%; //calc(100% - 2rem);//88%;
+                    position: relative;
                     //margin: auto;
-                 //   margin-left:2rem;
-                  //  margin-right:2rem;
-                    margin-top:2rem;
+                    //   margin-left:2rem;
+                    //  margin-right:2rem;
+                    margin-top: 2rem;
                     display: block;
                     border: none;
                     transition: height .5s;
                     //  font-family: Montserrat;
-                  //  letter-spacing: 1vw;
+                    //  letter-spacing: 1vw;
                     //   background-color: blue;
                     //  --webkit-background-clip: text;
                 }
@@ -512,21 +530,22 @@ svg#go {
         --cp_ph-y: calc(max(var(--photo-width),var(--max_size)) /2 );
         --max_size: 50rem;
         display: flex;
-        align-self:flex-end;
+        margin: 5%;
+        //  align-self: flex-end;
         position: relative;
         left: 0;
         right: 0;
         top: 0;
-        width: calc(max(var(--photo-width),var(--max_size)) / 1.2 * var(--mult_ph-scale));       
-        //height: fit-content;
-       height:fit-content;
-     //   margin: auto;
+        width: 40%; //max(40%,25rem);////40%;// calc(max(var(--photo-width),var(--max_size)) / 1.2 * var(--mult_ph-scale));
+        //  flex-shrink:1;//height: fit-content;
+        height: fit-content;
+        //   margin: auto;
         user-select: none;
         // @include ombre();
         // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
         // backdrop-filter: blur(0);
         // filter:drop-shadow(5px 0px 0px black);
-        // background-color: rgba(orange,.1);
+        background-color: rgba(orange,.1);
         // backdrop-filter: blur(2px);
 
         &:before {
@@ -676,11 +695,11 @@ svg#go {
                             position: relative;
                             width: 100%;
                             height: auto;
-                          //  max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
+                            //  max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
                             margin: auto;
                             display: block;
                             border-radius: 5px;
-                           // border:solid 2px;
+                            // border:solid 2px;
                         }
 
                         > div { //cont iframe contIfraJs
@@ -773,7 +792,7 @@ svg#go {
     }
 
     #hlp {
-        // width: 100%;// max(32vw,21rem);
+        width: 90%; // max(32vw,21rem);
 
         height: auto;
         position: relative;
@@ -781,10 +800,10 @@ svg#go {
         transition: 2s transform;
         transform: translate(-100vw);
         display: flex;
-        align-self:flex-start;
-        // margin:auto;
+        // align-self: flex-start;
+        margin: 5%; //auto;
         //  margin-right:-5rem;
-        //  background-color: darkslategrey;
+        background-color: darkslategrey;
 
         &:before {
             content: "";
@@ -868,11 +887,12 @@ svg#go {
     }
 
     #payment {
-        width: 35rem;
+        width: 90%; //;35rem;
         height: fit-content;
         background-color: rgba(white,.9);
         transition: 2s transform;
-        transform: translate(100vw);
+        //  transform: translate(100vw);
+        //  margin-left:25%;
         position: relative;
         // backdrop-filter: blur(4px);
         //  border: outset 1px;
@@ -975,13 +995,16 @@ svg#go {
         --agenda_pointer-event: initial;
         z-index: 2;
         position: relative;
-        width: max(var(--calendar-width),16rem);
+        width: 40%; // max(var(--calendar-width),16rem);
         height: fit-content;
-        margin-left: 10rem;
+        margin: 5%; //10rem;
+        margin-top: 0;
         pointer-events: var(--agenda_pointer-event);
         transition: transform .7s;
         // @include ombre();
-        // background-color: darkgoldenrod;
+        flex-shrink: 0;
+        background-color: darkgoldenrod;
+
         &:before {
             content: "";
             width: 110%;
@@ -1091,16 +1114,16 @@ svg#go {
                         span { // jours Int
                             display: inherit;
                             margin: auto;
-                            line-height: 1;
-                            font-size: 1rem;
+                            //   line-height: 1;
+                            font-size: 1rem; //1vw;// 1rem;
                             font-weight: bold;
                             // background-color: green;
                         }
 
                         > span { // jours Sem
                             color: ghostwhite;
-                            line-height: 1;
-                            font-size: 1rem;
+                            // line-height: 1;
+                            font-size: 2rem; //1vw;//1rem;
                             font-weight: 800;
                             // background-color: lightgreen;
                         }
@@ -1309,19 +1332,21 @@ svg#go {
 
     #reserv {
         display: flex;
-        flex-shrink: 0;
+        // flex-shrink: 0;
         position: relative;
-        width: max(calc(var(--child-width) *2.2),16rem);
+        width: 90%; //max(calc(var(--child-width) *2.2),16rem);
         height: max(calc(var(--child-width)),32rem);
         justify-content: center;
         align-items: center;
+        margin: auto;
+        margin-top: 5%;
         margin-bottom: max(3rem,4vw);
         //  @include ombre();
-        //background-color: blue; //#00c6b0;
+        background-color: blue; //#00c6b0;
 
 
         > div:first-child { //cont p
-            flex-shrink: 0;
+            //    flex-shrink: 0;
             position: relative;
             width: 62%;
             height: 80%;
@@ -1501,7 +1526,7 @@ svg#go {
                 opacity: 0;
 
                 img {
-                    width: 30rem;
+                    width: 100%; //30rem;
                 }
             }
 
@@ -1993,8 +2018,7 @@ svg#go {
             }
         }
     }
-
-    @media screen and (max-width:500px) {
+    /*@media screen and (max-width:500px) {
         #reserv {
             margin-bottom: max(3.3rem,6vw);
 
@@ -2040,5 +2064,5 @@ svg#go {
                 }
             }
         }
-    }
+    }*/
 }

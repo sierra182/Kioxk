@@ -118,20 +118,38 @@ function photosWatchDogScreenAndFullScreen() {
     phs.style.position = "absolute";
     phcont.style.setProperty("height", "fit-content");
 
-    if ((document.body.offsetWidth / document.documentElement.clientHeight) > 1) {   // land reel
+    if ((document.body.offsetWidth / document.documentElement.clientHeight) > 1) {   // vp land reel legend
         for (var cif of contifra) {
             cif.firstChild.style.backgroundColor = "blue";
             cif.firstChild.style.margin = "-3.6rem auto auto auto";
             cif.firstChild.style.position = "absolute";
         }
+        if ((naturalX / naturalY) > 1) {   // photo land
+
+
+
+        }
+        else {
+
+        }
     }
-    else {                                                       // portrait reel
+    else {                                                       // vp portrait reel
         for (var cif of contifra) {
             cif.firstChild.style.backgroundColor = "red";
             cif.firstChild.style.margin = "auto";
             cif.firstChild.style.position = "relative";
         }
+
+        if ((naturalX / naturalY) > 1) {   // photo land
+
+
+
+        }
+        else {
+
+        }
     }
+  
 
     if ((document.body.offsetWidth / document.documentElement.clientHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
         console.log("ratio screen < ratio img");
