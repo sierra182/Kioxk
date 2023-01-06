@@ -393,7 +393,7 @@ svg#go {
 #maincont {
     --maincont-width: 95%; //vw;//95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
-    // display: flex;
+     display: flex;
     flex-wrap: wrap;
     position: relative;
     top: 95vh;
@@ -810,7 +810,7 @@ svg#go {
         //  margin-right:-5rem;
         // background-color: darkslategrey;
         // display: none;
-        max-width: 35rem;
+        max-width: 30rem;
         font-size: min(max(.8rem,1vw),1.6rem);
 
         &:before {
