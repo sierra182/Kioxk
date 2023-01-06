@@ -5,6 +5,8 @@
 @using Kioxk.Shared.Models
 @using Kioxk.Client.Shared
 
+<div id="ag_cont">
+
 <div id="calendar">
     <Calendar @bind-DateTime="@DateTime" @bind-UnSelectable="@UnSelectable" @bind-Selected="@Selected" @bind-Seasons="@Seasons" />
 </div>
@@ -54,6 +56,7 @@
     <Periodes @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" @bind-periodes="@periodes" />
 </div>
 
+</div>
 @code {
     private HashSet<DateTime>? sel;
     [Parameter]

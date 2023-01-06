@@ -19,9 +19,9 @@ html {
 body, html {
     font-family: 'Unbounded', cursive;
     // font-family: 'Global Sans Serif', cursive;
-    //font-size: max(1.6rem,1vw);
-    font-size: 16px;
-    line-height:16px;
+  //  font-size: min(max(1rem,1vw),2rem);
+  //  font-size: 10px;
+   // line-height:16px;
     //text-size-adjust:none;
     // background-color: aqua;
     // background-image: url("/item/papierinp.jpg");
@@ -76,7 +76,8 @@ transform:translate(-50%,-50%);*/
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 0
+    
 }
 
 svg#go {
@@ -390,9 +391,9 @@ svg#go {
 }
 
 #maincont {
-    --maincont-width: 95vw;
+    --maincont-width: 95%; //vw;//95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
-    display: flex;
+    // display: flex;
     flex-wrap: wrap;
     position: relative;
     top: 95vh;
@@ -415,7 +416,7 @@ svg#go {
     //backdrop-filter: blur(1px);
     // overflow-x: hidden;
     // overflow-y: visible;
-    flex-shrink: 0;
+    // flex-shrink: 0;
 
     .welcome_pre#pretext {
         // transform: none;
@@ -428,7 +429,7 @@ svg#go {
         // align-self: flex-start;
         //  flex-shrink:.5;
         position: relative;
-        width: 40%; //max(calc(var(--child-width) * .95 ),26rem); //40%
+        width: 90%;//20rem; //max(calc(var(--child-width) * .95 ),26rem); //40%
         height: fit-content;
         margin: 5%;
         // margin: 0 6rem;
@@ -447,6 +448,9 @@ svg#go {
         // backdrop-filter: blur(0px);
         //background-clip: text;
         // --webkit-background-clip: text;
+        // display: none;
+        max-width: 35rem;
+        font-size: min(max(.8rem,1vw),1.6rem);
 
         &:before {
             content: "";
@@ -481,7 +485,7 @@ svg#go {
             // clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
             // background-color: rgba(#066db5,.1);
             // background: linear-gradient(to right, #605C3C, #3C3B3F);
-            background-color: rbga(blue,.5);
+            //    background-color: rbga(blue,.5);
 
             > div:first-of-type { // ardoise
                 width: 100%;
@@ -547,6 +551,7 @@ svg#go {
         // filter:drop-shadow(5px 0px 0px black);
         background-color: rgba(orange,.1);
         // backdrop-filter: blur(2px);
+        display: none;
 
         &:before {
             content: "";
@@ -803,7 +808,10 @@ svg#go {
         // align-self: flex-start;
         margin: 5%; //auto;
         //  margin-right:-5rem;
-        background-color: darkslategrey;
+        // background-color: darkslategrey;
+        // display: none;
+        max-width: 35rem;
+        font-size: min(max(.8rem,1vw),1.6rem);
 
         &:before {
             content: "";
@@ -826,7 +834,7 @@ svg#go {
         }
 
         > div:first-child { // cont p
-
+            width: 100%;
 
             > div:first-child { //pannleg
                 width: 100%;
@@ -867,7 +875,7 @@ svg#go {
                         position: relative;
                         margin: auto 0;
                         margin-left: .5rem;
-                        font-size: .9rem;
+                        font-size: .95em;
                     }
 
                     svg {
@@ -887,16 +895,19 @@ svg#go {
     }
 
     #payment {
-        width: 90%; //;35rem;
+        width: 90%; // 35rem;//90%; //;35rem;
+        max-width: 35rem;
+        font-size: min(max(.8rem,1vw),1.6rem);
         height: fit-content;
         background-color: rgba(white,.9);
         transition: 2s transform;
         //  transform: translate(100vw);
-        //  margin-left:25%;
+        margin: 5%;
         position: relative;
         // backdrop-filter: blur(4px);
         //  border: outset 1px;
         border-radius: 5px;
+        // display: none;
 
         &:before {
             content: "";
@@ -962,7 +973,7 @@ svg#go {
             // background-color: blue;
 
             span { // texte bas  paylib...
-                font-size: 90%;
+                font-size: .9em;
                 //  background-color: gold;
 
                 em {
@@ -991,19 +1002,23 @@ svg#go {
     }
 
     #agenda {
-        --calendar-width: max(calc(var(--child-width) / 4 * 2.5),23rem);
+        --calendar-width: max(calc(var(--child-width) / 1),23rem);
         --agenda_pointer-event: initial;
         z-index: 2;
         position: relative;
-        width: 40%; // max(var(--calendar-width),16rem);
+        //  width: max(var(--calendar-width),16rem);
         height: fit-content;
         margin: 5%; //10rem;
         margin-top: 0;
         pointer-events: var(--agenda_pointer-event);
         transition: transform .7s;
         // @include ombre();
-        flex-shrink: 0;
+        // flex-shrink: 1;
         background-color: darkgoldenrod;
+        //display: none;
+        width: 90%; // 35rem;//90%; //;35rem;
+        max-width: 300px; //35rem;
+        font-size: min(max(.5rem,1vw),1.6rem);
 
         &:before {
             content: "";
@@ -1018,7 +1033,7 @@ svg#go {
             // border: solid 1px;
         }
 
-        > div:first-child { //cont p
+        > div:first-child { // ag_cont
             position: relative;
             top: 0;
             bottom: 0;
@@ -1027,7 +1042,7 @@ svg#go {
             width: 100%;
             height: 80%;
             margin: auto;
-            // background-color: rebeccapurple;
+            background-color: rebeccapurple;
 
 
             #calendar {
@@ -1036,12 +1051,14 @@ svg#go {
                 bottom: 0;
                 left: 0;
                 right: 0;
-                width: 100%;
-                height: calc(var(--calendar-width) + 5rem);
+                // width: max(var(--calendar-width),16rem);
+                //  height: calc(max(var(--calendar-width),16rem) + 5rem);
+                height: 80%; //calc(.95*95vw + 5rem);
+                //   max-height: calc(35rem + 5rem);
                 margin: auto;
                 text-align: center;
-                // background-color: red;
-
+                background-color: red;
+                width: 100%;
 
                 > :first-child { // Mois Année
                     display: inline-block;
@@ -1077,14 +1094,18 @@ svg#go {
                     left: 0;
                     bottom: 0;
                     width: 100%;
-                    height: var(--calendar-width);
+                    height: calc( min(calc(100vw * .95 * .9),300px) ); // chemin parcouru par width pour trouver sa valeur
+                    //   padding-top:100%;
+                    // block-size: 100%;
+                    // height: var(--calendar-width);
+                    //   height:100%;
                     margin: auto;
                     margin-top: 1.5rem;
                     grid-template-columns: repeat(7, 1fr);
                     grid-template-rows: repeat(7, 1fr);
-                    // background-color: darkcyan;
+                    background-color: darkcyan;
                     //  pointer-events: none;
-
+                    //   display:none;
                     > div { // Item
                         display: flex;
                         width: auto;
@@ -1114,16 +1135,16 @@ svg#go {
                         span { // jours Int
                             display: inherit;
                             margin: auto;
-                            //   line-height: 1;
-                            font-size: 1rem; //1vw;// 1rem;
+                            line-height: 1;
+                            //  font-size: 1rem; //1vw;// 1rem;
                             font-weight: bold;
                             // background-color: green;
                         }
 
                         > span { // jours Sem
                             color: ghostwhite;
-                            // line-height: 1;
-                            font-size: 2rem; //1vw;//1rem;
+                            line-height: 1;
+                            //   font-size: 1.1rem; //1vw;//1rem;
                             font-weight: 800;
                             // background-color: lightgreen;
                         }
@@ -1140,6 +1161,7 @@ svg#go {
                 margin: auto;
                 color: black;
                 // background-color: darkcyan;
+                //   display: none;
 
                 div { // div période
                     margin-bottom: 2px;
@@ -1156,7 +1178,7 @@ svg#go {
 
                 span {
                     display: block;
-                    font-size: 1rem;
+                    // font-size: 1rem;
                 }
 
                 > span:last-child { // Prix Total
@@ -1212,6 +1234,7 @@ svg#go {
                 width: 50%;
                 margin: auto;
                 // background-color: darkgray;
+                // display: none;
 
                 #mytriback { // Triangle Back
                     width: var(--button-width);
@@ -1343,7 +1366,7 @@ svg#go {
         margin-bottom: max(3rem,4vw);
         //  @include ombre();
         background-color: blue; //#00c6b0;
-
+        display: none;
 
         > div:first-child { //cont p
             //    flex-shrink: 0;
@@ -1458,6 +1481,7 @@ svg#go {
                     font-size: 1rem;
                     border-radius: 5px;
                     background-color: red;
+                    display: none;
                     // opacity: 0 !important;
                 }
             }
