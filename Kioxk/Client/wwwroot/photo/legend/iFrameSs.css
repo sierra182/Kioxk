@@ -54,7 +54,7 @@ div {
     width: fit-content;
     height: fit-content;
     color: white;
-    font-size: max(.8rem,1vw);
+  //  font-size: max(.8rem,1vw);
     //vertical-align:bottom;
     font-weight: 100;
     // letter-spacing: .1rem;

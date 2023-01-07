@@ -11,8 +11,9 @@ div {
     width: fit-content;
     text-align: center;
     font-weight: bold;
-    font-size: max(.7rem,2.5vw);
+    // font-size: max(.7rem,2.5vw);
+    font-size: min(max(.5rem,4vw),.6rem);
     color: black;
     font-family: 'Unbounded', cursive;
-    //background-color:yellow;
+  //  background-color:yellow;
 }
