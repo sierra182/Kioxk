@@ -9,7 +9,7 @@
     
     // @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 }
-body {}
+body {overflow-x:hidden;}
 html {
   //  font-size: 5px;
     /* overflow-x: hidden;
@@ -62,33 +62,44 @@ body, html {
     }
 }
 
-img#land {    
-    position:fixed;
-    z-index: -1;   
-   // height: 58%;
+img#land {
+    position: fixed;
+    z-index: -1;
+    // height: 58%;
 
-width:65vw;
-//height:100%;
-margin: auto;
-/*top:50%;
+    width: 150vh;
+  //  max-width:1900px;
+    //height:vh;
+   // margin: auto;
+    top:50%;
 left:50%;
-transform:translate(-50%,-50%);*/
-    top: 0;
+transform:translate(-50%,-50%);
+   /* top: 0;
     left: 0;
     right: 0;
-    bottom: 0
-    
+    bottom: 0;*/
+
+ 
 }
 
+@media (orientation:landscape) {
+    img#land {
+        width: 65vw;
+        //  max-width: 1000px;
+    }
+}
 svg#go {
     position: absolute;
     top: 50%;
     left: 10%;
-    height:14vw;
-    width: 14vw;  
+    height: 14vw;
+    width: 14vw;
+    min-width: 100px;
+    min-height: 100px;
     filter: drop-shadow(0px 0px 1px rgba(0,0,0,1));
     transition: transform .2s linear;
-    // background-color:green;
+  //  background-color: green;
+
     &:active {
         width: 13.5vw;
         left: 10.6vw;
@@ -379,9 +390,9 @@ svg#go {
  //   opacity: .5;
 
     &:before {
-        content: "Siret: 299792458ms \A Webmaster Freelance - sierra-echo@msn.com";
-        white-space: pre;
-        display: block;
+        content: "Siret: 299792458ms \A - Webmaster Freelance - sierra-echo@msn.com";
+        white-space: pre-wrap;
+       // display: block;//;
         position: absolute;
         top: 0;
         bottom: 0;
