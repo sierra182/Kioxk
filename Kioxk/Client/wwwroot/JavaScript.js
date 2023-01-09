@@ -59,8 +59,9 @@ function scaler() {
         myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
         myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
         maxs = getComputedStyle(phs).getPropertyValue("--max_size");
-
-        phs.style.borderRadius = ".1%";
+                
+      //  phs.style.position = "absolute";
+        phs.style.setProperty("--max_size", "none");    // enlever ?  
 
         car.style.borderRadius = "10%";
         car2.style.borderRadius = "10%";
@@ -81,6 +82,8 @@ function scaler() {
         window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
         document.exitFullscreen();
 
+       
+        phs.style.setProperty("--max_size", `${maxs}`);
         car.style.borderRadius = "0 50% 0 0";
         car2.style.transform = "scale(1,1)";
         car2.style.backgroundColor = "";
@@ -88,112 +91,148 @@ function scaler() {
         car2.style.opacity = ".5";
         car2.style.borderRadius = "0 50% 0 0";
 
-        phs.style.borderRadius = "5%";
-        phs.style.position = "relative";
-        phs.style.setProperty("width", "calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale))");
-        phcont.style.setProperty("height", "calc(max(var(--photo-width),var(--max_size)) /2 )");
+      //  phs.style.borderRadius = "5%";
+      //  phs.style.position = "relative";
+     //   phs.style.setProperty("width", "calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale))");
+      //  phcont.style.setProperty("height", "calc(max(var(--photo-width),var(--max_size)) /2 )");
 
         for (var oneimg of allimg) {
             oneimg.style.width = "100%";      // mode portrait 
             oneimg.style.height = "auto";
-            oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
+         //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
         }
-
+        contal.style.setProperty("--before_width", "70%");
+        contal.style.setProperty("--before_bottom", "unset");
         for (var cif of contifra) {
-            cif.firstChild.style.position = "absolute";
-            cif.firstChild.style.backgroundColor = "red";
-            cif.firstChild.style.margin = "auto";
+           cif.firstChild.style.position = "relative";
+            cif.firstChild.style.width = "100%";
+            cif.firstChild.style.bottom = "unset";
+          //  cif.firstChild.style.position = "absolute";
+            //cif.firstChild.style.backgroundColor = "red";
+            //cif.firstChild.style.margin = "auto";
         }
 
         togScal = true;
     }
 }
 
-var naturalX;
-var naturalY;
+//var naturalX;
+//var naturalY;
 
 function photosWatchDogScreenAndFullScreen() {
-    console.log("ratio window, img: " + document.body.offsetWidth + "/" + document.documentElement.clientHeight + " ... " + naturalX + "/" + naturalY);
+    //console.log("ratio window, img: " + document.body.offsetWidth + "/" + document.documentElement.clientHeight + " ... " + naturalX + "/" + naturalY);
 
-    phs.style.position = "absolute";
-    phcont.style.setProperty("height", "fit-content");
+   
+   // phcont.style.setProperty("height", "fit-content");
 
-    if ((document.body.offsetWidth / document.documentElement.clientHeight) > 1) {   // vp land reel legend
+    if ((document.body.offsetWidth / document.documentElement.clientHeight) > 1) {   // vp land reel 
+        //for (var cif of contifra) {
+        //    //cif.firstChild.style.backgroundColor = "blue";
+        //    //cif.firstChild.style.margin = "-3.6rem auto auto auto";
+        //    //cif.firstChild.style.position = "absolute";
+        //}
+        //if ((naturalX / naturalY) > 1) {   // photo land
+
+
+
+        //}
+        //else {
+
+        //}
+
+
+        for (var oneimg of allimg) {
+            oneimg.style.width = "auto";      
+            oneimg.style.height = .90 * document.documentElement.clientHeight + "px";
+            //  oneimg.style.maxHeight = "none";
+        }
+
+        contal.style.setProperty("--before_width", "60%");
+        contal.style.setProperty("--before_bottom", ".7rem");
         for (var cif of contifra) {
-            cif.firstChild.style.backgroundColor = "blue";
-            cif.firstChild.style.margin = "-3.6rem auto auto auto";
-            cif.firstChild.style.position = "absolute";
-        }
-        if ((naturalX / naturalY) > 1) {   // photo land
-
-
-
-        }
-        else {
-
+          //  cif.firstChild.style.backgroundColor = "blue";
+            cif.firstChild.style.width = "fit-content";
+          //  cif.firstChild.style.margin = "auto";
+          cif.firstChild.style.position = "absolute";
+           cif.firstChild.style.bottom = ".7rem";
+          //  cif.before.setProperty.width = "fit-content";
         }
     }
     else {                                                       // vp portrait reel
-        for (var cif of contifra) {
-            cif.firstChild.style.backgroundColor = "red";
-            cif.firstChild.style.margin = "auto";
-            cif.firstChild.style.position = "relative";
-        }
+        //for (var cif of contifra) {
+        //    //cif.firstChild.style.backgroundColor = "red";
+        //    //cif.firstChild.style.margin = "auto";
+        //    //cif.firstChild.style.position = "relative";
+        //}
 
-        if ((naturalX / naturalY) > 1) {   // photo land
-
-
-
-        }
-        else {
-
-        }
-    }
-  
-
-    if ((document.body.offsetWidth / document.documentElement.clientHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
-        console.log("ratio screen < ratio img");
-
-        phs.style.setProperty("width", "95vw");
-
+        //if ((naturalX / naturalY) > 1) {   // photo land
         for (var oneimg of allimg) {
             oneimg.style.width = "100%";      // mode portrait 
             oneimg.style.height = "auto";
-            oneimg.style.maxHeight = "none";
+            //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
+        }
+        contal.style.setProperty("--before_width", "70%");
+        contal.style.setProperty("--before_bottom", "unset");
+        for (var cif of contifra) {
+          //  cif.firstChild.style.backgroundColor = "red";
+            cif.firstChild.style.width = "100%";
+          //  cif.firstChild.style.margin = "auto";
+            cif.firstChild.style.position = "relative";
+            cif.firstChild.style.bottom = "unset";
+          //  cif.before.style.width = "70%";
         }
 
-        if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
-            phs.requestFullscreen();
-        }
-        console.log("mode portrait!");
+        //}
+        //else {
+
+        //}
+      
     }
-    else {
-        phs.style.setProperty("width", "auto");
-
-        for (var oneimg of allimg) {
-            oneimg.style.width = "auto";                        // mode land 
-            oneimg.style.height = .95 * document.documentElement.clientHeight + "px";//  "95vh";
-            oneimg.style.maxHeight = "none";
-        }
-
-        setTimeout(() => {
-            if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
-
-                if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
-                    phs.requestFullscreen();
-                }
-            }
-            console.log("mode land ho");
-        }, 1200);
-
+  
+    if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
+        phs.requestFullscreen();
     }
+    //if ((document.body.offsetWidth / document.documentElement.clientHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
+    //    console.log("ratio screen < ratio img");
+
+   //     phs.style.setProperty("width", "95vw");
+
+        //for (var oneimg of allimg) {
+        //    //oneimg.style.width = "100%";      // mode portrait 
+        //    //oneimg.style.height = "auto";
+        //  //  oneimg.style.maxHeight = "none";
+        //}
+
+       
+        /*console.log("mode portrait!");*/
+    //}
+    //else {
+    //    phs.style.setProperty("width", "auto");
+
+    //    for (var oneimg of allimg) {
+    //        oneimg.style.width = "auto";                        // mode land 
+    //        oneimg.style.height = .95 * document.documentElement.clientHeight + "px";//  "95vh";
+    //        oneimg.style.maxHeight = "none";
+    //    }
+
+        //setTimeout(() => {
+        //    if ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch) {
+
+        //        if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
+        //            phs.requestFullscreen();
+        //        }
+        //    }
+        //    console.log("mode land ho");
+        //}, 1200);
+
+    //}
 }
 
-function imgNatural(img) {
-    console.log("Natural!");
-    naturalX = img.naturalWidth;
-    naturalY = img.naturalHeight;
-}
+//function imgNatural(img) {
+//    console.log("Natural!");
+//    naturalX = img.naturalWidth;
+//    naturalY = img.naturalHeight;
+//}
 
 function myscrollTo(el) {   
     var elem = document.getElementById(el);
