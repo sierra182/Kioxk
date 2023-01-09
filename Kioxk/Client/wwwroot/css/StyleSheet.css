@@ -32,7 +32,7 @@ img#land {
    bottom: 0;*/
 }
 
-@media (orientation: landscape) {
+@media screen and (orientation: landscape) {
   img#land {
     width: 65vw;
   }
@@ -54,8 +54,9 @@ svg#go:active {
 }
 
 #header {
-  --margin_top: calc(max(2rem,5vw) + 1vw + .2rem);
+  --margin_top: calc(max(2rem,5vw) + .5vw + .2rem);
   --item_contact_size: max(2rem,5vw);
+  --esp_h1: 0;
   position: relative;
   width: 100%;
 }
@@ -67,10 +68,15 @@ svg#go:active {
   height: 1px;
   background-color: black;
 }
-#header > div:first-of-type h1 {
+#header > div:first-of-type #louCont {
+  position: relative;
+  top: calc(var(--item_contact_size) + 4vw);
+  height: 10vh;
+}
+#header > div:first-of-type #louCont h1 {
   display: block;
   position: absolute;
-  top: 10.4rem;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -81,7 +87,17 @@ svg#go:active {
   font-weight: 800;
   font-family: "Montserrat", sans-serif;
 }
-#header > div:first-of-type h1 em {
+#header > div:first-of-type #louCont h1::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  filter: blur(2px);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+}
+#header > div:first-of-type #louCont h1 em {
   position: relative;
   margin-left: min(19.2vw, 16rem);
   font-style: normal;
@@ -302,6 +318,7 @@ svg#go:active {
   margin: auto;
   margin-top: 95vh;
   margin-bottom: calc(max(3rem, 5vw) + 2.5vw + 1px);
+  row-gap: 10vw;
   border-radius: 2.5%/5%;
   /* background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -355,63 +372,12 @@ svg#go:active {
       }
   }*/
 }
-#maincont #pretext {
-  z-index: 3;
+#maincont #ph_pre_cont {
   display: flex;
-  position: relative;
-  width: 90%;
-  height: fit-content;
-  margin: 5%;
-  transition: 2s transform;
-  user-select: none;
-  background-color: #3C3B3F;
-  max-width: 35rem;
-  font-size: min(max(0.8rem, 1vw), 1.6rem);
-}
-#maincont #pretext:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  bottom: 0;
-  /*     left:2.5rem;
-  right:2.5rem;*/
-  width: calc(100% + 2vw);
-  height: calc(100% + 2vw);
-  filter: blur(5px);
-  backdrop-filter: blur(5px);
-  border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-#maincont #pretext > div:first-child {
-  display: block;
-  position: relative;
-  left: 0;
-  right: 0;
+  flex-wrap: wrap;
   width: 100%;
-  height: fit-content;
-  margin: auto;
 }
-#maincont #pretext > div:first-child > div:first-of-type {
-  width: 100%;
-  margin: auto;
-  position: relative;
-  /*margin-top: .5rem;*/
-  /*   margin-bottom: .5rem;*/
-  border: solid white 1px;
-  border-radius: 50px;
-  background-color: rgba(0, 139, 139, 0.7);
-}
-#maincont #pretext > div:first-child > div:first-of-type iframe:last-of-type {
-  width: 100%;
-  position: relative;
-  margin-top: 2rem;
-  display: block;
-  border: none;
-  transition: height 0.5s;
-}
-#maincont #photos {
+#maincont #ph_pre_cont #photos {
   z-index: 3;
   --cp_mult-h: 1;
   --mult_ph-scale: 1;
@@ -427,7 +393,7 @@ svg#go:active {
   right: 0;
   top: 0;
   width: 90%;
-  max-width: 35rem;
+  max-width: 30rem;
   height: fit-content;
   user-select: none;
   font-size: min(max(0.8rem, 1vw), 1.6rem);
@@ -436,7 +402,7 @@ svg#go:active {
    * coarse: The primary input mechanism includes a pointing device of limited accuracy.
    */
 }
-#maincont #photos:before {
+#maincont #ph_pre_cont #photos:before {
   content: "";
   width: 110%;
   height: 110%;
@@ -448,7 +414,7 @@ svg#go:active {
   border: solid 1px;
   border-radius: 5px;
 }
-#maincont #photos > div:first-child {
+#maincont #ph_pre_cont #photos > div:first-child {
   position: relative;
   top: 0;
   left: 0;
@@ -463,7 +429,7 @@ svg#go:active {
   overflow-x: hidden;
   overflow-y: hidden;
 }
-#maincont #photos > div:first-child .carre {
+#maincont #ph_pre_cont #photos > div:first-child .carre {
   z-index: 2;
   position: absolute;
   top: 0.25rem;
@@ -474,11 +440,11 @@ svg#go:active {
   border-radius: 0 50% 0 0;
   transition: 0.1s all;
 }
-#maincont #photos > div:first-child .carre:active {
+#maincont #ph_pre_cont #photos > div:first-child .carre:active {
   transform: scale(0.8);
   background-color: mediumspringgreen;
 }
-#maincont #photos > div:first-child .carre .carre2 {
+#maincont #ph_pre_cont #photos > div:first-child .carre .carre2 {
   position: inherit;
   top: 0;
   right: 0;
@@ -489,7 +455,7 @@ svg#go:active {
   opacity: 0.5;
   transition: 1s all;
 }
-#maincont #photos > div:first-child span:nth-of-type(1) {
+#maincont #ph_pre_cont #photos > div:first-child span:nth-of-type(1) {
   z-index: 1;
   position: absolute;
   top: 5%;
@@ -501,7 +467,7 @@ svg#go:active {
   text-align: center;
   color: black;
 }
-#maincont #photos > div:first-child span:nth-of-type(1):before {
+#maincont #ph_pre_cont #photos > div:first-child span:nth-of-type(1):before {
   content: "";
   z-index: -1;
   width: 100%;
@@ -518,12 +484,12 @@ svg#go:active {
   border-radius: 10px;
   filter: blur(3px);
 }
-#maincont #photos > div:first-child > div:nth-of-type(2) {
+#maincont #ph_pre_cont #photos > div:first-child > div:nth-of-type(2) {
   display: flex;
   width: 100%;
   align-content: center;
 }
-#maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs {
+#maincont #ph_pre_cont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs {
   --phpc: "0";
   --phpx: 0;
   --qte_ph: 0;
@@ -537,7 +503,7 @@ svg#go:active {
   transition: all linear 0.5s;
   transform: translate(calc(var(--phpc) * 1% + var(--phpx) * 1px));
 }
-#maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div {
+#maincont #ph_pre_cont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div {
   width: 100%;
   height: fit-content;
   position: relative;
@@ -554,7 +520,7 @@ svg#go:active {
       background-color: rgba(black,.8);
   }*/
 }
-#maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div img {
+#maincont #ph_pre_cont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div img {
   position: relative;
   width: 100%;
   height: auto;
@@ -562,11 +528,11 @@ svg#go:active {
   display: block;
   border-radius: 5px;
 }
-#maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div {
+#maincont #ph_pre_cont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div {
   position: relative;
   width: 100%;
 }
-#maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div:before {
+#maincont #ph_pre_cont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div:before {
   content: "";
   width: 70%;
   height: 1.2rem;
@@ -577,7 +543,7 @@ svg#go:active {
   right: 0;
   background-color: white;
 }
-#maincont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div iframe {
+#maincont #ph_pre_cont #photos > div:first-child > div:nth-of-type(2) #contPhAloneJs > div > div iframe {
   display: block;
   position: absolute;
   left: 0;
@@ -586,7 +552,7 @@ svg#go:active {
   height: 1rem;
   margin: auto;
 }
-#maincont #photos > div:first-child > div:last-child {
+#maincont #ph_pre_cont #photos > div:first-child > div:last-child {
   --triremplback: 0%;
   --triremplnext: 0%;
   width: 100%;
@@ -594,7 +560,7 @@ svg#go:active {
   position: absolute;
   top: 0;
 }
-#maincont #photos > div:first-child > div:last-child #mytriback {
+#maincont #ph_pre_cont #photos > div:first-child > div:last-child #mytriback {
   position: absolute;
   left: 0;
   top: 50%;
@@ -604,15 +570,15 @@ svg#go:active {
   transform: translateY(-50%) rotateZ(-180deg);
   filter: drop-shadow(-3px -3px 2px rgba(0, 0, 0, 0.7));
 }
-#maincont #photos > div:first-child > div:last-child #mytriback:active {
+#maincont #ph_pre_cont #photos > div:first-child > div:last-child #mytriback:active {
   transition: transform 0.1s;
   transform: translateY(-50%) rotateZ(-180deg) scale(0.8);
 }
-#maincont #photos > div:first-child > div:last-child #mytriback #path2416 {
+#maincont #ph_pre_cont #photos > div:first-child > div:last-child #mytriback #path2416 {
   clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
   transition: clip-path linear 1s;
 }
-#maincont #photos > div:first-child > div:last-child #mytrinext {
+#maincont #ph_pre_cont #photos > div:first-child > div:last-child #mytrinext {
   position: absolute;
   top: 50%;
   right: 0;
@@ -621,18 +587,77 @@ svg#go:active {
   transform: translateY(-50%);
   filter: drop-shadow(-3px 3px 2px rgba(0, 0, 0, 0.7));
 }
-#maincont #photos > div:first-child > div:last-child #mytrinext:active {
+#maincont #ph_pre_cont #photos > div:first-child > div:last-child #mytrinext:active {
   transition: transform 0.1s;
   transform: translateY(-50%) scale(0.8);
 }
-#maincont #photos > div:first-child > div:last-child #mytrinext #path2416 {
+#maincont #ph_pre_cont #photos > div:first-child > div:last-child #mytrinext #path2416 {
   clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
   transition: clip-path 1s;
 }
-#maincont .welcome_hlp#hlp {
+#maincont #ph_pre_cont #pretext {
+  z-index: 3;
+  display: flex;
+  position: relative;
+  width: 90%;
+  height: fit-content;
+  margin: 5% auto;
+  align-self: center;
+  transition: 2s transform;
+  user-select: none;
+  max-width: 25rem;
+}
+#maincont #ph_pre_cont #pretext:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0;
+  /*     left:2.5rem;
+  right:2.5rem;*/
+  width: calc(100% + 2vw);
+  height: calc(100% + 2vw);
+  filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#maincont #ph_pre_cont #pretext > div:first-child {
+  display: block;
+  position: relative;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: fit-content;
+  margin: auto;
+}
+#maincont #ph_pre_cont #pretext > div:first-child > div:first-of-type {
+  width: 100%;
+  margin: auto;
+  position: relative;
+  /*margin-top: .5rem;*/
+  /*   margin-bottom: .5rem;*/
+  border: solid white 1px;
+  border-radius: 50px;
+  background-color: rgba(0, 139, 139, 0.7);
+}
+#maincont #ph_pre_cont #pretext > div:first-child > div:first-of-type iframe:last-of-type {
+  width: 100%;
+  position: relative;
+  display: block;
+  border: none;
+  transition: height 0.5s;
+}
+#maincont #hlp_ag_cont {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#maincont #hlp_ag_cont .welcome_hlp#hlp {
   transform: none;
 }
-#maincont #hlp {
+#maincont #hlp_ag_cont #hlp {
   width: 90%;
   height: fit-content;
   position: relative;
@@ -643,7 +668,7 @@ svg#go:active {
   max-width: 30rem;
   font-size: min(max(0.8rem, 1vw), 1.6rem);
 }
-#maincont #hlp:before {
+#maincont #hlp_ag_cont #hlp:before {
   content: "";
   position: absolute;
   /*  top:0;
@@ -658,28 +683,28 @@ svg#go:active {
   border: solid 1px;
   border-radius: 5px;
 }
-#maincont #hlp > div:first-child {
+#maincont #hlp_ag_cont #hlp > div:first-child {
   width: 100%;
 }
-#maincont #hlp > div:first-child > div:first-child {
+#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child {
   width: 100%;
   height: auto;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.9);
   position: relative;
 }
-#maincont #hlp > div:first-child > div:first-child > div {
+#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div {
   display: flex;
   position: relative;
 }
-#maincont #hlp > div:first-child > div:first-child > div > div {
+#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div > div {
   flex-shrink: 0;
   width: max(3vw, 2rem);
   height: max(3vw, 2rem);
   margin: auto 0;
   background-color: blue;
 }
-#maincont #hlp > div:first-child > div:first-child > div > div div {
+#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div > div div {
   display: flex;
   position: relative;
   height: 100%;
@@ -687,18 +712,298 @@ svg#go:active {
   align-items: center;
   background-color: red;
 }
-#maincont #hlp > div:first-child > div:first-child > div > span {
+#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div > span {
   position: relative;
   margin: auto 0;
   margin-left: 0.5rem;
   font-size: 0.95em;
 }
-#maincont #hlp > div:first-child > div:first-child > div svg {
+#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div svg {
   width: max(3vw, 2rem);
   height: max(3vw, 2rem);
   filter: drop-shadow(2px 2px 1.3px black);
   flex-shrink: 0;
   margin: auto 0;
+}
+#maincont #hlp_ag_cont #agenda {
+  --calendar-width: max(calc(var(--child-width) / 1),23rem);
+  --agenda_pointer-event: initial;
+  z-index: 2;
+  position: relative;
+  height: fit-content;
+  margin: 5%;
+  margin-left: auto;
+  pointer-events: var(--agenda_pointer-event);
+  transition: transform 0.7s;
+  width: 90%;
+  max-width: 25rem;
+  font-size: min(max(0.5rem, 1vw), 1rem);
+}
+#maincont #hlp_ag_cont #agenda:before {
+  content: "";
+  width: calc(100% + 5vw);
+  height: calc(100% + 5vw);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(2px);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80%;
+  margin: auto;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80%;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > :first-child {
+  display: inline-block;
+  position: relative;
+  color: white;
+  border-width: 3px 5px;
+  border-color: cornflowerblue;
+  border-radius: 60%/30%;
+  filter: drop-shadow(2px 2px 2px black);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > :first-child div {
+  display: inline-block;
+  text-align: center;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > :first-child div span {
+  display: block;
+  padding: 0 1rem;
+  line-height: 1;
+  font-size: 1rem;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau {
+  display: grid;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: min(85.5vw, 25rem);
+  margin: auto;
+  margin-top: 1.5rem;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div {
+  display: flex;
+  width: auto;
+  height: auto;
+  margin: 1px;
+  filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
+  background-color: transparent;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div:nth-child(1), #maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div:nth-child(2), #maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div:nth-child(3), #maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div:nth-child(4), #maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div:nth-child(5), #maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div:nth-child(6), #maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div:nth-child(7) {
+  border-width: max(0.4vw, 4px);
+  border-radius: 10%;
+  border-color: cornflowerblue;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div > div {
+  display: inherit;
+  width: 100%;
+  height: 100%;
+  border: solid;
+  border-width: max(0.4vw, 4px);
+  border-radius: 10%;
+  border-color: green;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div span {
+  display: inherit;
+  margin: auto;
+  line-height: 1;
+  font-weight: bold;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #calendar > #panneau > div > span {
+  color: ghostwhite;
+  line-height: 1;
+  font-weight: 800;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #periodes {
+  position: relative;
+  top: 100%;
+  left: 0;
+  width: 80%;
+  height: auto;
+  margin: auto;
+  color: black;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #periodes div {
+  margin-bottom: 2px;
+  color: white;
+  border: solid;
+  border-width: max(0.4vw, 4px);
+  border-color: white;
+  border-radius: 2%;
+  /*background: #3C3B3F;*/ /* fallback for old browsers */
+  /*background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);*/ /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to right, #605C3C, #3C3B3F);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: darkcyan;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #periodes span {
+  display: block;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #periodes > span:last-child {
+  color: white;
+  border: solid;
+  border-width: max(0.4vw, 4px);
+  border-radius: 2.5%;
+  border-color: white;
+  background: #FF416C; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #periodes .remPer {
+  animation: remPerAnim 0.5s forwards;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child #periodes .ajoutPer {
+  animation: ajoutPerAnim 0.5s forwards;
+}
+@keyframes ajoutPerAnim {
+  from {
+    transform: scale(0, 0);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+@keyframes remPerAnim {
+  from {
+    transform: scale(1, 1);
+  }
+  to {
+    transform: scale(0, 0);
+  }
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) {
+  --triremplnext: 0%;
+  --triremplback: 0%;
+  --mycall-height: 0%;
+  --button-width: 100%;
+  display: flex;
+  z-index: 1;
+  position: relative;
+  top: 100%;
+  width: 50%;
+  margin: auto;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytriback {
+  width: var(--button-width);
+  height: var(--button-width);
+  transform-origin: center;
+  transform: translate(-10%) rotateZ(-180deg);
+  filter: drop-shadow(-3px -3px 2px rgba(0, 0, 0, 0.7));
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytriback:active {
+  transition: transform 0.1s;
+  transform: rotateZ(-180deg) scale(0.8);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytriback #path2416 {
+  clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+  transition: clip-path 1s;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytrinext {
+  width: var(--button-width);
+  height: var(--button-width);
+  transform: translate(10%);
+  filter: drop-shadow(-3px 3px 2px rgba(0, 0, 0, 0.7));
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytrinext:active {
+  transition: transform 0.1s;
+  transform: translate(0) scale(0.8);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytrinext #path2416 {
+  clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
+  transition: clip-path 1s;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div {
+  width: var(--button-width);
+  height: var(--button-width);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div:active {
+  transition: transform 0.1s;
+  transform: translate(0) scale(0.8);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall {
+  width: var(--button-width);
+  height: var(--button-width);
+  margin-left: 30%;
+  transform-origin: center;
+  transition: transform 5s;
+  filter: drop-shadow(-3px 3px 2px rgba(0, 0, 0, 0.7));
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall #rect1410 {
+  height: 0%;
+  transform-origin: center;
+  transform: rotateZ(180deg);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall #rect881, #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall #path1527 {
+  transform-origin: center;
+  transition: transform 5s;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall #myPathrect {
+  transform-origin: center;
+  transform: rotateZ(0deg);
+  transition: transform 5s;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein {
+  transform: rotateZ(360deg);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #rect1410 {
+  animation: aug-height 5s linear forwards;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #rect881, #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #path1527 {
+  transform: rotateZ(-360deg);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #myPathrect {
+  transform: rotateZ(-360deg);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide {
+  transform: rotateZ(-360deg);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #rect1410 {
+  animation: dim-height 5s reverse linear forwards;
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #rect881, #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #path1527 {
+  transform: rotateZ(360deg);
+}
+#maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #myPathrect {
+  transform: rotateZ(360deg);
+}
+@keyframes aug-height {
+  from {
+    height: 20%;
+  }
+  to {
+    height: 80%;
+  }
+}
+@keyframes dim-height {
+  from {
+    height: 20%;
+  }
+  to {
+    height: 80%;
+  }
 }
 #maincont .welcome_pay#payment {
   transform: none;
@@ -710,7 +1015,7 @@ svg#go:active {
   height: fit-content;
   background-color: rgba(255, 255, 255, 0.9);
   transition: 2s transform;
-  margin: 5%;
+  margin: 5% auto;
   position: relative;
   border-radius: 5px;
 }
@@ -781,285 +1086,6 @@ svg#go:active {
 #maincont #payment > div:last-of-type > div {
   width: auto;
   height: auto;
-}
-#maincont #agenda {
-  --calendar-width: max(calc(var(--child-width) / 1),23rem);
-  --agenda_pointer-event: initial;
-  z-index: 2;
-  position: relative;
-  height: fit-content;
-  margin: 5%;
-  pointer-events: var(--agenda_pointer-event);
-  transition: transform 0.7s;
-  width: 90%;
-  max-width: 35rem;
-  font-size: min(max(0.5rem, 1vw), 1rem);
-}
-#maincont #agenda:before {
-  content: "";
-  width: calc(100% + 5vw);
-  height: calc(100% + 5vw);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  backdrop-filter: blur(2px);
-}
-#maincont #agenda > div:first-child {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 80%;
-  margin: auto;
-}
-#maincont #agenda > div:first-child #calendar {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80%;
-  margin: auto;
-  text-align: center;
-  width: 100%;
-}
-#maincont #agenda > div:first-child #calendar > :first-child {
-  display: inline-block;
-  position: relative;
-  color: white;
-  border-width: 3px 5px;
-  border-color: cornflowerblue;
-  border-radius: 60%/30%;
-  filter: drop-shadow(2px 2px 2px black);
-  background-color: rgba(0, 0, 0, 0.3);
-}
-#maincont #agenda > div:first-child #calendar > :first-child div {
-  display: inline-block;
-  text-align: center;
-}
-#maincont #agenda > div:first-child #calendar > :first-child div span {
-  display: block;
-  padding: 0 1rem;
-  line-height: 1;
-  font-size: 1rem;
-}
-#maincont #agenda > div:first-child #calendar > #panneau {
-  display: grid;
-  position: relative;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: min(85.5vw, 35rem);
-  margin: auto;
-  margin-top: 1.5rem;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-}
-#maincont #agenda > div:first-child #calendar > #panneau > div {
-  display: flex;
-  width: auto;
-  height: auto;
-  margin: 1px;
-  filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.5));
-  background-color: transparent;
-}
-#maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(1), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(2), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(3), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(4), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(5), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(6), #maincont #agenda > div:first-child #calendar > #panneau > div:nth-child(7) {
-  border-width: max(0.4vw, 4px);
-  border-radius: 10%;
-  border-color: cornflowerblue;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-#maincont #agenda > div:first-child #calendar > #panneau > div > div {
-  display: inherit;
-  width: 100%;
-  height: 100%;
-  border: solid;
-  border-width: max(0.4vw, 4px);
-  border-radius: 10%;
-  border-color: green;
-}
-#maincont #agenda > div:first-child #calendar > #panneau > div span {
-  display: inherit;
-  margin: auto;
-  line-height: 1;
-  font-weight: bold;
-}
-#maincont #agenda > div:first-child #calendar > #panneau > div > span {
-  color: ghostwhite;
-  line-height: 1;
-  font-weight: 800;
-}
-#maincont #agenda > div:first-child #periodes {
-  position: relative;
-  top: 100%;
-  left: 0;
-  width: 80%;
-  height: auto;
-  margin: auto;
-  color: black;
-}
-#maincont #agenda > div:first-child #periodes div {
-  margin-bottom: 2px;
-  color: white;
-  border: solid;
-  border-width: max(0.4vw, 4px);
-  border-color: white;
-  border-radius: 2%;
-  /*background: #3C3B3F;*/ /* fallback for old browsers */
-  /*background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);*/ /* Chrome 10-25, Safari 5.1-6 */
-  /*background: linear-gradient(to right, #605C3C, #3C3B3F);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background-color: darkcyan;
-}
-#maincont #agenda > div:first-child #periodes span {
-  display: block;
-}
-#maincont #agenda > div:first-child #periodes > span:last-child {
-  color: white;
-  border: solid;
-  border-width: max(0.4vw, 4px);
-  border-radius: 2.5%;
-  border-color: white;
-  background: #FF416C; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-#maincont #agenda > div:first-child #periodes .remPer {
-  animation: remPerAnim 0.5s forwards;
-}
-#maincont #agenda > div:first-child #periodes .ajoutPer {
-  animation: ajoutPerAnim 0.5s forwards;
-}
-@keyframes ajoutPerAnim {
-  from {
-    transform: scale(0, 0);
-  }
-  to {
-    transform: scale(1, 1);
-  }
-}
-@keyframes remPerAnim {
-  from {
-    transform: scale(1, 1);
-  }
-  to {
-    transform: scale(0, 0);
-  }
-}
-#maincont #agenda > div:first-child > div:nth-child(2) {
-  --triremplnext: 0%;
-  --triremplback: 0%;
-  --mycall-height: 0%;
-  --button-width: 100%;
-  display: flex;
-  z-index: 1;
-  position: relative;
-  top: 100%;
-  width: 50%;
-  margin: auto;
-}
-#maincont #agenda > div:first-child > div:nth-child(2) #mytriback {
-  width: var(--button-width);
-  height: var(--button-width);
-  transform-origin: center;
-  transform: translate(-10%) rotateZ(-180deg);
-  filter: drop-shadow(-3px -3px 2px rgba(0, 0, 0, 0.7));
-}
-#maincont #agenda > div:first-child > div:nth-child(2) #mytriback:active {
-  transition: transform 0.1s;
-  transform: rotateZ(-180deg) scale(0.8);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) #mytriback #path2416 {
-  clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
-  transition: clip-path 1s;
-}
-#maincont #agenda > div:first-child > div:nth-child(2) #mytrinext {
-  width: var(--button-width);
-  height: var(--button-width);
-  transform: translate(10%);
-  filter: drop-shadow(-3px 3px 2px rgba(0, 0, 0, 0.7));
-}
-#maincont #agenda > div:first-child > div:nth-child(2) #mytrinext:active {
-  transition: transform 0.1s;
-  transform: translate(0) scale(0.8);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) #mytrinext #path2416 {
-  clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
-  transition: clip-path 1s;
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div {
-  width: var(--button-width);
-  height: var(--button-width);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div:active {
-  transition: transform 0.1s;
-  transform: translate(0) scale(0.8);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall {
-  width: var(--button-width);
-  height: var(--button-width);
-  margin-left: 30%;
-  transform-origin: center;
-  transition: transform 5s;
-  filter: drop-shadow(-3px 3px 2px rgba(0, 0, 0, 0.7));
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall #rect1410 {
-  height: 0%;
-  transform-origin: center;
-  transform: rotateZ(180deg);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall #rect881, #maincont #agenda > div:first-child > div:nth-child(2) div #mycall #path1527 {
-  transform-origin: center;
-  transition: transform 5s;
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall #myPathrect {
-  transform-origin: center;
-  transform: rotateZ(0deg);
-  transition: transform 5s;
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein {
-  transform: rotateZ(360deg);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #rect1410 {
-  animation: aug-height 5s linear forwards;
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #rect881, #maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #path1527 {
-  transform: rotateZ(-360deg);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein #myPathrect {
-  transform: rotateZ(-360deg);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide {
-  transform: rotateZ(-360deg);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #rect1410 {
-  animation: dim-height 5s reverse linear forwards;
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #rect881, #maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #path1527 {
-  transform: rotateZ(360deg);
-}
-#maincont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallvide #myPathrect {
-  transform: rotateZ(360deg);
-}
-@keyframes aug-height {
-  from {
-    height: 20%;
-  }
-  to {
-    height: 80%;
-  }
-}
-@keyframes dim-height {
-  from {
-    height: 20%;
-  }
-  to {
-    height: 80%;
-  }
 }
 #maincont #reserv {
   display: flex;
@@ -1407,4 +1433,4 @@ svg#go:active {
   background-color: yellow;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Users/sierr/source/repos/Kioxk/Kioxk/Client/Style/StyleSheet.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACA;EACY;EAEA;EACR;EACA;EACA;;;AAIJ;EAAM;;;AACN;AAEI;AAAA;;;AAIJ;EACI;;;AA6CJ;EACI;EACA;EAGA;EAIA;EACJ;EACA;AACG;AAAA;AAAA;AAAA;;;AAQH;EACI;IACI;;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;;AAIR;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EAGA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAKR;EAEQ;IACI;;EAEA;IACI;IACA;IACA;IACA;;EAIJ;IACI;IACA;IACA;IACA;;EAKJ;IACI;IACA;IACA;IACA;;EAGJ;IACI;IACA;IACA;IACA;;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;;AAGJ;EACI;EACA;;AAIA;EACI;EACA;EACA;EACA;;AAIJ;EACI;EAEA;EACA;EACA;;AAMZ;EACI;EACA;EAEA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EA3MZ;;AA8MY;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;AAMR;EACI;EAEA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;;AAEA;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EA1QZ;;AAgRY;EACI;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EAEA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAOR;EACI;EACA;EACA;EACA;;AAEA;EACI;EACA;;;AAQxB;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;;;AAKZ;EACI;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAKA;AAEA;AAAA;AAAA;AAAA;AA+5CA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAl5CA;EACI;EACA;EAIA;EACA;EACA;EACA;EAEA;EAEA;EASA;EAKA;EACA;;AAEA;EACI;EACA;EAEA;EACA;EACA;EACA;AACA;AAAA;EAEA;EACA;EACA;EACA;EAEA;EACA;;AAKJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAOA;EACI;EAEA;EAIA;AACA;AACA;EACA;EACA;EACA;;AAMA;EACI;EACA;EAIA;EACA;EACA;EACA;;AAUhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EAEA;EAEA;EAUA;AA7gBJ;AAAA;AAAA;AAAA;;AA+gBI;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAQJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EAMA;EACA;EAEA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EAEA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AAEA;AAAA;AAAA;EAGA;EACA;;AAKR;EACI;EACA;EAKA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;AAGA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAaA;EACI;EACA;EACA;EAEA;EACA;EACA;;AAKJ;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EAKA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAUpB;EACI;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;;AArvBhB;EACI;EACA;;AAsvBY;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EAEA;;AAtwBhB;EACI;EACA;;AAuwBY;EACI;EACA;;AAOpB;EACI;;AAGJ;EACI;EAEA;EACA;EAEA;EACA;EACA;EAEA;EAIA;EACA;;AAEA;EACI;EACA;AACA;AAAA;AAAA;EAGA;EACA;EACA;EAEA;EACA;EAEA;EACA;EACA;;AAKJ;EACI;;AAEA;EACI;EACA;EAEA;EAGA;EACA;;AAIA;EACI;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAOpB;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EAGA;;AAGA;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EA35BZ;;AAi6BI;EACI;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EA36BZ;;AAi7BI;EACI;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;;AAGA;EACI;;AAGA;EACI;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKR;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EAEA;EACA;EAEA;EACA;EAKA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EAGA;EAEA;EACA;EAEA;;AAEA;EACI;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAMZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAKA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EAEI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EAEA;;AAIJ;EACI;EACA;EAEA;;AAOhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;AACA;AACA;AACA;EACA;;AAGJ;EACI;;AAIJ;EACI;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;;AAGJ;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EAEA;;AAptChB;EACI;EACA;;AAqtCY;EACI;EACA;;AAIR;EACI;EACA;EAEA;EACA;;AAluChB;EACI;EACA;;AAmuCY;EACI;EACA;;AAIR;EACI;EACA;;AA7uChB;EACI;EACA;;AA+uCY;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAS5B;EACI;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EAMA;;AAEA;EAEI;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AACA;EAIA;EACA;EACA;EACA;EAMA;EAEA;EACA;EACA;EACA;;AAEA;EACI;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EAEA;EACA;EACA;;AAGJ;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAGA;EACA;;AAMR;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EAKA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EAEA;;AAGJ;EACI;EACA;EACA;EACA;EACA;AACA;AAAA;AAAA;;AAIA;EACI;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;;AAIR;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EAIA;EACA;EACA;EAMA;;AAKA;EACI;EACA;EACA;EAGA;EAUA;EACA;AACA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;AAAA;AAEA;AAWA;AAAA;AAAA;AAAA;AAIA;;AAbA;EACI;EACA;;AAGJ;EACI;EACA;;AAWJ;EACI;;AAIA;EACI;EACA;EACA;EAEA;EAEA;EAEA;;AAIA;AACI;AAAA;AAAA;EAIA;IACI;;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAQR;EACI;EACA;EACA;EAEA;EACA;EACA;;AAOJ;EAII;;AAIA;EACI;;AAIR;EACI;EAIA;EACA;EACA;EACA;EACA;EAIA;EAGA;EACA;EAEA;;AAIJ;EACI;EACA;EACA;EACA;;AAGJ;EAEI;IACI;;EAGJ;IACI;;EAGJ;IACI;;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///C:/Users/sierr/source/repos/Kioxk/Kioxk/Client/Style/StyleSheet.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACA;EACY;EAEA;EACR;EACA;EACA;;;AAIJ;EAAM;;;AACN;AAEI;AAAA;;;AAIJ;EACI;;;AA6CJ;EACI;EACA;EAGA;EAIA;EACJ;EACA;AACG;AAAA;AAAA;AAAA;;;AAQH;EACI;IACI;;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;;AAIR;EACI;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EAGA;;AAEA;EAEI;EACA;EACA;;AAEA;EACI;EACA;EAEA;EACA;EAGA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;;AAGA;EACI;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;;AASZ;EAIQ;IACI;;EAEA;IACI;IACA;IACA;IACA;;EAIJ;IACI;IACA;IACA;IACA;;EAKJ;IACI;IACA;IACA;IACA;;EAGJ;IACI;IACA;IACA;IACA;;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;;AAGJ;EACI;EACA;;AAIA;EACI;EACA;EACA;EACA;;AAIJ;EACI;EAEA;EACA;EACA;;AAMZ;EACI;EACA;EAEA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EAvOZ;;AA0OY;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;AAMR;EACI;EAEA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;;AAEA;EACI;EACA;;AAKZ;EACI;EACA;EACA;EACA;EAtSZ;;AA4SY;EACI;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EAEA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAOR;EACI;EACA;EACA;EACA;;AAEA;EACI;EACA;;;AAQpB;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;;;AAKhB;EACI;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAIE;EACF;AAEA;AAAA;AAAA;AAAA;AAq7CA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AA56CA;EACI;EACA;EACA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAGA;EACA;EACA;EACA;EACA;EACA;EAEA;EAEA;EAUA;AAtcR;AAAA;AAAA;AAAA;;AAwcQ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAQJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EAMA;EACA;EAEA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EAEA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AAEA;AAAA;AAAA;EAGA;EACA;;AAKR;EACI;EACA;EAKA;;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;AAGA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAaA;EACI;EACA;EACA;EAEA;EACA;EACA;;AAKJ;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;EAKA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAUpB;EACI;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;;AA9qBpB;EACI;EACA;;AA+qBgB;EACI;EACA;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EAEA;;AA/rBpB;EACI;EACA;;AAgsBgB;EACI;EACA;;AAWpB;EACI;EACA;EAIA;EACA;EACA;EACA;EACA;EAGA;EAEA;EAcA;;AAGA;EACI;EACA;EAEA;EACA;EACA;EACA;AAEA;AAAA;EAEA;EACA;EACA;EACA;EAEA;EACA;;AAKJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAOA;EACI;EAEA;EAIA;AACA;AACA;EACA;EACA;EACA;;AAMA;EACI;EACA;EAKA;EACA;EACA;;AAWpB;EACI;EACA;EACA;;AAGA;EACI;;AAGJ;EACI;EAEA;EACA;EAEA;EACA;EACA;EAEA;EAIA;EACA;;AAEA;EACI;EACA;AACA;AAAA;AAAA;EAGA;EACA;EACA;EAEA;EACA;EAEA;EACA;EACA;;AAKJ;EACI;;AAEA;EACI;EACA;EAEA;EAGA;EACA;;AAIA;EACI;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAIR;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAOpB;EACI;EACA;EACA;EACA;EAEA;EACA;EACA;EAGA;EACA;EAKA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EAGA;EAEA;EACA;EAEA;;AAEA;EACI;EACA;EACA;EAEA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGA;EACI;EACA;EACA;EACA;;AAMZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAKA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EAEI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EAEA;;AAIJ;EACI;EACA;EAEA;;AAOhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;AACA;AACA;AACA;EACA;;AAGJ;EACI;;AAIJ;EACI;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;;AAGJ;EACI;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAKZ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIA;EACI;EACA;EACA;EACA;EAEA;;AAppCpB;EACI;EACA;;AAqpCgB;EACI;EACA;;AAIR;EACI;EACA;EAEA;EACA;;AAlqCpB;EACI;EACA;;AAmqCgB;EACI;EACA;;AAIR;EACI;EACA;;AA7qCpB;EACI;EACA;;AA+qCgB;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;IACI;;EAGJ;IACI;;;AAYhC;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EAGA;;AAGA;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;;AAGA;EACI;EACA;EACA;EA7yCZ;;AAmzCI;EACI;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;EA7zCZ;;AAm0CI;EACI;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;;AAGA;EACI;;AAGA;EACI;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAKR;EACI;EACA;;AAKZ;EACI;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EAMA;;AAEA;EAEI;EACA;;AAIA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;AACA;EAIA;EACA;EACA;EACA;EAMA;EAEA;EACA;EACA;EACA;;AAEA;EACI;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EAEA;EACA;EACA;;AAGJ;EAEI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EAGA;EACA;;AAMR;EACI;EACA;EAEA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAIJ;EACI;EACA;EAKA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EAEA;;AAGJ;EACI;EACA;EACA;EACA;EACA;AACA;AAAA;AAAA;;AAIA;EACI;;AAIR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;;AAIR;EACI;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EAIA;EACA;EACA;EAMA;;AAKA;EACI;EACA;EACA;EAGA;EAUA;EACA;AACA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAkBA;AAAA;AAEA;AAWA;AAAA;AAAA;AAAA;AAIA;;AAbA;EACI;EACA;;AAGJ;EACI;EACA;;AAWJ;EACI;;AAIA;EACI;EACA;EACA;EAEA;EAEA;EAEA;;AAIA;AACI;AAAA;AAAA;EAIA;IACI;;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAQR;EACI;EACA;EACA;EAEA;EACA;EACA;;AAOJ;EAII;;AAIA;EACI;;AAIR;EACI;EAIA;EACA;EACA;EACA;EACA;EAIA;EAGA;EACA;EAEA;;AAIJ;EACI;EACA;EACA;EACA;;AAGJ;EAEI;IACI;;EAGJ;IACI;;EAGJ;IACI;;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;;AAGJ;EACI;EACA;;AAGJ;EACI;IACI;;EAGJ;IACI;;;AAIR;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAIR;EACI;EACA;;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;AAGA;EACI;EACA;;AAMhB;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA%22%7D */

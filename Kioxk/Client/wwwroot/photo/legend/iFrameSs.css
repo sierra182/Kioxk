@@ -1,35 +1,43 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 
+
+p {
+    /*    background: rgb(2,0,36);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,17,16,1) 55%, rgba(0,212,255,1) 100%);
+*/ // background-color: transparent;
+    font-size: max(.7rem,2.6vw);
+    // display:block;
+    // margin-left: 2rem;
+    padding-right: 5vw;
+    /* -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;*/
+}
 #seb {
-  
     color: white;
-    font-size: max(.8rem,2.3vw);
     font-weight: 100;
     letter-spacing: .1rem;
     font-family: 'Unbounded', cursive;
     // font-family: 'Montserrat', sans-serif;
     width: 100%;
     height: fit-content;
-   // margin-left: 1rem;
-}
-p {
-    /*    background: rgb(2,0,36);
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(14,17,16,1) 55%, rgba(0,212,255,1) 100%);
-*/// background-color: transparent;
+    // margin-left: 1rem;
   
-  // display:block;
-    margin-left:2rem;
-   
-    /* -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;*/
+   // 
+  
 }
+
+    #seb p {
+        padding-top: 3vw;
+        
+        font-size: max(.8rem,2.3vw);
+    }
 iframe {
     float: left;
     position: relative;
     width: max(4rem,22vw);
     height: max(4rem,22vw);
-    margin-left: 2rem;
+    margin-left: 2vw;
    // margin-top: 1rem;
    // margin-right: 2rem;
    // margin-bottom:1rem;
@@ -60,7 +68,7 @@ div {
     // letter-spacing: .1rem;
     font-family: 'Unbounded', cursive;
     // font-family: 'Montserrat', sans-serif;
-   // margin-left: 2rem;
+    margin-left: 3vw;
     //display:inline;
   //  background-color: orangered;
 }

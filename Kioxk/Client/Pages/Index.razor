@@ -3,12 +3,10 @@
 @inject MyEvents myevents
 @using Kioxk.Client.Pages
 
-<img id="land" src="item/land.svg"/>
+<img id="land" src="item/land.svg" />
 @*<svg id="land" data-src="/item/landp.svg"></svg>*@
 <div id="header">
     <div>
-        <h1>LOUEZ une maison <br /> <em>à la Réunion en 4clics</em></h1>
-
         <div id="lambcont">
             @for (int i = 0; i < b; i++)
             {
@@ -16,6 +14,11 @@
             }
 
         </div>
+        <div id="louCont">
+            <h1> LOUEZ une maison <br /> <em>à la Réunion en 4clics</em></h1>
+        </div>
+
+
     </div>
 
     <div id="contact">
@@ -48,35 +51,39 @@
 
 <svg id="go" data-src="/item/Go.svg" onclick="myscrollTo('agenda')"> Go </svg>
 
-<div id="maincont"> 
+<div id="maincont">
+    <div id="ph_pre_cont">
+        <div id="photos">
+            <div>
+                <Photos />
 
-     <div id="photos">
-        <div>
-            <Photos />
+            </div>
+        </div>
+
+        <div id="pretext">
+            <div>
+                <Pretext />
+
+            </div>
 
         </div>
     </div>
 
-    <div id="pretext">
-        <div>
-            <Pretext />
+    <div id="hlp_ag_cont">
+        <div id="hlp">
+            <div>
+                <Help />
+
+            </div>
+        </div>
+
+        <div id="agenda" style="--agenda_pointer-event:@pnter">
+            <Agenda @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" />
 
         </div>
     </div>
-       
-    <div id="hlp">
-        <div>
-            <Help />
 
-        </div>
-    </div>
-
-    <div id="agenda" style="--agenda_pointer-event:@pnter">       
-            <Agenda @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" />   
-            
-    </div>
-
-     <div id="payment">
+    <div id="payment">
         <Paiement />
 
     </div>

@@ -223,7 +223,14 @@ function lamb(dotNet) {
 
     if (frLamb) {
         const ajustLamb = () => {
+            // if (window.matchMedia("(orientation:portrait)").matches) {
+            var header = document.getElementById("header");
+            var csheader = window.getComputedStyle(header);
 
+             //   var h1 = document.getElementById("header");
+            header.style.setProperty("--esp_h1", `${(1 / screen.width) * 5000}`);
+            console.log(`${(1 / screen.width) * 5000}`);
+           // }
             if (window.matchMedia("(max-width:500px)").matches) {
                 console.log("lamb max width");
                 nmbrEl = 10;
