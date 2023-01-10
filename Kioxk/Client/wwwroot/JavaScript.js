@@ -62,11 +62,14 @@ function scaler() {
                 
       //  phs.style.position = "absolute";
         phs.style.setProperty("--max_size", "none");    // enlever ?  
-
+        car.style.width = "5vw";
+        car.style.height = "5vw";
         car.style.borderRadius = "10%";
         car2.style.borderRadius = "10%";
         car2.style.transformOrigin = "0";
-        car2.style.transform = "scale(.5,.1) translate(1.4rem, -2.4rem)";
+      //  car2.style.top = "0";
+        car2.style.left = "50%";
+        car2.style.transform = "scale(.5,.1) translate(-50%)";
         car2.style.backgroundColor = "white";
         car2.style.borderColor = "white";
         car2.style.opacity = "1";
@@ -84,25 +87,28 @@ function scaler() {
 
        
         phs.style.setProperty("--max_size", `${maxs}`);
+        car.style.width = "8%";
+        car.style.height = "var(--chemin_width_carre)";
         car.style.borderRadius = "0 50% 0 0";
         car2.style.transform = "scale(1,1)";
         car2.style.backgroundColor = "";
         car2.style.borderColor = "red";
         car2.style.opacity = ".5";
         car2.style.borderRadius = "0 50% 0 0";
-
+     //   car2.style.top = "0";
+        car2.style.left = "0";
       //  phs.style.borderRadius = "5%";
       //  phs.style.position = "relative";
      //   phs.style.setProperty("width", "calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale))");
       //  phcont.style.setProperty("height", "calc(max(var(--photo-width),var(--max_size)) /2 )");
 
         for (var oneimg of allimg) {
-            oneimg.style.width = "100%";      // mode portrait 
+            oneimg.style.width = "100%";      // BACK 
             oneimg.style.height = "auto";
          //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
         }
         contal.style.setProperty("--before_width", "70%");
-        contal.style.setProperty("--before_bottom", "unset");
+        contal.style.setProperty("--before_bottom", "0");
         for (var cif of contifra) {
            cif.firstChild.style.position = "relative";
             cif.firstChild.style.width = "100%";
@@ -178,7 +184,7 @@ function photosWatchDogScreenAndFullScreen() {
             cif.firstChild.style.width = "100%";
           //  cif.firstChild.style.margin = "auto";
             cif.firstChild.style.position = "relative";
-            cif.firstChild.style.bottom = "unset";
+            cif.firstChild.style.bottom = "0";
           //  cif.before.style.width = "70%";
         }
 
