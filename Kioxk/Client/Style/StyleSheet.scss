@@ -553,7 +553,7 @@ svg#go {
                     position: absolute;
                     top: .25rem;
                     right: .25rem;
-                    width: 8%;//var(--chemin_width_carre);//   8%; //2rem;
+                    width: 8%; //var(--chemin_width_carre);//   8%; //2rem;
                     height: var(--chemin_width_carre); //2rem;
                     border: .25rem solid lightgrey;
                     border-radius: 0 50% 0 0;
@@ -727,13 +727,13 @@ svg#go {
                         position: absolute;
                         left: 0;
                         top: 50%;
-                        width: 10%;//calc(var(--photo-width)/2 / 5);
-                        height:fit-content;// calc(var(--photo-width)/2 / 5);
+                        width: 10%; //calc(var(--photo-width)/2 / 5);
+                        height: fit-content; // calc(var(--photo-width)/2 / 5);
                         transform-origin: center;
                         transform: translateY(-50%) rotateZ(-180deg);
                         @include onactive_tri(translateY(-50%) rotateZ(-180deg));
                         filter: drop-shadow(-3px -3px 2px rgba(0,0,0,.7));
-                      //  background-color: mediumvioletred;
+                        //  background-color: mediumvioletred;
 
                         #path2416 { // Remplissage
                             clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
@@ -746,12 +746,12 @@ svg#go {
                         top: 50%;
                         right: 0;
                         width: 10%;
-                        height:fit-content;//calc(var(--photo-width)/2 / 5);
-                       // height: calc(var(--photo-width)/2 / 5);
+                        height: fit-content; //calc(var(--photo-width)/2 / 5);
+                        // height: calc(var(--photo-width)/2 / 5);
                         transform: translateY(-50%);
                         @include onactive_tri(translateY(-50%));
                         filter: drop-shadow(-3px 3px 2px rgba(0,0,0,.7));
-                       //  background-color: mediumvioletred;
+                        //  background-color: mediumvioletred;
 
                         #path2416 { // Remplissage
                             clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
@@ -1463,14 +1463,14 @@ svg#go {
         //  background-color: blue; //#00c6b0;
         //  display: none;
 
-        font-size: min(max(.5rem,1vw),1.2rem);
+        font-size: min(max(.7rem,1vw),1.2rem);
 
         > div:first-child { //cont p
             //    flex-shrink: 0;
             position: relative;
             width: 100%;
-            //  height: 80%;
-            //   background-color: rgba(green,.9);
+            // height: 80%;
+            //       background-color: rgba(green,.9);
 
             #couv { // couv
                 --visib: "visible";
@@ -1856,14 +1856,18 @@ svg#go {
             > div:nth-child(5) { //cont recap + paie contscrooljs
                 position: absolute;
                 top: 0;
-                left: 50%;
+                left: 0; //50%;
+
+                right: 0;
                 overflow-y: auto;
                 scroll-behavior: smooth;
                 border-radius: 10% / 5%;
-                background-color: peru;
+                // background-color: peru;
                 animation: transpaye 2s forwards;
                 height: 100%;
-
+                //   max-width: 35rem;
+                //   width:100%;
+                //margin:auto;
                 &::-webkit-scrollbar {
                     border-radius: 8px;
                     background-color: whitesmoke;
@@ -1877,10 +1881,13 @@ svg#go {
                 @keyframes transpaye {
                     from {
                         width: 0;
+                        margin: 0;
                     }
 
                     to {
-                        width: 50%;
+                        width: 100%;
+                        max-width: 35rem;
+                        margin: auto;
                     }
                 }
 
@@ -1888,8 +1895,8 @@ svg#go {
                     position: relative;
                     top: 0;
                     text-align: center;
-                    font-size: 2rem;
-                    background-color: palevioletred;
+                    //  font-size: 2rem;
+                    //  background-color: palevioletred;
 
                     button {
                         display: inline-block;
@@ -1921,14 +1928,39 @@ svg#go {
             }
 
             #avert { //dispavert
-                display: block !important; //rien
-                position: relative;
-                top: -47%;
-                left: 1.4%;
-                width: 47%;
+                display: block; //rien
+                position: absolute; // !important;
+                //  top: 0;
+                //  margin-top:5rem;
+                //  left: 1.4%;
+                width: 90%;
+                max-width:25rem;
                 height: fit-content;
-                font-size: 80%;
-                background-color: yellow;
+                margin: auto;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 5px;
+                padding: 1em;
+               
+                // font-size: 80%;
+                background-color:lightslategrey;
+
+                span {
+                    display: block;
+                   // background-color: orange;
+                }
+
+                button {
+                    margin-top:-1em;
+                    padding-top:0 ;
+                    padding-bottom:0 ;
+                    display:block;
+                    position:relative;
+                 float:right;
+                  //  background-color: yellow;
+                }
             }
         }
     }

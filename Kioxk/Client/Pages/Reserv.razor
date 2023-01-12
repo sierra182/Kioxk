@@ -24,17 +24,14 @@
     }
 }
 <div id="couv" style="--visib:@visib" @onclick="(e)=>selectBefore(e)">
-    <img src="/item/res.webp" 
-    />
+    <img src="/item/res.webp" />
     <span style="opacity:@spanop"> &nbsp; Selectionnez dabord une date sur le calendrier :) &nbsp; </span>
 </div>
 <div id="pinterog" @onclick="pinterogToggle" style="transform:rotateY(@(pintdeg)deg)">
-    <img src="/item/interog.svg"
-    />
+    <img src="/item/interog.svg" />
 </div>
 <div id="donnees" style="opacity:@donop">
-    <img src="/item/donnees.svg"
-    />
+    <img src="/item/donnees.svg" />
 </div>
 <div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop">
     <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>
@@ -46,7 +43,7 @@
     <div id="contscrollJs">
 
         @if (paie!.Value.ajoutmail is not null && pay)
-        {
+        {           
             <div id="contpaie">
                 <div>
                     @((MarkupString)paie.Value.ajoutmail)
@@ -65,15 +62,20 @@
         </div>
     </div>
 
-    <div id="avert" style="display:@dispavert">
-        Un e-mail de pré-réservation viens de vous être envoyé avec ce récapitulatif et la procédure à suivre pour finaliser la réservation, pensez à vérifiez vos courriers indésirables,
-        en cas de non reception pensez à noter votre numéro de commande avant de fermer.
+    <div id="avert" style="display:@disp_but">
+        <span>
+            Un e-mail de pré-réservation viens de vous être envoyé avec ce récapitulatif et la procédure à suivre pour finaliser la réservation, pensez à vérifiez vos courriers indésirables,
+            en cas de non reception pensez à noter votre numéro de commande avant de fermer.
+        </span>
+
+        <button class="btn btn-succes" @onclick='()=>{disp_but = "none";}'> Ok </button>
+
     </div>
 }
 
 @code {
     [Parameter]
-    public HashSet<DateTime>? Selected { get; set; } 
+    public HashSet<DateTime>? Selected { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
@@ -81,7 +83,7 @@
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
     [Parameter]
-    public int[]? Prices { get; set; } 
+    public int[]? Prices { get; set; }
     [Parameter]
     public EventCallback<int[]> PricesChanged { get; set; }
 
@@ -93,6 +95,7 @@
     private Kioxk.Shared.Mails.Mails? mails;
     private Kioxk.Shared.Mails.Paiement? paie;
     private int i;
+    private string disp_but = "block";
 
     private int donop = 0;
     private int formop = 1;
@@ -107,7 +110,7 @@
 
     bool scrollHaut = false;
     protected override async Task OnAfterRenderAsync(bool firstRender)
-    {       
+    {
         if (scrollHaut)
         {
             await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
@@ -116,12 +119,14 @@
     }
 
     bool ptog = false;
-    private void pinterogToggle () {
+    private void pinterogToggle()
+    {
         if (!ptog)
         {
             donop = 1; formop = 0;
             pintdeg = 180;
-        } else 
+        }
+        else
         {
             donop = 0; formop = 1;
             pintdeg = 0;
@@ -131,7 +136,8 @@
     }
 
     bool selectpass = true;
-    private async Task selectBefore (MouseEventArgs e) {
+    private async Task selectBefore(MouseEventArgs e)
+    {
         if (selectpass)
         {
             selectpass = false;
@@ -142,7 +148,7 @@
         }
     }
 
-    string dispavert = "none";
+    // string dispavert = "none";
     private bool pay;
     string butcoltxt = "";
     string butcol = "";
@@ -161,7 +167,7 @@
         }
         else
         {
-            dispavert = "none";
+            //  dispavert = "none";
             butcoltxt = "";
             butcol = "";
             but = "Paiement";
@@ -169,18 +175,19 @@
             mails = null;
             paie = null;
             pay = false;
+            disp_but = "block";
             tog = false;
 
             Selected = null;
             await SelectedChanged.InvokeAsync(Selected);
-            myevents.RiseSyncEvent();           
+            myevents.RiseSyncEvent();
         }
     }
 
     private async Task CreateCommande()
     {
-        if ( Selected is not null && Seasons is not null && Prices is not null ) 
-    {
+        if (Selected is not null && Seasons is not null && Prices is not null)
+        {
             var sel = new HashSet<Datetime>();                                      // Convertis en entitée.
             foreach (var j in Selected)
             {
@@ -215,27 +222,28 @@
             await Send();
         }
     }
-      
-    private async Task Send(){
+
+    private async Task Send()
+    {
         try
         {
             Agenda.cts.Cancel();
-                      
-            var id = await Http.PostAsJsonAsync("api/commande/", com);          
-            i = await id.Content.ReadFromJsonAsync<int>();         
+
+            var id = await Http.PostAsJsonAsync("api/commande/", com);
+            i = await id.Content.ReadFromJsonAsync<int>();
             Console.WriteLine("Numero de commande: " + i);
             //  await js.InvokeVoidAsync("alert", "Réservation pré-validé");
-        
+
         }
         catch (Exception)
         {
             await js.InvokeVoidAsync("alert", "Echec de Connexion.!.");
         }
         finally
-        {          
+        {
             mails = new(i, com!.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected!, com.Total);
             paie = new();
-            dispavert = "block";
+            //  dispavert = "block";
             StateHasChanged();
             _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");
         }

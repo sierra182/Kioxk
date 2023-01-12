@@ -31,11 +31,11 @@ namespace Kioxk.Shared.Mails
 
             mybodymail = @"
             <div style='background-color: #17202A; color:white; text-align:center'>
-            <div style='color:black;background-color:white;font-size:1.2rem; font-weight:bold;'> Récapitulatif de votre Réservation </div>
+            <div style='color:black;background-color:white; font-weight:bold;'> Récapitulatif de votre Réservation </div>
             </br>
-            <div style='font-size:1rem;'>
+            <div style='font-size:1em'>
             <div>" + DateTime.Now.ToShortDateString() + @"
-            <div style='font-size:1rem;text-decoration-style:wavy;text-underline-offset:.1rem;text-decoration-line:underline;  text-decoration-thickness:.15rem'> Numéro de commande: " + CommandeId + "/" + DateTime.Now.Year + @"</div> 
+            <div style='text-decoration-style:wavy;text-underline-offset:.1rem;text-decoration-line:underline;  text-decoration-thickness:.15rem'> Numéro de commande: " + CommandeId + "/" + DateTime.Now.Year + @"</div> 
             </br>
             <div style='font-size:inherit'> Prénom: " + FirstName + @"</div>
             <div style=''> Nom: " + LastName + @"</div>
