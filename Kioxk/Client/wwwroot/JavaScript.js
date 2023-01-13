@@ -82,9 +82,8 @@ function scaler() {
 
 
     else {
+       
         window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
-        document.exitFullscreen();
-
        
         phs.style.setProperty("--max_size", `${maxs}`);
         car.style.width = "8%";
@@ -108,11 +107,11 @@ function scaler() {
          //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
         }
         contal.style.setProperty("--before_width", "70%");
-        contal.style.setProperty("--before_bottom", "0");
+      //  contal.style.setProperty("--before_bottom", "0");
         for (var cif of contifra) {
-           cif.firstChild.style.position = "relative";
+         //  cif.firstChild.style.position = "absolute";
             cif.firstChild.style.width = "100%";
-            cif.firstChild.style.bottom = "unset";
+           // cif.firstChild.style.bottom = "unset";
           //  cif.firstChild.style.position = "absolute";
             //cif.firstChild.style.backgroundColor = "red";
             //cif.firstChild.style.margin = "auto";
@@ -120,6 +119,10 @@ function scaler() {
 
         togScal = true;
     }
+    setTimeout(() => {
+        
+        document.exitFullscreen();
+    }, 1000);
 }
 
 //var naturalX;
@@ -128,11 +131,12 @@ function scaler() {
 function photosWatchDogScreenAndFullScreen() {
     //console.log("ratio window, img: " + document.body.offsetWidth + "/" + document.documentElement.clientHeight + " ... " + naturalX + "/" + naturalY);
 
-   
-   // phcont.style.setProperty("height", "fit-content");
 
-    if ((document.body.offsetWidth / document.documentElement.clientHeight) > 1) {   // vp land reel 
-        //for (var cif of contifra) {
+   // phcont.style.setProperty("height", "fit-content");
+    console.log(window.screen.width + " stop " + window.screen.height);
+    if ((document.body.offsetWidth / document.documentElement.clientHeight) > (1.1)) {   // vp land reel
+
+    //if ((window.screen.width / window.screen.height) > 1) { //for (var cif of contifra) {
         //    //cif.firstChild.style.backgroundColor = "blue";
         //    //cif.firstChild.style.margin = "-3.6rem auto auto auto";
         //    //cif.firstChild.style.position = "absolute";
@@ -148,19 +152,19 @@ function photosWatchDogScreenAndFullScreen() {
 
 
         for (var oneimg of allimg) {
-            oneimg.style.width = "auto";      
-            oneimg.style.height = .90 * document.documentElement.clientHeight + "px";
+            oneimg.style.width = "auto";
+            oneimg.style.height = `${.80 * document.documentElement.clientHeight}px`; //document.documentElement.clientHeight + "px";
             //  oneimg.style.maxHeight = "none";
         }
 
         contal.style.setProperty("--before_width", "60%");
-        contal.style.setProperty("--before_bottom", ".7rem");
+     //   contal.style.setProperty("--before_bottom", ".7rem");
         for (var cif of contifra) {
           //  cif.firstChild.style.backgroundColor = "blue";
             cif.firstChild.style.width = "fit-content";
           //  cif.firstChild.style.margin = "auto";
-          cif.firstChild.style.position = "absolute";
-           cif.firstChild.style.bottom = ".7rem";
+      //    cif.firstChild.style.position = "absolute";
+       //    cif.firstChild.style.bottom = ".7rem";
           //  cif.before.setProperty.width = "fit-content";
         }
     }
@@ -178,13 +182,13 @@ function photosWatchDogScreenAndFullScreen() {
             //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
         }
         contal.style.setProperty("--before_width", "70%");
-        contal.style.setProperty("--before_bottom", "unset");
+      //  contal.style.setProperty("--before_bottom", "unset");
         for (var cif of contifra) {
           //  cif.firstChild.style.backgroundColor = "red";
             cif.firstChild.style.width = "100%";
           //  cif.firstChild.style.margin = "auto";
-            cif.firstChild.style.position = "relative";
-            cif.firstChild.style.bottom = "0";
+          //  cif.firstChild.style.position = "relative";
+//            cif.firstChild.style.bottom = "0";
           //  cif.before.style.width = "70%";
         }
 
@@ -194,10 +198,11 @@ function photosWatchDogScreenAndFullScreen() {
         //}
       
     }
-  
-    if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
-        phs.requestFullscreen();
-    }
+    setTimeout(() => {
+        if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
+            phs.requestFullscreen();
+        }
+    }, 1000);
     //if ((document.body.offsetWidth / document.documentElement.clientHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
     //    console.log("ratio screen < ratio img");
 

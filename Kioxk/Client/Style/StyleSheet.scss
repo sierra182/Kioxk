@@ -471,6 +471,7 @@ svg#go {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
+      //  height:100%;
         //  background-color: red;
 
         #photos {
@@ -509,6 +510,7 @@ svg#go {
             font-size: min(max(.8rem,1vw),1.6rem);
 
             &:before {
+              //  display:none;
                 content: "";
                 width: 110%;
                 height: 110%;
@@ -535,7 +537,7 @@ svg#go {
                 width: 100%;
                 height: fit-content; // calc(max(var(--photo-width),var(--max_size)) / 1.5 ); //var(--cp_ph-y);
 
-                padding: 2rem 0;
+                padding: 1.13em 0;
                 margin: auto;
                 // overflow-x: hidden;
                 // overflow-y: visible;
@@ -668,6 +670,7 @@ svg#go {
                                 margin: auto;
                                 display: block;
                                 border-radius: 5px;
+                               // object-fit:scale-down;
                                 //  opacity:.5;
                                 // border:solid 2px;
                             }
@@ -700,6 +703,7 @@ svg#go {
                                     display: block;
                                     position: absolute;
                                     left: 0;
+                                 //   bottom:0;
                                     right: 0;
                                     width: 90%; // calc(max(var(--photo-width),0)/2 * .9);
                                     height: 1rem; //fit-content;// 1.2rem; //3.5rem;
@@ -728,6 +732,7 @@ svg#go {
                         left: 0;
                         top: 50%;
                         width: 10%; //calc(var(--photo-width)/2 / 5);
+                        max-width: 3rem;
                         height: fit-content; // calc(var(--photo-width)/2 / 5);
                         transform-origin: center;
                         transform: translateY(-50%) rotateZ(-180deg);
@@ -746,6 +751,7 @@ svg#go {
                         top: 50%;
                         right: 0;
                         width: 10%;
+                        max-width: 3rem;
                         height: fit-content; //calc(var(--photo-width)/2 / 5);
                         // height: calc(var(--photo-width)/2 / 5);
                         transform: translateY(-50%);
@@ -1899,10 +1905,11 @@ svg#go {
                     //  background-color: palevioletred;
 
                     button {
-                        display: inline-block;
+                        //   display: inline-block;
                         margin: auto;
-                        margin-top: 4px;
-                        margin-bottom: 4px;
+                        //  margin-top:.2em;
+                        //  margin-bottom: 4px;
+                        font-size: 1em;
                     }
                 }
 
@@ -1934,7 +1941,7 @@ svg#go {
                 //  margin-top:5rem;
                 //  left: 1.4%;
                 width: 90%;
-                max-width:25rem;
+                max-width: 25rem;
                 height: fit-content;
                 margin: auto;
                 top: 0;
@@ -1943,23 +1950,22 @@ svg#go {
                 bottom: 0;
                 border-radius: 5px;
                 padding: 1em;
-               
                 // font-size: 80%;
-                background-color:lightslategrey;
+                background-color: lightslategrey;
 
                 span {
                     display: block;
-                   // background-color: orange;
+                    // background-color: orange;
                 }
 
                 button {
-                    margin-top:-1em;
-                    padding-top:0 ;
-                    padding-bottom:0 ;
-                    display:block;
-                    position:relative;
-                 float:right;
-                  //  background-color: yellow;
+                    margin-top: -1em;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    display: block;
+                    position: relative;
+                    float: right;
+                    //  background-color: yellow;
                 }
             }
         }
