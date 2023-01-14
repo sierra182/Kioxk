@@ -579,7 +579,7 @@ svg#go {
                         border: .25rem solid green;
                         opacity: .5;
                         transition: 1s all;
-                       // transformOrigin = "0";
+                        // transformOrigin = "0";
                     }
                 }
 
@@ -764,8 +764,10 @@ svg#go {
                         //  background-color: mediumvioletred;
 
                         #path2416 { // Remplissage
-                            clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
+                         //   clip-path: polygon(0% var(--triremplback), 100% var(--triremplback), 100% 100%, 0% 100%);
+                            clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
                             transition: clip-path 1s;
+                            // background-color: mediumvioletred;
                         }
                     }
                 }
@@ -1593,7 +1595,7 @@ svg#go {
                 z-index: -1;
                 width: calc(100% + 5vw);
                 height: calc(100% + 5vw);
-                background-color: rgba(violet,.6);
+                background-color: rgba(white,.6);
                 backdrop-filter: blur(4px);
                 border: solid 1px;
                 border-radius: 5px;

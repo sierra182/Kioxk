@@ -64,18 +64,18 @@
 
     protected override async Task OnInitializedAsync() => await QtePh();
 
- //   protected override async Task OnAfterRenderAsync(bool fr)
- //   {
- //       foreach()
- //       {
- //           while (srcJpg < qtph - 1)
- //               if (srcJpg < qtph - 1)
- //               {
- //OnNext()
- //       }
-       
+    //   protected override async Task OnAfterRenderAsync(bool fr)
+    //   {
+    //       foreach()
+    //       {
+    //           while (srcJpg < qtph - 1)
+    //               if (srcJpg < qtph - 1)
+    //               {
+    //OnNext()
+    //       }
 
- //   }
+
+    //   }
 
     double prim_x;
     void OnDown(MouseEventArgs e) =>  prim_x = e.ScreenX;
@@ -148,7 +148,7 @@
         {
             srcJpg++;
             trn += (100 / qtph);
-
+            trb = 100 - trn ;
             var e = (100.0 / qtph);
             //   var de = e.ToString().Replace(",",".");
 
@@ -169,6 +169,7 @@
         {
             srcJpg--;
             trn -= (100 / qtph);
+            trb = 100 - trn;
             var e = (100.0 / qtph);
             c.WriteLine("rfloat back " + e + " ");// + Math.Round(e));
             phpc += e;// Math.Round(e);
