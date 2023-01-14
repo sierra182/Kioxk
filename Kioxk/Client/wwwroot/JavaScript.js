@@ -66,12 +66,12 @@ function scaler() {
         car.style.height = "5vw";
         car.style.borderRadius = "10%";
         car2.style.borderRadius = "10%";
-        car2.style.transformOrigin = "0";
+      //  car2.style.transformOrigin = "0";
       //  car2.style.top = "0";
-        car2.style.left = "50%";
-        car2.style.transform = "scale(.5,.1) translate(-50%)";
-        car2.style.backgroundColor = "white";
-        car2.style.borderColor = "white";
+       // car2.style.left = "50%";
+        car2.style.transform = "scale(.5,.1) ";
+        car2.style.backgroundColor = "lightgrey";
+        car2.style.borderColor = "transparent";
         car2.style.opacity = "1";
 
         window.addEventListener('resize', photosWatchDogScreenAndFullScreen);
@@ -84,18 +84,20 @@ function scaler() {
     else {
        
         window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
-       
+        document.exitFullscreen();
+
+        setTimeout(() => {            
         phs.style.setProperty("--max_size", `${maxs}`);
         car.style.width = "8%";
         car.style.height = "var(--chemin_width_carre)";
         car.style.borderRadius = "0 50% 0 0";
-        car2.style.transform = "scale(1,1)";
+            car2.style.transform = "scale(1,1)";
         car2.style.backgroundColor = "";
-        car2.style.borderColor = "red";
+        car2.style.borderColor = "green";
         car2.style.opacity = ".5";
         car2.style.borderRadius = "0 50% 0 0";
      //   car2.style.top = "0";
-        car2.style.left = "0";
+      //  car2.style.left = "0";
       //  phs.style.borderRadius = "5%";
       //  phs.style.position = "relative";
      //   phs.style.setProperty("width", "calc(max(var(--photo-width),var(--max_size)) / 2 * var(--mult_ph-scale))");
@@ -106,23 +108,24 @@ function scaler() {
             oneimg.style.height = "auto";
          //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
         }
-        contal.style.setProperty("--before_width", "70%");
+       // contal.style.setProperty("--before_width", "70%");
       //  contal.style.setProperty("--before_bottom", "0");
         for (var cif of contifra) {
          //  cif.firstChild.style.position = "absolute";
-            cif.firstChild.style.width = "100%";
+         //   cif.firstChild.style.width = "100%";
            // cif.firstChild.style.bottom = "unset";
           //  cif.firstChild.style.position = "absolute";
             //cif.firstChild.style.backgroundColor = "red";
             //cif.firstChild.style.margin = "auto";
         }
 
-        togScal = true;
+            togScal = true;
+        }, 1000);
     }
-    setTimeout(() => {
+  
         
-        document.exitFullscreen();
-    }, 1000);
+       
+   
 }
 
 //var naturalX;
@@ -157,11 +160,11 @@ function photosWatchDogScreenAndFullScreen() {
             //  oneimg.style.maxHeight = "none";
         }
 
-        contal.style.setProperty("--before_width", "60%");
+        //contal.style.setProperty("--before_width", "60%");
      //   contal.style.setProperty("--before_bottom", ".7rem");
         for (var cif of contifra) {
           //  cif.firstChild.style.backgroundColor = "blue";
-            cif.firstChild.style.width = "fit-content";
+          //  cif.firstChild.style.width = "fit-content";
           //  cif.firstChild.style.margin = "auto";
       //    cif.firstChild.style.position = "absolute";
        //    cif.firstChild.style.bottom = ".7rem";
@@ -181,11 +184,12 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.height = "auto";
             //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
         }
-        contal.style.setProperty("--before_width", "70%");
+      //  contal.style.setProperty("--before_width", "70%");
+        var x = contal.offsetWidth;
       //  contal.style.setProperty("--before_bottom", "unset");
         for (var cif of contifra) {
           //  cif.firstChild.style.backgroundColor = "red";
-            cif.firstChild.style.width = "100%";
+           // cif.firstChild.style.width = "100%";
           //  cif.firstChild.style.margin = "auto";
           //  cif.firstChild.style.position = "relative";
 //            cif.firstChild.style.bottom = "0";
@@ -198,11 +202,15 @@ function photosWatchDogScreenAndFullScreen() {
         //}
       
     }
+
+   
     setTimeout(() => {
         if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
             phs.requestFullscreen();
         }
-    }, 1000);
+    }, 1000); // Instructions à exécuter après le rafraîchissement du DOM
+    
+   
     //if ((document.body.offsetWidth / document.documentElement.clientHeight) < (naturalX / naturalY)) {  // l'ecran est proportionnellement moins large que la largeur reele de la photo
     //    console.log("ratio screen < ratio img");
 
