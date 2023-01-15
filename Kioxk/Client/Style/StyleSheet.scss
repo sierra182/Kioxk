@@ -6,22 +6,26 @@
     --maincontchild-width-percent: 50;
     --main-height: 100;
     --doc-height: 100%;
-    
     // @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 }
-body {overflow-x:hidden;}
+
+body {
+    overflow-x: hidden;
+}
+
 html {
-  //  font-size: 5px;
+    //  font-size: 5px;
     /* overflow-x: hidden;
     overflow-y: visible;*/
     //   overflow-y:visible;
 }
+
 body, html {
     font-family: 'Unbounded', cursive;
     // font-family: 'Global Sans Serif', cursive;
-  //  font-size: min(max(1rem,1vw),2rem);
-  //  font-size: 10px;
-   // line-height:16px;
+    //  font-size: min(max(1rem,1vw),2rem);
+    //  font-size: 10px;
+    // line-height:16px;
     //text-size-adjust:none;
     // background-color: aqua;
     // background-image: url("/item/papierinp.jpg");
@@ -68,18 +72,16 @@ img#land {
     // height: 58%;
 
     width: 150vh;
-  //  max-width:1900px;
+    //  max-width:1900px;
     //height:vh;
-   // margin: auto;
-    top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-   /* top: 0;
+    // margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* top: 0;
     left: 0;
     right: 0;
     bottom: 0;*/
-
- 
 }
 
 @media screen and (orientation:landscape) {
@@ -88,6 +90,7 @@ transform:translate(-50%,-50%);
         //  max-width: 1000px;
     }
 }
+
 svg#go {
     position: absolute;
     top: 50%;
@@ -98,7 +101,7 @@ svg#go {
     min-height: 100px;
     filter: drop-shadow(0px 0px 1px rgba(0,0,0,1));
     transition: transform .2s linear;
-  //  background-color: green;
+    //  background-color: green;
 
     &:active {
         width: 13.5vw;
@@ -151,14 +154,14 @@ svg#go {
 
                 &::before {
                     content: "";
-                    position:absolute;
-                    z-index:-1;
-                   // display:block;
+                    position: absolute;
+                    z-index: -1;
+                    // display:block;
                     width: 100%;
                     height: 100%;
                     filter: blur(2px);
                     background-color: rgba(white,.9);
-                    border-radius:1rem;
+                    border-radius: 1rem;
                 }
 
                 em {
@@ -403,39 +406,39 @@ svg#go {
     }
 }
 
-    #footer {
-        // display:none;
-        position: fixed;
-        bottom: 0; //calc( -1 * max(3rem,5vw));
-        width: 100%;
-        height: max(3rem,5vw);
-        text-align: center;
-        font-size: max(.7rem,1vw);
-        background: #3C3B3F; //fallback for old browsers
-        background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); // Chrome 10-25, Safari 5.1-6
-        background: linear-gradient(to right, #605C3C, #3C3B3F);
-        // background-color: violet;
-        //   opacity: .5;
+#footer {
+    // display:none;
+    position: fixed;
+    bottom: 0; //calc( -1 * max(3rem,5vw));
+    width: 100%;
+    height: max(3rem,5vw);
+    text-align: center;
+    font-size: max(.7rem,1vw);
+    background: #3C3B3F; //fallback for old browsers
+    background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); // Chrome 10-25, Safari 5.1-6
+    background: linear-gradient(to right, #605C3C, #3C3B3F);
+    // background-color: violet;
+    //   opacity: .5;
 
-        &:before {
-            content: "Siret: 299792458ms \A - Webmaster Freelance - sierra-echo@msn.com";
-            white-space: pre-wrap;
-            // display: block;//;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            width: fit-content;
-            height: fit-content;
-            margin: auto;
-            //   background-color: grey;
+    &:before {
+        content: "Siret: 299792458ms \A - Webmaster Freelance - sierra-echo@msn.com";
+        white-space: pre-wrap;
+        // display: block;//;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: fit-content;
+        height: fit-content;
+        margin: auto;
+        //   background-color: grey;
 
-            em {
-                color: blue;
-            }
+        em {
+            color: blue;
         }
     }
+}
 
 #maincont {
     --maincont-width: 95%; //vw;//95vw;
@@ -764,7 +767,7 @@ svg#go {
                         //  background-color: mediumvioletred;
 
                         #path2416 { // Remplissage
-                         //   clip-path: polygon(0% var(--triremplback), 100% var(--triremplback), 100% 100%, 0% 100%);
+                            //   clip-path: polygon(0% var(--triremplback), 100% var(--triremplback), 100% 100%, 0% 100%);
                             clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
                             transition: clip-path 1s;
                             // background-color: mediumvioletred;
@@ -957,7 +960,7 @@ svg#go {
                             width: max(3vw,2rem);
                             height: max(3vw,2rem);
                             margin: auto 0;
-                            background-color: blue;
+                          //  background-color: blue;
 
                             div { // in element
                                 display: flex;
@@ -966,8 +969,12 @@ svg#go {
                                 justify-content: center;
                                 align-items: center;
                                 background-color: red;
+                                border-radius: 5px;
+                                // border: solid 1em red !important;
                             }
                         }
+
+
 
                         > span {
                             position: relative;
@@ -982,6 +989,15 @@ svg#go {
                             filter: drop-shadow(2px 2px 1.3px black);
                             flex-shrink: 0;
                             margin: auto 0;
+                        }
+                    }
+
+                    > div:nth-child(7), > div:nth-child(8) {
+                        > div {
+                            div {
+                                border: solid .3em;//!important;
+                               // border-color: green !important;
+                            }
                         }
                     }
                 }
@@ -1054,22 +1070,36 @@ svg#go {
                         display: inline-block;
                         position: relative;
                         color: white;
-                        //  border: outset;
-                        border-width: 3px 5px;
-                        border-color: cornflowerblue;
+                        // border-width: 3px 5px;
+                        // border-color: cornflowerblue;
                         border-radius: 60% / 30%;
-                        filter: drop-shadow(2px 2px 2px black);
-                        background-color: rgba(0, 0, 0, .3);
+                        //  filter: drop-shadow(2px 2px 2px black);
+                        background-color: rgba(0, 0, 0, .7);
+                        //filter: blur(2px);
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: -.2em;
+                            left: -.2em;
+                            right: -.2em;
+                            bottom: -.2em;
+                            // filter: blur(1px);
+                            border-radius: 60% / 30%;
+                            border: solid .4em white;
+                            //  box-sizing:border-box;
+                        }
 
                         div {
                             display: inline-block;
                             text-align: center;
                             // background-color: red;
+                            padding: .5em 1.5em;
 
                             span {
                                 display: block;
-                                padding: 0 1em;
-                                line-height: 1;
+                                //  padding-top: .2em;
+                                line-height: 1.2;
                                 //  font-size: 1rem;
                                 // background-color: orange;
                             }
