@@ -44,8 +44,17 @@
 
     </label>
 
-    <button class="btn btn-success @btnw" type="submit" @onclick='async()=> { myevents.RisePointerEvent(); if (ec!.Validate()){ btnw = "btn-wait"; text= "En cours..."; await ComRapp.InvokeAsync(Com); btnw = ""; text = "Envoyez"; } myevents.RisePointerEvent();}'>
+    <button class="btn btn-success @btnw" type="submit" @onclick='async()=> {
+
+myevents.RisePointerEvent();
+if (ec!.Validate())
+{ btnw = "btn-wait"; text= "En cours...";
+await ComRapp.InvokeAsync(Com); btnw = "";
+text = "Envoyez"; }
+myevents.RisePointerEvent();}'>
+
         @text
+
     </button>
 
     <ValidationSummary />

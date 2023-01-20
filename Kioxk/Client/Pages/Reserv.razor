@@ -27,7 +27,7 @@
     <img src="/item/res.webp" />
     <span style="opacity:@spanop"> &nbsp; Selectionnez dabord une date sur le calendrier :) &nbsp; </span>
 </div>
-<div id="pinterog" @onclick="pinterogToggle" style="transform:rotateY(@(pintdeg)deg)">
+<div id="pinterog" @onclick="pinterogToggle" style="transform:rotateY(@(pintdeg)deg); opacity:@pintop; pointer-events:@pint_pointer_event">
     <img src="/item/interog.svg" />
 </div>
 <div id="donnees" style="opacity:@donop">
@@ -97,6 +97,8 @@
     private int i;
     private string disp_but = "block";
 
+    private string pint_pointer_event = "initial";
+    private int pintop = 1;
     private int donop = 0;
     private int formop = 1;
     private int pintdeg = 0;
@@ -120,7 +122,7 @@
 
     bool ptog = false;
     private void pinterogToggle()
-    {
+    {       
         if (!ptog)
         {
             donop = 1; formop = 0;
@@ -131,8 +133,7 @@
             donop = 0; formop = 1;
             pintdeg = 0;
         }
-        ptog = !ptog;
-
+        ptog = !ptog;        
     }
 
     bool selectpass = true;
@@ -159,6 +160,7 @@
     {
         if (!tog)
         {
+            // pintop = 1;
             pay = true; scrollHaut = true;
             butcoltxt = "orange";
             butcol = "white";
@@ -168,6 +170,8 @@
         else
         {
             //  dispavert = "none";
+            pint_pointer_event = "initial";
+            pintop = 1;
             butcoltxt = "";
             butcol = "";
             but = "Paiement";
@@ -186,6 +190,9 @@
 
     private async Task CreateCommande()
     {
+        pint_pointer_event = "none";
+        pintop = 0;
+
         if (Selected is not null && Seasons is not null && Prices is not null)
         {
             var sel = new HashSet<Datetime>();                                      // Convertis en entitée.
