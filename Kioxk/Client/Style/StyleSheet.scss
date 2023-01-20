@@ -960,7 +960,7 @@ svg#go {
                             width: max(3vw,2rem);
                             height: max(3vw,2rem);
                             margin: auto 0;
-                          //  background-color: blue;
+                            //  background-color: blue;
 
                             div { // in element
                                 display: flex;
@@ -995,8 +995,8 @@ svg#go {
                     > div:nth-child(7), > div:nth-child(8) {
                         > div {
                             div {
-                                border: solid .3em;//!important;
-                               // border-color: green !important;
+                                border: solid .3em; //!important;
+                                // border-color: green !important;
                             }
                         }
                     }
@@ -1300,74 +1300,96 @@ svg#go {
                             margin-left: 30%;
                             transform-origin: center;
                             transition: transform 5s;
-                            filter: drop-shadow(-3px 3px 2px rgba(0,0,0,.7));
-
-                            #rect1410 {
+                            filter: drop-shadow(3px 3px 2px rgba(0,0,0,.7));
+                            // filter: drop-shadow(-3px 3px 2px rgba(0,0,0,.7));
+                            /*    #rect1169 { // #objectcut {
                                 height: 0%;
                                 transform-origin: center;
                                 transform: rotateZ(180deg);
-                            }
-
-                            #rect881, #path1527 {
+                            }*/
+                            /*  #rect881, #path1527 {
                                 transform-origin: center;
                                 transition: transform 5s;
-                            }
-
-                            #myPathrect {
+                            }*/
+                            /*   #clipPath317 { //} #myPathrect {
+                                //     position:relative;
                                 transform-origin: center;
-                                transform: rotateZ(0deg);
-                                transition: transform 5s;
+                                //     transform: rotateZ(0deg);
+                                transition: transform 2s;
+                                //  transform:scale(2);
+                            }*/
+
+                            #path512 {
+                                transition: all 4s;
+                                clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+                                // clip-path: polygon(0% 0%, 100% 100%, 100% 0%, 0% 100%);
                             }
 
                             &.mycallplein { // AnimRempl
-                                transform: rotateZ(360deg);
+                                //  transform: rotateZ(360deg);
 
-                                #rect1410 {
-                                    animation: aug-height 5s linear forwards;
+                                #path512 { // #objectcut {
+                                    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+                                    // transform: translateY(-100%);
+                                    //   animation: aug-height 5s linear forwards;
+                                    /*  fill: black !important;
+                                    stroke-width: 3px;
+                                    visibility: hidden !important;*/
+                                    // transform: translate(20px);
                                 }
-
-                                #rect881, #path1527 {
+                                /*  #rect881, #path1527 {
                                     transform: rotateZ(-360deg);
-                                }
+                                }*/
 
-                                #myPathrect {
-                                    transform: rotateZ(-360deg);
+                                #clipPath1167 { //} #myPathrect {
+                                    // transform: rotateZ(-360deg);
+                                    //  animation: aug-height 5s linear forwards;
                                 }
                             }
 
                             &.mycallvide { // AnimVidange
-                                transform: rotateZ(-360deg);
+                                //   transform: rotateZ(-360deg);
 
-                                #rect1410 {
-                                    animation: dim-height 5s reverse linear forwards;
+                                #path512 { // #objectcut {
+                                    //  transform: translate(20px,10px);
+                                    // transform: translate(-20px);
+                                    //  animation: dim-height 5s linear forwards;
+                                    //  transform: translateY(0%);
                                 }
-
-                                #rect881, #path1527 {
+                                /*  #rect881, #path1527 {
                                     transform: rotateZ(360deg);
-                                }
+                                }*/
 
-                                #myPathrect {
-                                    transform: rotateZ(360deg);
+                                #clipPath1167 { //} #myPathrect {
+                                    //  animation: dim-height 5s reverse linear forwards;
+                                    //  transform: rotateZ(360deg);
                                 }
                             }
 
                             @keyframes aug-height {
                                 from {
-                                    height: 20%;
+                                    //  height: 200px !important; //%;
+                                    // top:0;
+                                    // transform: translateY(0%);
+                                    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
                                 }
 
                                 to {
-                                    height: 80%;
+                                    // top:20px;//
+                                    // height: 80% !important; //%;
+                                    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
                                 }
                             }
 
                             @keyframes dim-height {
                                 from {
-                                    height: 20%;
+                                    //  height: 20% !important; //%;
+                                    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
                                 }
 
                                 to {
-                                    height: 80%;
+                                    //    height: 80% !important; //%;
+                                    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
                                 }
                             }
                         }
