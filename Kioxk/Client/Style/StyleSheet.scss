@@ -731,6 +731,7 @@ svg#go {
                     height: 100%;
                     position: absolute;
                     top: 0;
+                    pointer-events: none;
                     //     pointer-events:none;
                     // background-color: orange;
                     //   z-index:99;
@@ -746,6 +747,7 @@ svg#go {
                         @include onactive_tri(translateY(-50%) rotateZ(-180deg));
                         filter: drop-shadow(-3px -3px 2px rgba(0,0,0,.7));
                         //  background-color: mediumvioletred;
+                        pointer-events: all;
 
                         #path2416 { // Remplissage
                             clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
@@ -765,6 +767,7 @@ svg#go {
                         @include onactive_tri(translateY(-50%));
                         filter: drop-shadow(-3px 3px 2px rgba(0,0,0,.7));
                         //  background-color: mediumvioletred;
+                        pointer-events: all;
 
                         #path2416 { // Remplissage
                             //   clip-path: polygon(0% var(--triremplback), 100% var(--triremplback), 100% 100%, 0% 100%);
@@ -1682,7 +1685,7 @@ svg#go {
                 transition: all 1s;
                 z-index: 2;
                 width: 6%;
-                min-width: 2rem;                
+                min-width: 2rem;
                 /*&:active {
                     transform:scale(.9) !important;
                 }*/
