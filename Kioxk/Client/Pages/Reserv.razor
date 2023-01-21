@@ -10,6 +10,7 @@
 @{
     if (Selected is not null)  // ouvre
     {
+        //pint_pointer_event = "initial";
         op = 0.9;
         pter = "none";
         trans = "100.5";
@@ -23,6 +24,7 @@
         visib = "visible";
     }
 }
+
 <div id="couv" style="--visib:@visib" @onclick="(e)=>selectBefore(e)">
     <img src="/item/res.webp" />
     <span style="opacity:@spanop"> &nbsp; Selectionnez dabord une date sur le calendrier :) &nbsp; </span>
@@ -33,13 +35,16 @@
 <div id="donnees" style="opacity:@donop">
     <img src="/item/donnees.svg" />
 </div>
-<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop">
+<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop; pointer-events:@form_pointer_event">
     <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>
 
 </div>
 
-@if (mails! is not null)
+
+@if (mails is not null)
 {
+    form_pointer_event = "none";
+    formop = 0;
     <div id="contscrollJs">
 
         @if (paie!.Value.ajoutmail is not null && pay)
@@ -74,8 +79,9 @@
 }
 
 @code {
+    private HashSet<DateTime>? sel;
     [Parameter]
-    public HashSet<DateTime>? Selected { get; set; }
+    public HashSet<DateTime>? Selected { get{ return sel; } set { sel = value; if (sel is not null && !create) { pint_pointer_event = "initial"; } } }
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
@@ -97,10 +103,12 @@
     private int i;
     private string disp_but = "block";
 
-    private string pint_pointer_event = "initial";
+    private bool create = false;
+    private string pint_pointer_event = "none";
     private int pintop = 1;
     private int donop = 0;
     private int formop = 1;
+    private string form_pointer_event = "initial";
     private int pintdeg = 0;
     private int spanop = 0;
 
@@ -170,7 +178,10 @@
         else
         {
             //  dispavert = "none";
-            pint_pointer_event = "initial";
+            form_pointer_event = "initial";
+            formop = 1;
+            create = false;
+            pint_pointer_event = "none";
             pintop = 1;
             butcoltxt = "";
             butcol = "";
@@ -190,7 +201,9 @@
 
     private async Task CreateCommande()
     {
+        create = true;
         pint_pointer_event = "none";
+        form_pointer_event = "none";
         pintop = 0;
 
         if (Selected is not null && Seasons is not null && Prices is not null)
