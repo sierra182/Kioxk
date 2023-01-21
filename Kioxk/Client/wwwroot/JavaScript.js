@@ -255,7 +255,7 @@ function photosWatchDogScreenAndFullScreen() {
 
 function myscrollTo(el) {   
     var elem = document.getElementById(el);
-    window.scrollTo(0, elem.offsetTop + .35 * elem.offsetTop);
+    window.scrollTo(0, elem.offsetTop + elem.offsetHeight + .25 * document.documentElement.clientHeight);
 }
 
 function scroll(el, sens) {
