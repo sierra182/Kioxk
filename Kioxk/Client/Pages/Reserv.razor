@@ -158,44 +158,53 @@
     }
 
     // string dispavert = "none";
-    private bool pay;
+    bool pay;
     string butcoltxt = "";
     string butcol = "";
     string but = "Paiement";
     bool tog = false;
+    bool pass_change = true;
 
     private async Task ChangeOnClick()
     {
-        if (!tog)
+        if (pass_change)
         {
-            // pintop = 1;
-            pay = true; scrollHaut = true;
-            butcoltxt = "orange";
-            butcol = "white";
-            but = "Fermer";
-            tog = true;
-        }
-        else
-        {
-            //  dispavert = "none";
-            form_pointer_event = "initial";
-            formop = 1;
-            create = false;
-            pint_pointer_event = "none";
-            pintop = 1;
-            butcoltxt = "";
-            butcol = "";
-            but = "Paiement";
-            scrollHaut = false;
-            mails = null;
-            paie = null;
-            pay = false;
-            disp_but = "block";
-            tog = false;
+            pass_change = false;
 
-            Selected = null;
-            await SelectedChanged.InvokeAsync(Selected);
-            myevents.RiseSyncEvent();
+            if (!tog)
+            {
+                // pintop = 1;
+                pay = true; scrollHaut = true;
+                butcoltxt = "orange";
+                butcol = "white";
+                but = "Fermer";
+                tog = true;
+            }
+            else
+            {
+                //  dispavert = "none";
+                form_pointer_event = "initial";
+                formop = 1;
+                create = false;
+                pint_pointer_event = "none";
+                pintop = 1;
+                butcoltxt = "";
+                butcol = "";
+                but = "Paiement";
+                scrollHaut = false;
+                mails = null;
+                paie = null;
+                pay = false;
+                disp_but = "block";
+                tog = false;
+
+                Selected = null;
+                await SelectedChanged.InvokeAsync(Selected);
+                myevents.RiseSyncEvent();
+            }
+
+            await Task.Delay(1000);
+            pass_change = true;
         }
     }
 

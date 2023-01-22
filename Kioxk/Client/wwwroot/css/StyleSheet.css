@@ -713,7 +713,7 @@ svg#go:active {
   flex-shrink: 0;
   width: max(3vw, 2rem);
   height: max(3vw, 2rem);
-  margin: auto 0;
+  margin: 0.2em 0;
 }
 #maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div > div div {
   display: flex;

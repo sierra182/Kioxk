@@ -16,6 +16,12 @@ function resizeIframe() {
         }
         resizeWatch();
         fr_Frame = false;
+
+        //if (window.devicePixelRatio) {
+        //    var ratio = window.devicePixelRatio;
+        //    alert("Le rapport de pixel réel/pixel CSS de l'appareil est de: " + ratio);
+        //}
+        //else { alert("nope!"); }
     }
 }
 
