@@ -253,11 +253,17 @@ function photosWatchDogScreenAndFullScreen() {
 //    naturalY = img.naturalHeight;
 //}
 
-function myscrollTo(el) {   
+//function myscrollTo(el) {   
+//    var elem = document.getElementById(el);
+//    window.scrollTo(0, elem.offsetTop + elem.offsetHeight / 2 + document.documentElement.clientHeight / 2);
+//}
+function myscrollTo(el) {
     var elem = document.getElementById(el);
-    window.scrollTo(0, elem.offsetTop + elem.offsetHeight + .25 * document.documentElement.clientHeight);
+    var y = window.pageYOffset + elem.getBoundingClientRect().top;
+    var elementHeight = elem.offsetHeight;
+    var middle = y - (window.innerHeight / 2) + (elementHeight / 2);
+    window.scrollTo({ top: middle, behavior: 'smooth' });
 }
-
 function scroll(el, sens) {
 
     var elem = document.getElementById(el);

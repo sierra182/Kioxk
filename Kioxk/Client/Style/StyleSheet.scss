@@ -511,6 +511,7 @@ svg#go {
             // overflow-x: hidden;
             //  overflow-y: hidden;
             font-size: min(max(.8rem,1vw),1.6rem);
+          //  background-color: red;
 
             &:before {
                 //  display:none;
@@ -1536,8 +1537,8 @@ svg#go {
             //    flex-shrink: 0;
             position: relative;
             width: 100%;
-            // height: 80%;
-            //       background-color: rgba(green,.9);
+            height: fit-content; //auto;//80%;
+            background-color: green;
 
             #couv { // couv
                 --visib: "visible";
@@ -1924,14 +1925,14 @@ svg#go {
                 position: absolute;
                 top: 0;
                 left: 0; //50%;
-
+                //display:none;
                 right: 0;
                 overflow-y: auto;
                 scroll-behavior: smooth;
                 border-radius: 10% / 5%;
-                // background-color: peru;
+                background-color: peru;
                 animation: transpaye 2s forwards;
-                height: 100%;
+                height: fit-content; //100%;
                 //   max-width: 35rem;
                 //   width:100%;
                 //margin:auto;
@@ -1963,7 +1964,7 @@ svg#go {
                     top: 0;
                     text-align: center;
                     //  font-size: 2rem;
-                    //  background-color: palevioletred;
+                    background-color: palevioletred;
 
                     button {
                         //   display: inline-block;
@@ -1985,7 +1986,7 @@ svg#go {
                         padding-left: .5rem;
                         padding-right: .5rem;
                         color: white;
-                        // background-color: yellow;
+                        background-color: yellow;
 
                         > div:first-of-type {
                             border-top-right-radius: 2vw;
@@ -2009,6 +2010,7 @@ svg#go {
                 left: 0;
                 right: 0;
                 bottom: 0;
+                border: black solid 1px;
                 border-radius: 5px;
                 padding: 1em;
                 // font-size: 80%;
@@ -2020,11 +2022,12 @@ svg#go {
                 }
 
                 button {
-                    margin-top: -1em;
+                    //  margin-top: -1em;
                     padding-top: 0;
                     padding-bottom: 0;
                     display: block;
                     position: relative;
+                    line-height: 1em;
                     float: right;
                     //  background-color: yellow;
                 }
