@@ -267,6 +267,9 @@ svg#go {
         height: 100%;
         //   background-color: orange;
         font-size: max(.5rem,1.2vw);
+        position: fixed;
+        z-index: 4;
+        pointer-events: none;
 
         > div:first-child {
             display: flex;
@@ -279,6 +282,7 @@ svg#go {
             height: fit-content;
             margin: auto;
             // background-color: lightgreen;
+            pointer-events: all;
 
             > div:first-of-type { //tel
                 display: flex;
@@ -335,7 +339,8 @@ svg#go {
                 div:first-of-type { // img num
                     position: relative;
                     transition: all .5s;
-                    background-color: aqua;
+                    //  background-color: aqua;
+                    background-color: $color;
 
                     img {
                         width: var(--item_contact_size);
@@ -347,6 +352,7 @@ svg#go {
             > div:last-of-type { //mail
                 display: flex;
                 position: relative;
+                //   position: fixed;
                 width: fit-content;
                 height: fit-content;
                 //    margin-left: .2em;
@@ -395,10 +401,13 @@ svg#go {
                 }
 
                 div:last-of-type { //image mail
+
                     position: relative;
+                    top: 0;
                     right: 0;
                     transition: all .5s;
-                    background-color: cyan;
+                    // background-color: cyan;
+                    background-color: $color;
 
                     img {
                         width: var(--item_contact_size);
@@ -1541,7 +1550,7 @@ svg#go {
         //  @include ombre();
         //  background-color: blue; //#00c6b0;
         //  display: none;
-
+        z-index:5;
         font-size: min(max(.7rem,1vw),1.2rem);
 
         > div:first-child { //cont p
