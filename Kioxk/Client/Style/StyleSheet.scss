@@ -1,4 +1,6 @@
-﻿
+﻿//$color: linear-gradient(to right, #605C3C, #3C3B3F);
+
+$color: #0081CF;
 :root {
     @import url('/photo/legend/iFrameSs.css');
     //  @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
@@ -6,6 +8,7 @@
     --maincontchild-width-percent: 50;
     --main-height: 100;
     --doc-height: 100%;
+    --color: linear-gradient(to right, #605C3C, #3C3B3F);
     // @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 }
 
@@ -70,7 +73,7 @@ img#land {
     position: fixed;
     z-index: -1;
     // height: 58%;
-
+    display:none;
     width: 150vh;
     //  max-width:1900px;
     //height:vh;
@@ -110,8 +113,8 @@ svg#go {
 }
 
 #header {
-    --margin_top: calc(max(2rem,5vw) + .5vw + .2rem);
-    --item_contact_size: max(2rem,5vw);
+    --margin_top: calc(max(4rem,5vw) + .5vw + .2rem);
+    --item_contact_size: max(4rem,5vw);
     --esp_h1: 0;
     position: relative;
     width: 100%;
@@ -227,7 +230,8 @@ svg#go {
             background-color: whitesmoke;
             background: #3C3B3F; /* fallback for old browsers */
             background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            //  background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: $color;
             //border:solid 1px;
             perspective: 25vw;
             perspective-origin: top;
@@ -416,10 +420,10 @@ svg#go {
     font-size: max(.7rem,1vw);
     background: #3C3B3F; //fallback for old browsers
     background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); // Chrome 10-25, Safari 5.1-6
-    background: linear-gradient(to right, #605C3C, #3C3B3F);
+    // background: linear-gradient(to right, #605C3C, #3C3B3F);
+    background: $color; 
     // background-color: violet;
     //   opacity: .5;
-
     &:before {
         content: "Siret: 299792458ms \A - Webmaster Freelance - sierra-echo@msn.com";
         white-space: pre-wrap;
@@ -511,7 +515,7 @@ svg#go {
             // overflow-x: hidden;
             //  overflow-y: hidden;
             font-size: min(max(.8rem,1vw),1.6rem);
-          //  background-color: red;
+            //  background-color: red;
 
             &:before {
                 //  display:none;
@@ -753,6 +757,7 @@ svg#go {
                         #path2416 { // Remplissage
                             clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
                             transition: clip-path linear 1s;
+                            fill: $color !important;
                         }
                     }
 
@@ -774,6 +779,7 @@ svg#go {
                             //   clip-path: polygon(0% var(--triremplback), 100% var(--triremplback), 100% 100%, 0% 100%);
                             clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
                             transition: clip-path 1s;
+                            fill: $color !important;
                             // background-color: mediumvioletred;
                         }
                     }
@@ -865,7 +871,8 @@ svg#go {
                     /*   margin-bottom: .5rem;*/
                     border: solid white 1px;
                     border-radius: 50px; //;
-                    background-color: rgba(darkcyan,.7);
+                    background: $color;
+                    opacity: .7;
                     //                //background-color: rgba(#3fe64f,.9); // rgba(#066db5,.8);
                     // clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 101%,90% 101%, 10% 101%, 0% 100%);
                     //  background: linear-gradient(90deg, rgba(68,133,47,1) 0%, rgba(63,230,79,1) 53%, rgba(6,181,158,1) 100%);
@@ -1198,7 +1205,8 @@ svg#go {
                         /*background: #3C3B3F;*/ /* fallback for old browsers */
                         /*background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);*/ /* Chrome 10-25, Safari 5.1-6 */
                         /*background: linear-gradient(to right, #605C3C, #3C3B3F);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                        background-color: darkcyan;
+                        //   background-color: darkcyan;
+                        background-color: $color;
                     }
 
                     span {
@@ -1275,6 +1283,7 @@ svg#go {
                         #path2416 { // Remplissage
                             clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
                             transition: clip-path 1s;
+                            fill: $color !important;
                         }
                     }
 
@@ -1289,6 +1298,7 @@ svg#go {
                         #path2416 { // Remplissage
                             clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
                             transition: clip-path 1s;
+                            fill: $color !important;
                         }
                     }
 
@@ -1326,6 +1336,7 @@ svg#go {
                             #path512 {
                                 transition: all 4s;
                                 clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+                                fill: $color !important;
                                 // clip-path: polygon(0% 0%, 100% 100%, 100% 0%, 0% 100%);
                             }
 
@@ -1538,7 +1549,7 @@ svg#go {
             position: relative;
             width: 100%;
             height: fit-content; //auto;//80%;
-        //    background-color: green;
+            //    background-color: green;
 
             #couv { // couv
                 --visib: "visible";
@@ -1583,7 +1594,8 @@ svg#go {
                     height: 2rem;
                     border-top: solid rgba(white,.6) 1px;
                     background: rgb(39,133,117);
-                    background: linear-gradient(90deg, rgba(39,133,117,1) 0%, rgba(44,189,56,1) 35%, rgba(105,197,28,1) 59%, rgba(0,212,255,1) 100%);
+                    //    background: linear-gradient(90deg, rgba(39,133,117,1) 0%, rgba(44,189,56,1) 35%, rgba(105,197,28,1) 59%, rgba(0,212,255,1) 100%);
+                    background: $color;
                     filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
                 }
 
@@ -1602,7 +1614,8 @@ svg#go {
                     height: 100%;
                     // border: solid 1px;
                     background: rgb(39,133,117);
-                    background: linear-gradient(180deg, rgba(39,133,117,1) 0%, rgba(44,189,56,1) 35%, rgba(105,197,28,1) 59%, rgba(0,212,255,1) 100%);
+                    //   background: linear-gradient(180deg, rgba(39,133,117,1) 0%, rgba(44,189,56,1) 35%, rgba(105,197,28,1) 59%, rgba(0,212,255,1) 100%);
+                    background: $color;
                     filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
                 }
 
@@ -1834,7 +1847,8 @@ svg#go {
                         margin: auto;
                         border: outset 1px;
                         border-radius: 5px;
-                        background-color: darkcyan;
+                        // background-color: darkcyan;
+                        background: $color;
                         // position: relative;
 
                         &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -1893,7 +1907,7 @@ svg#go {
                         border: solid 4px;
                         border-radius: 5% / 45%;
                         //  filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
-                        background-color: darkcyan;
+                        background-color: $color;
                         // background-color: #32de84;
                     }
 
@@ -1930,7 +1944,7 @@ svg#go {
                 overflow-y: auto;
                 scroll-behavior: smooth;
                 border-radius: 10% / 5%;
-              //  background-color: peru;
+                //  background-color: peru;
                 animation: transpaye 2s forwards;
                 height: 100%;
                 //   max-width: 35rem;
@@ -1964,8 +1978,9 @@ svg#go {
                     top: 0;
                     text-align: center;
                     //  font-size: 2rem;
-                 //   background-color: palevioletred;
-                    height:fit-content(100px);
+                    //   background-color: palevioletred;
+                    height: fit-content(100px);
+
                     button {
                         //   display: inline-block;
                         margin: 1em;
