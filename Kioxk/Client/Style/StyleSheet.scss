@@ -30,7 +30,7 @@ body, html {
     //  font-size: 10px;
     // line-height:16px;
     //text-size-adjust:none;
-    // background-color: aqua;
+     background-color: $color;
     // background-image: url("/item/papierinp.jpg");
 }
 
@@ -70,8 +70,9 @@ body, html {
 }
 
 img#land {
+    display:none;
     position: fixed;
-    z-index: -1;
+    z-index: 0;
     // height: 58%;
  //   display:none;
     width: 150vh;
@@ -149,7 +150,7 @@ svg#go {
                 width: fit-content;
                 height: fit-content;
                 margin: auto;
-                // color: grey; // white;
+                color: white;
                 font-size: max(1rem,2.5vw);
                 font-weight: 800;
                 font-family: 'Montserrat', sans-serif;
@@ -162,11 +163,11 @@ svg#go {
                     // display:block;
                     width: 110%;
                     height: 105%;
-                    filter: blur(2px);
+                    backdrop-filter: blur(1px);
                    transform:translate(-50%,-50%);
                    top:50%;
                    left:50%;
-                    background-color: rgba(white,.9);
+                    background-color: rgba(white,.7);
                     border-radius: 1rem;
                 }
 
@@ -174,7 +175,7 @@ svg#go {
                     position: relative;
                     margin-left: min(19.2vw, 16rem);
                     font-style: normal;
-                    color: grey;
+                    color: white;
                     //   background-color: red;
                 }
             }
