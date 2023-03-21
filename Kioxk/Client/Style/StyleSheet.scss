@@ -13,7 +13,7 @@ $color: #0081CF;
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: hidden;//
 }
 
 html {
@@ -96,9 +96,12 @@ img#land {
 }
 
 svg#go {
+    display:none;
     position: absolute;
     top: 50%;
-    left: 10%;
+    left: 50%;////
+    margin:auto;
+    left:0;right:0;//bottom:0;
     height: 14vw;
     width: 14vw;
     min-width: 100px;
@@ -154,19 +157,18 @@ svg#go {
                 font-size: max(1rem,2.5vw);
                 font-weight: 800;
                 font-family: 'Montserrat', sans-serif;
-
-               // background-color:red;
+                // background-color:red;
                 &::before {
-                    content: "";
+                    //  content: "";
                     position: absolute;
                     z-index: -1;
                     // display:block;
                     width: 110%;
                     height: 105%;
                     backdrop-filter: blur(1px);
-                   transform:translate(-50%,-50%);
-                   top:50%;
-                   left:50%;
+                    transform: translate(-50%,-50%);
+                    top: 50%;
+                    left: 50%;
                     background-color: rgba(white,.7);
                     border-radius: 1rem;
                 }
@@ -252,6 +254,7 @@ svg#go {
                 margin-right: .5vw;
                 transform-origin: left;
                 transform: rotateY(340deg);
+                visibility: hidden;
                 //  position: fixed; //
             }
 
@@ -261,6 +264,7 @@ svg#go {
                 margin-left: .5vw;
                 transform-origin: right;
                 transform: rotateY(20deg);
+                visibility: hidden;
                 //  position: fixed; //
             }
         }
@@ -329,6 +333,7 @@ svg#go {
                 &:focus div:last-of-type { // vise num div
                     width: 9em;
                     // height: 3rem;
+
                     background-color: white;
                 }
 
@@ -345,6 +350,7 @@ svg#go {
                     transition: all .5s;
                     //  background-color: aqua;
                     background-color: black;
+                    border-radius: 5px;
 
                     img {
                         width: var(--item_contact_size);
@@ -412,6 +418,7 @@ svg#go {
                     transition: all .5s;
                     // background-color: cyan;
                     background-color: white;
+                    border-radius: 5px;
 
                     img {
                         width: var(--item_contact_size);
@@ -971,7 +978,7 @@ svg#go {
                     background-color: rgba(white,.9);
                     position: relative;
                     // opacity:.9;
-
+                    padding: 1vw;
 
                     > div { // Item
                         display: flex;
@@ -1213,13 +1220,13 @@ svg#go {
                         color: white;
                         border: solid;
                         border-width: calc(max(.4vw,4px));
-                        border-color: white;
+                        border-color: gold;//white;
                         border-radius: 2%;
                         /*background: #3C3B3F;*/ /* fallback for old browsers */
                         /*background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);*/ /* Chrome 10-25, Safari 5.1-6 */
                         /*background: linear-gradient(to right, #605C3C, #3C3B3F);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                         //   background-color: darkcyan;
-                        background-color: $color;
+                      //  background-color:gold;// $color;
                     }
 
                     span {
@@ -1234,9 +1241,10 @@ svg#go {
                         border-width: calc(max(.4vw,4px));
                         border-radius: 2.5%;
                         border-color: white;
-                        background: #FF416C; /* fallback for old browsers */
-                        background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
-                        background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                        //   background: #FF416C; /* fallback for old browsers */
+                        //   background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
+                        //   background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                        background: mediumspringgreen;
                     }
 
                     .remPer {
@@ -1554,7 +1562,7 @@ svg#go {
         //  @include ombre();
         //  background-color: blue; //#00c6b0;
         //  display: none;
-        z-index:5;
+        z-index: 5;
         font-size: min(max(.7rem,1vw),1.2rem);
 
         > div:first-child { //cont p

@@ -23,7 +23,7 @@
             string s = $"photo/maison{i}.jpg";
             string l = $"photo/legend/legend{i}.html";
             <div class="contPhMultJs">
-                <img draggable="false" src="@s" />
+                <img draggable="false" src="@s" @onload="()=>AutoDefil(ctSource.Token)" />
                 <div class="contIfraJs">
                     <iframe src="@l" />
 
@@ -40,14 +40,14 @@
 
 <div style="--triremplnext:@t1;--triremplback:@t2">
 
-    <svg @onclick="OnBack"
+    <svg @onclick="()=>{ ctSource.Cancel(); _ = OnBack();}"
          data-src="/svg/tri.svg"
          id="mytriback"
          data-js="enabled"
          data-unique-ids="disabled">
     </svg>
 
-    <svg @onclick="OnNext"
+    <svg @onclick="()=>{ ctSource.Cancel(); _ = OnNext();}"
          data-src="/svg/tri.svg"
          id="mytrinext"
          data-js="enabled"
@@ -64,18 +64,38 @@
 
     protected override async Task OnInitializedAsync() => await QtePh();
 
-    //   protected override async Task OnAfterRenderAsync(bool fr)
-    //   {
-    //       foreach()
-    //       {
-    //           while (srcJpg < qtph - 1)
-    //               if (srcJpg < qtph - 1)
-    //               {
-    //OnNext()
-    //       }
+    int compteurChargement;
+    bool whileControl;       
+    CancellationTokenSource ctSource = new();
+    async Task AutoDefil(CancellationToken ct) 
+    {   
+        compteurChargement++;
+        if (compteurChargement >= qtph)
+        {
+            await Task.Delay(1000);
+            while (!whileControl)
+            {
+                for (int i = 0; i < qtph - 1; i++)
+                {
+                    if (ct.IsCancellationRequested) { whileControl = true; break; }                                       
+                    await OnNext(); StateHasChanged(); 
+                    await Task.Delay(3000); 
+                }
 
+                for (int i = 0; i < qtph -1 ; i++)
+                {
+                    if (ct.IsCancellationRequested) { whileControl = true; break; }                   
+                    await OnBack(); StateHasChanged();
+                    await Task.Delay(3000);
+                }
+            }
+        }     
+    }
 
-    //   }
+    //protected override async Task OnAfterRenderAsync(bool fr)
+    //{
+      
+    //}
 
     double prim_x;
     void OnDown(MouseEventArgs e) =>  prim_x = e.ScreenX;
@@ -144,6 +164,7 @@
 
     async Task OnNext()
     {
+
         if (srcJpg < qtph - 1)
         {
             srcJpg++;

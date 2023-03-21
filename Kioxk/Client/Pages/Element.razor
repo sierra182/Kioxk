@@ -1,8 +1,8 @@
 ﻿
-<div style="background-color:@colorday;border-color:@borderColor">
+<div style="background:@colorday;border-color:@borderColor">
     @if (Selected ?? false || UnSelectable is not null)
     {
-        <span style="color: white">@DateTime.Day</span>
+        <span style="color: @fontDaycolor">@DateTime.Day</span>
     }
 </div>
 
@@ -27,16 +27,18 @@
 
     string? colorday;
     string? borderColor;
+    string? fontDaycolor;
 
     protected override void OnParametersSet()
     {
-        colorday = "mediumspringgreen";
-        borderColor = "mediumspringgreen";
+        colorday = "mediumspringgreen;";// "mediumspringgreen";
+        borderColor = "rgba(0, 0, 0, .2);";//"mediumspringgreen";
+        fontDaycolor = "white;";
 
         if (Selected ?? false)
         {
-            colorday = "#0081CF";                               // Selectionné
-            borderColor = "#0081CF";
+            colorday = "gold;";//"#0081CF";                               // Selectionné
+            borderColor = "rgba(0, 0, 0, .2);";// "#0081CF";
         }
         else
         {
@@ -48,11 +50,12 @@
                 if (Seasons[1] is true)
                     colorday = "darkmagenta";
             }
-          
+
             if (UnSelectable is true)
             {
-                colorday = "#FF4B2B";                        // Impossible
-                borderColor = "#FF4B2B";
+                colorday = "rgba(0,0,0,.4);";                        // Impossible
+                borderColor = "rgba(0,0,0,.4);";
+                fontDaycolor = "rgba(0,0,0,.5);";
             }
         }
         if (DateTime.Now.Date == DateTime)
