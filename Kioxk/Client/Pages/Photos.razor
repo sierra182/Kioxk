@@ -126,11 +126,13 @@
             }
             if (phpx > 150)
             {
+                ctSource.Cancel();
                 sw_pass = true;
                 _ = OnBack();
             }
             else if (phpx < -150)
             {
+                ctSource.Cancel();
                 sw_pass = true;
                 _ = OnNext();
             }
@@ -149,11 +151,13 @@
 
         if (phpx > 100)
         {
+            ctSource.Cancel();
             sw_pass = true;
             _ = OnBack();
         }
         else if (phpx < -100)
-        {
+        { 
+            ctSource.Cancel();
             sw_pass = true;
             _ = OnNext();
         }
