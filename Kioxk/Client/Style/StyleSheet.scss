@@ -141,7 +141,7 @@ svg#go {
             height: 10vh;
 
             h1 {
-                display: block;
+                 display: block;
                 position: absolute;
                 // top: calc(var(--item_contact_size) + (100vw / 20) ); //20vh;//rem;
                 top: 0;
@@ -194,6 +194,7 @@ svg#go {
                     width: 10% !important;
 
                     &:nth-of-type(5) {
+                        visibility: hidden;
                         margin-top: var(--margin_top);
                         margin-left: .5vw;
                         transform-origin: left;
@@ -202,6 +203,7 @@ svg#go {
                     }
 
                     &:nth-of-type(6) {
+                        visibility: hidden;
                         margin-top: var(--margin_top);
                         margin-right: .5vw;
                         transform-origin: right;
@@ -211,6 +213,7 @@ svg#go {
 
 
                     &:nth-of-type(10) {
+                        visibility: visible;
                         margin-top: 0;
                         margin-right: 0;
                         transform-origin: initial;
@@ -218,6 +221,7 @@ svg#go {
                     }
 
                     &:nth-of-type(11) {
+                        visibility: visible;
                         margin-top: 0;
                         margin-right: 0;
                         transform-origin: initial;
@@ -460,6 +464,25 @@ svg#go {
 
         em {
             color: blue;
+        }
+    }
+}
+
+#reseaux {
+    
+    #fb {
+      
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      /*  width: 10vw;
+        height: 10vw;
+        background-color: green;*/
+
+        img {
+            width:4rem;
+            height:4rem;
         }
     }
 }

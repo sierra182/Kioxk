@@ -51,6 +51,22 @@
 
 <svg id="go" data-src="/item/Go.svg" onclick="myscrollTo('photos')"> Go </svg>
 
+@*<div id="unity-container" class="unity-desktop" style="width:400px;height:400px; background-color:rgba(0,0,0,.7);">
+    <canvas id="unity-canvas" style="width:300px;height:300px; background-color:rgba(0,100,0,.7);"></canvas>
+
+</div>*@
+@*<div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600></canvas>
+      </div>*@
+
+<div id="reseaux">
+    <div id="fb">
+        <a target="_blank" href="https://www.facebook.com/profile.php?id=799399298"> 
+        <img src="/item/fb.png"  />    
+        </a>
+    </div> 
+</div>
+
 <div id="maincont">
     <div id="ph_pre_cont">
         <div id="photos">
@@ -104,8 +120,23 @@
     [Parameter]
     public int[] Prices { get; set; } = new int[4];
 
-    protected override async Task OnAfterRenderAsync(bool firstRender) =>
+    private const string CanvasId = "unity-canvas";
+    private const string LoaderJsPath = "Build/Desktop.loader.js";
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
         await js.InvokeVoidAsync("lamb", DotNetObjectReference.Create(this));
+        //if (firstRender)
+        //{
+        //    try
+        //    {
+        //        await js.InvokeAsync<object>("loadUnity", CanvasId, LoaderJsPath);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error loading Unity: {ex.Message}");
+        //    }
+        //}
+    }
 
     int b;
     [JSInvokable]
