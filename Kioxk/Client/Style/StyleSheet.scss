@@ -487,6 +487,25 @@ svg#go {
     }
 }
 
+/*img#chal {
+    width:40vw;
+    min-width:16rem;
+   // height:100%;
+    position:absolute;
+    top:55%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    animation: round 5s infinite;
+    @keyframes round {
+        from {
+            transform: translate(-50%,-50%) rotate(0deg);
+        }
+        to {
+            transform: translate(-50%,-50%) rotate(360deg);
+        }
+    }
+}*/
+
 #maincont {
     --maincont-width: 95%; //vw;//95vw;
     --child-width: calc(var(--maincont-width)/100 * var(--maincontchild-width-percent));
@@ -724,7 +743,7 @@ svg#go {
                                 //  max-height: calc(max(var(--photo-width),var(--max_size)) / 2 * .6);
                                 margin: auto;
                                 display: block;
-                                border-radius: 5px;
+                                border-radius: 10px;
                                 // object-fit:scale-down;
                                 //  opacity:.5;
                                 // border:solid 2px;
