@@ -1,0 +1,58 @@
+﻿<h3>Myst</h3>
+
+<div id="myst_contener">
+    <div id="myst_1" style="opacity:@op_myst["1"]">
+        <img />
+
+        <div id="myst_1_zone_contener">
+
+            <div id="myst_1_zone_1" @onclick='()=> Go("1","2")' />
+
+            <div id="myst_1_zone_2" />
+
+        </div>
+
+    </div>
+
+    <div id="myst_2" style="opacity:@op_myst["2"]">
+        <img />
+
+        <div id="myst_2_zone_contener">
+
+            <div id="myst_2_zone_1" />
+
+            <div id="myst_2_zone_2" />
+
+        </div>
+
+    </div>
+</div>
+@code {
+    int op_myst_1 = 0;
+    int op_myst_2 = 0;
+
+    //private void Go (int from, int to)
+    //{
+    //    // Devisibiliser from et visibiliser to
+    //    op_myst_@{from} = 0;
+
+    //}
+    //using System.Collections.Generic;
+
+Dictionary<string, int> op_myst = new Dictionary<string, int>()
+{
+    { "1", 1 },
+    { "2", 0 }
+};
+
+    private void Go(string from, string to)
+    {
+    // Devisibiliser from et visibiliser to
+    //if (op_myst.ContainsKey(from) && )
+    //{
+        op_myst[from] = 0;
+        op_myst[to] = 1;
+    
+    }
+
+}
