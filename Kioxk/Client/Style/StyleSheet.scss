@@ -34,6 +34,17 @@ body, html {
     // background-image: url("/item/papierinp.jpg");
 }
 
+ul, ol, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 @mixin centrage_hor {
     position: relative;
     left: 50%;
@@ -141,7 +152,7 @@ svg#go {
             height: 10vh;
 
             h1 {
-                 display: block;
+                display: block;
                 position: absolute;
                 // top: calc(var(--item_contact_size) + (100vw / 20) ); //20vh;//rem;
                 top: 0;
@@ -283,7 +294,7 @@ svg#go {
         z-index: 4;
         pointer-events: none;
 
-        > div:first-child {
+        ul {
             display: flex;
             z-index: 2;
             position: relative;
@@ -296,13 +307,41 @@ svg#go {
             // background-color: lightgreen;
             pointer-events: all;
 
-            > div:first-of-type { //tel
+            li:first-of-type { //tel
                 display: flex;
                 position: relative;
                 width: fit-content;
                 height: fit-content;
                 align-items: center;
                 @include ombre();
+
+               /* &:focus div:first-of-type {
+                    border-bottom-right-radius: 50% 10%;
+                    border-top-right-radius: 50% 10%;
+                    border-bottom-left-radius: 50% 50%;
+                    border-top-left-radius: 50% 50%;
+                    background-color: chartreuse;
+                }*/
+
+                div:first-of-type { // img num
+                    position: relative;
+                    transition: all .5s;
+                    //  background-color: aqua;
+                    background-color: black;
+                    border-radius: 5px;
+
+                    img {
+                        width: var(--item_contact_size);
+                        height: var(--item_contact_size);
+                    }
+                }
+
+                &:focus div:last-of-type { // vise num div
+                    width: 9em;
+                    // height: 3rem;
+
+                    background-color: white;
+                }
 
                 div:last-of-type { //num div
                     display: flex;
@@ -322,7 +361,7 @@ svg#go {
                     transition: all .5s;
                     // background-color: orange;
 
-                    span {
+                    a {
                         position: absolute;
                         height: fit-content;
                         right: 1em;
@@ -333,37 +372,9 @@ svg#go {
                         // background-color: red;
                     }
                 }
-
-                &:focus div:last-of-type { // vise num div
-                    width: 9em;
-                    // height: 3rem;
-
-                    background-color: white;
-                }
-
-                &:focus div:first-of-type {
-                    border-bottom-right-radius: 50% 10%;
-                    border-top-right-radius: 50% 10%;
-                    border-bottom-left-radius: 50% 50%;
-                    border-top-left-radius: 50% 50%;
-                    background-color: chartreuse;
-                }
-
-                div:first-of-type { // img num
-                    position: relative;
-                    transition: all .5s;
-                    //  background-color: aqua;
-                    background-color: black;
-                    border-radius: 5px;
-
-                    img {
-                        width: var(--item_contact_size);
-                        height: var(--item_contact_size);
-                    }
-                }
             }
 
-            > div:last-of-type { //mail
+            li:last-of-type { //mail
                 display: flex;
                 position: relative;
                 //   position: fixed;
@@ -378,14 +389,6 @@ svg#go {
                     position: relative;
                     width: 14em;
                     //  height: 3rem;
-                }
-
-                &:focus div:last-of-type {
-                    border-bottom-left-radius: 50% 10%;
-                    border-top-left-radius: 50% 10%;
-                    border-bottom-right-radius: 50% 50%;
-                    border-top-right-radius: 50% 50%;
-                    background-color: chartreuse;
                 }
 
                 div:first-of-type { // ad mail div
@@ -405,7 +408,7 @@ svg#go {
                     transition: width .5s;
                     background-color: white;
 
-                    span {
+                    a {
                         position: relative;
                         margin: auto;
                         // left: .6em;
@@ -413,6 +416,14 @@ svg#go {
                         // background-color: orange;
                     }
                 }
+
+             /*   &:focus div:last-of-type {
+                    border-bottom-left-radius: 50% 10%;
+                    border-top-left-radius: 50% 10%;
+                    border-bottom-right-radius: 50% 50%;
+                    border-top-right-radius: 50% 50%;
+                    background-color: chartreuse;
+                }*/
 
                 div:last-of-type { //image mail
 
@@ -439,7 +450,7 @@ svg#go {
     position: fixed;
     bottom: 0; //calc( -1 * max(3rem,5vw));
     width: 100%;
-    height: max(3rem,5vw);
+    height:fit-content;// max(3rem,5vw);
     text-align: center;
     font-size: max(.7rem,1vw);
     background: #3C3B3F; //fallback for old browsers
@@ -448,7 +459,7 @@ svg#go {
     background: $color; 
     // background-color: violet;
     //   opacity: .5;
-    &:before {
+ /*   &:before {
         content: "Siret: 299792458ms \A - Webmaster Freelance - sierra-echo@msn.com";
         white-space: pre-wrap;
         // display: block;//;
@@ -465,7 +476,8 @@ svg#go {
         em {
             color: blue;
         }
-    }
+    }*/
+
 }
 
 #reseaux {

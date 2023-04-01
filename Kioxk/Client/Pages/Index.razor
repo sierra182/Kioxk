@@ -5,7 +5,7 @@
 
 <img id="land" src="item/midrun.png" alt="" />
 @*<svg id="land" data-src="/item/landp.svg"></svg>*@
-<div id="header">
+<header id="header">
     <div>
         <div id="lambcont">
             @for (int i = 0; i < b; i++)
@@ -22,30 +22,38 @@
     </div>
 
     <div id="contact">
-        <div>
-            <div tabindex="0" role="button" aria-label="affiche le numero">
-                <div>
-                    <img src="/item/tel.png" alt="icône téléphone" />
-                </div>
-                <div>
-                    <a href="tel:0692121212">0692121212</a>
-                </div>
-            </div>
+        <nav>
+            <ul>
+                <li tabindex="0" role="button" aria-label="affiche le numero">
+                    <div>
+                        <img src="/item/tel.png" alt="icône téléphone" />
+                    </div>
+                    <div>
+                        <a href="tel:0692121212">0692121212</a>
+                    </div>
+                </li>
 
-            <div tabindex="0" role="button" aria-label="affiche l'adresse e-mail">               
-                <div>
-                    <img src="/item/mail.png" alt="icône e-mail" />
-                </div>
-                 <div>
-                   <a href="mailto:location@gmail.com">location@gmail.com</a>
-                </div>
-            </div>
-        </div>
+                <li tabindex="0" role="button" aria-label="affiche l'adresse e-mail">
+                    <div>
+                        <a href="mailto:location@gmail.com">location@gmail.com</a>
+                    </div>
+                    <div>
+                        <img src="/item/mail.png" alt="icône e-mail" />
+                    </div>
+
+                </li>
+            </ul>
+        </nav>
     </div>
 
-</div>
+</header>
 
-<div id="footer" />
+@*<div id="footer" />*@
+<footer id="footer" aria-label="Coordonnées du webmaster">
+    Webmaster Freelance : Sébastien Vidot
+    <br /> <a href="tel:0692104886">0692104886</a>
+    <br /> <a href="mailto:sierra-echo@msn.com">sierra-echo@msn.com</a>
+</footer>
 
 <svg id="go" data-src="/item/Go.svg" onclick="myscrollTo('photos')"> Go </svg>
 @*<!DOCTYPE html>
@@ -90,11 +98,13 @@
       </div>*@
 @*<img id="chal" src="/item/chal.png"/>*@
 <div id="reseaux">
-    <div id="fb">
-        <a target="_blank" href="https://www.facebook.com/profile.php?id=799399298">
-            <img src="/item/fb.png" />
-        </a>
-    </div>
+    <nav>
+        <div id="fb">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/profile.php?id=799399298">
+                <img src="/item/fb.png" alt="Visitez notre page Facebook" />
+            </a>
+        </div>
+    </nav>
 </div>
 
 <div id="maincont">
