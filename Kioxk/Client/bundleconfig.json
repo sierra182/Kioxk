@@ -10,5 +10,17 @@
     "watcher": {
       "enabled": true
     }
+  },
+  {
+    "outputFileName": "wwwroot/myScripts.min.js",
+    "inputFiles": [
+      "wwwroot/myScripts.js"
+    ],
+    "minify": {
+      "enabled": true
+    },
+    "watcher": {
+      "enabled": true
+    }
   }
 ]
