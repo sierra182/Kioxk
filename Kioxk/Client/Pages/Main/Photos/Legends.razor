@@ -1,0 +1,20 @@
+﻿
+
+@code {
+    [Parameter]
+    public string? Entry { get; set; }
+       
+    bool l0 = false;
+    bool l1 = false;
+
+    protected override void OnParametersSet()
+    {
+        switch (Entry)
+        {           
+            case "l0": l0 = true; break;
+            case "l1": l1 = true; break;
+        }
+
+
+    }
+}

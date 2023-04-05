@@ -1,35 +1,50 @@
 ﻿@using System.IO
 @using System.Net.Http
 @using System.Threading
+@using Kioxk.Client.Pages.Main.Photos
 @inject HttpClient Http
 @inject IJSRuntime js;
 
-<div tabindex="1" id="carreph" class="carre" onclick="scaler()">
+<div tabindex="0" id="carreph" class="carre" onclick="scaler()" role="button" aria-label="agrandir les images">
     <div id="carre2ph" class="carre2" />
 
 </div>
 
 <span>
-    Nos Photos   
+    Nos Photos
 </span>
 
 <div>
     <div id="contPhAloneJs" draggable="false" style="--phpc:@sphpc; --phpx:@phpx; --qte_ph:@qtph"
          @ontouchstart="(s)=> OnTouchDown(s)" @ontouchmove="(s)=>  OnTouchMove(s)" @ontouchend="OnTouchUp"
-         @onmousedown="(s)=> OnDown(s)" @onmousemove="(s)=> OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp"> 
+         @onmousedown="(s)=> OnDown(s)" @onmousemove="(s)=> OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp">
 
+        @{
+            const string sizes = "min(calc(100vw * .855),30rem)";
+        }
         @for (int i = 0; i < qtph; i++)
         {
             string s = $"photo/maison{i}.jpg";
-            string l = $"photo/legend/legend{i}.html";
-            <div class="contPhMultJs">
-                <img draggable="false" src="@s" @onload="()=>AutoDefil(ctSource.Token)" />
-                <div class="contIfraJs">
-                    <iframe src="@l" />
 
+            <div class="contPhMultJs">
+
+                <picture>
+                    <source sizes="@sizes" srcset="@($"photo/maison{i}/maison{i}_resized_250.webp") 250w, @($"photo/maison{i}/maison{i}_resized_500.webp") 500w, @($"photo/maison{i}/maison{i}_resized_1000.webp") 1000w, @($"photo /maison{i}/maison{i}_resized_2000.webp") 2000w" type="image/webp">
+                    <source sizes="@sizes" srcset="@($"photo/maison{i}/maison{i}_resized_250.jpg") 250w, @($"photo/maison{i}/maison{i}_resized_500.jpg") 500w, @($"photo/maison{i}/maison{i}_resized_1000.jpg") 1000w, @($"photo/maison{i}/maison{i}_resized_2000.jpg") 2000w" type="image/jpeg">
+                    <img loading="lazy" width="0" height="0" draggable="false" src="@s" @onload="()=>AutoDefil(ctSource.Token)" alt="image illustrant la maison" />
+                </picture>
+
+                <div class="contIfraJs">
+                    <div>
+                        <div>
+                            @legendManager.GetLegend(i)
+                        </div>
+                    </div>
                 </div>
+
             </div>
         }
+
     </div>
 </div>
 
@@ -38,9 +53,11 @@
     string t2 = $"{trn}%";
 }
 
-<div style="--triremplnext:@t1;--triremplback:@t2">
+<nav style="--triremplnext:@t1;--triremplback:@t2">
 
     <svg @onclick="()=>{ ctSource.Cancel(); _ = OnBack();}"
+         role="button"
+         arial-label="affiche la photo précédente"
          data-src="/svg/tri.svg"
          id="mytriback"
          data-js="enabled"
@@ -48,27 +65,29 @@
     </svg>
 
     <svg @onclick="()=>{ ctSource.Cancel(); _ = OnNext();}"
+         role="button"
+         arial-label="affiche la photo suivante"
          data-src="/svg/tri.svg"
          id="mytrinext"
          data-js="enabled"
          data-unique-ids="disabled">
     </svg>
 
-</div>
+</nav>
 
 @code {
+    private LegendManager legendManager = new LegendManager();
     int srcJpg = 0;
     int qtph = 0;
-
-    async Task QtePh()   {qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); c.WriteLine("qte: " + qtph); }
+    async Task QtePh() { qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); c.WriteLine("qte: " + qtph); }
 
     protected override async Task OnInitializedAsync() => await QtePh();
 
     int compteurChargement;
-    bool whileControl;       
+    bool whileControl;
     CancellationTokenSource ctSource = new();
-    async Task AutoDefil(CancellationToken ct) 
-    {   
+    async Task AutoDefil(CancellationToken ct)
+    {
         compteurChargement++;
         if (compteurChargement >= qtph)
         {
@@ -77,32 +96,27 @@
             {
                 for (int i = 0; i < qtph - 1; i++)
                 {
-                    if (ct.IsCancellationRequested) { whileControl = true; break; }                                       
-                    await OnNext(); StateHasChanged(); 
-                    await Task.Delay(3000); 
+                    if (ct.IsCancellationRequested) { whileControl = true; break; }
+                    await OnNext(); StateHasChanged();
+                    await Task.Delay(3000);
                 }
 
-                for (int i = 0; i < qtph -1 ; i++)
+                for (int i = 0; i < qtph - 1; i++)
                 {
-                    if (ct.IsCancellationRequested) { whileControl = true; break; }                   
+                    if (ct.IsCancellationRequested) { whileControl = true; break; }
                     await OnBack(); StateHasChanged();
                     await Task.Delay(3000);
                 }
             }
-        }     
+        }
     }
 
-    //protected override async Task OnAfterRenderAsync(bool fr)
-    //{
-      
-    //}
-
     double prim_x;
-    void OnDown(MouseEventArgs e) =>  prim_x = e.ScreenX;
+    void OnDown(MouseEventArgs e) => prim_x = e.ScreenX;
 
-    void OnTouchDown(TouchEventArgs e) =>  prim_x = Math.Round(e.Touches.First().ScreenX);
+    void OnTouchDown(TouchEventArgs e) => prim_x = Math.Round(e.Touches.First().ScreenX);
 
-    void OnUp() =>  phpx = 0;
+    void OnUp() => phpx = 0;
 
     void OnTouchUp(TouchEventArgs e) => phpx = 0;
 
@@ -142,7 +156,7 @@
     void OnTouchMove(TouchEventArgs e)
     {
         if (true)
-        { 
+        {
             new_x = Math.Round(e.Touches.First().ScreenX);
             diff = new_x - prim_x;
             phpx += diff;
@@ -156,7 +170,7 @@
             _ = OnBack();
         }
         else if (phpx < -100)
-        { 
+        {
             ctSource.Cancel();
             sw_pass = true;
             _ = OnNext();
@@ -164,24 +178,18 @@
     }
 
     int trb = 100;
-    int trn = 0;   
+    int trn = 0;
 
     async Task OnNext()
     {
-
         if (srcJpg < qtph - 1)
         {
             srcJpg++;
             trn += (100 / qtph);
-            trb = 100 - trn ;
+            trb = 100 - trn;
             var e = (100.0 / qtph);
-            //   var de = e.ToString().Replace(",",".");
-
-            //  var ef = Math.Round(e, 1);
-            c.WriteLine("runey float next " + e + " ");// + Math.Round(e));
-            phpc -= e;//Math.Round(e);
+            phpc -= e;
             sphpc = phpc.ToString().Replace(",", ".");
-            //   phpc = Math.Round(phpc);
             phpx = 0;
         }
         await Task.Delay(300);
@@ -196,8 +204,7 @@
             trn -= (100 / qtph);
             trb = 100 - trn;
             var e = (100.0 / qtph);
-            c.WriteLine("rfloat back " + e + " ");// + Math.Round(e));
-            phpc += e;// Math.Round(e);
+            phpc += e;
             sphpc = phpc.ToString().Replace(",", ".");
             phpx = 0;
         }

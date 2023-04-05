@@ -39,12 +39,12 @@
     </label>
 
     <label>
-        <span>Renseignements Complémentaires :</span>
+        <span>Message :</span>
         <InputTextArea class="clInpform" @bind-Value="@Com.RgtsCompl" maxlength="400" placeholder=" facultatif" />
 
     </label>
 
-    <button class="btn btn-success @btnw" type="submit" @onclick='async()=> {
+    <button arial-label="envoyez" class="btn btn-success @btnw" type="submit" @onclick='async()=> {
 
 myevents.RisePointerEvent();
 if (ec!.Validate())

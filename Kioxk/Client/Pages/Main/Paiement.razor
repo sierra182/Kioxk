@@ -1,8 +1,8 @@
 ﻿@inject IJSRuntime js;
 
 <div>
-    <a target="_blank" href="https://www.paylib.fr">
-        <img href="https://www.paylib.fr" src="/item/paylib.svg" />
+    <a rel="noopener noreferrer" target="_blank" href="https://www.paylib.fr">
+        <img width="0" height="0" alt="logo paylib" src="/item/paylib.svg" />
 
     </a>
 </div>
@@ -10,15 +10,17 @@
 <span>
     Nous travaillons avec les moyens de paiements suivants,
     veuillez nous contacter si vous n'y etes pas affilié.
+
 </span>
 
 <div>
     <div id="lf">
-        <a target="_blank" href="https://www.lyf.eu/fr/">
-            <img src="/item/lyf.png" />
+        <a rel="noopener noreferrer" target="_blank" href="https://www.lyf.eu/fr/">
+            <img width="0" height="0" alt="logo lyf" src="/item/lyf.png" />
 
         </a>
     </div>
+
     <span>
         Paylib ou lyf sont deux applications de virement intégreés nativement
         à l'application officielle de la
@@ -29,17 +31,15 @@
         </span>
 
     </span>
+
 </div>
 
 @code {
 
-      protected override async Task OnAfterRenderAsync(bool firstRender)
-    {       
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
         if (firstRender)
-        {
             await js.InvokeVoidAsync("welcome");
-            
-        }
     }
 
 }

@@ -6,10 +6,13 @@
 
         <div id="myst_1_zone_contener">
 
-            <div id="myst_1_zone_1" @onclick='()=> Go("1","2")' />
+            <div id="myst_1_zone_1" @onclick='()=> Go("1","2")'>
+                <span> avancer </span>
+            </div>
 
-            <div id="myst_1_zone_2" />
-
+            <div id="myst_1_zone_2" @onclick='()=> Go("1","3")'>
+                <span> gauche </span>
+            </div>
         </div>
 
     </div>
@@ -26,6 +29,7 @@
         </div>
 
     </div>
+
 </div>
 @code {
     int op_myst_1 = 0;
@@ -39,7 +43,7 @@
     //}
     //using System.Collections.Generic;
 
-Dictionary<string, int> op_myst = new Dictionary<string, int>()
+    Dictionary<string, int> op_myst = new Dictionary<string, int>()
 {
     { "1", 1 },
     { "2", 0 }
@@ -47,12 +51,12 @@ Dictionary<string, int> op_myst = new Dictionary<string, int>()
 
     private void Go(string from, string to)
     {
-    // Devisibiliser from et visibiliser to
-    //if (op_myst.ContainsKey(from) && )
-    //{
+        // Devisibiliser from et visibiliser to
+        //if (op_myst.ContainsKey(from) && )
+        //{
         op_myst[from] = 0;
         op_myst[to] = 1;
-    
+
     }
 
 }

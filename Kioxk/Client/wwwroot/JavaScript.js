@@ -1,29 +1,29 @@
 ﻿
-var fr_Frame = true;
-var frame;
+//var fr_Frame = true;
+//var frame;
 
-function resizeIframe() {
-    console.log("Dans resize Iframe!");
-    if (fr_Frame) {
-        frame = document.getElementById("myframe");
+//function resizeIframe() {
+//    console.log("Dans resize Iframe!");
+//    if (fr_Frame) {
+//        frame = document.getElementById("myframe");
 
-        window.addEventListener('resize', () => setTimeout(resizeWatch, 800));
-        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeWatch, 1000));
-        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeWatch, 1000));
+//        window.addEventListener('resize', () => setTimeout(resizeWatch, 800));
+//        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeWatch, 1000));
+//        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeWatch, 1000));
 
-        const resizeWatch = () => {
-            frame.style.height = (parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height) * 1.07) + "px";
-        }
-        resizeWatch();
-        fr_Frame = false;
+//        const resizeWatch = () => {
+//            frame.style.height = (parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height) * 1.07) + "px";
+//        }
+//        resizeWatch();
+//        fr_Frame = false;
 
-        //if (window.devicePixelRatio) {
-        //    var ratio = window.devicePixelRatio;
-        //    alert("Le rapport de pixel réel/pixel CSS de l'appareil est de: " + ratio);
-        //}
-        //else { alert("nope!"); }
-    }
-}
+//        //if (window.devicePixelRatio) {
+//        //    var ratio = window.devicePixelRatio;
+//        //    alert("Le rapport de pixel réel/pixel CSS de l'appareil est de: " + ratio);
+//        //}
+//        //else { alert("nope!"); }
+//    }
+//}
 
 var fr_Scaler = true;
 var togScal = false;
@@ -326,28 +326,28 @@ function welcome() { // en travaux...
     var pre = document.getElementById("pretext");
 
     window.addEventListener('scroll', () => {
-        console.log("onscroll: " + document.documentElement.scrollTop + " " + document.documentElement.clientHeight + " " + pay.offsetTop + " here " + main.offsetTop);
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop + main.offsetTop) {            
-            pay.classList.add('welcome_pay');
-        } 
+     
+        //if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop + main.offsetTop) {            
+        //    pay.classList.add('welcome_pay');
+       // } 
         if (document.documentElement.scrollTop + document.documentElement.clientHeight > hlp.offsetTop + main.offsetTop + .3 * hlp.offsetTop) {          
             hlp.classList.add('welcome_hlp');
         } 
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight > pre.offsetTop + main.offsetTop) {
-            console.log("YEP!");
-            pre.classList.add('welcome_pre');
-        } 
-    });
-    spinScrolling();
+        //if (document.documentElement.scrollTop + document.documentElement.clientHeight > pre.offsetTop + main.offsetTop) {
+        //    console.log("YEP!");
+        //    pre.classList.add('welcome_pre');
+        //} 
+    }, { passive:true });
+   // spinScrolling();
 }
 
-function spinScrolling() {
-    var go = document.getElementById("go");
-    var stack;
+//function spinScrolling() {
+//    var go = document.getElementById("go");
+//    var stack;
 
-    window.addEventListener('scroll', () => {        
-        stack = document.documentElement.scrollTop;      
-        go.style.transform = `rotate(${stack/2}deg)`; 
-        // console.log("SPIN " + document.body.scrollTop + " " + document.body.scrollY);
-    });
-}
+//    window.addEventListener('scroll', () => {        
+//        stack = document.documentElement.scrollTop;      
+//        go.style.transform = `rotate(${stack/2}deg)`; 
+//        // console.log("SPIN " + document.body.scrollTop + " " + document.body.scrollY);
+//    });
+//}

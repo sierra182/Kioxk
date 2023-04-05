@@ -1,6 +1,6 @@
 {
-  "name": "Kioxk",
-  "short_name": "Kioxk",
+  "name": "Mon Chalet",
+  "short_name": "Chalet",
   "start_url": "./",
   "display": "fullscreen",
   "background_color": "#ffffff",
@@ -10,12 +10,14 @@
     {
       "src": "icon-512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     },
     {
       "src": "icon-192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     }
   ]
 }

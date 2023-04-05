@@ -7,54 +7,60 @@
 
 <div id="ag_cont">
 
-<div id="calendar">
-    <Calendar @bind-DateTime="@DateTime" @bind-UnSelectable="@UnSelectable" @bind-Selected="@Selected" @bind-Seasons="@Seasons" />
-</div>
+    <div id="calendar">
+        <Calendar @bind-DateTime="@DateTime" @bind-UnSelectable="@UnSelectable" @bind-Selected="@Selected" @bind-Seasons="@Seasons" />
+    </div>
 
-@{
-    if (periodes.Count > 0)
-    {
-        mycallbool = true;
-        classe = "mycallplein";
+    @{
+        if (periodes.Count > 0)
+        {
+            mycallbool = true;
+            classe = "mycallplein";
+        }
+        else if (mycallbool)
+        {
+            classe = "";
+        }
     }
-    else if (mycallbool)
-    {
-        classe = "";
-    }
-}
 
-<div tabindex="0" style="--triremplnext:@trnu;--triremplback:@trbu; --mycall-height:@mclhu;">
-    <svg @onclick="OnBack"
-         data-src="/svg/tri.svg"
-         id="mytriback"
-         data-js="enabled"
-         data-unique-ids="disabled"
-         style="visibility:@visBack">
-    </svg>
-
-    <svg @onclick="OnNext"
-         data-src="/svg/tri.svg"
-         id="mytrinext"
-         data-js="enabled"
-         data-unique-ids="disabled"
-         style="visibility: @visNext">
-    </svg>
-
-    <div>
-        <svg @onclick="OnClearAll"
-             class="@classe"
-             data-src="/svg/call.svg"
-             id="mycall"
+    <div tabindex="0" style="--triremplnext:@trnu;--triremplback:@trbu; --mycall-height:@mclhu;">
+        <svg @onclick="OnBack"
+             data-src="/svg/tri.svg"
+             role="button"
+             aria-label="affiche le mois précédent"
+             id="mytriback"
              data-js="enabled"
-             data-unique-ids="disabled">
+             data-unique-ids="disabled"
+             style="visibility:@visBack">
         </svg>
 
-    </div>
-</div>
+        <svg @onclick="OnNext"
+             data-src="/svg/tri.svg"
+             role="button"
+             aria-label="affiche le mois suivant"
+             id="mytrinext"
+             data-js="enabled"
+             data-unique-ids="disabled"
+             style="visibility: @visNext">
+        </svg>
 
-<div id="periodes">
-    <Periodes @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" @bind-periodes="@periodes" />
-</div>
+        <div title="supprime toutes les périodes selectionnées">
+            <svg @onclick="OnClearAll"
+                 class="@classe"
+                 data-src="/svg/call.svg"
+                 role="button"
+                 aria-label="supprime toutes les périodes selectionnées"                 
+                 id="mycall"
+                 data-js="enabled"
+                 data-unique-ids="disabled">                
+            </svg>
+
+        </div>
+    </div>
+
+    <div id="periodes">
+        <Periodes @bind-Selected="@Selected" @bind-Seasons="@Seasons" @bind-Prices="@Prices" @bind-periodes="@periodes" />
+    </div>
 
 </div>
 @code {
@@ -279,7 +285,7 @@
             cts = new();
             tsk = Task.Run(() => _ = Sync(cts.Token), cts.Token);
         };
-         myevents.RiseSyncEvent();
+        myevents.RiseSyncEvent();
     }
 
     protected override void OnInitialized() => LaunchTask();

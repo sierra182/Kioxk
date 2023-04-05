@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/start.min.js",
+    "inputFiles": [
+      "wwwroot/start.js"
+    ],
+    "minify": {
+      "enabled": true
+    },
+    "watcher": {
+      "enabled": true
+    }
+  }
+]

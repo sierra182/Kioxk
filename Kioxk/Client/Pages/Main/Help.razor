@@ -1,7 +1,9 @@
-﻿<div>
-    <div>     
+﻿@using Kioxk.Client.Pages.Main.Agenda
+
+<div>
+    <h1>     
         HELP      
-    </div>
+    </h1>
 
     <div>
         Cliquez sur un jour du calendrier pour sélectionner ou déselectionner une date.
@@ -11,7 +13,7 @@
         <div>
             <Element DateTime="@ldt1" UnSelectable="true" Selected="null" Seasons="@ls1" />
         </div>
-        <span> désigne le jour actuel</span>
+        <span> jour actuel </span>
 
     </div>
 
@@ -19,7 +21,7 @@
         <div>
             <Element DateTime="@ldt2" UnSelectable="true" Selected="null" Seasons="@ls2" />
         </div>
-        <span> désigne un jour non disponible</span>
+        <span> jour non disponible </span>
 
     </div>
 
@@ -27,7 +29,7 @@
         <div>
         <Element DateTime="@ldt3" UnSelectable="false" Selected="null" Seasons="@ls3" />
         </div>
-        <span> désigne un jour disponible</span>
+        <span> jour disponible </span>
 
     </div>
 
@@ -35,7 +37,7 @@
         <div>
         <Element DateTime="@ldt4" UnSelectable="false" Selected="true" Seasons="@ls4" />
         </div>
-        <span> désigne un jour selectionné</span>
+        <span> jour selectionné </span>
 
     </div>
 
@@ -43,7 +45,7 @@
         <div>
         <Element DateTime="@ldt5" UnSelectable="false" Selected="null" Seasons="@ls5" />
         </div>
-        <span> désigne un jour au tarif moyenne saison</span>
+        <span> jour au tarif moyenne saison </span>
 
     </div>
 
@@ -51,24 +53,9 @@
         <div>
         <Element DateTime="@ldt6" UnSelectable="false" Selected="null" Seasons="@ls6" />
         </div>
-        <span> désigne un jour au tarif haute saison</span>
+        <span> jour au tarif haute saison </span>
 
     </div>
-
-@*    <div>
-        <svg data-src="/svg/tri.svg"
-             id="mytrinext"
-             data-js="enabled"
-             data-unique-ids="disabled" />
-        <span>passage au mois suivant</span>
-
-    </div>
-
-    <div>
-        <svg data-src="/svg/call.svg" />
-        <span> suppression de toute les périodes selectionnées</span>
-
-    </div>*@
 
 </div>
 
