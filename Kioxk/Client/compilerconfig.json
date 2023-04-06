@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/StyleSheet.css",
-    "inputFile": "Style/StyleSheet.scss"
+    "outputFile": "wwwroot/css/style_sheet.css",
+    "inputFile": "StyleSass/style_sheet.scss"
   }
 ]

@@ -24,13 +24,13 @@
         }
         @for (int i = 0; i < qtph; i++)
         {
-            string s = $"photo/maison{i}.jpg";
+            string s = $"photos/maison{i}.jpg";
 
             <div class="contPhMultJs">
 
                 <picture>
-                    <source sizes="@sizes" srcset="@($"photo/maison{i}/maison{i}_resized_250.webp") 250w, @($"photo/maison{i}/maison{i}_resized_500.webp") 500w, @($"photo/maison{i}/maison{i}_resized_1000.webp") 1000w, @($"photo /maison{i}/maison{i}_resized_2000.webp") 2000w" type="image/webp">
-                    <source sizes="@sizes" srcset="@($"photo/maison{i}/maison{i}_resized_250.jpg") 250w, @($"photo/maison{i}/maison{i}_resized_500.jpg") 500w, @($"photo/maison{i}/maison{i}_resized_1000.jpg") 1000w, @($"photo/maison{i}/maison{i}_resized_2000.jpg") 2000w" type="image/jpeg">
+                    <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.webp") 250w, @($"photos/maison{i}/maison{i}_resized_500.webp") 500w, @($"photos/maison{i}/maison{i}_resized_1000.webp") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.webp") 2000w" type="image/webp">
+                    <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.jpg") 250w, @($"photos/maison{i}/maison{i}_resized_500.jpg") 500w, @($"photos/maison{i}/maison{i}_resized_1000.jpg") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.jpg") 2000w" type="image/jpeg">
                     <img loading="lazy" width="0" height="0" draggable="false" src="@s" @onload="()=>AutoDefil(ctSource.Token)" alt="image illustrant la maison" />
                 </picture>
 
@@ -58,7 +58,7 @@
     <svg @onclick="()=>{ ctSource.Cancel(); _ = OnBack();}"
          role="button"
          arial-label="affiche la photo précédente"
-         data-src="/svg/tri.svg"
+         data-src="items/tri.svg"
          id="mytriback"
          data-js="enabled"
          data-unique-ids="disabled">
@@ -67,7 +67,7 @@
     <svg @onclick="()=>{ ctSource.Cancel(); _ = OnNext();}"
          role="button"
          arial-label="affiche la photo suivante"
-         data-src="/svg/tri.svg"
+         data-src="items/tri.svg"
          id="mytrinext"
          data-js="enabled"
          data-unique-ids="disabled">
@@ -79,7 +79,7 @@
     private LegendManager legendManager = new LegendManager();
     int srcJpg = 0;
     int qtph = 0;
-    async Task QtePh() { qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); c.WriteLine("qte: " + qtph); }
+    async Task QtePh() { qtph = await Http.GetFromJsonAsync<int>("api/commande/GetQtePh"); }
 
     protected override async Task OnInitializedAsync() => await QtePh();
 

@@ -26,14 +26,14 @@
 }
 
 <div id="couv" style="--visib:@visib" @onclick="(e)=>selectBefore(e)">
-    <img width="0" height="0" alt="icone carnet réservation" src="/item/res.webp" />
+    <img width="0" height="0" alt="icone carnet réservation" src="items/res.webp" />
     <span style="opacity:@spanop"> &nbsp; Selectionnez dabord une date sur le calendrier :) &nbsp; </span>
 </div>
 <div id="pinterog" role="button" aria-label="affiche la politique de confidentialité" @onclick="pinterogToggle" style="transform:rotateY(@(pintdeg)deg); opacity:@pintop; pointer-events:@pint_pointer_event">
-    <img  alt="icône point d'interrogation" width="0" height="0" src="/item/interog.svg" />
+    <img  alt="icône point d'interrogation" width="0" height="0" src="items/interog.svg" />
 </div>
 <div id="donnees" style="opacity:@donop">
-    <img alt="politique de condidentialité" width="0" height="0" src="/item/donnees.svg" />
+    <img alt="politique de condidentialité" width="0" height="0" src="items/donnees.svg" />
 </div>
 <div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop; pointer-events:@form_pointer_event">
     <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>

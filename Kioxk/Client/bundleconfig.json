@@ -1,8 +1,8 @@
 [
   {
-    "outputFileName": "wwwroot/start.min.js",
+    "outputFileName": "wwwroot/js/start.min.js",
     "inputFiles": [
-      "wwwroot/start.js"
+      "wwwroot/js/start.js"
     ],
     "minify": {
       "enabled": true
@@ -12,9 +12,9 @@
     }
   },
   {
-    "outputFileName": "wwwroot/myScripts.min.js",
+    "outputFileName": "wwwroot/js/myScripts.min.js",
     "inputFiles": [
-      "wwwroot/myScripts.js"
+      "wwwroot/js/myScripts.js"
     ],
     "minify": {
       "enabled": true

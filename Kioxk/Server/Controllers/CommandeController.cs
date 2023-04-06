@@ -42,7 +42,7 @@ namespace Kioxk.Server.Controllers
         [Route("[action]")]
         [HttpGet]
         public int GetQtePh() =>
-        Directory.GetFiles(@"C:\Users\sierr\source\repos\Kioxk\Kioxk\Client\wwwroot\photo", "maison*.*").Length;
+        Directory.GetFiles(@"C:\Users\sierr\source\repos\Kioxk\Kioxk\Client\wwwroot\photos", "maison*.*").Length;
 
         [HttpGet]
         public ActionResult<Livret> Get()
