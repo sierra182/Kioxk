@@ -5,7 +5,7 @@
 @inject HttpClient Http
 @inject IJSRuntime js;
 
-<div tabindex="0" id="carreph" class="carre" onclick="scaler()" role="button" aria-label="agrandir les images">
+<div tabindex="0" id="carreph" class="carre" @onclick='()=>{ctSource.Cancel(); js.InvokeVoidAsync("scaler");}' role="button" aria-label="agrandir les images">
     <div id="carre2ph" class="carre2" />
 
 </div>
@@ -28,7 +28,7 @@
 
             <div class="contPhMultJs">
 
-                <picture>
+                <picture class="myPicture">
                     <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.webp") 250w, @($"photos/maison{i}/maison{i}_resized_500.webp") 500w, @($"photos/maison{i}/maison{i}_resized_1000.webp") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.webp") 2000w" type="image/webp">
                     <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.jpg") 250w, @($"photos/maison{i}/maison{i}_resized_500.jpg") 500w, @($"photos/maison{i}/maison{i}_resized_1000.jpg") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.jpg") 2000w" type="image/jpeg">
                     <img loading="lazy" width="0" height="0" draggable="false" src="@s" @onload="()=>AutoDefil(ctSource.Token)" alt="image illustrant la maison" />
