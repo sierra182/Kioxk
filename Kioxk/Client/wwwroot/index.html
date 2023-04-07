@@ -36,13 +36,28 @@
         <button class="reload" aria-label="Recharger la page" onclick="location.reload();">Reload</button>
         <button class="dismiss" aria-label="Fermer le message d'erreur" onclick="document.getElementById('blazor-error-ui').style.display = 'none';">🗙</button>
         <!--<a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>-->
+        <a class="dismiss">🗙</a>-->
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            const isFirstVisit = !navigator.serviceWorker.controller;
+
+            navigator.serviceWorker.register('service-worker.js');
+
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (!isFirstVisit) {
+                    alert('Une mise à jour est disponible. Nous allons actualiser la page.');
+                    window.location.reload();
+                }
+            });
+        }
+    </script>
+
+    <!--<script>navigator.serviceWorker.register('service-worker.js');</script>-->
     <!--<script src="Build/Desktop.loader.js"></script>
     <script src="Build/Desktop.framework.js.gz"></script>-->
-   
+
 </body>
 
 </html>
