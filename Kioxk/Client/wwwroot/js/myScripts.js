@@ -314,10 +314,28 @@ function photosWatchDogScreenAndFullScreen() {
 //    naturalY = img.naturalHeight;
 //}
 
-//function myscrollTo(el) {   
+//function myscrollTo(el) {
 //    var elem = document.getElementById(el);
 //    window.scrollTo(0, elem.offsetTop + elem.offsetHeight / 2 + document.documentElement.clientHeight / 2);
 //}
+
+//function autoDefilSurveillor(dotNet) {
+//    window.addEventListener('resize', () => {
+//        dotNet.invokeMethodAsync('StopAndRestartAutoDefil');
+//    });
+//}
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (firstRender)
+    //        await js.InvokeVoidAsync("autoDefilSurveillor", DotNetObjectReference.Create(this));
+    //}
+
+    //[JSInvokable]
+    //public void StopAndRestartAutoDefil()
+    //{
+    //    c.WriteLine("STOPANDRESTART");
+    //}
+
 function myscrollTo(el) {
     var elem = document.getElementById(el);
     var y = window.pageYOffset + elem.getBoundingClientRect().top;

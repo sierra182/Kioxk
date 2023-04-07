@@ -1,6 +1,5 @@
 {
   "compilers": {
-
     "sass": {
       "autoPrefix": "",
       "includePath": "",
@@ -13,9 +12,6 @@
       "lineFeed": "",
       "sourceMap": true
     }
-
-
-
   },
   "minifiers": {
     "css": {
@@ -23,5 +19,5 @@
       "termSemicolons": true,
       "gzip": false
     }
-  }
+  } 
 }

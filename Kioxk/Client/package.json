@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
- "scripts": {
-"prefix": "npx postcss ./Kioxk/Client/wwwroot/css/StyleSheet.css --use autoprefixer -d ./Kioxk/Client/wwwroot/prefixed/"
-},
+  "scripts": {   
+"prefix": "npx postcss ./wwwroot/css/style_sheet.min.css --use autoprefixer -o ./wwwroot/css/prefixed/style_sheet.min.prefixed.css"
 
+  },
   "dependencies": {
-    "autoprefixer": "^10.4.12",
     "browserslist": "last 4 versions",
     "caniuse-lite": "^1.0.30001423",
     "electron-to-chromium": "^1.4.284",
@@ -18,13 +17,14 @@
     "node-releases": "^2.0.6",
     "normalize-range": "^0.1.2",
     "picocolors": "^1.0.0",
-    "postcss": "^8.4.18",
     "postcss-value-parser": "^4.2.0",
     "source-map-js": "^1.0.2",
     "update-browserslist-db": "^1.0.10"
   },
-  "devDependencies": {},
- 
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sierra182/Kioxk.git"
