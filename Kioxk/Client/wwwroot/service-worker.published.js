@@ -140,19 +140,30 @@ async function onActivate(event) {
 
 
 async function onFetch(event) {
-    try {
-        const networkResponse = await fetch(event.request);
+    if (event.request.method === 'GET') {
+        try {
+            const networkResponse = await fetch(event.request);
 
-        // Si la requête réussit, mettez à jour le cache
-        if (networkResponse.ok) {
-            const cache = await caches.open(cacheName);
-            cache.put(event.request, networkResponse.clone());
+            // Si la requête réussit, mettez à jour le cache
+            if (networkResponse.ok) {
+                const cache = await caches.open(cacheName);
+                cache.put(event.request, networkResponse.clone());
+            }
+
+            return networkResponse;
+        } catch (error) {
+            // Si la requête échoue, récupérez la ressource depuis le cache
+            const cacheResponse = await caches.match(event.request);
+            return cacheResponse;
         }
-
-        return networkResponse;
-    } catch (error) {
-        // Si la requête échoue, récupérez la ressource depuis le cache
-        const cacheResponse = await caches.match(event.request);
-        return cacheResponse;
+    }
+    if (event.request.method === 'POST') {    
+        let networkResponse;
+        try {
+            networkResponse = await fetch(event.request);
+        }
+        finally {
+            return networkResponse;
+        }
     }
 }

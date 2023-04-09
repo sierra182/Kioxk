@@ -91,11 +91,17 @@
 @code {
     private HashSet<DateTime>? sel;
     [Parameter]
-    public HashSet<DateTime>? Selected { 
-        get { return sel; } set { sel = value; if (sel is not null && !create)
+    public HashSet<DateTime>? Selected
+    {
+        get { return sel; }
+        set
+        {
+            sel = value; if (sel is not null && !create)
             { pint_pointer_event = "initial"; }
             else if (sel is null)
-            { pint_pointer_event = "none"; } } }
+            { pint_pointer_event = "none"; }
+        }
+    }
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
@@ -170,7 +176,7 @@
             selectpass = true;
         }
     }
-     
+
     bool pay;
     string butcoltxt = "";
     string butcol = "";
@@ -185,7 +191,7 @@
             pass_change = false;
 
             if (!tog)
-            {               
+            {
                 pay = true; scrollHaut = true;
                 butcoltxt = "orange";
                 butcol = "white";
@@ -193,7 +199,7 @@
                 tog = true;
             }
             else
-            {               
+            {
                 form_pointer_event = "initial";
                 formop = 1;
                 create = false;
@@ -272,7 +278,7 @@
 
             var id = await Http.PostAsJsonAsync("api/commande/", com);
             i = await id.Content.ReadFromJsonAsync<int>();
-            c.WriteLine("Numero de commande: " + i);           
+            c.WriteLine("Numero de commande: " + i);
         }
 
         catch (Exception)
