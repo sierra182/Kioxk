@@ -22,7 +22,7 @@ body, html {
   font-family: "Unbounded", cursive;
   margin: 0;
   padding: 0;
-  background-color: #0081CF;
+  background-color: orange;
 }
 
 *, *::before, *::after {
@@ -191,7 +191,7 @@ bottom: 0;*/
   background-color: whitesmoke;
   background: #3C3B3F; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F); /* Chrome 10-25, Safari 5.1-6 */
-  background: #0081CF;
+  background: orange;
   perspective: 25vw;
   perspective-origin: top;
 }
@@ -359,7 +359,7 @@ bottom: 0;*/
   font-size: max(0.7rem, 1vw);
   background: #3C3B3F;
   background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);
-  background: #0081CF;
+  background: orange;
   /*   &:before {
          content: "Siret: 299792458ms \A - Webmaster Freelance - sierra-echo@msn.com";
          white-space: pre-wrap;
@@ -699,7 +699,7 @@ bottom: 0;*/
   clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
   will-change: clip-path;
   transition: clip-path linear 1s;
-  fill: #0081CF !important;
+  fill: orange !important;
 }
 #maincont #ph_pre_cont #photos > div:first-child nav:last-child #mytrinext {
   position: absolute;
@@ -720,7 +720,7 @@ bottom: 0;*/
   clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
   will-change: clip-path;
   transition: clip-path linear 1s;
-  fill: #0081CF !important;
+  fill: orange !important;
 }
 #maincont #ph_pre_cont #pretext {
   z-index: 3;
@@ -768,7 +768,7 @@ bottom: 0;*/
   /*   margin-bottom: .5rem;*/
   border: solid white 1px;
   border-radius: 50px;
-  background: #0081CF;
+  background: orange;
   opacity: 0.7;
 }
 #maincont #ph_pre_cont #pretext > div:first-child > div > div {
@@ -1110,7 +1110,7 @@ bottom: 0;*/
 #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytriback #path2416 {
   clip-path: polygon(0% 0%, 100% 0%, 100% var(--triremplback), 0% var(--triremplback));
   transition: clip-path 1s;
-  fill: #0081CF !important;
+  fill: orange !important;
 }
 #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytrinext {
   width: var(--button-width);
@@ -1125,7 +1125,7 @@ bottom: 0;*/
 #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) #mytrinext #path2416 {
   clip-path: polygon(0% var(--triremplnext), 100% var(--triremplnext), 100% 100%, 0% 100%);
   transition: clip-path 1s;
-  fill: #0081CF !important;
+  fill: orange !important;
 }
 #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div {
   width: var(--button-width);
@@ -1162,7 +1162,7 @@ bottom: 0;*/
 #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall #path512 {
   transition: all 4s;
   clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-  fill: #0081CF !important;
+  fill: orange !important;
 }
 #maincont #hlp_ag_cont #agenda > div:first-child > div:nth-child(2) div #mycall.mycallplein {
   /*  #rect881, #path1527 {
@@ -1329,7 +1329,7 @@ bottom: 0;*/
   height: 2rem;
   border-top: solid rgba(255, 255, 255, 0.6) 1px;
   background: rgb(39, 133, 117);
-  background: #0081CF;
+  background: orange;
   filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
 }
 #maincont #reserv > div:first-child #couv:after {
@@ -1345,7 +1345,7 @@ bottom: 0;*/
   border-left: solid rgba(255, 255, 255, 0.6) 1px;
   height: 100%;
   background: rgb(39, 133, 117);
-  background: #0081CF;
+  background: orange;
   filter: drop-shadow(1px 1px 1.2px rgba(0, 0, 0, 0.5));
 }
 #maincont #reserv > div:first-child #couv img {
@@ -1516,7 +1516,7 @@ bottom: 0;*/
   margin: auto;
   border: outset 1px;
   border-radius: 5px;
-  background: #0081CF;
+  background: orange;
   font-family: inherit;
 }
 #maincont #reserv > div:first-child #form > :first-child input::placeholder, #maincont #reserv > div:first-child #form > :first-child textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -1550,7 +1550,7 @@ bottom: 0;*/
   padding: 0.5rem 0.8rem;
   border: solid 3px;
   border-radius: 5%/45%;
-  background-color: #0081CF;
+  background-color: orange;
 }
 #maincont #reserv > div:first-child #form > :first-child .btn-wait {
   pointer-events: none;

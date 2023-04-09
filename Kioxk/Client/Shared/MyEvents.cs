@@ -7,6 +7,6 @@ namespace Kioxk.Client.Shared;
     public Action? MyPointer;
 
     public void RiseSyncEvent()=> MySync?.Invoke();
-    public void RisePointerEvent() => MyPointer?.Invoke();
+    public void RisePointerEvent()=> MyPointer?.Invoke();
 }
 

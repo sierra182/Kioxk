@@ -81,28 +81,78 @@ async function onActivate(event) {
 //            return networkResponse;
 //        }
 //    }
+//async function onFetch(event) {
+//    const { request } = event;
+
+//    if (request.method === "GET") {
+//        const shouldServeIndexHtml = event.request.mode === "navigate";
+//        const cacheRequest = shouldServeIndexHtml ? "index.html" : request;
+//        const cache = await caches.open(cacheName);
+
+//        const cachedResponse = await cache.match(cacheRequest);
+
+//        const fetchPromise = fetch(request)
+//            .then(async (networkResponse) => {
+//                if (networkResponse.ok) {
+//                    cache.put(cacheRequest, networkResponse.clone());
+//                }
+//                return networkResponse;
+//            })
+//            .catch(() => cachedResponse);
+
+//        event.waitUntil(fetchPromise);
+//        return cachedResponse || fetchPromise;
+//    }
+//*****
+//self.addEventListener('fetch', (event) => {
+//    // Check if this is a navigation request
+//    if (event.request.mode === 'navigate') {
+//        // Open the cache
+//        event.respondWith(caches.open(cacheName).then((cache) => {
+//            // Go to the network first
+//            return fetch(event.request.url).then((fetchedResponse) => {
+//                cache.put(event.request, fetchedResponse.clone());
+
+//                return fetchedResponse;
+//            }).catch(() => {
+//                // If the network is unavailable, get
+//                return cache.match(event.request.url);
+//            });
+//        }));
+//    } else {
+//        return;
+//    }
+//});
+//async function onFetch(event) {
+//    if (event.request.mode === 'navigate') {
+//        event.respondWith(caches.open(cacheName).then((cache) => {
+//            return fetch(event.request).then((fetchedResponse) => {
+//                cache.put(event.request, fetchedResponse.clone());
+//                return fetchedResponse;
+//            }).catch(() => {
+//                return cache.match(event.request);
+//            });
+//        }));
+//    } else {
+//        return;
+//    }
+//}
+
+
 async function onFetch(event) {
-    const { request } = event;
+    try {
+        const networkResponse = await fetch(event.request);
 
-    if (request.method === "GET") {
-        const shouldServeIndexHtml = event.request.mode === "navigate";
-        const cacheRequest = shouldServeIndexHtml ? "index.html" : request;
-        const cache = await caches.open(cacheName);
+        // Si la requête réussit, mettez à jour le cache
+        if (networkResponse.ok) {
+            const cache = await caches.open(cacheName);
+            cache.put(event.request, networkResponse.clone());
+        }
 
-        const cachedResponse = await cache.match(cacheRequest);
-
-        const fetchPromise = fetch(request)
-            .then(async (networkResponse) => {
-                if (networkResponse.ok) {
-                    cache.put(cacheRequest, networkResponse.clone());
-                }
-                return networkResponse;
-            })
-            .catch(() => cachedResponse);
-
-        event.waitUntil(fetchPromise);
-        return cachedResponse || fetchPromise;
+        return networkResponse;
+    } catch (error) {
+        // Si la requête échoue, récupérez la ressource depuis le cache
+        const cacheResponse = await caches.match(event.request);
+        return cacheResponse;
     }
 }
-
-

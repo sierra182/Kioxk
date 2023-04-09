@@ -127,9 +127,9 @@
         HashSet<DateTime>[] exSeasons = { new(), new() };
         List<int> exPrices = new() { 0, 0, 0, 0 };
         Livret? livret = null;
-
+        
         while (true)
-        {
+        {         
             if (Seasons is not null)
                 exSeasons = new HashSet<DateTime>[] { new(Seasons[0]), new(Seasons[1]) };
 
@@ -159,7 +159,7 @@
                 StateHasChanged();
             }
 
-            await Task.Delay(5000);
+            await Task.Delay(10000);
         }
     }
 

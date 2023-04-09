@@ -8,9 +8,13 @@
 @using System.IO
 @using Kioxk.Client.Pages.Main.Agenda
 
+@using System.Net.Http.Headers;
+@using Newtonsoft.Json;
+@using System.Text;
+
 @{
     if (Selected is not null)  // ouvre
-    {      
+    {
         op = 0.9;
         pter = "none";
         trans = "100.5";
@@ -28,13 +32,19 @@
 <div id="couv" style="--visib:@visib" @onclick="(e)=>selectBefore(e)">
     <img width="0" height="0" alt="icone carnet réservation" src="items/res.webp" />
     <span style="opacity:@spanop"> &nbsp; Selectionnez dabord une date sur le calendrier :) &nbsp; </span>
+
 </div>
+
 <div id="pinterog" role="button" aria-label="affiche la politique de confidentialité" @onclick="pinterogToggle" style="transform:rotateY(@(pintdeg)deg); opacity:@pintop; pointer-events:@pint_pointer_event">
-    <img  alt="icône point d'interrogation" width="0" height="0" src="items/interog.svg" />
+    <img alt="icône point d'interrogation" width="0" height="0" src="items/interog.svg" />
+
 </div>
+
 <div id="donnees" style="opacity:@donop">
     <img alt="politique de condidentialité" width="0" height="0" src="items/donnees.svg" />
+
 </div>
+
 <div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop; pointer-events:@form_pointer_event">
     <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>
 
@@ -48,7 +58,7 @@
     <div id="contscrollJs">
 
         @if (paie!.Value.ajoutmail is not null && pay)
-        {           
+        {
             <div id="contpaie">
                 <div>
                     @((MarkupString)paie.Value.ajoutmail)
@@ -81,7 +91,11 @@
 @code {
     private HashSet<DateTime>? sel;
     [Parameter]
-    public HashSet<DateTime>? Selected { get{ return sel; } set { sel = value; if (sel is not null && !create) { pint_pointer_event = "initial"; } } }
+    public HashSet<DateTime>? Selected { 
+        get { return sel; } set { sel = value; if (sel is not null && !create)
+            { pint_pointer_event = "initial"; }
+            else if (sel is null)
+            { pint_pointer_event = "none"; } } }
     [Parameter]
     public EventCallback<HashSet<DateTime>> SelectedChanged { get; set; }
     [Parameter]
@@ -130,7 +144,7 @@
 
     bool ptog = false;
     private void pinterogToggle()
-    {       
+    {
         if (!ptog)
         {
             donop = 1; formop = 0;
@@ -141,7 +155,7 @@
             donop = 0; formop = 1;
             pintdeg = 0;
         }
-        ptog = !ptog;        
+        ptog = !ptog;
     }
 
     bool selectpass = true;
@@ -156,8 +170,7 @@
             selectpass = true;
         }
     }
-
-    // string dispavert = "none";
+     
     bool pay;
     string butcoltxt = "";
     string butcol = "";
@@ -172,8 +185,7 @@
             pass_change = false;
 
             if (!tog)
-            {
-                // pintop = 1;
+            {               
                 pay = true; scrollHaut = true;
                 butcoltxt = "orange";
                 butcol = "white";
@@ -181,8 +193,7 @@
                 tog = true;
             }
             else
-            {
-                //  dispavert = "none";
+            {               
                 form_pointer_event = "initial";
                 formop = 1;
                 create = false;
@@ -254,29 +265,34 @@
 
     private async Task Send()
     {
+        bool catcher = false;
         try
         {
             Agenda.cts.Cancel();
 
             var id = await Http.PostAsJsonAsync("api/commande/", com);
             i = await id.Content.ReadFromJsonAsync<int>();
-            Console.WriteLine("Numero de commande: " + i);
-            //  await js.InvokeVoidAsync("alert", "Réservation pré-validé");
-
+            c.WriteLine("Numero de commande: " + i);           
         }
+
         catch (Exception)
         {
-            await js.InvokeVoidAsync("alert", "Echec de Connexion.!.");
+            await js.InvokeVoidAsync("alert", "Echec de Connexion... Vérifiez votre connexion Internet");
+            catcher = true;
+            create = false;
+            pint_pointer_event = "initial";
+            form_pointer_event = "initial";
+            pintop = 1;
         }
-        finally
+
+        if (!catcher)
         {
             mails = new(i, com!.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected!, com.Total);
             paie = new();
-            //  dispavert = "block";
-           // StateHasChanged();
-           // _ = js.InvokeVoidAsync("scroll", "contscrollJs", "bas");
         }
-    }
 
+    }
 }
+
+
 

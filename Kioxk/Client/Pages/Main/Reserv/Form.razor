@@ -46,13 +46,16 @@
 
     <button arial-label="envoyez" class="btn btn-success @btnw" type="submit" @onclick='async()=> {
 
-myevents.RisePointerEvent();
-if (ec!.Validate())
-{ btnw = "btn-wait"; text= "En cours...";
-await ComRapp.InvokeAsync(Com); btnw = "";
-text = "Envoyez"; }
-myevents.RisePointerEvent();}'>
+  if (ec!.Validate())
+    {
+      myevents.RisePointerEvent();
+      btnw = "btn-wait"; text= "En cours...";
+      await ComRapp.InvokeAsync(Com);
+      btnw = ""; text = "Envoyez";
+      myevents.RisePointerEvent();
+    }
 
+    }'>
         @text
 
     </button>
