@@ -3,10 +3,13 @@
 namespace Kioxk.Client.Shared;
     public class MyEvents
     {
-    public event Action? MySync;
+    public delegate void SubscriptionHandler();
+    public event SubscriptionHandler ?AddSubscriptionSync;
+    public event Action? RemoveSubscriptionSync;
     public Action? MyPointer;
 
-    public void RiseSyncEvent()=> MySync?.Invoke();
+    public void RiseAddSubscriptionSyncEvent()=> AddSubscriptionSync?.Invoke();
+    public void RiseRemoveSubscriptionSyncEvent() => RemoveSubscriptionSync?.Invoke();
     public void RisePointerEvent()=> MyPointer?.Invoke();
 }
 

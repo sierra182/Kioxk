@@ -217,7 +217,7 @@
 
                 Selected = null;
                 await SelectedChanged.InvokeAsync(Selected);
-                myevents.RiseSyncEvent();
+                myevents.RiseAddSubscriptionSyncEvent();
             }
 
             await Task.Delay(1000);
@@ -271,10 +271,12 @@
 
     private async Task Send()
     {
+        myevents.RiseRemoveSubscriptionSyncEvent();
+
         bool catcher = false;
         try
         {
-            Agenda.cts.Cancel();
+            
 
             var id = await Http.PostAsJsonAsync("api/commande/", com);
             i = await id.Content.ReadFromJsonAsync<int>();

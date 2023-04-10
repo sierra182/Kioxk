@@ -1,9 +1,10 @@
 ﻿@inject IJSRuntime js
 @inject HttpClient Http
-@inject MyEvents myevents;
-
+@inject MyEvents myevents
+@inject Sync mySync;
 @using Kioxk.Shared.Models
 @using Kioxk.Client.Shared
+@using Kioxk.Client.Services
 
 <div id="ag_cont">
 
@@ -49,10 +50,10 @@
                  class="@classe"
                  data-src="items/call.svg"
                  role="button"
-                 aria-label="supprime toutes les périodes selectionnées"                 
+                 aria-label="supprime toutes les périodes selectionnées"
                  id="mycall"
                  data-js="enabled"
-                 data-unique-ids="disabled">                
+                 data-unique-ids="disabled">
             </svg>
 
         </div>
@@ -63,6 +64,7 @@
     </div>
 
 </div>
+
 @code {
     private HashSet<DateTime>? sel;
     [Parameter]
@@ -122,44 +124,36 @@
     private string visNext = "Visible";
     private DateTime now = DateTime.Now;
 
-    async Task Sync(CancellationToken token)
-    {
+    private async Task Sync()
+    {       
         HashSet<DateTime>[] exSeasons = { new(), new() };
         List<int> exPrices = new() { 0, 0, 0, 0 };
         Livret? livret = null;
-        
-        while (true)
-        {         
-            if (Seasons is not null)
-                exSeasons = new HashSet<DateTime>[] { new(Seasons[0]), new(Seasons[1]) };
 
-            if (Prices is not null)
-                exPrices = Prices.ToList();
-            try
+        if (Seasons is not null)
+            exSeasons = new HashSet<DateTime>[] { new(Seasons[0]), new(Seasons[1]) };
+
+        if (Prices is not null)
+            exPrices = Prices.ToList();
+        try
+        {
+            var ivret = await Http.GetAsync("api/commande");
+            if (ivret.StatusCode is System.Net.HttpStatusCode.NoContent)
             {
-                var ivret = await Http.GetAsync("api/commande");
-                if (ivret.StatusCode is System.Net.HttpStatusCode.NoContent)
-                {
-                    c.WriteLine("NO CONTENT");
-                    livret = null;
-                }
-                if (ivret.StatusCode is System.Net.HttpStatusCode.OK)
-                    livret = await ivret.Content.ReadFromJsonAsync<Livret>();
+                c.WriteLine("NO CONTENT");
+                livret = null;
             }
+            if (ivret.StatusCode is System.Net.HttpStatusCode.OK)
+                livret = await ivret.Content.ReadFromJsonAsync<Livret>();
+        }
 
-            catch (Exception ex) { c.WriteLine(ex); }
+        catch (Exception ex) { c.WriteLine(ex); }
 
-            if (token.IsCancellationRequested)
-                tsk?.Dispose();
-
-            if (livret is not null)
-            {
-                installLivret(livret);
-                afterSync(exSeasons, exPrices);
-                StateHasChanged();
-            }
-
-            await Task.Delay(10000);
+        if (livret is not null)
+        {
+            installLivret(livret);
+            afterSync(exSeasons, exPrices);
+            StateHasChanged();
         }
     }
 
@@ -214,7 +208,6 @@
 
     int j;
     DateTime ntime;
-
     void CompleteWeek()
     {                                                                           // Rend non-selectable les derniers jours de la semaine actuelle.
         j = (Int32)now.DayOfWeek;
@@ -275,24 +268,23 @@
         }
     }
 
-    public static CancellationTokenSource cts = new();
-    private Task? tsk;
-
-    public void LaunchTask()
+    protected override void OnInitialized()
     {
-        myevents.MySync += () =>
-        {
-            cts = new();
-            tsk = Task.Run(() => _ = Sync(cts.Token), cts.Token);
-        };
-        myevents.RiseSyncEvent();
+        myevents.AddSubscriptionSync += () => AddSubscriptionSync();
+        myevents.RemoveSubscriptionSync += () => RemoveSubscriptionSync();
+        AddSubscriptionSync();
     }
+    
+    public void AddSubscriptionSync()=>    
+        Services.Sync.MyEvent += syncEventHandler;    
 
-    protected override void OnInitialized() => LaunchTask();
+    public void RemoveSubscriptionSync() =>
+        Services.Sync.MyEvent -= syncEventHandler;
+
+    private async void syncEventHandler() => await Sync();
 
     const int maxMonth = 12;
     int maxNext;
-
     void OnNext()
     {                                                                           // Limite à maintenant jusqu'aux douze prochains mois: Aller
         visBack = "Visible";
@@ -333,6 +325,6 @@
         trbu = trn + "%";
     }
 
-    void OnClearAll() => Selected = null;
+    void OnClearAll()=> Selected = null;
 
 }
