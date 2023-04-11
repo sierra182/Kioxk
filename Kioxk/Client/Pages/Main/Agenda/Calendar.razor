@@ -26,7 +26,7 @@
             role = "button";
         }
         <div role="@role" aria-label="select or not" @onclick="()=> {
-                     
+
             if(myEvents.Livret is not null || !livretFirstRender )
             {
                livretFirstRender = false;
@@ -39,7 +39,6 @@
 </div>
 
 @code {
-
     [Parameter]
     public DateTime DateTime { get; set; }
     [Parameter]
@@ -84,28 +83,55 @@
         return new bool?[2] { seasons![it, 0], seasons[it, 1] };
     }
 
+    private int month;
     private DateTime firstDay;
     private int firstDayWeek;
     private int monthDays;
+    private DateTime monthDaysdt;
 
-    protected override void OnParametersSet()
+    private DateTime firstDayNextMonth;
+    private int monthDaysNextMonth;
+    private DateTime monthDaysNextMonthdt;
+
+    private DateTime firstDayLastMonth;
+    private int monthDaysLastMonth;
+    private DateTime monthDaysLastMonthdt;
+    private int monthCount;
+
+    protected override async Task OnParametersSetAsync()
     {
-        unselectable = new bool?[nbrElement];  
+        unselectable = new bool?[nbrElement];
         selected = new bool?[nbrElement];
         seasons = new bool[nbrElement, 2];
         datetime = new DateTime[nbrElement];
 
         monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Month);
         year = DateTime.Year;
-        var month = DateTime.Month;
+        month = DateTime.Month;
         monthDays = DateTime.DaysInMonth(year, month);
+        monthDaysdt = new DateTime(year, month, monthDays);
         firstDay = new DateTime(year, month, 1);
         firstDayWeek = (Int32)firstDay.DayOfWeek;
 
-        associerTableau();
+        if (month is 12)
+        { monthCount = 1; }
+        else { monthCount = month + 1; }
+
+        firstDayNextMonth = new DateTime(year, monthCount, 1);
+        monthDaysNextMonth = DateTime.DaysInMonth(year, monthCount);
+           
+        if (month is 1)
+        { monthCount = 12; }
+        else { monthCount = month - 1; }
+
+        firstDayLastMonth = new DateTime(year, monthCount, 1);
+        monthDaysLastMonth = DateTime.DaysInMonth(year, monthCount);
+        monthDaysLastMonthdt = new DateTime(year, monthCount, monthDaysLastMonth);
+
+        await associerTableau();
     }
 
-    void associerTableau()
+    async Task associerTableau()
     {
         int offSet;                                                        // Réglage du offset selon le jour de la semaine du premier jour du mois.
         if (firstDayWeek == 0)
@@ -119,12 +145,38 @@
 
         for (int i = offSet, a = 0; i < monthDays + offSet; i++, a++)
         {                                                                  // Remplit les jours du mois apres le offset.
-            datetime[i] = firstDay.AddDays(a);                             // Les rends selectionnables.          
+            datetime[i] = firstDay.AddDays(a);                             // Les rends selectionnables.
             unselectable![i] = false;
 
+        }
+        for (int i = offSet; i < monthDays + offSet; i++)
+        {
             if (UnSelectable!.Contains(datetime[i]))
             {
-                unselectable[i] = true;                                    // Rend non-selectionnables les jours donnés.                
+                unselectable![i] = true;                                    // Rend non-selectionnables les jours donnés.
+            }
+
+            if (i > 0 && i < datetime.Length)
+            {
+                if ((UnSelectable!.Contains(datetime[i + 1]) || UnSelectable!.Contains(datetime[i - 1])) && !UnSelectable!.Contains(datetime[i]))
+                {                  
+                    unselectable![i] = true;
+                }
+            }
+
+            if (datetime[i] == firstDay )
+            {
+                if ( UnSelectable.Contains(monthDaysLastMonthdt))
+                  {
+                    unselectable![i] = true;
+                }
+            }
+            else if (datetime[i] == monthDaysdt)
+            {
+                if (UnSelectable.Contains(firstDayNextMonth))
+                {
+                    unselectable![i] = true;
+                }
             }
 
             if (Selected is not null && Selected.Contains(datetime[i]))
@@ -143,7 +195,6 @@
             }
         }
     }
-
     void OnClickWeekOnly(int i, DateTime t)
     {                                                               // Selection minimale hebdomadaire avec
         r = true;                                                   // Rend les elements vides clickable par le programme.
