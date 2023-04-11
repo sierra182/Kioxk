@@ -1,4 +1,5 @@
-﻿@using System.Globalization
+﻿@inject MyEvents myEvents
+@using System.Globalization
 
 <div><div><span>@monthName</span><span>@year</span></div></div>
 
@@ -15,7 +16,22 @@
     {
         var t = datetime[i];
         var e = i;
-        <div @onclick="() => { OnClickWeekOnly(e, t); }">
+        if
+        (unselectable![i] is null or true)
+        {
+            role = "";
+        }
+        else if (unselectable![i] is not null and false && myEvents.Livret is not null)
+        {
+            role = "button";
+        }
+        <div role="@role" aria-label="select or not" @onclick="()=> {
+                     
+            if(myEvents.Livret is not null || !livretFirstRender )
+            {
+               livretFirstRender = false;
+               OnClickWeekOnly(e, t);
+            }}">
             <Element @bind-DateTime="@datetime[i]" @bind-UnSelectable="@unselectable![i]" @bind-Selected="@selected![i]" Seasons="@mySeason(e)"></Element>
 
         </div>
@@ -53,6 +69,8 @@
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
 
+    private string role = "";
+    private bool livretFirstRender = true;
     private const int nbrElement = 42;
     private DateTime[] datetime = new DateTime[nbrElement];
     private bool?[]? unselectable;
@@ -72,7 +90,7 @@
 
     protected override void OnParametersSet()
     {
-        unselectable = new bool?[nbrElement];
+        unselectable = new bool?[nbrElement];  
         selected = new bool?[nbrElement];
         seasons = new bool[nbrElement, 2];
         datetime = new DateTime[nbrElement];
@@ -101,12 +119,12 @@
 
         for (int i = offSet, a = 0; i < monthDays + offSet; i++, a++)
         {                                                                  // Remplit les jours du mois apres le offset.
-            datetime[i] = firstDay.AddDays(a);                             // Les rends selectionnables.
+            datetime[i] = firstDay.AddDays(a);                             // Les rends selectionnables.          
             unselectable![i] = false;
 
             if (UnSelectable!.Contains(datetime[i]))
             {
-                unselectable[i] = true;                                    // Rend non-selectionnables les jours donnés.
+                unselectable[i] = true;                                    // Rend non-selectionnables les jours donnés.                
             }
 
             if (Selected is not null && Selected.Contains(datetime[i]))
@@ -129,7 +147,7 @@
     void OnClickWeekOnly(int i, DateTime t)
     {                                                               // Selection minimale hebdomadaire avec
         r = true;                                                   // Rend les elements vides clickable par le programme.
-        if (unselectable![i] == null)                                // Rend les elements vides non clickable par l'utilisateur.
+        if (unselectable![i] is null or true)                                // Rend les elements vides non clickable par l'utilisateur.
             return;
 
         DateTime nt = t;
@@ -160,7 +178,7 @@
         }
 
         if (Selected is not null && Selected.Contains(t))
-        {         
+        {
             Selected.Remove(t);                                    // Supprime la selection si elle existe.
             if (Selected.Count is 0)               // Si le panier est vide supprime le panier.
                 Selected = null;
@@ -168,9 +186,9 @@
 
         else if (!UnSelectable!.Contains(t))
         {
-            if (Selected is null)            
+            if (Selected is null)
                 Selected = new();                                         // Sinon ajoute le selection si elle n'est pas dans Unselectable
-            
+
             Selected.Add(t);
         }
 

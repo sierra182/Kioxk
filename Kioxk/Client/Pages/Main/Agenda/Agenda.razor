@@ -125,7 +125,7 @@
     private DateTime now = DateTime.Now;
 
     private async Task Sync()
-    {       
+    {
         HashSet<DateTime>[] exSeasons = { new(), new() };
         List<int> exPrices = new() { 0, 0, 0, 0 };
         Livret? livret = null;
@@ -144,7 +144,13 @@
                 livret = null;
             }
             if (ivret.StatusCode is System.Net.HttpStatusCode.OK)
+            {
                 livret = await ivret.Content.ReadFromJsonAsync<Livret>();
+                myevents.Livret = livret;
+
+                if (myevents.HelpUpdate is not null)
+                    myevents.HelpUpdate.Invoke();                
+            }
         }
 
         catch (Exception ex) { c.WriteLine(ex); }
@@ -166,8 +172,8 @@
                 UnSelectable.Add(dt.Dt);
 
         for (int prevDay = now.Day; prevDay >= 1; prevDay--)                                      // Rend non-selectable les jours précédents le jour actuel.
-            UnSelectable.Add(new DateTime(now.Year, now.Month, prevDay));
-
+        { UnSelectable.Add(new DateTime(now.Year, now.Month, prevDay));          
+        }
         CompleteWeek();
 
         Seasons![1] = new();
@@ -274,9 +280,9 @@
         myevents.RemoveSubscriptionSync += () => RemoveSubscriptionSync();
         AddSubscriptionSync();
     }
-    
-    public void AddSubscriptionSync()=>    
-        Services.Sync.MyEvent += syncEventHandler;    
+
+    public void AddSubscriptionSync() =>
+        Services.Sync.MyEvent += syncEventHandler;
 
     public void RemoveSubscriptionSync() =>
         Services.Sync.MyEvent -= syncEventHandler;
@@ -325,6 +331,6 @@
         trbu = trn + "%";
     }
 
-    void OnClearAll()=> Selected = null;
+    void OnClearAll() => Selected = null;
 
 }

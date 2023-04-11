@@ -1,4 +1,5 @@
-﻿
+﻿@inject MyEvents myEvents
+
 <div style="background:@colorday;border-color:@borderColor">
     @if (Selected ?? false || UnSelectable is not null)
     {
@@ -7,6 +8,7 @@
 </div>
 
 @code {
+
 
     [Parameter]
     public DateTime DateTime { get; set; }
@@ -28,6 +30,7 @@
     string? colorday;
     string? borderColor;
     string? fontDaycolor;
+    bool livretFirstRender = true;
 
     protected override void OnParametersSet()
     {
@@ -35,38 +38,50 @@
         borderColor = "rgba(0, 0, 0, .2);";//"mediumspringgreen";
         fontDaycolor = "white;";
 
-        if (Selected ?? false)
+        if (myEvents.Livret is not null || !livretFirstRender)
         {
-            colorday = "gold;";//"#0081CF";                               // Selectionné
-            borderColor = "rgba(0, 0, 0, .2);";// "#0081CF";
+            livretFirstRender = true;
+
+            if (Selected ?? false)
+            {
+                colorday = "gold;";//"#0081CF";                               // Selectionné
+                borderColor = "rgba(0, 0, 0, .2);";// "#0081CF";
+            }
+            else
+            {
+                if (Seasons is not null)
+                {
+                    if (Seasons[0] is true)
+                        colorday = "violet";
+
+                    if (Seasons[1] is true)
+                        colorday = "darkmagenta";
+                }
+
+                if (UnSelectable is true)
+                {
+                    colorday = "rgba(0,0,0,.4);";                        // Impossible
+                    borderColor = "rgba(0,0,0,.4);";
+                    fontDaycolor = "rgba(0,0,0,.5);";
+                }
+            }
+            if (DateTime.Now.Date == DateTime)
+            {                                                                // Met en évidence le jour actuel.
+                colorday = "orange";
+                borderColor = "orange";
+            }
+
+            if (UnSelectable is null)
+            {
+                colorday = "transparent";
+                borderColor = "white";                
+            }
         }
         else
         {
-            if (Seasons is not null)
-            {
-                if (Seasons[0] is true)
-                    colorday = "violet";
-
-                if (Seasons[1] is true)
-                    colorday = "darkmagenta";
-            }
-
-            if (UnSelectable is true)
-            {
-                colorday = "rgba(0,0,0,.4);";                        // Impossible
-                borderColor = "rgba(0,0,0,.4);";
-                fontDaycolor = "rgba(0,0,0,.5);";
-            }
-        }
-        if (DateTime.Now.Date == DateTime)
-        {                                                                // Met en évidence le jour actuel.
-            colorday = "orange";
-            borderColor = "orange";
-        }
-        if (UnSelectable is null)
-        {
-            colorday = "transparent";
-            borderColor = "white";
+            colorday = "rgba(0,0,0,.4);";                        // Pas de Livret
+            borderColor = "rgba(0,0,0,.4);";
+            fontDaycolor = "rgba(0,0,0,.5);";
         }
     }
 

@@ -1,8 +1,9 @@
-﻿@using Kioxk.Client.Pages.Main.Agenda
+﻿@inject MyEvents myEvents
+@using Kioxk.Client.Pages.Main.Agenda
 
 <div>
-    <h1>     
-        HELP      
+    <h1>
+        HELP
     </h1>
 
     <div>
@@ -27,7 +28,7 @@
 
     <div>
         <div>
-        <Element DateTime="@ldt3" UnSelectable="false" Selected="null" Seasons="@ls3" />
+            <Element DateTime="@ldt3" UnSelectable="false" Selected="null" Seasons="@ls3" />
         </div>
         <span> jour disponible </span>
 
@@ -35,7 +36,7 @@
 
     <div>
         <div>
-        <Element DateTime="@ldt4" UnSelectable="false" Selected="true" Seasons="@ls4" />
+            <Element DateTime="@ldt4" UnSelectable="false" Selected="true" Seasons="@ls4" />
         </div>
         <span> jour selectionné </span>
 
@@ -43,7 +44,7 @@
 
     <div>
         <div>
-        <Element DateTime="@ldt5" UnSelectable="false" Selected="null" Seasons="@ls5" />
+            <Element DateTime="@ldt5" UnSelectable="false" Selected="null" Seasons="@ls5" />
         </div>
         <span> jour au tarif moyenne saison </span>
 
@@ -51,7 +52,7 @@
 
     <div>
         <div>
-        <Element DateTime="@ldt6" UnSelectable="false" Selected="null" Seasons="@ls6" />
+            <Element DateTime="@ldt6" UnSelectable="false" Selected="null" Seasons="@ls6" />
         </div>
         <span> jour au tarif haute saison </span>
 
@@ -79,4 +80,21 @@
     DateTime ldt6 = new DateTime(2022, 11, 1);
     bool?[] ls6 = new bool?[2] { false, true };
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        AddSubscriptionUpdateEvent();
+    }
+
+    private void AddSubscriptionUpdateEvent() =>
+        myEvents.HelpUpdate += Update;
+
+    private void RemoveSubscriptionUpdateEvent() =>
+        myEvents.HelpUpdate -= Update;
+
+    private void Update()
+    {        
+        RemoveSubscriptionUpdateEvent();
+        StateHasChanged();
+    }
 }
