@@ -265,8 +265,7 @@
                 if ( unselectable[nio] is true )                           // Préviens les rebords contre unselectable: reviens trois jour avant rebord
                 {  
                     for (int i = 0; i < 3; i++)
-                    {
-                        c.WriteLine("XXX 3");
+                    {                    
                         nto = nto.AddDays(-1);
                         nio--;
                         if(unselectable[nio] is true)                       // Si le retour rencontre un unselectable, stop.
@@ -324,7 +323,7 @@
                     ntdd = ntdd.AddDays(1);                                 // supprime les elements selectionnées, jusqu'a un qui ne l'est pas, vers la droite.
                     nid++;
 
-                    if (unselectable[nid] is true || Selected is null || (Selected is not null && !Selected.Contains(ntdd)))
+                    if ( Selected is null || Selected is not null && !Selected.Contains(ntdd))
                         break;
                                         
                     OnClick(nid, ntdd);
@@ -341,7 +340,7 @@
                 {    
                     ntgg = ntgg.AddDays(-1);                                 // supprime les elements selectionnées, jusqu'a un qui ne l'est pas, vers la gauche.
                     nig--;
-                    if (unselectable[ni -1] is true ||  unselectable[ni] is true || Selected is null || (Selected is not null && !Selected.Contains(ntgg)))
+                    if ( Selected is null || Selected is not null && !Selected.Contains(ntgg))
                          break;
                          
                     OnClick(nig, ntgg);
@@ -350,50 +349,7 @@
             OnClick(ni, nt);
         } 
     }
-    //if (Selected is not null && Selected.Contains(nt) && minimalsCount < 3)
-    //{
-    //    c.WriteLine("3eme condition Right");
-    //    var ntdd = nt;
-    //    var nid = ni;
 
-
-
-    //    for (int i = 1; i < 4; i++)
-    //    {
-    //        c.WriteLine("3.1eme condition");
-
-    //        ntdd = ntdd.AddDays(1);                                 // supprime les elements selectionnées, jusqu'a un qui ne l'est pas, vers la droite.
-    //        nid++;
-
-    //        if (Selected is null || (Selected is not null && !Selected.Contains(ntdd)))
-    //        {
-    //            //c.WriteLine("3.1 break selected " + Selected.Count);
-    //            break;
-    //        }
-    //        c.WriteLine("3.1 nobreak");
-    //        OnClick(nid, ntdd);
-    //    }
-
-    //    c.WriteLine("3eme condition Left");
-
-    //    var ntgg = nt;
-    //    var nig = ni;
-
-    //    for (int i = 1; i < 4; i++)
-    //    {
-    //        c.WriteLine("3.2eme condition");
-
-    //        ntgg = ntgg.AddDays(-1);                                 // supprime les elements selectionnées, jusqu'a un qui ne l'est pas, vers la gauche.
-    //        nig--;
-    //        if (Selected is null || (Selected is not null && !Selected.Contains(ntgg)))
-    //        {
-    //            //c.WriteLine("3.2 break selected " + Selected.Count);
-    //            break;
-    //        }
-    //        c.WriteLine("3.2 nobreak");
-    //        OnClick(nig, ntgg);
-    //    }
-    //}
     bool r = false;
     private void OnClick(int i, DateTime t)
     {

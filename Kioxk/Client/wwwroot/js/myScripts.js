@@ -78,20 +78,30 @@ function scaler() {
         phs.style.setProperty("--max_size", "none");    // enlever ?  
         car.style.width = "5vw";
         car.style.height = "5vw";
-        car.style.borderRadius = "10%";
-        car2.style.borderRadius = "10%";
+        car.style.right = "1rem";
+    //    car.style.borderRadius = "10%";
+     //   car2.style.borderRadius = "10%";
         //  car2.style.transformOrigin = "0";
         //  car2.style.top = "0";
         // car2.style.left = "50%";
         car2.style.transform = "scale(.5,.1) ";
-        car2.style.backgroundColor = "lightgrey";
-        car2.style.borderColor = "transparent";
+        car2.style.backgroundColor = "white";
+      //  car2.style.borderColor = "white";
         car2.style.opacity = "1";
         //if (sourceElements.length > 0) {
         //    sourceElements.forEach((sourceElement) => {
         //        sourceElement.setAttribute('sizes', '(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw');
         //    });
         //}
+        for (var cif of contifra) {
+           // cif.firstChild.style.backgroundColor = "white";
+            cif.firstChild.firstChild.style.color = "white";
+            //  cif.firstChild.style.width = "fit-content";
+            //  cif.firstChild.style.margin = "auto";
+            //    cif.firstChild.style.position = "absolute";
+            //    cif.firstChild.style.bottom = ".7rem";
+            //  cif.before.setProperty.width = "fit-content";
+        }
         if (sourceElements.length > 0) {
             sourceElements.forEach((sourceElement) => {
                 sourceElement.setAttribute('sizes', '100w');
@@ -112,12 +122,14 @@ function scaler() {
             phs.style.setProperty("--max_size", `${maxs}`);
             car.style.width = "8%";
             car.style.height = "var(--chemin_width_carre)";
-            car.style.borderRadius = "0 50% 0 0";
+            car.style.right = ".25rem";
+           // car.style.borderRadius = "0 50% 0 0";
             car2.style.transform = "scale(1,1)";
             car2.style.backgroundColor = "";
-            car2.style.borderColor = "green";
             car2.style.opacity = ".5";
-            car2.style.borderRadius = "0 50% 0 0";
+           // car2.style.borderColor = "green";
+           // car2.style.opacity = ".5";
+           // car2.style.borderRadius = "0 50% 0 0";
             //   car2.style.top = "0";
             //  car2.style.left = "0";
             //  phs.style.borderRadius = "5%";
@@ -135,6 +147,15 @@ function scaler() {
                 oneimg.style.height = "auto";
                 //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
             }
+            for (var cif of contifra) {
+               // cif.firstChild.style.backgroundColor = "white";
+                cif.firstChild.firstChild.style.color = "black";
+                //  cif.firstChild.style.width = "fit-content";
+                //  cif.firstChild.style.margin = "auto";
+                //    cif.firstChild.style.position = "absolute";
+                //    cif.firstChild.style.bottom = ".7rem";
+                //  cif.before.setProperty.width = "fit-content";
+            }
             if (sourceElements.length > 0) {
                 sourceElements.forEach((sourceElement) => {
                     sourceElement.setAttribute('sizes', 'min(calc(100vw * .855),30rem)');
@@ -142,14 +163,15 @@ function scaler() {
             }
             // contal.style.setProperty("--before_width", "70%");
             //  contal.style.setProperty("--before_bottom", "0");
-            for (var cif of contifra) {
-                //  cif.firstChild.style.position = "absolute";
-                //   cif.firstChild.style.width = "100%";
-                // cif.firstChild.style.bottom = "unset";
-                //  cif.firstChild.style.position = "absolute";
-                //cif.firstChild.style.backgroundColor = "red";
-                //cif.firstChild.style.margin = "auto";
-            }
+       
+            //for (var cif of contifra) {
+            //    //  cif.firstChild.style.position = "absolute";
+            //    //   cif.firstChild.style.width = "100%";
+            //    // cif.firstChild.style.bottom = "unset";
+            //    //  cif.firstChild.style.position = "absolute";
+            //    //cif.firstChild.style.backgroundColor = "red";
+            //    //cif.firstChild.style.margin = "auto";
+            //}
 
             togScal = true;
         }, 1000);
@@ -168,7 +190,7 @@ function photosWatchDogScreenAndFullScreen() {
     //}
 
     // phcont.style.setProperty("height", "fit-content");
-    console.log(window.screen.width + " stop " + window.screen.height);
+  /*  console.log(window.screen.width + " stop " + window.screen.height);*/
     if ((document.body.offsetWidth / document.documentElement.clientHeight) > (1.1)) {   // vp land reel
 
         //if ((window.screen.width / window.screen.height) > 1) { //for (var cif of contifra) {
@@ -204,14 +226,7 @@ function photosWatchDogScreenAndFullScreen() {
         //}
         //contal.style.setProperty("--before_width", "60%");
         //   contal.style.setProperty("--before_bottom", ".7rem");
-        for (var cif of contifra) {
-            //  cif.firstChild.style.backgroundColor = "blue";
-            //  cif.firstChild.style.width = "fit-content";
-            //  cif.firstChild.style.margin = "auto";
-            //    cif.firstChild.style.position = "absolute";
-            //    cif.firstChild.style.bottom = ".7rem";
-            //  cif.before.setProperty.width = "fit-content";
-        }
+     
     }
     else {                                                       // vp portrait reel
         //for (var cif of contifra) {
@@ -230,23 +245,23 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.height = "auto";
             //   oneimg.style.maxHeight = "calc(max(var(--photo-width),var(--max_size)) / 2 * .6)";
         }
-
+  
         //if (sourceElements.length > 0) {
         //    sourceElements.forEach((sourceElement) => {
         //        sourceElement.setAttribute('sizes', '100w');
         //    });
         //}
         //  contal.style.setProperty("--before_width", "70%");
-        var x = contal.offsetWidth;
+      /*  var x = contal.offsetWidth;*/
         //  contal.style.setProperty("--before_bottom", "unset");
-        for (var cif of contifra) {
-            //  cif.firstChild.style.backgroundColor = "red";
-            // cif.firstChild.style.width = "100%";
-            //  cif.firstChild.style.margin = "auto";
-            //  cif.firstChild.style.position = "relative";
-            //            cif.firstChild.style.bottom = "0";
-            //  cif.before.style.width = "70%";
-        }
+        //for (var cif of contifra) {
+        //    //  cif.firstChild.style.backgroundColor = "red";
+        //    // cif.firstChild.style.width = "100%";
+        //    //  cif.firstChild.style.margin = "auto";
+        //    //  cif.firstChild.style.position = "relative";
+        //    //            cif.firstChild.style.bottom = "0";
+        //    //  cif.before.style.width = "70%";
+        //}
 
         //}
         //else {
