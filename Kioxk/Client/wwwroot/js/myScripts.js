@@ -1,30 +1,4 @@
 ﻿
-//var fr_Frame = true;
-//var frame;
-
-//function resizeIframe() {
-//    console.log("Dans resize Iframe!");
-//    if (fr_Frame) {
-//        frame = document.getElementById("myframe");
-
-//        window.addEventListener('resize', () => setTimeout(resizeWatch, 800));
-//        frame.contentDocument.getElementById("map").addEventListener('mouseenter', () => setTimeout(resizeWatch, 1000));
-//        frame.contentDocument.getElementById("map").addEventListener('mouseleave', () => setTimeout(resizeWatch, 1000));
-
-//        const resizeWatch = () => {
-//            frame.style.height = (parseInt(frame.contentWindow.getComputedStyle(frame.contentWindow.document.getElementById("cont")).height) * 1.07) + "px";
-//        }
-//        resizeWatch();
-//        fr_Frame = false;
-
-//        //if (window.devicePixelRatio) {
-//        //    var ratio = window.devicePixelRatio;
-//        //    alert("Le rapport de pixel réel/pixel CSS de l'appareil est de: " + ratio);
-//        //}
-//        //else { alert("nope!"); }
-//    }
-//}
-
 var fr_Scaler = true;
 var togScal = false;
 var phcont
@@ -43,6 +17,7 @@ var car;
 var car2;
 let pictureElements;
 let sourceElements;
+
 function scaler() {
 
     if (fr_Scaler) {     
@@ -76,8 +51,8 @@ function scaler() {
 
         //  phs.style.position = "absolute";
         phs.style.setProperty("--max_size", "none");    // enlever ?  
-        car.style.width = "5vw";
-        car.style.height = "5vw";
+        car.style.width = "max(5vw, 25px)";
+        car.style.height = "max(5vw, 25px)";
         car.style.right = "1rem";
     //    car.style.borderRadius = "10%";
      //   car2.style.borderRadius = "10%";
@@ -418,7 +393,7 @@ function welcome() { // en travaux...
         //if (document.documentElement.scrollTop + document.documentElement.clientHeight > pay.offsetTop + main.offsetTop) {            
         //    pay.classList.add('welcome_pay');
         // } 
-        if (document.documentElement.scrollTop + document.documentElement.clientHeight > hlp.offsetTop + main.offsetTop + .3 * hlp.offsetTop) {
+        if (document.documentElement.scrollTop + document.documentElement.clientHeight > hlp.offsetTop + main.offsetTop + .1 * hlp.offsetTop) {
             hlp.classList.add('welcome_hlp');
         }
         //if (document.documentElement.scrollTop + document.documentElement.clientHeight > pre.offsetTop + main.offsetTop) {

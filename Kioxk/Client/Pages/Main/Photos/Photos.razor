@@ -3,9 +3,10 @@
 @using System.Threading
 @using Kioxk.Client.Pages.Main.Photos
 @inject HttpClient Http
-@inject IJSRuntime js;
+@inject IJSRuntime js
+@inject Services.AutoDefil myAutoDefil
 
-<div tabindex="0" id="carreph" class="carre" @onclick='()=>{ctSource.Cancel(); js.InvokeVoidAsync("scaler");}' role="button" aria-label="agrandir les images">
+<div tabindex="0" id="carreph" class="carre" @onclick='()=>{DisposeAutoDefil(); js.InvokeVoidAsync("scaler");}' role="button" aria-label="agrandir les images">
     <div id="carre2ph" class="carre2" />
 
 </div>
@@ -31,7 +32,7 @@
                 <picture class="myPicture">
                     <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.webp") 250w, @($"photos/maison{i}/maison{i}_resized_500.webp") 500w, @($"photos/maison{i}/maison{i}_resized_1000.webp") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.webp") 2000w" type="image/webp">
                     <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.jpg") 250w, @($"photos/maison{i}/maison{i}_resized_500.jpg") 500w, @($"photos/maison{i}/maison{i}_resized_1000.jpg") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.jpg") 2000w" type="image/jpeg">
-                    <img loading="lazy" width="0" height="0" draggable="false" src="@s" @onload="()=>AutoDefil(ctSource.Token)" alt="image illustrant la maison" />
+                    <img loading="lazy" width="0" height="0" draggable="false" src="@s" @onload="()=> WaitForPhotosLoaded()" alt="image illustrant la maison" />
                 </picture>
 
                 <div class="contIfraJs">
@@ -55,7 +56,7 @@
 
 <nav style="--triremplnext:@t1;--triremplback:@t2">
 
-    <svg @onclick="()=>{ ctSource.Cancel(); _ = OnBack();}"
+    <svg @onclick="()=>{ myAutoDefil.Dispose(); _ = OnBack();}"
          role="button"
          arial-label="affiche la photo précédente"
          data-src="items/tri.svg"
@@ -64,7 +65,7 @@
          data-unique-ids="disabled">
     </svg>
 
-    <svg @onclick="()=>{ ctSource.Cancel(); _ = OnNext();}"
+    <svg @onclick="()=>{ myAutoDefil.Dispose(); _ = OnNext();}"
          role="button"
          arial-label="affiche la photo suivante"
          data-src="items/tri.svg"
@@ -84,31 +85,46 @@
     protected override async Task OnInitializedAsync() => await QtePh();
 
     int compteurChargement;
-    bool whileControl;
-    CancellationTokenSource ctSource = new();
-    async Task AutoDefil(CancellationToken ct)
+    async Task WaitForPhotosLoaded()
     {
+        await Task.Delay(1000);
         compteurChargement++;
         if (compteurChargement >= qtph)
-        {
-            await Task.Delay(1000);
-            while (!whileControl)
-            {
-                for (int i = 0; i < qtph - 1; i++)
-                {
-                    if (ct.IsCancellationRequested) { whileControl = true; break; }
-                    await OnNext(); StateHasChanged();
-                    await Task.Delay(3000);
-                }
+            Services.AutoDefil.MyAutoDefilEvent += autoDefilEventHandler;
+    }
 
-                for (int i = 0; i < qtph - 1; i++)
-                {
-                    if (ct.IsCancellationRequested) { whileControl = true; break; }
-                    await OnBack(); StateHasChanged();
-                    await Task.Delay(3000);
-                }
-            }
+    void DisposeAutoDefil()
+    {
+        Services.AutoDefil.MyAutoDefilEvent -= autoDefilEventHandler;
+        myAutoDefil.Dispose();
+    }
+
+    private async void autoDefilEventHandler() => await AutoDefil();
+
+    bool reverse = false;
+    async Task AutoDefil()
+    {    
+    a:
+        if (srcJpg < qtph - 1 && !reverse)
+        {
+            await OnNext();
+            StateHasChanged();
         }
+        else
+            reverse = true;
+
+        if (srcJpg > 0 && reverse)
+        {
+            await OnBack();
+            StateHasChanged();
+        }
+        else if (srcJpg == 0)
+        {
+            reverse = false;
+            goto a;
+        }
+        else
+            reverse = false;
     }
 
     double prim_x;
@@ -140,13 +156,13 @@
             }
             if (phpx > 150)
             {
-                ctSource.Cancel();
+                DisposeAutoDefil();
                 sw_pass = true;
                 _ = OnBack();
             }
             else if (phpx < -150)
             {
-                ctSource.Cancel();
+                DisposeAutoDefil();
                 sw_pass = true;
                 _ = OnNext();
             }
@@ -165,13 +181,13 @@
 
         if (phpx > 100)
         {
-            ctSource.Cancel();
+            DisposeAutoDefil();
             sw_pass = true;
             _ = OnBack();
         }
         else if (phpx < -100)
         {
-            ctSource.Cancel();
+            DisposeAutoDefil();
             sw_pass = true;
             _ = OnNext();
         }

@@ -16,11 +16,9 @@ public class Sync : IDisposable
         SyncDataWithServer();
     }
 
-    static private void SyncDataWithServer()
-    {       
-        if (MyEvent != null)        
-            MyEvent.Invoke();  
-    }
+    static private void SyncDataWithServer()=> 
+        MyEvent?.Invoke();  
+    
         
     public void Dispose()
     {
