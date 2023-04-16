@@ -18,10 +18,9 @@
             mycallbool = true;
             classe = "mycallplein";
         }
-        else if (mycallbool)
-        {
+        else if (mycallbool)        
             classe = "";
-        }
+        
     }
 
     <div tabindex="0" style="--triremplnext:@trnu;--triremplback:@trbu">
@@ -116,7 +115,7 @@
     private string trnu = "0%";
     private int trb;
     private string trbu = "0%";
-   
+
     private string classe = "";
     private bool mycallbool = false;
 
@@ -230,22 +229,34 @@
     HashSet<DateTime>? unionExSais;
     HashSet<DateTime>? unionSais;
     HashSet<DateTime>? intersecExSais;
-    HashSet<DateTime>? intersecSais;
-
-    void afterSync(HashSet<DateTime>[] seas, List<int> pric)
+    HashSet<DateTime>? intersecSais;  
+   
+    private void afterSync(HashSet<DateTime>[] seas, List<int> pric)
     {
         if (Selected is not null)
         {
+            bool message = false;
+
             intersec = new HashSet<DateTime>(Selected);
             intersec.IntersectWith(UnSelectable);
-            if (intersec.Count > 0)
+            if (intersec.Count > 0)                                     // Si au moins un jour des périodes selectionnées n'est plus dispo, supprime la période.
             {
-                foreach (var i in intersec)
-                    Selected.Remove(i);
+                foreach (DateTime i in intersec)                
+                    suppressionPeriodes(i);                
 
-                js.InvokeVoidAsync("alert", "Attention une période que vous avez selectionnée n'est désormais plus disponible, et a été supprimé de votre selection. Veuillez re-vérifier vos dates svp.");
+                message = true;
             }
 
+            foreach (var sel in Selected)            
+                if (UnSelectable.Contains(sel.AddDays(1)) || UnSelectable.Contains(sel.AddDays(-1)))        // Prend en compte les jours tampons.
+                {
+                    message = true;
+                    suppressionPeriodes(sel);
+                }
+            
+            if (message)            
+                js.InvokeVoidAsync("alert", "Attention certains jours que vous aviez selectionnés ne sont plus disponibles, la période a été supprimeé de votre selection. Veuillez re-vérifier vos dates svp.");
+            
             unionExSais = new HashSet<DateTime>(seas[0]);         //  Réunis les anciennes saisons dans le meme HashSet
             unionExSais.UnionWith(seas[1]);
 
@@ -271,6 +282,23 @@
             {
                 js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les prix ont potentiellement été modifiés. Veuillez re-vérifier votre commande.");
             }
+        }
+    }
+
+    private void suppressionPeriodes(DateTime i)
+    {
+        Selected.Remove(i);
+        int eclDroit = 1;
+        while (Selected.Contains(i.AddDays(eclDroit)))
+        {
+            Selected.Remove(i.AddDays(eclDroit));
+            eclDroit++;
+        }
+        int eclGauche = -1;
+        while (Selected.Contains(i.AddDays(eclGauche)))
+        {
+            Selected.Remove(i.AddDays(eclGauche));
+            eclGauche--;
         }
     }
 

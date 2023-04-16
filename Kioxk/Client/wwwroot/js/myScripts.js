@@ -326,26 +326,42 @@ function photosWatchDogScreenAndFullScreen() {
     //    c.WriteLine("STOPANDRESTART");
     //}
 
-function myscrollTo(el) {
-    var elem = document.getElementById(el);
-    var y = window.pageYOffset + elem.getBoundingClientRect().top;
-    var elementHeight = elem.offsetHeight;
-    var middle = y - (window.innerHeight / 2) + (elementHeight / 2);
-    window.scrollTo({ top: middle, behavior: 'smooth' });
-}
-function scroll(el, sens) {
+//function myscrollTo(el) {
+//    var elem = document.getElementById(el);
+//    var y = window.pageYOffset + elem.getBoundingClientRect().top;
+//    var elementHeight = elem.offsetHeight;
+//    var middle = y - (window.innerHeight / 2) + (elementHeight / 2);
+//    window.scrollTo({ top: middle, behavior: 'smooth' });
+//}
 
-    var elem = document.getElementById(el);
+//function scroll(el, sens) {
 
+//    var elem = document.getElementById(el);
+
+//    if (sens === "bas") {
+//        setTimeout(() => {
+//            var coo = elem.scrollHeight;
+//            elem.scrollTo(0, coo);
+//        }, 2000)
+
+//    } else if (sens === "haut") {
+//        var coo = elem.scrollHeight;
+//        elem.scrollTo(0, -coo);
+//    };
+//}
+
+function scroll(sens) {
+
+    var elem = window;//.getElementById(el);
+    var coo = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     if (sens === "bas") {
-        setTimeout(() => {
-            var coo = elem.scrollHeight;
-            elem.scrollTo(0, coo);
-        }, 2000)
+                  
+            elem.scrollTo({ top: coo, behavior: 'smooth' });
+       
 
     } else if (sens === "haut") {
         var coo = elem.scrollHeight;
-        elem.scrollTo(0, -coo);
+        elem.scrollTo({ top: 0, behavior: 'smooth' });
     };
 }
 

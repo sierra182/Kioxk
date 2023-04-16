@@ -45,27 +45,18 @@
 
 </div>
 
-<div id="form" style="--opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop; pointer-events:@form_pointer_event">
+<div id="form" style="height:@heightForm; --opres:@op; --pointres:@pter; --trans:@trans; opacity:@formop; pointer-events:@form_pointer_event">
     <Form Com="@com" ComRapp="()=>CreateCommande()"></Form>
 
 </div>
 
 
 @if (mails is not null)
-{
+{  
     form_pointer_event = "none";
     formop = 0;
     <div id="contscrollJs">
-
-        @if (paie!.Value.ajoutmail is not null && pay)
-        {
-            <div id="contpaie">
-                <div>
-                    @((MarkupString)paie.Value.ajoutmail)
-                </div>
-            </div>
-        }
-
+        
         <div id="mailcont">
             <div>
                 @((MarkupString)mails.Value.mybodymail!)
@@ -75,6 +66,16 @@
 
             </div>
         </div>
+      
+        @if (paie!.Value.ajoutmail is not null && pay)
+        {           
+            <div id="contpaie" style="max-height:@maxHeightPaie">
+                <div>
+                    @((MarkupString)paie.Value.ajoutmail)
+                </div>
+            </div>
+            
+        }
     </div>
 
     <div id="avert" style="display:@disp_but">
@@ -111,7 +112,9 @@
     public int[]? Prices { get; set; }
     [Parameter]
     public EventCallback<int[]> PricesChanged { get; set; }
-
+       
+    string maxHeightPaie = "0";
+    string heightForm = "fit-content";
     string pter = "initial";
     double op = 0;
     string trans = "0";
@@ -133,17 +136,16 @@
 
     protected override void OnInitialized()
     {
-        com = new Commande();
-        js.InvokeVoidAsync("loadevent", "contscrollJs", "bas");
+        com = new Commande();      
     }
 
-    bool scrollHaut = false;
+    bool scrollBas = false;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (scrollHaut)
-        {
-            await js.InvokeVoidAsync("scroll", "contscrollJs", "haut");
-            scrollHaut = false;
+        if (scrollBas)
+        {          
+            await js.InvokeVoidAsync("scroll", "bas");
+            scrollBas = false;
         }
     }
 
@@ -189,16 +191,18 @@
         {
             pass_change = false;
 
-            if (!tog)
-            {
-                pay = true; scrollHaut = true;
+            if (!tog)    // premier click affiché paiement puis fermer
+            {               
+                pay = true;
+                scrollBas = true;
+                maxHeightPaie = "1000px";
                 butcoltxt = "orange";
                 butcol = "white";
                 but = "Fermer";
                 tog = true;
             }
             else
-            {
+            {                
                 form_pointer_event = "initial";
                 formop = 1;
                 create = false;
@@ -206,20 +210,21 @@
                 pintop = 1;
                 butcoltxt = "";
                 butcol = "";
-                but = "Paiement";
-                scrollHaut = false;
+                but = "Paiement";             
                 mails = null;
                 paie = null;
                 pay = false;
                 disp_but = "block";
-                tog = false;
-
+                tog = false;               
+                maxHeightPaie = "0";
+                heightForm = "fit-content";
                 Selected = null;
                 await SelectedChanged.InvokeAsync(Selected);
                 myevents.RiseAddSubscriptionSyncEvent();
             }
-
-            await Task.Delay(1000);
+        
+            await Task.Delay(2000);
+           
             pass_change = true;
         }
     }
@@ -275,8 +280,6 @@
         bool catcher = false;
         try
         {
-            
-
             var id = await Http.PostAsJsonAsync("api/commande/", com);
             i = await id.Content.ReadFromJsonAsync<int>();
             c.WriteLine("Numero de commande: " + i);
@@ -294,11 +297,13 @@
 
         if (!catcher)
         {
+            heightForm = "0";         
             mails = new(i, com!.FirstName!, com.LastName!, com.Phone, com.Address!, com.Email!, com.RgtsCompl!, com.Selected!, com.Total);
-            paie = new();
+            paie = new();       
         }
 
     }
+    
 }
 
 

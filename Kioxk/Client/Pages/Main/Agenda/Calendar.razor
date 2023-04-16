@@ -250,27 +250,26 @@
             }
             else break;
         }
-            
+
         if ((Selected is null || (Selected is not null && !Selected.Contains(nt))) && minimalsCount < 1)   // si element en cours non selectionné et que: ni à g, ni à d, il n'y a plus de 3 elements selectionné
-        {
-            var nio = ni;
-            var nto = nt;                         
+        {           
+            var nto = nt;          
 
             for (int f = 0; f < 3; f++)
-            {                                                           // Appelle OnClick pour les trois jours suivants.             
-                OnClick(nio, nto);
+            {                                                           // Appelle OnClick pour les trois jours suivants.
+                OnClick(ni, nto);
                 nto = nto.AddDays(1);
-                nio++;
-
-                if ( unselectable[nio] is true )                           // Préviens les rebords contre unselectable: reviens trois jour avant rebord
-                {  
+              
+                if (UnSelectable is not null && UnSelectable.Contains(nto.AddDays(1)))                           // Préviens les rebords contre unselectable: reviens trois jour avant rebord
+                {
+                  
                     for (int i = 0; i < 3; i++)
-                    {                    
+                    {
                         nto = nto.AddDays(-1);
-                        nio--;
-                        if(unselectable[nio] is true)                       // Si le retour rencontre un unselectable, stop.
+                       
+                        if (UnSelectable is not null && UnSelectable.Contains(nto.AddDays(-1)))                      // Si le retour rencontre un unselectable, stop.
                         {
-                            //while(true)                                                   // A mettre pour eviter que 1 ou 2 jours soit selectionnées entre deux preiodes.
+                            //while(true)                                                   // A mettre pour eviter que 1 ou 2 jours soit selectionnées entre deux periodes.
                             //{
                             //    nto = nto.AddDays(1);
                             //    nio++;
@@ -283,71 +282,67 @@
                             //}
                             break;
                         }
-
                         if (Selected is not null && !Selected.Contains(nto))         // Si le retour rencontre un non-selected, le selectionne
                         {
-                            OnClick(nio, nto);
-                        }                       
+                            OnClick(ni, nto);
+                        }
                     }
                     break;
                 }
 
                 else if (Selected is not null && Selected.Contains(nto))                           // Préviens les rebords contre Selected: reviens au jour cliqué
-                {    
+                {                 
                     for (int i = 0; i < 2; i++)
-                    {                        
-                        nto = nto.AddDays(-1);
-                        nio--;
+                    {
+                        nto = nto.AddDays(-1);                   
+
                         if (nto == nt)
                             break;
 
                         if (Selected is not null && !Selected.Contains(nto))
                         {
-                            OnClick(nio, nto);
-                        }                      
+                            OnClick(ni, nto);
+                        }
                     }
                     break;
                 }
             }
         }
 
-        else 
-        {             
+        else
+        {
             if (Selected is not null && Selected.Contains(nt) && minimalsCountRight < 3)   // si element en cours selectionnéet et que à droite il n'y a pas suffisament d'element selectionné.
-            {               
-                var ntdd = nt;
-                var nid = ni;                                
+            {            
+                var ntdd = nt;           
 
                 for (int i = 1; i < 4; i++)
-                {   
+                {
                     ntdd = ntdd.AddDays(1);                                 // supprime les elements selectionnées, jusqu'a un qui ne l'est pas, vers la droite.
-                    nid++;
+                                   
 
-                    if ( Selected is null || Selected is not null && !Selected.Contains(ntdd))
+                    if (Selected is null || Selected is not null && !Selected.Contains(ntdd))
                         break;
-                                        
-                    OnClick(nid, ntdd);
-                }
 
+                    OnClick(ni, ntdd);
+                }
             }
 
             if (Selected is not null && Selected.Contains(nt) && minimalsCountLeft < 3)   // si element en cours selectionnéet et que à gauche, il n'y a pas suffisament d'element selectionné
-            {    
-                var ntgg = nt;
-                var nig = ni;
+            {              
+                var ntgg = nt;               
 
                 for (int i = 1; i < 4; i++)
-                {    
+                {
                     ntgg = ntgg.AddDays(-1);                                 // supprime les elements selectionnées, jusqu'a un qui ne l'est pas, vers la gauche.
-                    nig--;
-                    if ( Selected is null || Selected is not null && !Selected.Contains(ntgg))
-                         break;
-                         
-                    OnClick(nig, ntgg);
+                 
+                    if (Selected is null || Selected is not null && !Selected.Contains(ntgg))
+                        break;
+
+                    OnClick(ni, ntgg);
                 }
             }
             OnClick(ni, nt);
-        } 
+        }
     }
 
     bool r = false;

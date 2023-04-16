@@ -87,7 +87,7 @@
     int compteurChargement;
     async Task WaitForPhotosLoaded()
     {
-        await Task.Delay(1000);
+        await Task.Delay(500);
         compteurChargement++;
         if (compteurChargement >= qtph)
             Services.AutoDefil.MyAutoDefilEvent += autoDefilEventHandler;

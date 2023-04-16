@@ -338,7 +338,8 @@ namespace Kioxk.Server.Controllers
                 }
             }
             catch (Exception ex) { c.WriteLine(ex); }
-            return new BadRequestResult();           
+            return new BadRequestResult();
+            //return Ok(42);
         }
 
         void Mail(Commande com)
