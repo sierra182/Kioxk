@@ -18,7 +18,7 @@ var car2;
 let pictureElements;
 let sourceElements;
 
-function scaler() {
+function scaler(dotNet) {
 
     if (fr_Scaler) {     
         phs = document.getElementById("photos");
@@ -43,6 +43,7 @@ function scaler() {
     }
 
     if (togScal) {
+      
         myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height"); // voir si maj auto
         myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
         myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
@@ -148,7 +149,8 @@ function scaler() {
             //    //cif.firstChild.style.margin = "auto";
             //}
 
-            togScal = true;
+            togScal = true;           
+           
         }, 1000);
     }
 }
@@ -252,10 +254,11 @@ function photosWatchDogScreenAndFullScreen() {
 
     setTimeout(() => {
         if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
-            phs.requestFullscreen();
+            phs.requestFullscreen(); 
+            dotNet.invokeMethodAsync("PauseAutoDefil");
         }
     }, 1000); // Instructions à exécuter après le rafraîchissement du DOM
-
+   
     //if (sourceElements.length > 0) {
     //    sourceElements.forEach((sourceElement) => {
     //        sourceElement.setAttribute('sizes', '100w');
@@ -352,24 +355,65 @@ function photosWatchDogScreenAndFullScreen() {
 
 function scroll(sens) {
 
-    var elem = window;//.getElementById(el);
+    var elem = window;
     var coo = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    if (sens === "bas") {
-                  
-            elem.scrollTo({ top: coo, behavior: 'smooth' });
-       
-
+    if (sens === "bas") {                  
+            elem.scrollTo({ top: coo, behavior: 'smooth' });     
     } else if (sens === "haut") {
         var coo = elem.scrollHeight;
         elem.scrollTo({ top: 0, behavior: 'smooth' });
     };
 }
 
+function configureLambSvgObserver() {
+   
+    const lambs = document.getElementById("lambcontsurv");
+    const lamb = document.getElementById("lambcont")   
+  
+    const observerOptions = {
+        root: null,
+        rootMargin: '50% 0px 0px 0px', 
+        threshold: 1
+    };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {      
+                
+                lamb.style.display = "flex";             
+            } else {    
+                   lamb.style.display = "none";             
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(lambs);
+}
+
+function configurePhotosObserver(dotNet) {
+  
+    const photos = document.getElementById("photos");
+    const observerOptions = {
+        root: null,      
+        threshold: .5
+    };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {   
+                
+                dotNet.invokeMethodAsync('UnPauseAutoDefil');
+            } else {               
+                dotNet.invokeMethodAsync('PauseAutoDefil');
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(photos);
+}
+
 var frLamb = true;
 var nmbrEl = 0;
-
 function lamb(dotNet) {
-
+   
     if (frLamb) {
         const ajustLamb = () => {
             // if (window.matchMedia("(orientation:portrait)").matches) {

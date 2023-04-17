@@ -6,7 +6,7 @@
 @inject IJSRuntime js
 @inject Services.AutoDefil myAutoDefil
 
-<div tabindex="0" id="carreph" class="carre" @onclick='()=>{DisposeAutoDefil(); js.InvokeVoidAsync("scaler");}' role="button" aria-label="agrandir les images">
+<div tabindex="0" id="carreph" class="carre" @onclick='()=>{  js.InvokeVoidAsync("scaler", DotNetObjectReference.Create(this));}' role="button" aria-label="agrandir les images">
     <div id="carre2ph" class="carre2" />
 
 </div>
@@ -77,6 +77,7 @@
 </nav>
 
 @code {
+
     private LegendManager legendManager = new LegendManager();
     int srcJpg = 0;
     int qtph = 0;
@@ -86,11 +87,14 @@
 
     int compteurChargement;
     async Task WaitForPhotosLoaded()
-    {
+    {        
         await Task.Delay(500);
         compteurChargement++;
-        if (compteurChargement >= qtph)
+        if (compteurChargement == qtph)
+        {         
             Services.AutoDefil.MyAutoDefilEvent += autoDefilEventHandler;
+            _ = js.InvokeVoidAsync("configurePhotosObserver", DotNetObjectReference.Create(this));
+        }
     }
 
     void DisposeAutoDefil()
@@ -99,11 +103,35 @@
         myAutoDefil.Dispose();
     }
 
-    private async void autoDefilEventHandler() => await AutoDefil();
+    [JSInvokable]
+    public void PauseAutoDefil()
+    {
+        if (!alternateurAutoDef)
+        {
+            alternateurAutoDef = true;          
+            Services.AutoDefil.MyAutoDefilEvent -= autoDefilEventHandler;
+            StateHasChanged();
+        }
+    }
+
+    bool alternateurAutoDef = false;
+
+    [JSInvokable]
+    public void UnPauseAutoDefil()
+    {
+        if(alternateurAutoDef)
+        {
+            alternateurAutoDef = false;          
+            Services.AutoDefil.MyAutoDefilEvent += autoDefilEventHandler;
+            StateHasChanged();
+        }       
+    }
+
+    private void autoDefilEventHandler() => _ = AutoDefil();
 
     bool reverse = false;
     async Task AutoDefil()
-    {    
+    {
     a:
         if (srcJpg < qtph - 1 && !reverse)
         {

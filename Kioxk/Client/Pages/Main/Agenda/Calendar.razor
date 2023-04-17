@@ -99,7 +99,7 @@
     private DateTime monthDaysLastMonthdt;
     private int monthCount;
 
-    protected override async Task OnParametersSetAsync()
+    protected override void OnParametersSet()
     {
         unselectable = new bool?[nbrElement];
         selected = new bool?[nbrElement];
@@ -129,10 +129,10 @@
         monthDaysLastMonth = DateTime.DaysInMonth(year, monthCount);
         monthDaysLastMonthdt = new DateTime(year, monthCount, monthDaysLastMonth);
 
-        await associerTableau();
+        associerTableau();
     }
 
-    async Task associerTableau()
+    private void associerTableau()
     {
         int offSet;                                                        // Réglage du offset selon le jour de la semaine du premier jour du mois.
         if (firstDayWeek == 0)

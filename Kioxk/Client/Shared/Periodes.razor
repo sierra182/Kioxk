@@ -18,20 +18,20 @@
             int prixPer = nmbrtab[3];
             if (per.Count == 1)
             {
-    <span> Le @deb </span>
+                <span> Le @deb.ToShortDateString() </span>
                 if (nmbrJourNorm == 1)
                 {
-    <span>Un jour au prix normal: @Prices[1] €  </span>
+                    <span>Un jour à @Prices[1] €  </span>
                 }
 
                 if (nmbrJourMoy == 1)
                 {
-    <span>Un jour au prix moyenne saison: @Prices[2] € </span>
+                    <span>Un jour au prix moyenne saison: @Prices[2] € </span>
 
                 }
                 if (nmbrJourHaute == 1)
                 {
-    <span>Un jour au prix haute saison:  @Prices[3] €</span>
+                    <span>Un jour au prix haute saison:  @Prices[3] €</span>
                 }
             }
             else
@@ -40,37 +40,37 @@
                 var tmoy = nmbrJourMoy * Prices[2];
                 var thaute = nmbrJourHaute * Prices[3];
 
-    <div class="@divPerClass[c]">
-                        @{
+                <div class="@divPerClass[c]">
+                    @{
                         c++;
-                        }
-                        <span>&nbsp; Du @deb.ToShortDateString() au @fin.ToShortDateString()</span>
-
-                        @if (nmbrJourNorm > 0)
-                    {
-                            <span>&nbsp; @nmbrJourNorm jours à @Prices[1] € = @tnorm € </span>
                     }
-                        @if (nmbrJourMoy > 0)
+                    <span>&nbsp; Du @deb.ToShortDateString() au @fin.ToShortDateString()</span>
+
+                    @if (nmbrJourNorm > 0)
+                    {
+                        <span>&nbsp; @nmbrJourNorm jours à @Prices[1] € = @tnorm € </span>
+                    }
+                    @if (nmbrJourMoy > 0)
                     {
                         <span>&nbsp; @nmbrJourMoy jours à @Prices[2] € = @tmoy €</span>
                     }
-                        @if (nmbrJourHaute > 0)
+                    @if (nmbrJourHaute > 0)
                     {
                         <span>&nbsp; @nmbrJourHaute jours à @Prices[3] € = @thaute €</span>
                     }
-                        @if (!(tnorm == prixPer || tmoy == prixPer || thaute == prixPer))
+                    @if (!(tnorm == prixPer || tmoy == prixPer || thaute == prixPer))
                     {
                         <span>&nbsp; Prix période: @prixPer €</span>
                     }
 
-    </div>
+                </div>
             }
             Prices[0] += prixPer;
         }
 
     @if (@Prices[0] > 0)
     {
-    <span class="@spanPrix">&nbsp; Prix Total: @Prices[0] €</span>
+        <span class="@spanPrix">&nbsp; Prix Total: @Prices[0] €</span>
     }
 }
 
@@ -210,8 +210,8 @@
         }
     }
 
-        
-    int[] ComparePeriode(List<DateTime> list)                                         // Détermine le nombre de jour normaux, moyens, et hauts.                                  
+
+    int[] ComparePeriode(List<DateTime> list)                                         // Détermine le nombre de jour normaux, moyens, et hauts.
     {
         int mpint = 0;
         int hpint = 0;
@@ -223,13 +223,13 @@
             HashSet<DateTime> intersecHp = new(list);
             intersecHp.IntersectWith(Seasons[1]);
 
-           
+
             if (intersecMp.Count > 0)
             {
                 mpint = intersecMp.Count;
             }
 
-           
+
             if (intersecHp.Count > 0)
             {
                 hpint = intersecHp.Count;

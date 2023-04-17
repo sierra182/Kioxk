@@ -156,7 +156,7 @@ a {
     width: 100%;
     //   background-color: goldenrod;
 
-    > div:first-of-type { //div cont ... h1
+    > div:first-of-type { //div cont ... h1 //lambcontsurv
         position: relative;
         top: 0;
         left: 0;
@@ -229,15 +229,14 @@ a {
             //  background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             //  background: $color;
             //border:solid 1px;
-            perspective: 25vw;
-            perspective-origin: top;
+            /*perspective: 25vw;
+            perspective-origin: top;*/
         }
 
         svg {
             width: 5% !important;
             height: fit-content !important;
-            // min-width:5rem;
-            // background: red;
+        
 
             &:nth-of-type(10) {
                 margin-top: var(--margin_top); //4.5rem;
@@ -1481,7 +1480,7 @@ a {
                     }
 
                     > span:last-child { // Prix Total
-                        color: white;
+                        color: black;
                         //   font-family: 'Montserrat', sans-serif;
                         border: solid;
                         border-width: calc(max(.4vw,4px));

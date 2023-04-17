@@ -269,25 +269,25 @@
             intersecSais.IntersectWith(unionSais);
 
             // Si les anciennes saisons ne correspondent plus aux nouvelles et qu'une selection fait partie des anciennes ou nouvelles saisons.
-            if ((!seas[0].SetEquals(Seasons[0]) || !seas[1].SetEquals(Seasons[1])) && (intersecExSais.Count > 0 || intersecSais.Count > 0))
-            {
-                js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les dates des saisons ont été modifiées depuis le serveur, à l'instant. Veuillez vérifier votre commande.");
-            }
+            //if ((!seas[0].SetEquals(Seasons[0]) || !seas[1].SetEquals(Seasons[1])) && (intersecExSais.Count > 0 || intersecSais.Count > 0))
+            //{
+            //    js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les dates des saisons ont été modifiées depuis le serveur, à l'instant. Veuillez vérifier votre commande.");
+            //}
 
             pric.Remove(pric.ElementAt(0));             // Enlève le prix total aux anciens prix.
             var npric = Prices!.ToList();                // Crée une nouvelle liste des prix udpdated.
             npric.Remove(npric.ElementAt(0));           // Y enlève le prix Total
 
-            if (!pric.SequenceEqual(npric))  // Si les prix ont changés et qu'il y a au moins une selection.
-            {
-                js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les prix ont potentiellement été modifiés. Veuillez re-vérifier votre commande.");
-            }
+            //if (!pric.SequenceEqual(npric))  // Si les prix ont changés et qu'il y a au moins une selection.
+            //{
+            //    js.InvokeVoidAsync("alert", "Attention la synchronisation indique que les prix ont potentiellement été modifiés. Veuillez re-vérifier votre commande.");
+            //}
         }
     }
 
     private void suppressionPeriodes(DateTime i)
     {
-        Selected.Remove(i);
+        Selected!.Remove(i);
         int eclDroit = 1;
         while (Selected.Contains(i.AddDays(eclDroit)))
         {

@@ -11,13 +11,11 @@
 @*<img id="chal" src="/item/chal.png"/>*@
 
 <header id="header">
-    <div>
+    <div id="lambcontsurv">
         <div id="lambcont">
             @for (int i = 0; i < b; i++)            
               { <Lamb /> }  
         </div>
-
-      
 
     </div>
 
@@ -127,8 +125,11 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if( firstRender )
-        await js.InvokeVoidAsync("lamb", DotNetObjectReference.Create(this));     
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("lamb", DotNetObjectReference.Create(this));
+            await js.InvokeVoidAsync("configureLambSvgObserver");
+        }
     }
 
     int b;
