@@ -149,9 +149,9 @@ a {
 }*/
 
 #header {
-    --margin_top: calc(max(4rem,5vw) + .5vw + .2rem);
+    // --margin_top: calc(max(4rem,5vw) + .5vw + .2rem);
     --item_contact_size: max(4rem,5vw);
-    --esp_h1: 0;
+    //  --esp_h1: 0;
     position: relative;
     width: 100%;
     //   background-color: goldenrod;
@@ -176,9 +176,8 @@ a {
 
             #lambcont {
                 svg {
-                    width: 10% !important;
-
-                    &:nth-of-type(5) {
+                    width: calc((100 / 8) * 1%) !important; //10% !important;
+                    /*      &:nth-of-type(5) {
                         visibility: hidden;
                         margin-top: var(--margin_top);
                         margin-left: .5vw;
@@ -211,7 +210,7 @@ a {
                         margin-right: 0;
                         transform-origin: initial;
                         transform: none;
-                    }
+                    }*/
                 }
             }
         }
@@ -234,11 +233,9 @@ a {
         }
 
         svg {
-            width: 5% !important;
+            width: calc((100 / 20) * 1%) !important; // 5% !important;
             height: fit-content !important;
-        
-
-            &:nth-of-type(10) {
+            /*    &:nth-of-type(10) {
                 margin-top: var(--margin_top); //4.5rem;
                 margin-right: .5vw;
                 transform-origin: left;
@@ -255,7 +252,7 @@ a {
                 transform: rotateY(20deg);
                 visibility: hidden;
                 //  position: fixed; //
-            }
+            }*/
         }
     }
 
@@ -663,7 +660,7 @@ a {
                 //  border-radius: 1%;
                 //  clip-path: polygon(0% 15%, 15% 0%, 100% 0%, 100% 85%,85% 100%, 15% 100%, 0% 85%);
                 //  border: groove 2px;
-                transition: transform .7s;
+         //       transition: transform .7s;
                 //  border-radius: 5%;
                 // background-color: red;
                 overflow-x: hidden;
@@ -763,9 +760,10 @@ a {
                         height: fit-content;
                         margin: auto;
                         align-items: center;
-                        will-change: transform, width;
-                        transition: transform linear .5s, width linear .5s;
-                        transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
+                       will-change: transform;
+                        transition: transform linear .5s;//, width linear .5s;
+                    //   transform: translate(calc( var(--phpc) * 1% + var(--phpxpct) * 1% )); //
+                      transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
                         //  background-color: yellow;
 
                         > div { //cont img et cont ifrme - multy
@@ -1847,8 +1845,7 @@ a {
                 user-select: none;
                 border: solid white 1px;
                 border-radius: 7px;
-
-             /*   &:before {
+                /*   &:before {
                     content: "";
                     //   z-index: 2;
                     position: absolute;
@@ -1897,7 +1894,7 @@ a {
                     border-radius: 5px;
                     border: solid 1px;
                     width: 30vw;
-                    max-width:200px;
+                    max-width: 200px;
                     height: auto; //0;//2px;//auto;
                     filter: drop-shadow(1px 1px 1.2px rgba(0,0,0,.5));
                     // opacity:0 !important;
@@ -2135,7 +2132,7 @@ a {
                     }
 
                     textarea {
-                        resize:none;
+                        resize: none;
                         color: white;
                         height: 5rem;
                         line-height: 1.2em;
@@ -2246,8 +2243,7 @@ a {
                     border-radius: 8px;
                     background: black;
                 }
-
-             /*   &.animpaye {
+                /*   &.animpaye {
                     animation: transpaye 2s forwards;
                 }*/
 
@@ -2262,7 +2258,7 @@ a {
 
                     to {
                         //   width: 100%;
-                      //  max-width: 35rem;
+                        //  max-width: 35rem;
                         //   margin: auto;
                         //  height:auto;
                         opacity: 1;

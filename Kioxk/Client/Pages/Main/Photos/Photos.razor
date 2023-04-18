@@ -2,6 +2,7 @@
 @using System.Net.Http
 @using System.Threading
 @using Kioxk.Client.Pages.Main.Photos
+@using Newtonsoft.Json
 @inject HttpClient Http
 @inject IJSRuntime js
 @inject Services.AutoDefil myAutoDefil
@@ -17,7 +18,7 @@
 
 <div>
     <div id="contPhAloneJs" draggable="false" style="--phpc:@sphpc; --phpx:@phpx; --qte_ph:@qtph"
-         @ontouchstart="(s)=> OnTouchDown(s)" @ontouchmove="(s)=>  OnTouchMove(s)" @ontouchend="OnTouchUp"
+         @ontouchstart="(s)=> OnTouchDown(s)" @ontouchmove="(s)=> OnTouchMove(s)" @ontouchend="OnTouchUp"
          @onmousedown="(s)=> OnDown(s)" @onmousemove="(s)=> OnMove(s)" @onmouseup="OnUp" @onmouseout="OnUp">
 
         @{
@@ -32,7 +33,7 @@
                 <picture class="myPicture">
                     <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.webp") 250w, @($"photos/maison{i}/maison{i}_resized_500.webp") 500w, @($"photos/maison{i}/maison{i}_resized_1000.webp") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.webp") 2000w" type="image/webp">
                     <source sizes="@sizes" srcset="@($"photos/maison{i}/maison{i}_resized_250.jpg") 250w, @($"photos/maison{i}/maison{i}_resized_500.jpg") 500w, @($"photos/maison{i}/maison{i}_resized_1000.jpg") 1000w, @($"photos/maison{i}/maison{i}_resized_2000.jpg") 2000w" type="image/jpeg">
-                    <img loading="lazy" width="0" height="0" draggable="false" src="@s" @onload="()=> WaitForPhotosLoaded()" alt="image illustrant la maison" />
+                    <img width="0" height="0" draggable="false" src="@s" @onload="()=> WaitForPhotosLoaded()" alt="image illustrant la maison" />
                 </picture>
 
                 <div class="contIfraJs">
@@ -77,6 +78,7 @@
 </nav>
 
 @code {
+    int PhotoSize { get; set; } = 1;
 
     private LegendManager legendManager = new LegendManager();
     int srcJpg = 0;
@@ -85,22 +87,36 @@
 
     protected override async Task OnInitializedAsync() => await QtePh();
 
-    int compteurChargement;
-    async Task WaitForPhotosLoaded()
-    {        
-        await Task.Delay(500);
-        compteurChargement++;
-        if (compteurChargement == qtph)
-        {         
+    protected override async Task OnAfterRenderAsync(bool fr)
+    {
+        if(fr)        
+            PhotoSize = await js.InvokeAsync<int>("getPhotoSize", DotNetObjectReference.Create(this));     
+    }
+
+    [JSInvokable]
+    private void SetPhotoSize(int size)=>    
+        PhotoSize = size;       
+    
+    bool compteurChargement;
+    private void WaitForPhotosLoaded()
+    {   
+        if (!compteurChargement)
+        {
+            compteurChargement = true;          
             Services.AutoDefil.MyAutoDefilEvent += autoDefilEventHandler;
-            _ = js.InvokeVoidAsync("configurePhotosObserver", DotNetObjectReference.Create(this));
+            _ =  js.InvokeVoidAsync("configurePhotosObserver", DotNetObjectReference.Create(this));
         }
     }
 
+    bool isAutoDefilDisposed;
     void DisposeAutoDefil()
     {
-        Services.AutoDefil.MyAutoDefilEvent -= autoDefilEventHandler;
-        myAutoDefil.Dispose();
+        if (!isAutoDefilDisposed)
+        {
+            isAutoDefilDisposed = true;
+            Services.AutoDefil.MyAutoDefilEvent -= autoDefilEventHandler;
+            myAutoDefil.Dispose();
+        }
     }
 
     [JSInvokable]
@@ -108,7 +124,7 @@
     {
         if (!alternateurAutoDef)
         {
-            alternateurAutoDef = true;          
+            alternateurAutoDef = true;
             Services.AutoDefil.MyAutoDefilEvent -= autoDefilEventHandler;
             StateHasChanged();
         }
@@ -119,12 +135,12 @@
     [JSInvokable]
     public void UnPauseAutoDefil()
     {
-        if(alternateurAutoDef)
+        if (alternateurAutoDef)
         {
-            alternateurAutoDef = false;          
+            alternateurAutoDef = false;
             Services.AutoDefil.MyAutoDefilEvent += autoDefilEventHandler;
             StateHasChanged();
-        }       
+        }
     }
 
     private void autoDefilEventHandler() => _ = AutoDefil();
@@ -155,10 +171,19 @@
             reverse = false;
     }
 
+    bool cranSwipe;
     double prim_x;
-    void OnDown(MouseEventArgs e) => prim_x = e.ScreenX;
+    void OnDown(MouseEventArgs e)
+    {
+        cranSwipe = true;
+        prim_x = e.ScreenX; 
+    }
 
-    void OnTouchDown(TouchEventArgs e) => prim_x = Math.Round(e.Touches.First().ScreenX);
+    void OnTouchDown(TouchEventArgs e)
+    {
+        cranSwipe = true;
+        prim_x = Math.Round(e.Touches.First().ScreenX);
+    }
 
     void OnUp() => phpx = 0;
 
@@ -169,55 +194,53 @@
     double phpc;
     string? sphpc;
     double phpx;
-    bool sw_pass;
+    bool sw_pass;    
 
-    void OnMove(MouseEventArgs e)
-    {
-        if (e.Buttons == 1)
-        {
-            if (!sw_pass)
+    private async Task OnMove(MouseEventArgs e)
+    {      
+        if (e.Buttons == 1 && cranSwipe)
+        {           
+            new_x = e.ScreenX;
+            diff = new_x - prim_x;
+            phpx += diff;
+            prim_x = new_x;              
+
+            if (phpx > PhotoSize * .70) 
             {
-                new_x = e.ScreenX;
-                diff = new_x - prim_x;
-                phpx += diff;
-                prim_x = new_x;
+                cranSwipe = false;
+                DisposeAutoDefil();                
+                await OnBack();
             }
-            if (phpx > 150)
-            {
-                DisposeAutoDefil();
-                sw_pass = true;
-                _ = OnBack();
-            }
-            else if (phpx < -150)
-            {
-                DisposeAutoDefil();
-                sw_pass = true;
-                _ = OnNext();
+            else if (phpx < -PhotoSize * .70)
+            {   
+                cranSwipe = false;
+                DisposeAutoDefil();              
+                await OnNext();
             }
         }
     }
-
-    void OnTouchMove(TouchEventArgs e)
+      
+    private async Task OnTouchMove(TouchEventArgs e)
     {
-        if (true)
+        if (cranSwipe)
         {
             new_x = Math.Round(e.Touches.First().ScreenX);
             diff = new_x - prim_x;
             phpx += diff;
             prim_x = new_x;
-        }
 
-        if (phpx > 100)
-        {
-            DisposeAutoDefil();
-            sw_pass = true;
-            _ = OnBack();
-        }
-        else if (phpx < -100)
-        {
-            DisposeAutoDefil();
-            sw_pass = true;
-            _ = OnNext();
+            if (phpx > PhotoSize * .70)
+            { 
+                cranSwipe = false;
+                DisposeAutoDefil();
+                await OnBack();
+            }
+            else if (phpx < -PhotoSize * .70)
+            { 
+                cranSwipe = false;
+                DisposeAutoDefil();
+                await OnNext();
+            }
         }
     }
 

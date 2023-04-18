@@ -301,6 +301,23 @@ function photosWatchDogScreenAndFullScreen() {
     //}
 }
 
+function getPhotoSize(dotNet) {
+
+    var photo = document.getElementById("contPhAloneJs").parentElement;
+
+    const getCalculatedSize = () => {
+
+        let photoCalculatedSize = window.getComputedStyle(photo).getPropertyValue("width");       
+        return parseInt(photoCalculatedSize, 10);
+    }
+
+    window.addEventListener("resize",()=> {
+
+        dotNet.invokeMethodAsync("SetPhotoSize", getCalculatedSize);        
+    });
+   return getCalculatedSize();
+}
+
 //function imgNatural(img) {
 //    console.log("Natural!");
 //    naturalX = img.naturalWidth;
@@ -415,18 +432,11 @@ var nmbrEl = 0;
 function lamb(dotNet) {
    
     if (frLamb) {
-        const ajustLamb = () => {
-            // if (window.matchMedia("(orientation:portrait)").matches) {
-            var header = document.getElementById("header");
-            var csheader = window.getComputedStyle(header);
-
-            //   var h1 = document.getElementById("header");
-            header.style.setProperty("--esp_h1", `${(1 / screen.width) * 5000}`);
-            console.log(`${(1 / screen.width) * 5000}`);
-            // }
+        const ajustLamb = () => {         
+         
             if (window.matchMedia("(max-width:500px)").matches) {
                 console.log("lamb max width");
-                nmbrEl = 10;
+                nmbrEl = 8; 
             }
             else {
                 console.log("lamb else");

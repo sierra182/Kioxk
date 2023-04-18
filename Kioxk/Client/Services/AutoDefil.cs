@@ -4,6 +4,7 @@ public class AutoDefil : IDisposable
 {
     private readonly Timer myTimer;
     static public Action? MyAutoDefilEvent;
+    private bool isDisposed;
     public AutoDefil()
     {
         myTimer = new(_ => OnTimerElapsed(), null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
@@ -15,7 +16,11 @@ public class AutoDefil : IDisposable
     }
     public void Dispose()
     {
-        myTimer.Dispose();
-        GC.SuppressFinalize(this);
+        if (!isDisposed)
+        {
+            isDisposed = true;
+            myTimer.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }
