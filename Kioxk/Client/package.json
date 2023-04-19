@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {   
-"prefix": "npx postcss ./wwwroot/css/style_sheet.min.css --use autoprefixer -o ./wwwroot/css/prefixed/style_sheet.min.prefixed.css"
-
+  "scripts": {
+    "prefix": "npx postcss ./wwwroot/css/style_sheet.min.css --use autoprefixer -o ./wwwroot/css/prefixed/style_sheet.min.prefixed.css --config autoprefixer.config.js"
   },
   "dependencies": {
     "browserslist": "last 4 versions",
-    "caniuse-lite": "^1.0.30001423",
+ "caniuse-lite": "latest",
     "electron-to-chromium": "^1.4.284",
     "escalade": "^3.1.1",
     "fraction.js": "^4.2.0",

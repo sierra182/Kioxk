@@ -36,12 +36,11 @@
   <ItemGroup>
     <Folder Include="wwwroot\css\prefixed\" />
   </ItemGroup>
-  <!--  
+  <!--  -->
  <Target Name="PrefixCSS" BeforeTargets="Build">  
     <Exec Command="npm run prefix" />
   </Target>
- -->
-  
+   
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>  
   
 </Project>

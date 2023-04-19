@@ -37,6 +37,7 @@ body, html {
     margin: 0;
     padding: 0;
     background-color: $color;
+    user-select: none;
     // background-image: url("/item/papierinp.jpg");
     // height:100%; //position:relative;
 }
@@ -48,11 +49,31 @@ body, html {
 /*button {
     cursor: pointer;
 }*/
+/** {
+    color:green;
+  
+    --webkit-tap-highlight-color: rgba(0, 0, 0, 0) ;
+ 
+    -webkit-tap-highlight-color: transparent;*/
+/*tap-highlight-color: transparent;*/ //
+/*}*/
+
 
 button, div[role="button"], svg[role="button"] {
     cursor: pointer;
+
+    &:not(#mail,#tel,#element) {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+    }
 }
 
+/** {
+    &:not(#mail) {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+    }
+}*/
 
 
 /*ul, ol, li {
@@ -612,7 +633,7 @@ a {
             //  flex-shrink:1;//height: fit-content;
             height: fit-content;
             //   margin: auto;
-            user-select: none;
+            //    user-select: none;
             // @include ombre();
             // clip-path: polygon(0% 25%, 25% 0%,75% 0%, 100% 25%, 100% 75%,75% 100%, 25% 100%, 0% 75%);
             // backdrop-filter: blur(0);
@@ -660,7 +681,7 @@ a {
                 //  border-radius: 1%;
                 //  clip-path: polygon(0% 15%, 15% 0%, 100% 0%, 100% 85%,85% 100%, 15% 100%, 0% 85%);
                 //  border: groove 2px;
-         //       transition: transform .7s;
+                //       transition: transform .7s;
                 //  border-radius: 5%;
                 // background-color: red;
                 overflow-x: hidden;
@@ -760,10 +781,10 @@ a {
                         height: fit-content;
                         margin: auto;
                         align-items: center;
-                       will-change: transform;
-                        transition: transform linear .5s;//, width linear .5s;
-                    //   transform: translate(calc( var(--phpc) * 1% + var(--phpxpct) * 1% )); //
-                      transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
+                        will-change: transform;
+                        transition: transform linear .5s; //, width linear .5s;
+                        //   transform: translate(calc( var(--phpc) * 1% + var(--phpxpct) * 1% )); //
+                        transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
                         //  background-color: yellow;
 
                         > div { //cont img et cont ifrme - multy
@@ -937,7 +958,7 @@ a {
             // margin: 0 6rem;
             transition: 2s transform;
             // transform: translate(-5vw);
-            user-select: none;
+            //  user-select: none;
             //  overflow-y: visible;
             // visibility:hidden;
             //   border-radius:50%;
@@ -1842,7 +1863,7 @@ a {
                 background-color: rgba(black,.05);
                 //filter:none;
                 visibility: var(--visib);
-                user-select: none;
+                //     user-select: none;
                 border: solid white 1px;
                 border-radius: 7px;
                 /*   &:before {
@@ -2081,6 +2102,7 @@ a {
                         display: block;
                         // background-color: mediumspringgreen;
                         //  color: transparent;
+                        user-select: text;
 
                         span {
                             display: block;
@@ -2108,6 +2130,14 @@ a {
                         }
                     }
 
+                    label:first-of-type {
+                        //   position: relative;
+                        // width: 90%;
+                        //  margin: auto;
+                        padding-top: 1rem;
+                        //    transition: 2s all;
+                    }
+
                     input, textarea {
                         display: block;
                         width: 95%;
@@ -2127,9 +2157,6 @@ a {
                         }
                     }
 
-                    input {
-                        //  background-color: rgba(white,.8);
-                    }
 
                     textarea {
                         resize: none;
@@ -2146,18 +2173,6 @@ a {
 
 
 
-                    label:first-of-type {
-                        //   position: relative;
-                        // width: 90%;
-                        //  margin: auto;
-                        padding-top: 1rem;
-                        //    transition: 2s all;
-
-
-                        input {
-                            display: block;
-                        }
-                    }
 
                     button { // Envoyez
                         display: block;
@@ -2276,6 +2291,7 @@ a {
                     overflow: clip;
 
                     > div:first-of-type { // cont htmlpaie
+                        user-select: text;
                         position: relative;
                         top: 0;
                         height: auto;
@@ -2320,6 +2336,7 @@ a {
                     position: relative;
                     top: 0;
                     text-align: center;
+                    user-select: text;
                     //  font-size: 2rem;
                     //   background-color: palevioletred;
                     height: fit-content; //fit-content(100px);
@@ -2332,6 +2349,7 @@ a {
                     }
 
                     button {
+                        user-select: none;
                         //   display: inline-block;
                         margin: 1em;
                         //  margin-top:.2em;
