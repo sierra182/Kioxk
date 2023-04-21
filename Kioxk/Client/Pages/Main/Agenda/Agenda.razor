@@ -230,7 +230,7 @@
     HashSet<DateTime>? unionSais;
     HashSet<DateTime>? intersecExSais;
     HashSet<DateTime>? intersecSais;  
-   
+
     private void afterSync(HashSet<DateTime>[] seas, List<int> pric)
     {
         if (Selected is not null)
@@ -242,14 +242,15 @@
             if (intersec.Count > 0)                                     // Si au moins un jour des périodes selectionnées n'est plus dispo, supprime la période.
             {
                 foreach (DateTime i in intersec)                
+                 {  c.WriteLine("message numero1: " + i); 
+                    message = true;
                     suppressionPeriodes(i);                
-
-                message = true;
+                 }
             }
 
             foreach (var sel in Selected)            
                 if (UnSelectable.Contains(sel.AddDays(1)) || UnSelectable.Contains(sel.AddDays(-1)))        // Prend en compte les jours tampons.
-                {
+                {  c.WriteLine("message numero2: " + sel);
                     message = true;
                     suppressionPeriodes(sel);
                 }

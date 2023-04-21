@@ -1401,7 +1401,8 @@ a {
                         }
                     }
 
-                    > #panneau {
+
+                    #panneau {
                         display: grid;
                         position: relative;
                         top: 0;
@@ -1421,23 +1422,44 @@ a {
                         //    background-color: darkcyan;
                         //  pointer-events: none;
                         //   display:none;
-                        > div { // Item
+                        /*      .element {
+                            position:absolute;
+                            width:100%;
+                            height:100%;
+                            background-color: rgba(0,0,0,.2);
+                        }*/
+                        .weekDay {
+                            display: flex;
+                            width: auto;
+                            height: auto;
+                            margin: 1px;
+                            border: solid;
+                            border-width: calc(max(.4vw,4px));
+                            border-radius: 10%;
+                            //  border-color: cornflowerblue;
+                            background-color: rgba(0, 0, 0, .4);
+
+                            span { // jours Sem
+                                display: inherit;
+                                color: ghostwhite;
+                                line-height: 1;
+                                margin: auto;
+                                //   font-size: 1.1rem; //1vw;//1rem;
+                                font-weight: 800;
+                                // background-color: lightgreen;
+                            }
+                        }
+
+
+                        .element { // Item
                             display: flex;
                             width: auto;
                             height: auto;
                             margin: 1px;
                             filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
-                            background-color: transparent;
+                     //      background-color: blue; //transparent;
 
-                            &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(7) { // 7 jours
-                                //   border: solid;
-                                border-width: calc(max(.4vw,4px));
-                                border-radius: 10%;
-                                border-color: cornflowerblue;
-                                background-color: rgba(0, 0, 0, .4);
-                            }
-
-                            > div { // Element container
+                            #elementContainer { // Element container
                                 display: inherit;
                                 width: 100%;
                                 height: 100%;
@@ -1445,23 +1467,28 @@ a {
                                 border-width: calc(max(.4vw,4px));
                                 border-radius: 10%;
                                 border-color: green;
+                             //    background-color: red!important;
+
+                                span { // jours Int
+                                    display: inherit;
+                                    margin: auto;
+                                    line-height: 1;
+                                    font-size: min(max(.55rem,1.8vw),.8rem); //1vw;// 1rem;
+                                    font-weight: bold;
+                             //       background-color: green;
+                                }
+
+                                #elementContainerPhantom {
+                                    position: absolute;
+                                    top: 0;
+                                    left:0;
+                                    width: 100%;
+                                    height: 100%;
+                                //    background-color: violet;
+                                }
                             }
 
-                            span { // jours Int
-                                display: inherit;
-                                margin: auto;
-                                line-height: 1;
-                                font-size: min(max(.55rem,1.8vw),.8rem); //1vw;// 1rem;
-                                font-weight: bold;
-                                //  background-color: green;
-                            }
-
-                            > span { // jours Sem
-                                color: ghostwhite;
-                                line-height: 1;
-                                //   font-size: 1.1rem; //1vw;//1rem;
-                                font-weight: 800;
-                                // background-color: lightgreen;
+                            #elementPhantom {
                             }
                         }
                     }

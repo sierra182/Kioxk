@@ -434,12 +434,10 @@ function lamb(dotNet) {
     if (frLamb) {
         const ajustLamb = () => {         
          
-            if (window.matchMedia("(max-width:500px)").matches) {
-                console.log("lamb max width");
+            if (window.matchMedia("(max-width:500px)").matches) {               
                 nmbrEl = 8; 
             }
-            else {
-                console.log("lamb else");
+            else {               
                 nmbrEl = 20;
             }
             dotNet.invokeMethodAsync('CSharpLamb', nmbrEl);
@@ -450,9 +448,78 @@ function lamb(dotNet) {
         frLamb = false;
     }
 }
+function findElementWithId(element) {
+    while (element && !element.id) {
+        element = element.parentElement;
+    }
+    
+    return element;
+}
+function getElementFromPoint(clientX, clientY) {   
+    const element = document.elementFromPoint(clientX, clientY);   
+    return element;
+}
+function getId(clientX, clientY) {
+    var elements = document.getElementsByClassName("element");
+   //for (var element of elements) {
+
+   //     console.log("el id: " + element.id);
+
+
+   // }
+    //console.log("AVVVAAANTWHHAAAAAAA: ");
+    //for (var element of elements) {
+    //    element.addEventListener("touchmove", (e) => {
+    //        console.log("tm client: " + clientX + " " + clientY);
+    //        var targetElement = getElementFromPoint(clientX, clientY);
+    //        console.log("target el: " + targetElement.parentElement.id);
+    //       var tg = findElementWithId(targetElement);
+    //        console.log("WHHAAAAAAA42: " + tg);
+    //       // dotNet.invokeVoid("HandleTouchEnter", e.target.id)
+    //    })
+    //}
+
+
+   // return element.id;
+}
+let dotNetDict = {};
+function subscriptionOnTouch(dotNet, elRef) {
+    
+    const addSubscriptionTouchEvent = (dotnet, elref) => {
+        var exHoverElement;
+        elref.addEventListener("touchmove", (e) => {
+            //console.log("e.clientx: " + e.touches[0].clientX + " " + e.touches[0].clientY);
+            //console.log("Touch Event elref: " + elref.parentElement.parentElement.id);
+            //console.log("GetElementFromPoints: " + getElementFromPoint(e.touches[0].clientX, e.touches[0].clientY).parentElement.parentElement);
+          
+            var hoverElement = getElementFromPoint(e.touches[0].clientX, e.touches[0].clientY).parentElement.parentElement;
+            if (exHoverElement && hoverElement.id == exHoverElement.id) {               
+                return;
+            } else {               
+                exHoverElement = hoverElement;
+            }
+            if (hoverElement && dotNetDict.hasOwnProperty(hoverElement.id)) {
+                dotNetDict[hoverElement.id].invokeMethodAsync("RiseEventCallBack");
+            }
+          
+        });
+    };
+
+    //console.log("elref: " + elRef + " " + elRef.id + "parent: " + elRef.parentElement.parentElement.id + " parent class: " + elRef.parentElement.parentElement.classList);
+    if (elRef.parentElement.parentElement.classList == "element") {
+        //console.log("call add subcription :" + elRef.parentElement.parentElement.id);
+
+        dotNetDict[elRef.parentElement.parentElement.id] = dotNet;
+        addSubscriptionTouchEvent(dotNet, elRef);
+    }
+}
+
+function unSubscriptionOnTouch() {
+
+}
 
 function welcome() { // en travaux...
-    console.log("welcome");
+   
     var main = document.getElementById("maincont");
     var pay = document.getElementById("payment");
     var hlp = document.getElementById("hlp");
