@@ -16,12 +16,9 @@
     @for (int i = 0; i < nbrElement; i++)
     {
         var t = datetime[i];
-
-        string myId = $"element{i}";
-
-        @*     myElementReferenceList.Add(new ElementReference());
-    myElementReferenceDict.Add(myElementReferenceList[i], t);*@
+        string myId = $"element{i}";               
         var e = i;
+
         if (unselectable![i] is null or true)
             role = "";
 
@@ -29,13 +26,13 @@
             role = "button";
 
         <div id="@myId" class="element" role="@role" aria-label="select day or not">
-      
 
-            <Element OnTouchStart='ev => { c.WriteLine("touchstartNEW"); OnTouchDown(ev, t);}'
-                 OnTouchMove='ev => { c.WriteLine(" touchmoveNEWY"); OnTouchMove(e, t);}'
-                 OnMouseDown='ev => { c.WriteLine("mousedownNEW"); OnMouseDown(t);}'
-                 OnMouseMove='ev => { c.WriteLine("mousemoveNEW"); OnMouseMove(ev, e, t);}'
-                 OnClick='()=> { c.WriteLine("clickNEW");
+
+            <Element OnTouchStart='()=> OnTouchDown(t)'
+                 OnTouchMove='()=> OnTouchMove(e, t)'
+                 OnMouseDown='()=> OnMouseDown(t)'
+                 OnMouseMove='ev => OnMouseMove(ev, e, t)'
+                 OnClick='()=> { 
             if(myEvents.Livret is not null || !livretFirstRender )
             {
                livretFirstRender = false;
@@ -75,11 +72,7 @@
     public HashSet<DateTime>[]? Seasons { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
-
-    ElementReference myElementReference;
-    List<ElementReference> myElementReferenceList = new();
-    Dictionary<ElementReference, DateTime> myElementReferenceDict = new();
-
+      
     private string role = "";
     private bool livretFirstRender = true;
     private const int nbrElement = 42;
@@ -156,8 +149,8 @@
         {                                                                  // Remplit les jours du mois apres le offset.
             datetime[i] = firstDay.AddDays(a);                             // Les rends selectionnables.
             unselectable![i] = false;
-
         }
+
         for (int i = offSet; i < monthDays + offSet; i++)
         {
             if (UnSelectable!.Contains(datetime[i]))
@@ -186,6 +179,7 @@
                 seasons![i, 1] = true;
         }
     }
+
     //void OnClickWeekOnly(int i, DateTime t)
     //{                                                               // Selection minimale hebdomadaire avec
     //    r = true;                                                   // Rend les elements vides clickable par le programme.
@@ -213,122 +207,57 @@
     bool? isDownDaySelected;
     private void OnMouseDown(DateTime downDay)
     {
-        if (Selected is not null && Selected.Contains(downDay))
-        {
+        if (Selected is not null && Selected.Contains(downDay))        
             isDownDaySelected = true;
-        }
-        if (Selected is null || Selected is not null && !Selected.Contains(downDay))
-        {
-            isDownDaySelected = false;
-        }
+        
+        if (Selected is null || Selected is not null && !Selected.Contains(downDay))        
+            isDownDaySelected = false;        
     }
 
     bool isFirst = true;
     DateTime elementMoveFocus;
-    private void OnMouseMove(MouseEventArgs? e, int i, DateTime moveDay)
+    private void OnMouseMove(MouseEventArgs e, int i, DateTime moveDay)
     {
+        if (e.Buttons == 1)
 
-
-        if (e is not null && e.Buttons == 1 || e is null)
-        {
-            c.WriteLine("onmousemove i:" + i);
-            c.WriteLine("onmousemove moveday: " + moveDay);
-            c.WriteLine("onmousemove focus: " + elementMoveFocus);
             if (elementMoveFocus == moveDay)
             {
                 if (isFirst)
-                {
-                    if (isDownDaySelected is not null and false && (Selected is not null && !Selected.Contains(moveDay) || Selected is null))               // DownDay n'est pas selectionné. > Ajout
-                    {
-                        c.WriteLine("dans dd no select vers move no select");
+
+                    if (isDownDaySelected is not null and false && (Selected is not null && !Selected.Contains(moveDay) || Selected is null))
                         OnClick3DaysOnly(i, moveDay);
-                    }
+
                     else if (isDownDaySelected is not null and true && Selected is not null && Selected.Contains(moveDay))                 // DownDay est selectionné. > Suppression
-                    {
-                        c.WriteLine("dans dd select vers move select");
                         OnClick3DaysOnly(i, moveDay);
-                    }
-                    if (Selected is null) { c.WriteLine("selected is null"); }
-                    if (Selected is not null) { c.WriteLine("selected is not null: " + Selected.Contains(moveDay)); }
-                    if (isDownDaySelected is not null) { c.WriteLine("isdownselected is not null: " + isDownDaySelected); }
-                    if (isDownDaySelected is null) { c.WriteLine("isdownselected is null"); }
-                    isFirst = false;
-                }
+
+                isFirst = false;
             }
             else
             {
-                c.WriteLine("dans else : changement de jour");
                 elementMoveFocus = moveDay;
                 isFirst = true;
             }
-        }
     }
-    //private Action<TouchEventArgs> CreateTouchMoveHandler(int i, DateTime t)
-    //{
-    //    return (ev) => OnTouchMove(ev, i, t);
-    //}
-  
-    private void OnTouchDown(TouchEventArgs ev, DateTime downDay)
+
+    private void OnTouchDown(DateTime downDay)
     {
-        c.WriteLine("downDay: " + downDay);
         if (Selected is not null && Selected.Contains(downDay))
-        {
             isDownDaySelected = true;
-        }
+
         if (Selected is null || Selected is not null && !Selected.Contains(downDay))
-        {
             isDownDaySelected = false;
-        }
     }
+
     private void OnTouchMove(int i, DateTime moveDay)
     {
-       // c.WriteLine("ONTOUCHMOVEBLAZOR");
-      //   c.WriteLine("ONTOUCHMOVEBLAZOR arguments: " + i + " " + moveDay);
-        //var touch = e.ChangedTouches.FirstOrDefault();
-        //if (touch != null)
-        //{
-        //    string targetElementId = await js.InvokeAsync<string>("getId", touch.ClientX, touch.ClientY);
-        //    Console.WriteLine("Element ID: " + targetElementId);
-        //}
-        //js.InvokeVoidAsync("alert", "MOUVE");
-        //var moveDay = datetime[i];
-        // string elementId = await js.InvokeAsync<string>("getId", myElementReference);
-        //  Console.WriteLine("reference element :" + elementId);
+        if (isDownDaySelected is not null and false && (Selected is not null && !Selected.Contains(moveDay) || Selected is null))               // DownDay n'est pas selectionné. > Ajout
+            OnClick3DaysOnly(i, moveDay);
 
-        //   c.WriteLine("ontouchmove i:"  + i);
-        //    c.WriteLine("ontouchmove moveday: " + moveDay);
-        //    c.WriteLine("ontouchmove focus: " + elementMoveFocus);
-
-        //if (elementMoveFocus == moveDay)
-        //{
-            //if (isFirst)
-            //{
-            if (isDownDaySelected is not null and false && (Selected is not null && !Selected.Contains(moveDay) || Selected is null))               // DownDay n'est pas selectionné. > Ajout
-            {
-              //  c.WriteLine("dans dd no select vers move no select");
-                OnClick3DaysOnly(i, moveDay);
-            }
-            else if (isDownDaySelected is not null and true && Selected is not null && Selected.Contains(moveDay))                 // DownDay est selectionné. > Suppression
-            {
-              //  c.WriteLine("dans dd select vers move select");
-                OnClick3DaysOnly(i, moveDay);
-            }
-            //if (Selected is null) { c.WriteLine("selected is null"); }
-            //if (Selected is not null) { c.WriteLine("selected is not null: " + Selected.Contains(moveDay)); }
-            //if (isDownDaySelected is not null) { c.WriteLine("isdownselected is not null: " + isDownDaySelected); }
-            //if (isDownDaySelected is null) { c.WriteLine("isdownselected is null"); }
-         //   isFirst = false;
-            //}
-       // }
-        //else
-        //{
-        //    c.WriteLine("dans else : changement de jour");
-        //    elementMoveFocus = moveDay;
-        //    isFirst = true;
-        //}
-
+        else if (isDownDaySelected is not null and true && Selected is not null && Selected.Contains(moveDay))                 // DownDay est selectionné. > Suppression
+            OnClick3DaysOnly(i, moveDay);
     }
-    void OnClick3DaysOnly(int ni, DateTime nt)
+
+    private void OnClick3DaysOnly(int ni, DateTime nt)
     {                                                               // Selection minimale hebdomadaire avec
         r = true;                                                   // Rend les elements vides et unselectable clickable par le programme.
         if (unselectable![ni] is null or true)                                // Rend les elements vides non clickable par l'utilisateur.
@@ -422,7 +351,6 @@
                 for (int i = 1; i < 4; i++)
                 {
                     ntdd = ntdd.AddDays(1);                                 // supprime les elements selectionnées, jusqu'a un qui ne l'est pas, vers la droite.
-
 
                     if (Selected is null || Selected is not null && !Selected.Contains(ntdd))
                         break;

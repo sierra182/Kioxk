@@ -981,7 +981,7 @@ a {
   flex-shrink: 0;
   margin: auto 0;
 }
-#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div:nth-child(7) > div div, #maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div:nth-child(8) > div div {
+#maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div:nth-child(7) > div div:not(#elementContainerPhantom), #maincont #hlp_ag_cont #hlp > div:first-child > div:first-child > div:nth-child(8) > div div:not(#elementContainerPhantom) {
   border: solid 0.3em;
 }
 #maincont #hlp_ag_cont #agenda {

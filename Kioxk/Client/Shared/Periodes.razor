@@ -18,21 +18,23 @@
             int prixPer = nmbrtab[3];
             if (per.Count == 1)
             {
+                <div>
                 <span> Le @deb.ToShortDateString() </span>
-                if (nmbrJourNorm == 1)
+                @if (nmbrJourNorm == 1)
                 {
                     <span>Un jour à @Prices[1] €  </span>
                 }
 
-                if (nmbrJourMoy == 1)
+                @if (nmbrJourMoy == 1)
                 {
                     <span>Un jour au prix moyenne saison: @Prices[2] € </span>
 
                 }
-                if (nmbrJourHaute == 1)
+                @if (nmbrJourHaute == 1)
                 {
                     <span>Un jour au prix haute saison:  @Prices[3] €</span>
                 }
+                </div>
             }
             else
             {

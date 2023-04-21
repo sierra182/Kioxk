@@ -1289,7 +1289,7 @@ a {
 
                     > div:nth-child(7), > div:nth-child(8) {
                         > div {
-                            div {
+                            div:not(#elementContainerPhantom) {
                                 border: solid .3em; //!important;
                                 // border-color: green !important;
                             }

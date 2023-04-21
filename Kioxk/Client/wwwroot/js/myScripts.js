@@ -448,51 +448,15 @@ function lamb(dotNet) {
         frLamb = false;
     }
 }
-function findElementWithId(element) {
-    while (element && !element.id) {
-        element = element.parentElement;
-    }
-    
-    return element;
-}
-function getElementFromPoint(clientX, clientY) {   
-    const element = document.elementFromPoint(clientX, clientY);   
-    return element;
-}
-function getId(clientX, clientY) {
-    var elements = document.getElementsByClassName("element");
-   //for (var element of elements) {
 
-   //     console.log("el id: " + element.id);
-
-
-   // }
-    //console.log("AVVVAAANTWHHAAAAAAA: ");
-    //for (var element of elements) {
-    //    element.addEventListener("touchmove", (e) => {
-    //        console.log("tm client: " + clientX + " " + clientY);
-    //        var targetElement = getElementFromPoint(clientX, clientY);
-    //        console.log("target el: " + targetElement.parentElement.id);
-    //       var tg = findElementWithId(targetElement);
-    //        console.log("WHHAAAAAAA42: " + tg);
-    //       // dotNet.invokeVoid("HandleTouchEnter", e.target.id)
-    //    })
-    //}
-
-
-   // return element.id;
-}
 let dotNetDict = {};
 function subscriptionOnTouch(dotNet, elRef) {
     
-    const addSubscriptionTouchEvent = (dotnet, elref) => {
+    const addSubscriptionTouchEvent = (elref) => {
         var exHoverElement;
-        elref.addEventListener("touchmove", (e) => {
-            //console.log("e.clientx: " + e.touches[0].clientX + " " + e.touches[0].clientY);
-            //console.log("Touch Event elref: " + elref.parentElement.parentElement.id);
-            //console.log("GetElementFromPoints: " + getElementFromPoint(e.touches[0].clientX, e.touches[0].clientY).parentElement.parentElement);
+        elref.addEventListener("touchmove", (e) => {           
           
-            var hoverElement = getElementFromPoint(e.touches[0].clientX, e.touches[0].clientY).parentElement.parentElement;
+            var hoverElement = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY).parentElement.parentElement;
             if (exHoverElement && hoverElement.id == exHoverElement.id) {               
                 return;
             } else {               
@@ -500,22 +464,15 @@ function subscriptionOnTouch(dotNet, elRef) {
             }
             if (hoverElement && dotNetDict.hasOwnProperty(hoverElement.id)) {
                 dotNetDict[hoverElement.id].invokeMethodAsync("RiseEventCallBack");
-            }
-          
+            }          
         });
     };
 
-    //console.log("elref: " + elRef + " " + elRef.id + "parent: " + elRef.parentElement.parentElement.id + " parent class: " + elRef.parentElement.parentElement.classList);
-    if (elRef.parentElement.parentElement.classList == "element") {
-        //console.log("call add subcription :" + elRef.parentElement.parentElement.id);
+    if (elRef.parentElement.parentElement.classList == "element") {       
 
         dotNetDict[elRef.parentElement.parentElement.id] = dotNet;
-        addSubscriptionTouchEvent(dotNet, elRef);
+        addSubscriptionTouchEvent(elRef);
     }
-}
-
-function unSubscriptionOnTouch() {
-
 }
 
 function welcome() { // en travaux...

@@ -1,6 +1,5 @@
 ﻿@inject MyEvents myEvents
 @inject IJSRuntime js
-@implements IAsyncDisposable 
 
 <div id="elementContainer" style="background:@colorday;border-color:@borderColor">
     @if (Selected ?? false || UnSelectable is not null)
@@ -9,27 +8,24 @@
     }
 
     <div id="elementContainerPhantom" @ref="myElementReference"
-         @ontouchstart="OnTouchStart"
-        
+         @ontouchstart="OnTouchStart"        
          @onmousedown="OnMouseDown"
          @onmousemove="OnMouseMove"
-         @onclick="OnClick"> </div>
+         @onclick="OnClick"/> 
 </div>
 
 @code {
 
     [Parameter]
-    public EventCallback<TouchEventArgs> OnTouchStart { get; set; }
+    public EventCallback OnTouchStart { get; set; }    
     [Parameter]
-    public EventCallback<TouchEventArgs> OnTouchEnter { get; set; }  
+    public EventCallback OnTouchMove { get; set; }
     [Parameter]
-    public EventCallback<TouchEventArgs> OnTouchMove { get; set; }
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnMouseDown { get; set; }
+    public EventCallback OnMouseDown { get; set; }
     [Parameter]
     public EventCallback<MouseEventArgs> OnMouseMove { get; set; }
     [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    public EventCallback OnClick { get; set; }
 
     [Parameter]
     public DateTime DateTime { get; set; }
@@ -109,25 +105,14 @@
     ElementReference myElementReference;
     protected override async Task OnAfterRenderAsync(bool fr)
     {
-        if (fr)   
-        {
-           // c.WriteLine("OnElementAfterFirstRender");
-            await js.InvokeVoidAsync("subscriptionOnTouch", DotNetObjectReference.Create(this), myElementReference );      
-        }
-
+        if (fr)      
+            await js.InvokeVoidAsync("subscriptionOnTouch", DotNetObjectReference.Create(this), myElementReference );    
     }
 
     [JSInvokable]
     public void RiseEventCallBack()
-    {
-      //  c.WriteLine("OnElementRiseEvenetCallBack: " + DateTime);
+    {      
         _ = OnTouchMove.InvokeAsync();
     }
-
-    public async ValueTask DisposeAsync()
-    {
-      //  c.WriteLine("OnElementDispose");
-        await js.InvokeVoidAsync("unSubscriptionOnTouch");
-        //GC.SuppressFinalize(this);
-    }
+      
 }
