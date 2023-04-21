@@ -18,6 +18,8 @@ $color: orange; /// red;//#0081CF;//;//;/;
 }*/
 body {
     overflow-x: hidden; //
+    will-change:background-color;
+    transition:background-color .5s linear;
 }
 
 html {
@@ -197,7 +199,7 @@ a {
 
             #lambcont {
                 svg {
-                    width: calc((100 / 8) * 1%) !important; //10% !important;
+                    width: calc((100 / 9) * 1%) !important; //10% !important;
                     /*      &:nth-of-type(5) {
                         visibility: hidden;
                         margin-top: var(--margin_top);

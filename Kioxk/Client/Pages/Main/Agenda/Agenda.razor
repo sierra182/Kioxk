@@ -18,9 +18,9 @@
             mycallbool = true;
             classe = "mycallplein";
         }
-        else if (mycallbool)        
+        else if (mycallbool)
             classe = "";
-        
+
     }
 
     <div tabindex="0" style="--triremplnext:@trnu;--triremplback:@trbu">
@@ -147,8 +147,7 @@
                 livret = await ivret.Content.ReadFromJsonAsync<Livret>();
                 myevents.Livret = livret;
 
-                if (myevents.HelpUpdate is not null)
-                    myevents.HelpUpdate.Invoke();                
+                myevents.HelpUpdate?.Invoke();
             }
         }
 
@@ -171,7 +170,8 @@
                 UnSelectable.Add(dt.Dt);
 
         for (int prevDay = now.Day; prevDay >= 1; prevDay--)                                      // Rend non-selectable les jours précédents le jour actuel.
-        { UnSelectable.Add(new DateTime(now.Year, now.Month, prevDay));          
+        {
+            UnSelectable.Add(new DateTime(now.Year, now.Month, prevDay));
         }
         CompleteWeek();
 
@@ -229,7 +229,7 @@
     HashSet<DateTime>? unionExSais;
     HashSet<DateTime>? unionSais;
     HashSet<DateTime>? intersecExSais;
-    HashSet<DateTime>? intersecSais;  
+    HashSet<DateTime>? intersecSais;
 
     private void afterSync(HashSet<DateTime>[] seas, List<int> pric)
     {
@@ -241,23 +241,25 @@
             intersec.IntersectWith(UnSelectable);
             if (intersec.Count > 0)                                     // Si au moins un jour des périodes selectionnées n'est plus dispo, supprime la période.
             {
-                foreach (DateTime i in intersec)                
-                 {  c.WriteLine("message numero1: " + i); 
+                foreach (DateTime i in intersec)
+                {
+                    c.WriteLine("message numero1: " + i);
                     message = true;
-                    suppressionPeriodes(i);                
-                 }
+                    suppressionPeriodes(i);
+                }
             }
 
-            foreach (var sel in Selected)            
+            foreach (var sel in Selected)
                 if (UnSelectable.Contains(sel.AddDays(1)) || UnSelectable.Contains(sel.AddDays(-1)))        // Prend en compte les jours tampons.
-                {  c.WriteLine("message numero2: " + sel);
+                {
+                    c.WriteLine("message numero2: " + sel);
                     message = true;
                     suppressionPeriodes(sel);
                 }
-            
-            if (message)            
+
+            if (message)
                 js.InvokeVoidAsync("alert", "Attention certains jours que vous aviez selectionnés ne sont plus disponibles, la période a été supprimeé de votre selection. Veuillez re-vérifier vos dates svp.");
-            
+
             unionExSais = new HashSet<DateTime>(seas[0]);         //  Réunis les anciennes saisons dans le meme HashSet
             unionExSais.UnionWith(seas[1]);
 

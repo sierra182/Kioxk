@@ -11,9 +11,9 @@ namespace Kioxk.Client.Shared;
     public Action? MyPointer;
     public Action? HelpUpdate;
 
-    public void RiseAddSubscriptionSyncEvent()=> AddSubscriptionSync?.Invoke();
+    public void RiseAddSubscriptionSyncEvent() => AddSubscriptionSync?.Invoke();
     public void RiseRemoveSubscriptionSyncEvent() => RemoveSubscriptionSync?.Invoke();
-    public void RisePointerEvent()=> MyPointer?.Invoke();
+    public void RisePointerEvent() => MyPointer?.Invoke();
     public void RiseHelpUpdateEvent() => HelpUpdate?.Invoke();
 }
 

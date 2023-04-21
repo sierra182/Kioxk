@@ -13,38 +13,40 @@
 <header id="header">
     <div id="lambcontsurv">
         <div id="lambcont">
-            @for (int i = 0; i < b; i++)            
-              { <Lamb /> }  
+            @for (int i = 0; i < b; i++)
+            {
+                <Lamb />
+            }
         </div>
 
     </div>
 
     <div id="contact">
         <nav>
-           
-                <div id="tel" class="notap" tabindex="0" role="button" aria-label="affiche le numero">
-                    <div>
-                        <img src="items/tel.png" alt="icône téléphone" />
-                    </div>
-                    <div>
-                        <a href="tel:0692121212">0692121212</a>
-                    </div>
-                </div>
 
-                <div id="mail" class="notap" tabindex="0" role="button" aria-label="affiche l'adresse e-mail">
-                    <div>
-                        <a href="mailto:location@gmail.com">location@gmail.com</a>
-                    </div>
-                    <div>
-                        <picture>
+            <div id="tel" class="notap" tabindex="0" role="button" aria-label="affiche le numero">
+                <div>
+                    <img src="items/tel.png" alt="icône téléphone" />
+                </div>
+                <div>
+                    <a href="tel:0692121212">0692121212</a>
+                </div>
+            </div>
+
+            <div id="mail" class="notap" tabindex="0" role="button" aria-label="affiche l'adresse e-mail">
+                <div>
+                    <a href="mailto:location@gmail.com">location@gmail.com</a>
+                </div>
+                <div>
+                    <picture>
                         <source srcset="items/mail.webp 512w" type="image/webp">
                         <source srcset="items/mail.png 512w" type="image/png">
                         <img src="items/mail.png" alt="icône e-mail" />
-                        </picture>
-                    </div>
-
+                    </picture>
                 </div>
-           
+
+            </div>
+
         </nav>
     </div>
 
@@ -129,6 +131,8 @@
         {
             await js.InvokeVoidAsync("lamb", DotNetObjectReference.Create(this));
             await js.InvokeVoidAsync("configureLambSvgObserver");
+
+            await js.InvokeVoidAsync("welcome");
         }
     }
 
