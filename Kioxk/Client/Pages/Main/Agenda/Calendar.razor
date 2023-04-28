@@ -2,7 +2,15 @@
 @using System.Globalization
 
 @inject IJSRuntime js
-<div><div><span>@monthName</span><span>@year</span></div></div>
+<div id="month_cont">
+    <div>
+        <span>@monthName</span>
+        <span>@year</span>
+    </div>
+    <div role="button" aria-label="active le calendrier" id="month_overlay">
+        <span>Ouvrir</span>
+    </div>
+</div>
 
 <div id="panneau">
     <div class="weekDay"><span>lu</span></div>
@@ -16,7 +24,7 @@
     @for (int i = 0; i < nbrElement; i++)
     {
         var t = datetime[i];
-        string myId = $"element{i}";               
+        string myId = $"element{i}";
         var e = i;
 
         if (unselectable![i] is null or true)
@@ -27,12 +35,11 @@
 
         <div id="@myId" class="element" role="@role" aria-label="select day or not">
 
-
             <Element OnTouchStart='()=> OnTouchDown(t)'
                  OnTouchMove='()=> OnTouchMove(e, t)'
                  OnMouseDown='()=> OnMouseDown(t)'
                  OnMouseMove='ev => OnMouseMove(ev, e, t)'
-                 OnClick='()=> { 
+                 OnClick='()=> {
             if(myEvents.Livret is not null || !livretFirstRender )
             {
                livretFirstRender = false;
@@ -41,7 +48,12 @@
                  @bind-DateTime="@datetime[i]" @bind-UnSelectable="@unselectable![i]" @bind-Selected="@selected![i]" Seasons="@mySeason(e)"></Element>
         </div>
     }
+
+    <div id="panneau_overlay"/>
+
 </div>
+
+
 
 @code {
     [Parameter]
@@ -72,7 +84,7 @@
     public HashSet<DateTime>[]? Seasons { get; set; }
     [Parameter]
     public EventCallback<HashSet<DateTime>[]> SeasonsChanged { get; set; }
-      
+
     private string role = "";
     private bool livretFirstRender = true;
     private const int nbrElement = 42;
@@ -87,7 +99,7 @@
     {                                                                       // Passage d'une ligne d'un tableau multidimentionnel à tableau unidimentionnel.
         return new bool?[2] { seasons![it, 0], seasons[it, 1] };
     }
-
+        
     private int month;
     private DateTime firstDay;
     private int firstDayWeek;
@@ -207,11 +219,11 @@
     bool? isDownDaySelected;
     private void OnMouseDown(DateTime downDay)
     {
-        if (Selected is not null && Selected.Contains(downDay))        
+        if (Selected is not null && Selected.Contains(downDay))
             isDownDaySelected = true;
-        
-        if (Selected is null || Selected is not null && !Selected.Contains(downDay))        
-            isDownDaySelected = false;        
+
+        if (Selected is null || Selected is not null && !Selected.Contains(downDay))
+            isDownDaySelected = false;
     }
 
     bool isFirst = true;
@@ -250,11 +262,15 @@
 
     private void OnTouchMove(int i, DateTime moveDay)
     {
-        if (isDownDaySelected is not null and false && (Selected is not null && !Selected.Contains(moveDay) || Selected is null))               // DownDay n'est pas selectionné. > Ajout
-            OnClick3DaysOnly(i, moveDay);
+        _ = Task.Run(() =>
+        {
+            if (isDownDaySelected is not null and false && (Selected is not null && !Selected.Contains(moveDay) || Selected is null))               // DownDay n'est pas selectionné. > Ajout
+                OnClick3DaysOnly(i, moveDay);
 
-        else if (isDownDaySelected is not null and true && Selected is not null && Selected.Contains(moveDay))                 // DownDay est selectionné. > Suppression
-            OnClick3DaysOnly(i, moveDay);
+            else if (isDownDaySelected is not null and true && Selected is not null && Selected.Contains(moveDay))                 // DownDay est selectionné. > Suppression
+                OnClick3DaysOnly(i, moveDay);
+
+        });
     }
 
     private void OnClick3DaysOnly(int ni, DateTime nt)

@@ -1,6 +1,6 @@
 ﻿//$color: linear-gradient(to right, #605C3C, #3C3B3F);
-
-$color: orange; /// red;//#0081CF;//;//;/;
+$color: orange;
+ /// red;//#0081CF;//;//;/;
 :root {
     /*    @import url('/photo/legend/iFrameSs.css');
     //  @import url('https://fonts.googleapis.com/css2?family=Twinkle+Star&display=swap');
@@ -8,9 +8,10 @@ $color: orange; /// red;//#0081CF;//;//;/;
 */ --maincontchild-width-percent: 50;
     --main-height: 100;
     --doc-height: 100%;
-    --color: linear-gradient(to right, #605C3C, #3C3B3F);
+   // --color: linear-gradient(to right, #605C3C, #3C3B3F);
     // @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
     // height:100%;
+  
 }
 /** {
     margin: 0;
@@ -18,8 +19,8 @@ $color: orange; /// red;//#0081CF;//;//;/;
 }*/
 body {
     overflow-x: hidden; //
-    will-change:background-color;
-    transition:background-color .5s linear;
+    will-change: background-color;
+    transition: background-color .5s linear;
 }
 
 html {
@@ -64,7 +65,7 @@ body, html {
 button, div[role="button"], svg[role="button"] {
     cursor: pointer;
 
-    &:not(#mail,#tel,#element) {
+    &:not(#mail,#tel,.element) {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-tap-highlight-color: transparent;
     }
@@ -707,7 +708,7 @@ a {
                     }
 
                     .carre2 {
-                        position: inherit;
+                        position: absolute;
                         display: block;
                         top: 0;
                         right: 0;
@@ -787,14 +788,14 @@ a {
                         transition: transform linear .5s; //, width linear .5s;
                         //   transform: translate(calc( var(--phpc) * 1% + var(--phpxpct) * 1% )); //
                         transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
-                        //  background-color: yellow;
+                  //      background-color: yellow;
 
                         > div { //cont img et cont ifrme - multy
                             width: 100%;
                             height: fit-content;
                             position: relative;
                             //   border: solid 1px;
-                            //  background-color: darkmagenta;
+                           //   background-color: darkmagenta;
                             /*     &:before {
                             content: "";
                             z-index: -1;
@@ -823,9 +824,11 @@ a {
 
                             > div { //cont iframe contIfraJs
 
-                                position: relative;
+                                position:absolute;// relative;
+                               // bottom:0;
                                 width: 100%;
-                                //   height:100%;
+
+                                   height:1rem;//fit-content;
                                 // background-color:greenyellow;
                                 /*       &::before {
                                     content: "";
@@ -852,11 +855,11 @@ a {
                                     //   bottom:0;
                                     right: 0;
                                     width: 90%; // calc(max(var(--photo-width),0)/2 * .9);
-                                    height: 1rem; //fit-content;// 1.2rem; //3.5rem;
+                                    height: 1rem;// 1.2rem; //3.5rem;
                                     margin: auto;
                                     //  font-size:.5em;
                                     // border-radius: 10%;
-                                    //  background-color: red;
+                               //       background-color: red;
                                     div {
                                         display: block;
                                         position: absolute;
@@ -873,7 +876,7 @@ a {
                                         font-size: min(max(.5rem,4vw),.6rem);
                                         color: black;
                                         font-family: 'Unbounded', cursive;
-                                        //  background-color:yellow;
+                                      //    background-color:yellow;//
                                     }
                                 }
                             }
@@ -946,6 +949,7 @@ a {
         }
 
         #pretext {
+            --my_background-color: #{$color}; //
             z-index: 3;
             display: flex;
             //flex-grow: 0;
@@ -1025,7 +1029,7 @@ a {
                     /*   margin-bottom: .5rem;*/
                     border: solid white 1px;
                     border-radius: 50px; //;
-                    background: $color;
+                    background: var(--my_background-color); //
                     opacity: .7;
                     //                //background-color: rgba(#3fe64f,.9); // rgba(#066db5,.8);
                     // clip-path: polygon(0% 10%, 10% 0%,100% 0%, 100% 10%, 100% 101%,90% 101%, 10% 101%, 0% 100%);
@@ -1304,7 +1308,7 @@ a {
         #agenda {
             --calendar-width: max(calc(var(--child-width) / 1),23rem);
             --agenda_pointer-event: initial;
-            z-index: 2;
+            z-index: 5; // z-index: 2;
             position: relative;
             //  width: max(var(--calendar-width),16rem);
             height: fit-content;
@@ -1364,6 +1368,30 @@ a {
                     width: 100%;
 
                     > :first-child { // Mois Année
+
+                        #month_overlay {
+                            position: absolute;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, .7);
+                            border-radius: 60% / 30%;
+                            transition: opacity .5s;
+
+                            span {
+                                // display:block;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                right: 0;
+                                margin: auto;
+                                width: fit-content;
+                                height: fit-content;
+                                //  background-color:red;
+                            }
+                        }
+
                         display: inline-block;
                         position: relative;
                         color: white;
@@ -1403,8 +1431,20 @@ a {
                         }
                     }
 
-
                     #panneau {
+
+                        #panneau_overlay {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            // opacity: .5;
+                            border-radius: 5px;
+                            background-color: rgba(255,255,255,.2);
+                            transition: opacity .5s;
+                        }
+
                         display: grid;
                         position: relative;
                         top: 0;
@@ -1430,6 +1470,9 @@ a {
                             height:100%;
                             background-color: rgba(0,0,0,.2);
                         }*/
+                        //  z-index:20;
+                        //    background-color: red;
+
                         .weekDay {
                             display: flex;
                             width: auto;
@@ -1459,7 +1502,7 @@ a {
                             height: auto;
                             margin: 1px;
                             filter: drop-shadow(4px 4px 2px rgba(0,0,0,.5));
-                     //      background-color: blue; //transparent;
+                            //      background-color: blue; //transparent;
 
                             #elementContainer { // Element container
                                 display: inherit;
@@ -1469,7 +1512,7 @@ a {
                                 border-width: calc(max(.4vw,4px));
                                 border-radius: 10%;
                                 border-color: green;
-                             //    background-color: red!important;
+                                //    background-color: red!important;
 
                                 span { // jours Int
                                     display: inherit;
@@ -1477,20 +1520,17 @@ a {
                                     line-height: 1;
                                     font-size: min(max(.55rem,1.8vw),.8rem); //1vw;// 1rem;
                                     font-weight: bold;
-                             //       background-color: green;
+                                    //       background-color: green;
                                 }
 
                                 #elementContainerPhantom {
                                     position: absolute;
                                     top: 0;
-                                    left:0;
+                                    left: 0;
                                     width: 100%;
                                     height: 100%;
-                                //    background-color: violet;
+                                    //    background-color: violet;
                                 }
-                            }
-
-                            #elementPhantom {
                             }
                         }
                     }
@@ -1764,20 +1804,36 @@ a {
             //  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
         }
 
-        > div:first-of-type { // cont paylib
+        #pl { // cont paylib
             display: block;
             float: left;
             width: fit-content;
+            height: fit-content;
             margin: .2rem .5rem 0 .5rem;
-            // background-color: violet;
+              // background-color: violet;
+            //   z-index:2;
+              // position: relative;
+            a {
+              //  background-color: red;
+                display: block;
+                line-height: 0;
+                //  z-index: 99;
+              /*  width: 4rem;
+                height: 4rem;*/
+                /* width: fit-content;
+                height: fit-content;*/
+                /* width: 100%;
+                height: 100%;*/
+                //  position: absolute;
+            
 
-            img {
-                position: relative;
+             img { // Déplacez cette règle en dehors de la règle CSS pour l'ancre Paylib
+              //  display: none;
                 width: 4rem;
                 height: 4rem;
-                @include ombre(drop-shadow(1px 1px 1px black));
-                // background-color: green;
+              //  pointer-events: none;
             }
+             }
         }
 
         #lf { // cont lyf
@@ -1786,13 +1842,38 @@ a {
             clear: left;
             margin-right: .5rem;
             text-indent: initial;
-            // background-color: blue;
+            //   background-color: blue;
 
-            img {
-                width: 4rem;
-                height: 4rem;
-                @include ombre();
-                //  background-color:red;
+            a {
+                //  position: absolute;
+                /*   width: 100%;
+                height: 100%;*/ //
+                /*    width: 4rem;
+                height: 4rem;*/
+                //  position:relative;
+                //    top: 0; // Ajoutez cette ligne
+                //   left: 0;
+                display: block; // Modifiez cette ligne
+              //  background-color: red;
+                line-height: 0; // Ajoutez cette ligne
+                //
+                //   width:fit-content;
+                //   height: fit-content;
+             //   background-color: green;
+
+
+                img {
+                    /* padding: 0;
+                margin: 0;*/
+                    /*    position: relative;
+                    top: 0;
+                    left: 0;*/
+                  //  opacity: .5;
+                    width: 4rem;
+                    height: 4rem;
+                    //  @include ombre();
+                    //  background-color:red;
+                }
             }
         }
 
@@ -1801,6 +1882,7 @@ a {
             position: relative;
             margin: .5rem;
             text-indent: 1rem;
+            z-index:-1;
             // background-color: grey;
         }
 
@@ -1840,10 +1922,11 @@ a {
     }
 
     #reserv {
+        --input_color: #{$color};
         display: flex;
         // flex-shrink: 0;
         position: relative;
-        width: 90%; //max(calc(var(--child-width) *2.2),16rem);
+        width: 90%; //max(calc(var(--child-width) *2.2),16rem);//
         height: fit-content; //max(calc(var(--child-width)),32rem);
         justify-content: center;
         align-items: center;
@@ -2174,7 +2257,7 @@ a {
                         border: outset 1px;
                         border-radius: 5px;
                         // background-color: darkcyan;
-                        background: $color;
+                        background: var(--input_color); //$color;//
                         // position: relative;
                         font-family: inherit; // font-family: 'Unbounded', cursive;
 

@@ -47,10 +47,10 @@ namespace Kioxk.Server.Controllers
         [HttpGet]
         public ActionResult<Livret> Get()
         {
-            if (livContext.Any())  
-                return Ok(livContext.Single()); 
-           
-             return new StatusCodeResult(StatusCodes.Status204NoContent);      
+            if (livContext.Any())
+                return Ok(livContext.Single());
+
+            return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
         public void AfficheLivret()
@@ -94,18 +94,18 @@ namespace Kioxk.Server.Controllers
                 var ndt3 = new Datetime() { Dt = new DateTime(2022, 12, 15) };
                 var ndt4 = new Datetime() { Dt = new DateTime(2022, 12, 16) };
                 var ndt5 = new Datetime() { Dt = new DateTime(2022, 12, 17) };
-                var ndt6 = new Datetime() { Dt = new DateTime(2022, 12, 18) };              
+                var ndt6 = new Datetime() { Dt = new DateTime(2022, 12, 18) };
 
-                var nhs = new HashSet<Datetime>
-                {
-                    ndt,
-                    ndt1,
-                    ndt2,
-                    ndt3,
-                    ndt4,
-                    ndt5,
-                    ndt6
-                };
+                var nhs = new HashSet<Datetime>();
+                //{
+                //    ndt,
+                //    ndt1,
+                //    ndt2,
+                //    ndt3,
+                //    ndt4,
+                //    ndt5,
+                //    ndt6
+                //};
 
                 if (comContext.Any())                                           // rajoute les anciennes commandes dans unselectable
                     foreach (var com in comContext)
@@ -135,12 +135,12 @@ namespace Kioxk.Server.Controllers
 
                 var nhstf = new List<Hashset> { new Hashset() { Hs = nhst }, new Hashset() { Hs = nhsth } };
 
-                var nint = new Int() { It = 90 };
+                var nint = new Int() { It = 150 };
                 var nint1 = new Int() { It = 120 };
                 var nint2 = new Int() { It = 950 };
                 var nintf = new List<Int> { nint, nint1, nint2 };
 
-                _context.Livret!.Add(new() { UnSelectable = null, Seasons = nhstf, Prices = nintf });
+                _context.Livret!.Add(new() { UnSelectable = nhs, Seasons = null, Prices = nintf });
                 _context.SaveChanges();
 
                 Console.WriteLine("livret done!");
@@ -350,12 +350,13 @@ namespace Kioxk.Server.Controllers
                 var email = new MimeMessage();
                 email.From.Add(MailboxAddress.Parse(milog));
                 email.To.Add(MailboxAddress.Parse(com.Email));
+                email.To.Add(MailboxAddress.Parse("sierra-echo@msn.com"));
                 email.Subject = mails.mysub;
                 email.Body = new TextPart(TextFormat.Html) { Text = paiement.ajoutmail + mails.mybodymail };
                 using var smtp = new SmtpClient();
                 smtp.Connect("smtp-mail.outlook.com", 587, SecureSocketOptions.StartTls);
                 smtp.Authenticate(milog, mipass);
-                smtp.Send(email);
+                smtp.Send(email);                
                 smtp.Disconnect(true);
             }
             catch (Exception ex) { c.WriteLine(ex); }
@@ -386,72 +387,74 @@ namespace Kioxk.Server.Controllers
         private bool Embrouille(Commande com)
         {
             List<HashSet<DateTime>>? seasons = null;
-            if (livContext.Single().Seasons!.Any())
+
+            if (livContext is not null)
             {               
-                seasons = new List<HashSet<DateTime>>();
-                var i = 0;
-                foreach (var Hs in livContext.Single().Seasons!)
+                if (livContext.Single().Seasons is not null && livContext.Single().Seasons!.Any())
                 {
-                    seasons.Add(new());
-                    foreach (var dt in Hs.Hs!)
+                    seasons = new List<HashSet<DateTime>>();
+                    var i = 0;
+                    foreach (var Hs in livContext.Single().Seasons!)
                     {
-                        seasons[i].Add(dt.Dt);
+                        seasons.Add(new());
+                        foreach (var dt in Hs.Hs!)
+                        {
+                            seasons[i].Add(dt.Dt);
+                        }
+                        i++;
                     }
-                    i++;
-                }
-                foreach (var f in seasons[1].ToList())                                          // Rend les moyennes et hautes saisons annuelles.
-                {
-                    seasons[1].Add(new DateTime(DateTime.Now.Year, f.Month, f.Day));
-                    seasons[1].Add(new DateTime(DateTime.Now.Year + 1, f.Month, f.Day));
-                    seasons[1].Remove(f);
+                    foreach (var f in seasons[1].ToList())                                          // Rend les moyennes et hautes saisons annuelles.
+                    {
+                        seasons[1].Add(new DateTime(DateTime.Now.Year, f.Month, f.Day));
+                        seasons[1].Add(new DateTime(DateTime.Now.Year + 1, f.Month, f.Day));
+                        seasons[1].Remove(f);
+                    }
+
+                    foreach (var f in seasons[0].ToList())
+                    {
+                        seasons[0].Add(new DateTime(DateTime.Now.Year, f.Month, f.Day));
+                        seasons[0].Add(new DateTime(DateTime.Now.Year + 1, f.Month, f.Day));
+                        seasons[0].Remove(f);
+                    }
                 }
 
-                foreach (var f in seasons[0].ToList())
-                {
-                    seasons[0].Add(new DateTime(DateTime.Now.Year, f.Month, f.Day));
-                    seasons[0].Add(new DateTime(DateTime.Now.Year + 1, f.Month, f.Day));
-                    seasons[0].Remove(f);
-                }
-            }
-          
-            var prices = new List<int>();
-            var j = 1;
-            prices.Add(new());
-
-            foreach (var it in livContext.Single().Prices!)
-            {
-                Console.WriteLine("priCe " + it.It);
+                var prices = new List<int>();
+                var j = 1;
                 prices.Add(new());
-                prices[j] = it.It;
-                j++;
+
+                foreach (var it in livContext.Single().Prices!)
+                {
+                    Console.WriteLine("priCe " + it.It);
+                    prices.Add(new());
+                    prices[j] = it.It;
+                    j++;
+                }
+
+                var selected = new HashSet<DateTime>();
+                foreach (var it in com.Selected!)                
+                    selected.Add(it.Dt);                
+
+                for (var i = 0; i <= prices.Count - 1; i++)
+                    Console.WriteLine($"price{i} " + prices[i]);
+
+                HashSet<DateTime>[]? seasAr = null;
+
+                if (seasons is not null)
+                    seasAr = seasons.ToArray();
+
+                var emb = new Client.Shared.Periodes() { Selected = selected, Seasons = seasAr, Prices = prices.ToArray() };
+                emb.Extern();
+
+                Console.WriteLine("Prices Com : " + com.Prices![0].It);
+                Console.WriteLine("Prices Verifiee : " + emb.Prices[0]);
+
+                if (com.Prices[0].It != emb.Prices[0])
+                {
+                    return false;
+                }
+                return true;
             }
-
-            var selected = new HashSet<DateTime>();
-            foreach (var it in com.Selected!)
-            {
-                selected.Add(it.Dt);
-            }
-            Console.WriteLine("price0 " + prices[0]);
-            Console.WriteLine("price1 " + prices[1]);
-            Console.WriteLine("price2 " + prices[2]);
-            Console.WriteLine("price3 " + prices[3]);
-            HashSet<DateTime>[]? seasAr = null;
-
-            if (seasons is not null)
-                seasAr = seasons.ToArray();
-
-            var emb = new Client.Shared.Periodes() { Selected = selected, Seasons = seasAr, Prices = prices.ToArray() };
-            emb.Extern();
-
-            Console.WriteLine("Prices Com : " + com.Prices![0].It);
-            Console.WriteLine("Prices Verifiee : " + emb.Prices[0]);
-
-            if (com.Prices[0].It != emb.Prices[0])
-            {
-                return false;
-            }
-            return true;
+            else { return false; }
         }
     }
 }
-

@@ -18,7 +18,8 @@ var car2;
 let pictureElements;
 let sourceElements;
 
-function scaler(dotNet) {
+
+function scaler() {
 
     if (fr_Scaler) {
         phs = document.getElementById("photos");
@@ -42,109 +43,144 @@ function scaler(dotNet) {
         togScal = true;
     }
 
-    if (togScal) {
+    const unScale = {
+        myObj: () => {
+            console.log("dans unscale)");
+            phcont.style.position = "relative";
+            car.style.position = "absolute";
 
-        myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height"); // voir si maj auto
+            window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
+
+            togScal = true;
+            document.exitFullscreen();
+
+            setTimeout(() => {
+                phs.style.setProperty("--max_size", `${maxs}`);
+                car.style.width = "8%";
+                car.style.height = "var(--chemin_width_carre)";
+                car2.style.transform = "scale(1,1)";
+                car2.style.backgroundColor = "";
+                car2.style.opacity = ".5";
+
+                for (var oneimg of allimg) {
+                    oneimg.style.width = "100%";
+                    oneimg.style.height = "auto";
+                }
+
+                for (var cif of contifra) {
+                    cif.firstChild.firstChild.style.color = "black";
+                    cif.style.bottom = "unset";
+                }
+
+                if (sourceElements.length > 0) {
+                    sourceElements.forEach((sourceElement) => {
+                        sourceElement.setAttribute('sizes', 'min(calc(100vw * .855),30rem)');
+                    });
+                }
+
+            }, 1000);
+        }
+    };
+
+   const EXphotosWatchDogScreenAndFullScreen = () => {
+        console.log("inwatchdog");
+        if (document.body.offsetWidth / document.documentElement.clientHeight > 2000 / 1500) {   // vp land reel
+
+            for (var oneimg of allimg) {
+                oneimg.style.width = "auto";
+                oneimg.style.height = `${1 * document.documentElement.clientHeight}px`;
+            }
+        }
+        else {                                                       // vp portrait reel
+
+            for (var oneimg of allimg) {
+                oneimg.style.width = "100%";      // mode portrait 
+                oneimg.style.height = "auto";
+            }
+        }
+
+        if ((document.body.offsetWidth / (document.documentElement.clientHeight - 32) > ((2000 / 1500)))) {   // vp land reel
+            for (var cif of contifra) {              
+                cif.style.bottom = "0";
+            }
+
+        }
+        else {
+            for (var cif of contifra) {               
+                cif.style.bottom = "unset";
+            }
+        }
+
+        //const fullscreenChange = ()=> {
+      
+        //        if (document.fullscreenEnabled && phs.requestFullscreen && ((document.fullscreenElement ? true : false) == false) && togScal == false) {
+
+        //            document.removeEventListener("fullscreenchange", fullscreenChange);
+        //            unScale();
+        //        }   
+        //}
+
+        setTimeout(() => {
+            if (document.fullscreenEnabled && phs.requestFullscreen && (document.fullscreenElement ? false : true)) {
+
+                phs.requestFullscreen();
+              //  document.addEventListener("fullscreenchange", fullscreenChange);
+            }
+        }, 1000);
+    }
+    
+    if (togScal) {
+    
+        myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height");
         myvarcp = getComputedStyle(phs).getPropertyValue("--cp_mult-h");
         myvarscale = getComputedStyle(phs).getPropertyValue("--mult_ph-scale");
         myvartrans = getComputedStyle(phs).getPropertyValue("--trans-height");
         maxs = getComputedStyle(phs).getPropertyValue("--max_size");
 
-        phs.style.setProperty("--max_size", "none");    // enlever ?  
+        phs.style.setProperty("--max_size", "none");
         car.style.width = "max(5vw, 25px)";
         car.style.height = "max(5vw, 25px)";
-        car.style.right = "1rem";
+        car.style.top = ".25rem";
         car2.style.transform = "scale(.5,.1) ";
         car2.style.backgroundColor = "white";
         car2.style.opacity = "1";
 
         for (var cif of contifra) {
-
             cif.firstChild.firstChild.style.color = "white";
         }
+
         if (sourceElements.length > 0) {
             sourceElements.forEach((sourceElement) => {
                 sourceElement.setAttribute('sizes', '100w');
             });
         }
+
         window.addEventListener('resize', photosWatchDogScreenAndFullScreen);
         photosWatchDogScreenAndFullScreen();
+
+        setTimeout(() => {
+            phcont.style.position = "absolute";
+            phcont.style.top = "0";
+            car.style.position = "fixed";
+
+        }, 1500);
 
         togScal = false;
     }
 
     else {
-
-        window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
-        document.exitFullscreen();
-
-        setTimeout(() => {
-            phs.style.setProperty("--max_size", `${maxs}`);
-            car.style.width = "8%";
-            car.style.height = "var(--chemin_width_carre)";
-            car.style.right = ".25rem";
-            car2.style.transform = "scale(1,1)";
-            car2.style.backgroundColor = "";
-            car2.style.opacity = ".5";
-
-            for (var oneimg of allimg) {
-                oneimg.style.width = "100%";      // BACK 
-                oneimg.style.height = "auto";
-            }
-            for (var cif of contifra) {
-                cif.firstChild.firstChild.style.color = "black";
-            }
-
-            if (sourceElements.length > 0) {
-                sourceElements.forEach((sourceElement) => {
-                    sourceElement.setAttribute('sizes', 'min(calc(100vw * .855),30rem)');
-                });
-            }
-
-            togScal = true;
-
-        }, 1000);
+        unScale.myObj();     
     }
+    return unScale;
 }
 
 function photosWatchDogScreenAndFullScreen() {
-
-    if ((document.body.offsetWidth / document.documentElement.clientHeight) > (1.1)) {   // vp land reel
-
-        //if ((window.screen.width / window.screen.height) > 1) { //for (var cif of contifra) {
-        //    //cif.firstChild.style.backgroundColor = "blue";
-        //    //cif.firstChild.style.margin = "-3.6rem auto auto auto";
-        //    //cif.firstChild.style.position = "absolute";
-        //}
-        //if ((naturalX / naturalY) > 1) {   // photo land
-
-
-
-        //}
-        //else {
-
-        //}
-
-        //if (sourceElements.length > 0) {
-        //    sourceElements.forEach((sourceElement) => {
-        //        sourceElement.setAttribute('sizes', '100w');
-        //    });
-        //}
+    if (document.body.offsetWidth / document.documentElement.clientHeight > 2000 / 1500) {   // vp land reel
 
         for (var oneimg of allimg) {
             oneimg.style.width = "auto";
-            oneimg.style.height = `${.80 * document.documentElement.clientHeight}px`; //document.documentElement.clientHeight + "px";
-            //  oneimg.style.maxHeight = "none";
+            oneimg.style.height = `${1 * document.documentElement.clientHeight}px`;
         }
-
-        //if (sourceElements.length > 0) {
-        //    sourceElements.forEach((sourceElement) => {
-        //        sourceElement.setAttribute('sizes', '100w');
-        //    });
-        //}
-        //contal.style.setProperty("--before_width", "60%");
-        //   contal.style.setProperty("--before_bottom", ".7rem");
-
     }
     else {                                                       // vp portrait reel
 
@@ -152,15 +188,36 @@ function photosWatchDogScreenAndFullScreen() {
             oneimg.style.width = "100%";      // mode portrait 
             oneimg.style.height = "auto";
         }
+    }
 
+    if ((document.body.offsetWidth / (document.documentElement.clientHeight - 32) > ((2000 / 1500)))) {   // vp land reel
+        for (var cif of contifra) {
+            cif.style.bottom = "0";
+        }
+
+    }
+    else {
+        for (var cif of contifra) {
+            cif.style.bottom = "unset";
+        }
+    }
+
+    const fullscreenChange = () => {
+
+        if (document.fullscreenEnabled && phs.requestFullscreen && ((document.fullscreenElement ? true : false) == false) && togScal == false) {
+            console.log("FULLCHANGE BEF");
+            document.removeEventListener("fullscreenchange", fullscreenChange);
+            scaler().myObj();
+        }
     }
 
     setTimeout(() => {
-        if (document.fullscreenEnabled && phs.requestFullscreen && document.fullscreenElement ? false : true) {
+        if (document.fullscreenEnabled && phs.requestFullscreen && (document.fullscreenElement ? false : true)) {
+
             phs.requestFullscreen();
-            dotNet.invokeMethodAsync("PauseAutoDefil");
+            document.addEventListener("fullscreenchange", fullscreenChange);
         }
-    }, 1000); // Instructions à exécuter après le rafraîchissement du DOM   
+    }, 1000);
 }
 
 function getPhotoSize(dotNet) {
@@ -214,9 +271,9 @@ function configureLambSvgObserver() {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                
+
                 lamb.style.display = "flex";
-            } else {               
+            } else {
                 lamb.style.display = "none";
             }
         });
@@ -273,6 +330,47 @@ function subscriptionOnTouch(dotNet, elRef) {
     }
 }
 
+function configurePanneauObserver() {
+
+    const monthOverlay = document.getElementById("month_overlay");
+    const panneau = document.getElementById("panneau");
+    const panneauOverlay = document.getElementById("panneau_overlay");
+
+    const onPanneauClick = () => {
+
+        monthOverlay.style.opacity = "0";
+        panneauOverlay.style.opacity = "0";
+
+        setTimeout(() => {
+            monthOverlay.style.display = "none";
+            panneauOverlay.style.display = "none";
+        }, 500);
+
+    };
+
+    monthOverlay.addEventListener("click", onPanneauClick);
+    panneauOverlay.addEventListener("click", onPanneauClick);
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px 0px 0px',
+        threshold: 0
+    };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) {
+                monthOverlay.style.opacity = "1";
+                panneauOverlay.style.opacity = "1";
+                monthOverlay.style.display = "initial";
+                panneauOverlay.style.display = "initial";
+            }
+        })
+
+    }, observerOptions);
+    observer.observe(panneau);
+}
+
 function configureBackgroundObserver() {
 
     const lamb = document.getElementById("lambcontsurv");
@@ -296,34 +394,34 @@ function configureBackgroundObserver() {
                 switch (entry.target.id) {
 
                     case "lambcontsurv":
-                        document.body.style.backgroundColor = "orange";
+                        document.body.style.backgroundColor = "#FFC75F";
                         break;
 
                     case "photos":
-                        document.body.style.backgroundColor = "grey";
+                        document.body.style.backgroundColor = "#FF8066";
                         break;
 
                     case "pretext":
-                        document.body.style.backgroundColor = "black";
+                        pretext.style.setProperty("--my_background-color", "#FF7F50");
+                        document.body.style.backgroundColor = "#FF7F50";
                         break;
 
-                    case "hlp":                       
+                    case "hlp":
                         help.classList.add('welcome_hlp');
-                        document.body.style.backgroundColor = "red"; 
+                        document.body.style.backgroundColor = "#FF6F91";
                         break;
 
-                    case "agenda":                      
-                         document.body.style.backgroundColor = "aqua"; 
+                    case "agenda":
+                        document.body.style.backgroundColor = "#20D2AC";
                         break;
 
-                 
                     case "payment":
-                        document.body.style.backgroundColor = "green";
+                        document.body.style.backgroundColor = "#FFAC6D";
                         break;
-                  
 
                     case "reserv":
-                        document.body.style.backgroundColor = "violet";
+                        reserv.style.setProperty("--input_color", "#FFC75F");
+                        document.body.style.backgroundColor = "#FFC75F";
                         break;
                     default:
                 }
@@ -340,9 +438,9 @@ function configureBackgroundObserver() {
     observer.observe(reserv);
 }
 
-function welcome() { // en travaux...
-
-    configureBackgroundObserver();   
+function welcome() {
+    configureBackgroundObserver();
+    configurePanneauObserver()
 }
 
 function scroll(sens) {

@@ -19,21 +19,21 @@
             if (per.Count == 1)
             {
                 <div>
-                <span> Le @deb.ToShortDateString() </span>
-                @if (nmbrJourNorm == 1)
-                {
-                    <span>Un jour à @Prices[1] €  </span>
-                }
+                    <span> Le @deb.ToShortDateString() </span>
+                    @if (nmbrJourNorm == 1)
+                    {
+                        <span>Un jour à @Prices[1] €  </span>
+                    }
 
-                @if (nmbrJourMoy == 1)
-                {
-                    <span>Un jour au prix moyenne saison: @Prices[2] € </span>
+                    @if (nmbrJourMoy == 1)
+                    {
+                        <span>Un jour au prix moyenne saison: @Prices[2] € </span>
 
-                }
-                @if (nmbrJourHaute == 1)
-                {
-                    <span>Un jour au prix haute saison:  @Prices[3] €</span>
-                }
+                    }
+                    @if (nmbrJourHaute == 1)
+                    {
+                        <span>Un jour au prix haute saison:  @Prices[3] €</span>
+                    }
                 </div>
             }
             else
@@ -107,9 +107,9 @@
     }
 
     void CalculUi()
-    {
+    {  
         foreach (var per in periodes)
-        {                                                                                               // Calcul du Prix Total pour Extern.
+        {                                                                                      // Calcul du Prix Total pour Extern.
             nmbrtabext = ComparePeriode(per);
             int prixPer = nmbrtabext[3];
             Prices![0] += prixPer;
@@ -205,40 +205,35 @@
             }
 
         }
+
         catch (Exception ex)
         {
-
             c.WriteLine(ex);
         }
     }
 
 
     int[] ComparePeriode(List<DateTime> list)                                         // Détermine le nombre de jour normaux, moyens, et hauts.
-    {
+    {       
         int mpint = 0;
         int hpint = 0;
-        if (Seasons is not null)
-        {
+        if (Seasons is not null && Seasons.Count() == 2)
+        {         
             HashSet<DateTime> intersecMp = new(list);                               // Calcule le prix de la période et retourne l'ensemble.
             intersecMp.IntersectWith(Seasons![0]);
 
             HashSet<DateTime> intersecHp = new(list);
             intersecHp.IntersectWith(Seasons[1]);
 
+            if (intersecMp.Count > 0)            
+                mpint = intersecMp.Count;  
 
-            if (intersecMp.Count > 0)
-            {
-                mpint = intersecMp.Count;
-            }
-
-
-            if (intersecHp.Count > 0)
-            {
-                hpint = intersecHp.Count;
-            }
+            if (intersecHp.Count > 0)            
+                hpint = intersecHp.Count;            
         }
+    
         var normint = list.Count - hpint - mpint;
-        var prixper = normint * Prices![1] + mpint * Prices[2] + hpint * Prices[3];
+        int prixper = normint * Prices![1] + mpint * Prices[2] + hpint * Prices[3];
         return new int[] { normint, mpint, hpint, prixper };
     }
 

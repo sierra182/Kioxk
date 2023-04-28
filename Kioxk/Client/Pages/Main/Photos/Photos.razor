@@ -7,7 +7,7 @@
 @inject IJSRuntime js
 @inject Services.AutoDefil myAutoDefil
 
-<div tabindex="0" id="carreph" class="carre" @onclick='()=>{  js.InvokeVoidAsync("scaler", DotNetObjectReference.Create(this));}' role="button" aria-label="agrandir les images">
+<div tabindex="0" id="carreph" class="carre" @onclick='()=>{  js.InvokeVoidAsync("scaler"); }' role="button" aria-label="agrandir les images">
     <div id="carre2ph" class="carre2" />
 
 </div>
