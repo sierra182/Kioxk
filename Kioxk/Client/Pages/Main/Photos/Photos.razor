@@ -93,7 +93,7 @@
             PhotoSize = await js.InvokeAsync<int>("getPhotoSize", DotNetObjectReference.Create(this));     
     }
 
-    [JSInvokable]
+   [JSInvokableAttribute("SetPhotoSize")]
     private void SetPhotoSize(int size)=>    
         PhotoSize = size;       
     

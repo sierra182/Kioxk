@@ -610,8 +610,8 @@ a {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        //  height:100%;
-        //  background-color: red;
+       // height: 100%;
+      //  background-color: red; //
 
         #photos {
             z-index: 3;
@@ -647,7 +647,7 @@ a {
             // overflow-x: hidden;
             //  overflow-y: hidden;
             font-size: min(max(.8rem,1vw),1.6rem);
-            //  background-color: red;
+       //     background-color: blue;
 
             &:before {
                 //  display:none;
@@ -788,14 +788,14 @@ a {
                         transition: transform linear .5s; //, width linear .5s;
                         //   transform: translate(calc( var(--phpc) * 1% + var(--phpxpct) * 1% )); //
                         transform: translate(calc( var(--phpc) * 1% + var(--phpx) * 1px ));
-                  //      background-color: yellow;
+                        //      background-color: yellow;
 
                         > div { //cont img et cont ifrme - multy
                             width: 100%;
                             height: fit-content;
                             position: relative;
                             //   border: solid 1px;
-                           //   background-color: darkmagenta;
+                            //   background-color: darkmagenta;
                             /*     &:before {
                             content: "";
                             z-index: -1;
@@ -824,11 +824,10 @@ a {
 
                             > div { //cont iframe contIfraJs
 
-                                position:absolute;// relative;
-                               // bottom:0;
+                                position: absolute; // relative;
+                                // bottom:0;
                                 width: 100%;
-
-                                   height:1rem;//fit-content;
+                                height: 1rem; //fit-content;
                                 // background-color:greenyellow;
                                 /*       &::before {
                                     content: "";
@@ -855,11 +854,11 @@ a {
                                     //   bottom:0;
                                     right: 0;
                                     width: 90%; // calc(max(var(--photo-width),0)/2 * .9);
-                                    height: 1rem;// 1.2rem; //3.5rem;
+                                    height: 1rem; // 1.2rem; //3.5rem;
                                     margin: auto;
                                     //  font-size:.5em;
                                     // border-radius: 10%;
-                               //       background-color: red;
+                                    //       background-color: red;
                                     div {
                                         display: block;
                                         position: absolute;
@@ -876,7 +875,7 @@ a {
                                         font-size: min(max(.5rem,4vw),.6rem);
                                         color: black;
                                         font-family: 'Unbounded', cursive;
-                                      //    background-color:yellow;//
+                                        //    background-color:yellow;//
                                     }
                                 }
                             }
@@ -958,7 +957,7 @@ a {
             position: relative;
             width: 90%; //20rem; //max(calc(var(--child-width) * .95 ),26rem); //40%
             height: fit-content;
-            margin: 5% auto; //5%
+            margin: 5% auto 0 auto; //5%
             align-self: center;
             // padding: 2vw;
             // margin: 0 6rem;
@@ -973,7 +972,7 @@ a {
             //  clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 90%);
             ///// clip-path: polygon(0% 10%, 10% 0%,90% 0%, 100% 10%, 100% 90%,90% 100%, 10% 100%, 0% 100%);
             //  background-color: rgba(#3C3B3F,1);
-            //  background-color: #3C3B3F;
+          //    background-color: #3C3B3F;
             // backdrop-filter: blur(0px);
             //background-clip: text;
             // --webkit-background-clip: text;
@@ -1188,7 +1187,7 @@ a {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        //  background-color: green;
+       // background-color: green;
 
         .welcome_hlp#hlp {
             transform: none;
@@ -1786,6 +1785,7 @@ a {
         border-radius: 5px;
         // display: none;
         z-index: 3;
+      //  background-color: violet;
 
         &:before {
             content: "";
@@ -1810,30 +1810,30 @@ a {
             width: fit-content;
             height: fit-content;
             margin: .2rem .5rem 0 .5rem;
-              // background-color: violet;
+            // background-color: violet;
             //   z-index:2;
-              // position: relative;
+            // position: relative;
             a {
-              //  background-color: red;
+                //  background-color: red;
                 display: block;
                 line-height: 0;
                 //  z-index: 99;
-              /*  width: 4rem;
+                /*  width: 4rem;
                 height: 4rem;*/
                 /* width: fit-content;
                 height: fit-content;*/
                 /* width: 100%;
                 height: 100%;*/
                 //  position: absolute;
-            
 
-             img { // Déplacez cette règle en dehors de la règle CSS pour l'ancre Paylib
-              //  display: none;
-                width: 4rem;
-                height: 4rem;
-              //  pointer-events: none;
+
+                img { // Déplacez cette règle en dehors de la règle CSS pour l'ancre Paylib
+                    //  display: none;
+                    width: 4rem;
+                    height: 4rem;
+                    //  pointer-events: none;
+                }
             }
-             }
         }
 
         #lf { // cont lyf
@@ -1854,12 +1854,12 @@ a {
                 //    top: 0; // Ajoutez cette ligne
                 //   left: 0;
                 display: block; // Modifiez cette ligne
-              //  background-color: red;
+                //  background-color: red;
                 line-height: 0; // Ajoutez cette ligne
                 //
                 //   width:fit-content;
                 //   height: fit-content;
-             //   background-color: green;
+                //   background-color: green;
 
 
                 img {
@@ -1868,7 +1868,7 @@ a {
                     /*    position: relative;
                     top: 0;
                     left: 0;*/
-                  //  opacity: .5;
+                    //  opacity: .5;
                     width: 4rem;
                     height: 4rem;
                     //  @include ombre();
@@ -1882,7 +1882,7 @@ a {
             position: relative;
             margin: .5rem;
             text-indent: 1rem;
-            z-index:-1;
+            z-index: -1;
             // background-color: grey;
         }
 
@@ -1934,7 +1934,7 @@ a {
         margin-top: 5%;
         //   margin-bottom: max(3rem,4vw);
         //  @include ombre();
-        //  background-color: blue; //#00c6b0;
+      //    background-color: blue; //#00c6b0;
         //  display: none;
         z-index: 5;
         font-size: min(max(.7rem,1vw),1.2rem);

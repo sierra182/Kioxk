@@ -42,93 +42,7 @@ function scaler() {
         fr_Scaler = false;
         togScal = true;
     }
-
-    const unScale = {
-        myObj: () => {
-            console.log("dans unscale)");
-            phcont.style.position = "relative";
-            car.style.position = "absolute";
-
-            window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
-
-            togScal = true;
-            document.exitFullscreen();
-
-            setTimeout(() => {
-                phs.style.setProperty("--max_size", `${maxs}`);
-                car.style.width = "8%";
-                car.style.height = "var(--chemin_width_carre)";
-                car2.style.transform = "scale(1,1)";
-                car2.style.backgroundColor = "";
-                car2.style.opacity = ".5";
-
-                for (var oneimg of allimg) {
-                    oneimg.style.width = "100%";
-                    oneimg.style.height = "auto";
-                }
-
-                for (var cif of contifra) {
-                    cif.firstChild.firstChild.style.color = "black";
-                    cif.style.bottom = "unset";
-                }
-
-                if (sourceElements.length > 0) {
-                    sourceElements.forEach((sourceElement) => {
-                        sourceElement.setAttribute('sizes', 'min(calc(100vw * .855),30rem)');
-                    });
-                }
-
-            }, 1000);
-        }
-    };
-
-   const EXphotosWatchDogScreenAndFullScreen = () => {
-        console.log("inwatchdog");
-        if (document.body.offsetWidth / document.documentElement.clientHeight > 2000 / 1500) {   // vp land reel
-
-            for (var oneimg of allimg) {
-                oneimg.style.width = "auto";
-                oneimg.style.height = `${1 * document.documentElement.clientHeight}px`;
-            }
-        }
-        else {                                                       // vp portrait reel
-
-            for (var oneimg of allimg) {
-                oneimg.style.width = "100%";      // mode portrait 
-                oneimg.style.height = "auto";
-            }
-        }
-
-        if ((document.body.offsetWidth / (document.documentElement.clientHeight - 32) > ((2000 / 1500)))) {   // vp land reel
-            for (var cif of contifra) {              
-                cif.style.bottom = "0";
-            }
-
-        }
-        else {
-            for (var cif of contifra) {               
-                cif.style.bottom = "unset";
-            }
-        }
-
-        //const fullscreenChange = ()=> {
-      
-        //        if (document.fullscreenEnabled && phs.requestFullscreen && ((document.fullscreenElement ? true : false) == false) && togScal == false) {
-
-        //            document.removeEventListener("fullscreenchange", fullscreenChange);
-        //            unScale();
-        //        }   
-        //}
-
-        setTimeout(() => {
-            if (document.fullscreenEnabled && phs.requestFullscreen && (document.fullscreenElement ? false : true)) {
-
-                phs.requestFullscreen();
-              //  document.addEventListener("fullscreenchange", fullscreenChange);
-            }
-        }, 1000);
-    }
-    
+     
     if (togScal) {
     
         myvarcontal = getComputedStyle(contal).getPropertyValue("--ph_scale-height");
@@ -169,9 +83,41 @@ function scaler() {
     }
 
     else {
-        unScale.myObj();     
-    }
-    return unScale;
+
+        phcont.style.position = "relative";
+        car.style.position = "absolute";
+
+        window.removeEventListener('resize', photosWatchDogScreenAndFullScreen);
+
+        togScal = true;
+        document.exitFullscreen();
+
+        setTimeout(() => {
+            phs.style.setProperty("--max_size", `${maxs}`);
+            car.style.width = "8%";
+            car.style.height = "var(--chemin_width_carre)";
+            car2.style.transform = "scale(1,1)";
+            car2.style.backgroundColor = "";
+            car2.style.opacity = ".5";
+
+            for (var oneimg of allimg) {
+                oneimg.style.width = "100%";
+                oneimg.style.height = "auto";
+            }
+
+            for (var cif of contifra) {
+                cif.firstChild.firstChild.style.color = "black";
+                cif.style.bottom = "unset";
+            }
+
+            if (sourceElements.length > 0) {
+                sourceElements.forEach((sourceElement) => {
+                    sourceElement.setAttribute('sizes', 'min(calc(100vw * .855),30rem)');
+                });
+            }
+
+        }, 1000);     
+    }    
 }
 
 function photosWatchDogScreenAndFullScreen() {
@@ -205,9 +151,8 @@ function photosWatchDogScreenAndFullScreen() {
     const fullscreenChange = () => {
 
         if (document.fullscreenEnabled && phs.requestFullscreen && ((document.fullscreenElement ? true : false) == false) && togScal == false) {
-            console.log("FULLCHANGE BEF");
             document.removeEventListener("fullscreenchange", fullscreenChange);
-            scaler().myObj();
+            scaler();          
         }
     }
 
@@ -398,6 +343,7 @@ function configureBackgroundObserver() {
                         break;
 
                     case "photos":
+                        pretext.style.setProperty("--my_background-color", "#FF8066");
                         document.body.style.backgroundColor = "#FF8066";
                         break;
 
@@ -408,10 +354,12 @@ function configureBackgroundObserver() {
 
                     case "hlp":
                         help.classList.add('welcome_hlp');
+                        pretext.style.setProperty("--my_background-color", "#FF6F91");
                         document.body.style.backgroundColor = "#FF6F91";
                         break;
 
                     case "agenda":
+                        pretext.style.setProperty("--my_background-color", "#20D2AC");
                         document.body.style.backgroundColor = "#20D2AC";
                         break;
 
